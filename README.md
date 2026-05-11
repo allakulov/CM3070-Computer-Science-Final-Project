@@ -28,3 +28,8 @@ The orchestrator classifies each document, routes it to the appropriate agent, a
 2. **Agent development**: build extraction agents for each document format, backed by pre-trained models
 3. **Orchestration**: connect agents into a multi-agent workflow.
 4. **Evaluation**: compare model alternatives, measure extraction accuracy against manually annotated ground truth.
+
+## Resources: 
+1. Langchain [tools](https://docs.langchain.com/oss/python/langchain/tools)
+2. Langgraph [tutorial](https://langchain-opentutorial.gitbook.io/langchain-opentutorial/17-langgraph)
+3. Middleware such as human-in-the-loop, model fallback, etc - see [here](https://docs.langchain.com/oss/python/langchain/middleware/built-in)
