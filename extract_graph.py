@@ -1,18 +1,22 @@
-"""Extract the main CPV code from each procurement's documents.
+"""Extract the main and additional CPV codes from a procurement's documents.
 
-This is a LangGraph pipeline. For one procurement it reads every document,
-splits the combined text into overlapping chunks, asks a local LLM (Ollama)
-for the main CPV code in each chunk, then merges the chunk results into a
-single answer saved to ``extracted/{eis_id}.json``.
+This is a LangGraph pipeline. For one procurement it reads every document, uses
+a regex to find every CPV code together with its surrounding text, then asks a
+local LLM (Ollama) to decide which code is the main one and which are additional.
+A reflexion step lets the model critique its own answer and try again.
 
-The graph contains a cycle: the ``extract_chunk`` node runs once per chunk,
-looping back to itself until every chunk is processed, then continues to
-``merge``. The ``partials`` list uses an ``operator.add`` reducer so each loop
-iteration appends to it instead of overwriting it.
+Why a regex first, then an LLM: the regex guarantees we catch every code and
+gives us the evidence text for free, so the LLM only has to make a judgement over
+a short candidate list instead of scanning the whole document. Because the model
+never sees the full text, no chunking is needed for this field.
+
+Pydantic does the type checking. CpvClassification validates the model's output
+(codes must look like CPV codes; the main code is kept out of the additional
+list), and Critique uses a Literal to limit the verdict to "accept" or "revise".
 
 Validation is deliberately NOT done here. A separate script compares the saved
-results against the structured open data, so this pipeline never sees the
-answer key during extraction.
+results against the structured open data, so this pipeline never sees the answer
+key during extraction.
 
 Install:
     pip install langgraph langchain-ollama pydantic
@@ -29,12 +33,12 @@ from __future__ import annotations
 import argparse
 import io
 import json
-import operator
+import re
 import zipfile
 from pathlib import Path
-from typing import Annotated, Optional, TypedDict
+from typing import Literal, Optional, TypedDict
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ValidationError, field_validator, model_validator
 from langgraph.graph import StateGraph, START, END
 from langchain_ollama import ChatOllama
 
@@ -47,67 +51,127 @@ OUTPUT_DIR = Path("extracted")           # output: extracted/{eis_id}.json
 EXTRACTION_MODEL = "mistral-small"       # any tag listed by `ollama list`
 OLLAMA_NUM_CTX = 4096                    # Ollama's default of 2048 is too small
 
-CHUNK_SIZE = 3000                        # characters per chunk (about 1000 tokens)
-CHUNK_OVERLAP = 200                      # shared characters between neighbouring chunks
+CONTEXT_CHARS = 200                      # characters of context kept on each side of a code
+MAX_CLASSIFY_ATTEMPTS = 3                # cap on the reflexion loop
 
-# File types that are really archives and should be opened, not read as text.
-# ".edoc" is the Latvian e-signed document format: a ZIP holding the real
-# document plus signature files.
-CONTAINER_EXTS = (".zip", ".edoc")
+CONTAINER_EXTS = (".zip", ".edoc")       # archive types to open instead of read as text
 MAX_CONTAINER_DEPTH = 5                  # stop runaway recursion on nested archives
-
 MIN_USEFUL_CHARS = 50                    # ignore files that yield almost no text
 
+# A CPV code is eight digits, a hyphen, then one check digit, e.g. 71220000-6.
+# The lookarounds stop us matching part of a longer run of digits.
+CPV_REGEX = r"\d{8}-\d"
+CPV_PATTERN = re.compile(r"(?<!\d)" + CPV_REGEX + r"(?!\d)")
 
-# EXTRACTION SCHEMA
+
+def looks_like_cpv(code):
+    """Return True if the string is exactly a CPV code."""
+    return re.fullmatch(CPV_REGEX, code) is not None
+
+
+# EXTRACTION SCHEMAS
 #
-# The class name, its docstring, and each field description are sent to the
-# model as instructions, so they are written for the model to read.
+# Each class name, docstring, and field description is sent to the model as part
+# of the prompt, so they are written for the model to read. The validators run
+# when LangChain parses the model's reply into the object; if one raises, the
+# classify node catches it and the reflexion loop tries again.
 
-class CpvCode(BaseModel):
-    """Main CPV classification code of a procurement."""
+class CpvClassification(BaseModel):
+    """Split of the candidate CPV codes into the main code and the rest."""
 
-    found: bool = Field(
-        description="True only if a CPV code appears in this chunk."
+    main_cpv: str = Field(
+        description='The single main CPV code, copied verbatim from the candidate list, e.g. "71220000-6".',
     )
-    cpv_code: Optional[str] = Field(
-        None, description='The main CPV code, formatted like "71220000-6".'
+    additional_cpv: list[str] = Field(
+        default_factory=list,
+        description="Every other CPV code that applies to the procurement.",
     )
-    description: Optional[str] = Field(
-        None, description="What the code refers to, if stated (goods, services, or works)."
-    )
-    evidence: Optional[str] = Field(
-        None, description="A short verbatim snippet from the chunk showing the code."
+    reasoning: str = Field(
+        description="One short sentence explaining the choice of main code.",
     )
 
+    @field_validator("main_cpv")
+    @classmethod
+    def main_must_be_cpv(cls, value):
+        """Reject a main code that is not in CPV form."""
+        if not looks_like_cpv(value):
+            raise ValueError(f"{value!r} is not a CPV code")
+        return value
 
-EXTRACTION_PROMPT = """You are reading one chunk of a Latvian public procurement \
-document. Find the main CPV code.
+    @field_validator("additional_cpv")
+    @classmethod
+    def additional_must_be_cpv(cls, value):
+        """Reject any additional code that is malformed."""
+        bad = [code for code in value if not looks_like_cpv(code)]
+        if bad:
+            raise ValueError(f"not CPV codes: {bad}")
+        return value
 
-CPV (Common Procurement Vocabulary) codes classify what is being procured. A code \
-is eight digits, a hyphen, then one check digit, for example "71220000-6". The \
-Latvian label is "CPV kods". Return only the single main code. If this chunk has no \
-CPV code, set found to false. Do not guess.
+    @model_validator(mode="after")
+    def main_not_in_additional(self):
+        """Keep the main code out of the additional list."""
+        if self.main_cpv:
+            self.additional_cpv = [c for c in self.additional_cpv if c != self.main_cpv]
+        return self
 
-CHUNK TEXT:
-{text}
-"""
+
+class Critique(BaseModel):
+    """Self-assessment of a CPV classification (the reflexion step)."""
+
+    verdict: Literal["accept", "revise"] = Field(
+        description="accept if the split is well justified, otherwise revise."
+    )
+    problem: Optional[str] = Field(
+        default=None,
+        description="If revising, one short sentence on what to fix.",
+    )
 
 
 # MODEL
 #
-# Built once and reused for every chunk. Constructing ChatOllama does not open a
-# connection, so importing this module without Ollama running is fine.
+# Built once and reused. Constructing ChatOllama does not open a connection, so
+# importing this module without Ollama running is fine.
 
 chat_model = ChatOllama(model=EXTRACTION_MODEL, temperature=0, num_ctx=OLLAMA_NUM_CTX)
-extractor = chat_model.with_structured_output(CpvCode)
+# method="json_schema" uses Ollama's constrained decoding, which fills the schema far
+# more reliably on small local models than the default tool-calling path.
+classifier = chat_model.with_structured_output(CpvClassification, method="json_schema")
+critic = chat_model.with_structured_output(Critique, method="json_schema")
+
+
+CLASSIFY_PROMPT = """You are reading CPV codes found in a Latvian public procurement \
+notice. Each code is shown with the text around it.
+
+CPV codes classify what is being procured. Exactly one code is the MAIN code (Latvian: \
+"galvenais CPV kods", or simply "CPV kods").
+
+You MUST choose exactly one code from the list as the main code and copy it verbatim. \
+Put every other code in the additional list. Use only codes that appear in the list.
+
+CODES:
+{candidates}
+{feedback}"""
+
+CRITIQUE_PROMPT = """Check this CPV classification for a Latvian procurement notice.
+
+CODES AND CONTEXT:
+{candidates}
+
+PROPOSED:
+main CPV: {main}
+additional CPV: {additional}
+reasoning: {reasoning}
+
+If the main code is the best-supported choice and the additional list is correct, answer \
+accept. Otherwise answer revise and say briefly what to fix.
+"""
 
 
 # FILE READERS
 #
 # Each reader takes (bytes, filename) and returns text, or "" if it cannot read
-# the file. READER_PIPELINE is the ordered list of attempts. Today it holds one
-# reader; OCR and table readers will be appended later without other changes.
+# the file. READER_PIPELINE is the ordered list of attempts; OCR and .doc readers
+# will be appended later without other changes.
 
 def read_plain(data, name):
     """Extract text from PDF, DOCX, XLSX, or TXT bytes by file extension."""
@@ -166,7 +230,6 @@ def iter_container_files(data, container_name, depth=0):
                 name = info.filename
                 payload = archive.read(info)
                 if name.lower().endswith(CONTAINER_EXTS):
-                    # "yield from" passes through every item from the inner archive.
                     yield from iter_container_files(payload, name, depth + 1)
                 else:
                     yield name, payload
@@ -174,35 +237,34 @@ def iter_container_files(data, container_name, depth=0):
         yield container_name, data
 
 
-# CHUNKING
-
-def split_into_chunks(text, size, overlap):
-    """Split text into overlapping fixed-size chunks."""
-    if not text:
-        return []
-    chunks = []
-    start = 0
-    while start < len(text):
-        chunks.append(text[start:start + size])
-        start += size - overlap
-    return chunks
-
-
 # GRAPH STATE
 #
-# A single dict flows through every node. Nodes return only the keys they change,
-# and LangGraph merges those into the state. "partials" is special: the
-# operator.add reducer appends each node's list instead of replacing it, which is
-# what lets the chunk loop accumulate results.
+# One dict flows through every node. Nodes return only the keys they change, and
+# LangGraph merges them in. No reducer is needed here: the reflexion loop replaces
+# the classification each attempt rather than accumulating, so a plain overwrite
+# is what we want.
 
 class State(TypedDict):
     eis_id: str
     source_files: list[str]
     documents_text: str
-    chunks: list[str]
-    current_chunk_idx: int
-    partials: Annotated[list[dict], operator.add]
+    candidates: list[dict]          # [{code, context, count}]
+    classification: Optional[dict]
+    critique: Optional[dict]
+    feedback: Optional[str]         # note carried into the next classify attempt
+    attempts: int
     final: Optional[dict]
+
+
+# HELPERS
+
+def format_candidates(candidates):
+    """Format the candidate codes and their context for a prompt."""
+    lines = []
+    for c in candidates:
+        context = " ".join(c["context"].split())[:300]    # collapse whitespace, trim
+        lines.append(f'- {c["code"]} (seen {c["count"]}x): {context}')
+    return "\n".join(lines)
 
 
 # GRAPH NODES
@@ -224,7 +286,6 @@ def load_documents(state):
         for name, data in iter_container_files(zip_bytes, zip_path.name):
             text = read_file(data, name)
             if text:
-                # Label each file so chunk boundaries keep some source context.
                 texts.append(f"Source file: {name}\n{text}")
                 file_names.append(name)
             else:
@@ -238,66 +299,97 @@ def load_documents(state):
     return {"documents_text": blob, "source_files": file_names}
 
 
-def chunk_text(state):
-    """Split the loaded text into overlapping chunks."""
-    chunks = split_into_chunks(state["documents_text"], CHUNK_SIZE, CHUNK_OVERLAP)
-    print(f"  chunk_text: {len(chunks)} chunks of up to {CHUNK_SIZE} chars")
-    return {"chunks": chunks, "current_chunk_idx": 0}
+def find_candidates(state):
+    """Find every CPV code in the text and keep the context around it."""
+    text = state["documents_text"]
+    found = {}
+    for match in CPV_PATTERN.finditer(text):
+        code = match.group()
+        if code in found:
+            found[code]["count"] += 1
+            continue
+        start = max(0, match.start() - CONTEXT_CHARS)
+        end = min(len(text), match.end() + CONTEXT_CHARS)
+        found[code] = {"code": code, "context": text[start:end], "count": 1}
+
+    candidates = list(found.values())
+    print(f"  find_candidates: {len(candidates)} unique CPV codes")
+    return {"candidates": candidates}
 
 
-def extract_chunk(state):
-    """Extract the main CPV code from the current chunk and append the result."""
-    idx = state["current_chunk_idx"]
-    chunks = state["chunks"]
-    prompt = EXTRACTION_PROMPT.format(text=chunks[idx])
+def classify(state):
+    """Ask the LLM to pick the main CPV code and list the additional ones."""
+    attempt = state["attempts"] + 1
+    feedback = state.get("feedback")
+    note = f"\nNote on your previous attempt: {feedback}" if feedback else ""
+    prompt = CLASSIFY_PROMPT.format(candidates=format_candidates(state["candidates"]), feedback=note)
 
     try:
-        result = extractor.invoke(prompt)
-        partial = result.model_dump()
-    except Exception as error:
-        # One bad chunk should not stop the whole procurement.
-        print(f"    chunk {idx + 1}: extraction error: {error}")
-        partial = {"found": False, "cpv_code": None, "description": None, "evidence": None}
+        result = classifier.invoke(prompt)
+    except ValidationError as error:
+        print(f"  classify (attempt {attempt}): invalid output, will retry")
+        return {"classification": None,
+                "feedback": f"your previous answer was not valid: {error}",
+                "attempts": attempt}
 
-    if partial.get("found") and partial.get("cpv_code"):
-        status = f"found {partial['cpv_code']}"
+    # Keep only codes that were actually in the candidate list (no hallucinations).
+    valid = {c["code"] for c in state["candidates"]}
+    main = result.main_cpv if result.main_cpv in valid else None
+    additional = [c for c in result.additional_cpv if c in valid]
+    classification = {"main_cpv": main, "additional_cpv": additional, "reasoning": result.reasoning}
+
+    print(f"  classify (attempt {attempt}): main {main}, additional {additional} (model said {result.main_cpv!r})")
+    return {"classification": classification, "attempts": attempt}
+
+
+def critique(state):
+    """Judge the current classification and decide whether to revise it."""
+    classification = state.get("classification")
+    if not classification:
+        # classify failed to produce valid output; ask for another attempt.
+        return {"critique": {"verdict": "revise", "problem": "no valid classification produced"}}
+
+    prompt = CRITIQUE_PROMPT.format(
+        candidates=format_candidates(state["candidates"]),
+        main=classification.get("main_cpv"),
+        additional=classification.get("additional_cpv"),
+        reasoning=classification.get("reasoning"),
+    )
+    result = critic.invoke(prompt)
+    verdict = result.model_dump()
+
+    print(f"  critique: {verdict['verdict']}" + (f" ({verdict['problem']})" if verdict.get("problem") else ""))
+    update = {"critique": verdict}
+    if verdict["verdict"] == "revise":
+        update["feedback"] = verdict.get("problem") or "reconsider which code is the main CPV"
+    return update
+
+
+def route_after_critique(state):
+    """Loop back to classify if the critique asked to revise and attempts remain."""
+    if state["critique"]["verdict"] == "revise" and state["attempts"] < MAX_CLASSIFY_ATTEMPTS:
+        return "classify"
+    return "finalize"
+
+
+def has_candidates(state):
+    """Skip the LLM entirely when no CPV code was found."""
+    return "classify" if state["candidates"] else "finalize"
+
+
+def finalize(state):
+    """Package the final result from the latest classification."""
+    classification = state.get("classification")
+    if not classification or not classification.get("main_cpv"):
+        final = {"found": False, "main_cpv": None, "additional_cpv": [], "reasoning": None}
     else:
-        status = "no code"
-    print(f"    chunk {idx + 1}/{len(chunks)}: {status}")
-
-    # The single-item list is appended to state["partials"] by the reducer.
-    return {"partials": [partial], "current_chunk_idx": idx + 1}
-
-
-def should_continue_chunking(state):
-    """Return the next node: keep looping if chunks remain, else merge."""
-    if state["current_chunk_idx"] < len(state["chunks"]):
-        return "extract_chunk"
-    return "merge"
-
-
-def merge(state):
-    """Combine the per-chunk results into one main CPV code.
-
-    Take the first chunk that found a code as the main result, but also record
-    every distinct code seen across chunks so additional codes are visible for
-    later work.
-    """
-    found = [p for p in state["partials"] if p.get("found") and p.get("cpv_code")]
-
-    if not found:
-        final = {"found": False, "cpv_code": None, "description": None, "codes_seen": []}
-    else:
-        first = found[0]
         final = {
             "found": True,
-            "cpv_code": first["cpv_code"],
-            "description": first.get("description"),
-            "evidence": first.get("evidence"),
-            "codes_seen": sorted({p["cpv_code"] for p in found}),
+            "main_cpv": classification["main_cpv"],
+            "additional_cpv": classification.get("additional_cpv", []),
+            "reasoning": classification.get("reasoning"),
         }
-
-    print(f"  merge: main code {final['cpv_code']} (from {len(found)} chunks)")
+    print(f"  finalize: main {final['main_cpv']}, additional {final['additional_cpv']}")
     return {"final": final}
 
 
@@ -307,20 +399,25 @@ def build_graph():
     """Build and compile the extraction graph."""
     graph = StateGraph(State)
     graph.add_node("load_documents", load_documents)
-    graph.add_node("chunk_text", chunk_text)
-    graph.add_node("extract_chunk", extract_chunk)
-    graph.add_node("merge", merge)
+    graph.add_node("find_candidates", find_candidates)
+    graph.add_node("classify", classify)
+    graph.add_node("critique", critique)
+    graph.add_node("finalize", finalize)
 
     graph.add_edge(START, "load_documents")
-    graph.add_edge("load_documents", "chunk_text")
-    graph.add_edge("chunk_text", "extract_chunk")
-    # The cycle: after each chunk, decide whether to loop back or move on.
+    graph.add_edge("load_documents", "find_candidates")
+    # Skip the LLM if there are no codes to classify.
     graph.add_conditional_edges(
-        "extract_chunk",
-        should_continue_chunking,
-        {"extract_chunk": "extract_chunk", "merge": "merge"},
+        "find_candidates", has_candidates,
+        {"classify": "classify", "finalize": "finalize"},
     )
-    graph.add_edge("merge", END)
+    graph.add_edge("classify", "critique")
+    # The reflexion loop: critique can send the answer back to classify.
+    graph.add_conditional_edges(
+        "critique", route_after_critique,
+        {"classify": "classify", "finalize": "finalize"},
+    )
+    graph.add_edge("finalize", END)
 
     return graph.compile()
 
@@ -348,16 +445,18 @@ def initial_state(eis_id):
         "eis_id": eis_id,
         "source_files": [],
         "documents_text": "",
-        "chunks": [],
-        "current_chunk_idx": 0,
-        "partials": [],
+        "candidates": [],
+        "classification": None,
+        "critique": None,
+        "feedback": None,
+        "attempts": 0,
         "final": None,
     }
 
 
 def process_one(graph, eis_id):
     """Run the graph for one procurement and save the result to disk."""
-    print(f"id: {eis_id}")
+    print(f"Procurement {eis_id}")
     try:
         state = graph.invoke(initial_state(eis_id))
     except Exception as error:
@@ -367,9 +466,9 @@ def process_one(graph, eis_id):
     result = {
         "eis_id": eis_id,
         "source_files": state.get("source_files", []),
-        "n_chunks": len(state.get("chunks", [])),
+        "candidates": state.get("candidates", []),   # kept for debugging
+        "attempts": state.get("attempts", 0),
         "extracted": state.get("final"),
-        "partials": state.get("partials", []),   # kept for debugging
     }
     out_path = OUTPUT_DIR / f"{eis_id}.json"
     out_path.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -378,7 +477,7 @@ def process_one(graph, eis_id):
 
 def main():
     """Run extraction over the selected procurements."""
-    parser = argparse.ArgumentParser(description="Extract main CPV codes from procurements.")
+    parser = argparse.ArgumentParser(description="Extract CPV codes from procurements.")
     parser.add_argument("--eis-id", help="Process only this procurement id")
     args = parser.parse_args()
 
@@ -410,20 +509,17 @@ if __name__ == "__main__":
 
 # ROADMAP
 #
-# 1. additionalCpvType: procurements often list extra CPV codes beyond the main
-#    one, and these are frequently MISSING from the structured open data, so
-#    there is no easy answer key to validate against. This likely needs a
-#    self-checking agent (a "reflexion" loop: extract, critique its own output
-#    against the document, then retry) rather than a single pass. The merge node
-#    already records "codes_seen" as a starting point.
+# 1. Validation: a separate script reads extracted/{eis_id}.json and compares the
+#    main code against the structured open data. additionalCpvType is often
+#    missing from that data, so there is no clean answer key for it; the reflexion
+#    step here is the quality mechanism in its place, and its real value should be
+#    measured (does revising change the answer, or just add latency?).
 #
-# 2. Validation: a separate script reads extracted/{eis_id}.json, looks up the
-#    structured CPV value, and reports match rates. Kept out of this pipeline so
-#    extraction never sees the answer key.
+# 2. More readers: append OCR (scanned PDFs) and a .doc reader to READER_PIPELINE.
 #
-# 3. More readers: append OCR (for scanned PDFs) and a .doc reader to
-#    READER_PIPELINE. read_file already tries readers in order.
+# 3. Other fields: contract value, dates, and buyer could reuse this regex-then-
+#    judge shape where a pattern exists, or fall back to the earlier chunked
+#    LLM read for free text that has no reliable pattern.
 #
-# 4. Per-chunk classification: label each chunk before extraction and use a
-#    conditional edge to skip boilerplate or route chunk types to specialised
-#    agents. This is where multi-agent orchestration enters the graph.
+# 4. Per-document classification feeding a conditional edge, the point where full
+#    multi-agent orchestration enters the graph.
