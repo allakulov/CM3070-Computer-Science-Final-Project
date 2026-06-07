@@ -1,26 +1,24 @@
 """Extract the main and additional CPV codes from a procurement's documents.
 
-This is a LangGraph pipeline. For one procurement it reads every document, uses
-a regex to find every CPV code together with its surrounding text, then asks a
-local LLM (Ollama) to decide which code is the main one and which are additional.
-A reflexion step lets the model critique its own answer and try again.
+This is a LangGraph pipeline. For one procurement it reads every document
+(see readers.py), uses a regex to find every CPV code with its surrounding text,
+then asks a local LLM (Ollama) which code is the main one and which are
+additional. A reflection step lets the model critique its own answer and retry.
 
-Why a regex first, then an LLM: the regex guarantees we catch every code and
-gives us the evidence text for free, so the LLM only has to make a judgement over
-a short candidate list instead of scanning the whole document. Because the model
-never sees the full text, no chunking is needed for this field.
+The reading layer also extracts any tables it finds. A separate node uses both the
+located prose and those tables to extract the procurement's evaluation criteria.
+The CPV task itself does not use the tables (CPV codes live in prose).
 
-Pydantic does the type checking. CpvClassification validates the model's output
-(codes must look like CPV codes; the main code is kept out of the additional
-list), and Critique uses a Literal to limit the verdict to "accept" or "revise".
-
-Validation is deliberately NOT done here. A separate script compares the saved
-results against the structured open data, so this pipeline never sees the answer
-key during extraction.
+Why a regex first, then an LLM: the regex catches every code and gives the
+evidence text for free, so the LLM only judges a short candidate list rather
+than scanning the whole document. The model never sees the full text, so no
+chunking is needed for this field.
 
 Install:
     pip install langgraph langchain-ollama pydantic
-    pip install pdfplumber python-docx openpyxl
+    pip install pdfplumber python-docx openpyxl pymupdf    # base readers
+    pip install easyocr                                     # OCR fallback (scanned PDFs)
+    pip install transformers torch torchvision              # optional: Table Transformer
     ollama pull mistral-small
 
 Run:
@@ -31,16 +29,16 @@ Run:
 from __future__ import annotations
 
 import argparse
-import io
 import json
 import re
-import zipfile
 from pathlib import Path
 from typing import Literal, Optional, TypedDict
 
 from pydantic import BaseModel, Field, ValidationError, field_validator, model_validator
 from langgraph.graph import StateGraph, START, END
 from langchain_ollama import ChatOllama
+
+from readers import iter_container_files, read_text, extract_tables
 
 
 # CONFIGURATION
@@ -52,11 +50,38 @@ EXTRACTION_MODEL = "mistral-small"       # any tag listed by `ollama list`
 OLLAMA_NUM_CTX = 4096                    # Ollama's default of 2048 is too small
 
 CONTEXT_CHARS = 200                      # characters of context kept on each side of a code
-MAX_CLASSIFY_ATTEMPTS = 3                # cap on the reflexion loop
+MAX_CLASSIFY_ATTEMPTS = 3                # cap on the reflection loop
 
-CONTAINER_EXTS = (".zip", ".edoc")       # archive types to open instead of read as text
-MAX_CONTAINER_DEPTH = 5                  # stop runaway recursion on nested archives
-MIN_USEFUL_CHARS = 50                    # ignore files that yield almost no text
+# Evaluation-criteria extraction. Its input (a prose section plus tables) is larger
+# than CPV's tiny candidate list, so it gets a bigger context window. We locate the
+# criteria section by keyword rather than feeding the whole document.
+CRITERIA_NUM_CTX = 8192
+CRITERIA_WINDOW = 2000                   # chars of prose kept around each keyword hit
+CRITERIA_PROSE_MAX = 6000                # cap on total prose fed to the criteria node
+CRITERIA_TABLES_MAX = 6000               # cap on total table markdown fed to the criteria node
+CRITERIA_CELL_CHARS = 200                # truncate each table cell (scoring methodology is huge)
+MAX_CRITERIA_ATTEMPTS = 2                # cap on the criteria reflexion loop
+CRITERIA_TOTAL_DEFAULT = 100             # assumed maximum points if the notice does not state one
+
+# Latvian (and English) cues for locating the criteria PROSE.
+EVAL_KEYWORDS = [
+    "vērtēšanas kritērij",
+    "izvērtēšanas kritērij",
+    "izvēles kritērij",
+    "vērtēšanas metodik",
+    "vērtēšanas kārtīb",
+    "kritērija nosaukums",
+    "punktu skait",
+    "punktu piešķir",
+    "saimnieciski visizdevīgāk",
+    "zemākā cena",
+    "zemāko piedāvāt",
+    "evaluation criteri",
+    "award criteri",
+]
+
+# Cues that mark a TABLE as a scoring table (matched against its cells).
+CRITERIA_TABLE_CUES = ["kritērij", "punkt", "vērtēšan", "metodik"]
 
 # A CPV code is eight digits, a hyphen, then one check digit, e.g. 71220000-6.
 # The lookarounds stop us matching part of a longer run of digits.
@@ -74,7 +99,7 @@ def looks_like_cpv(code):
 # Each class name, docstring, and field description is sent to the model as part
 # of the prompt, so they are written for the model to read. The validators run
 # when LangChain parses the model's reply into the object; if one raises, the
-# classify node catches it and the reflexion loop tries again.
+# classify node catches it and the reflection loop tries again.
 
 class CpvClassification(BaseModel):
     """Split of the candidate CPV codes into the main code and the rest."""
@@ -116,7 +141,7 @@ class CpvClassification(BaseModel):
 
 
 class Critique(BaseModel):
-    """Self-assessment of a CPV classification (the reflexion step)."""
+    """Self-assessment of a CPV classification (the reflection step)."""
 
     verdict: Literal["accept", "revise"] = Field(
         description="accept if the split is well justified, otherwise revise."
@@ -124,6 +149,33 @@ class Critique(BaseModel):
     problem: Optional[str] = Field(
         default=None,
         description="If revising, one short sentence on what to fix.",
+    )
+
+
+class Criterion(BaseModel):
+    """One evaluation criterion used to score bids."""
+
+    name: str = Field(description="The criterion, e.g. price, quality, delivery time.")
+    weight: Optional[float] = Field(
+        default=None,
+        description="Numeric weight in points or percent, if stated; otherwise null.",
+    )
+    description: Optional[str] = Field(
+        default=None,
+        description="Any short detail or formula, if given.",
+    )
+
+
+class EvaluationCriteria(BaseModel):
+    """How bids are scored in a procurement notice."""
+
+    found: bool = Field(description="True if evaluation criteria are present in the text.")
+    award_method: Literal["lowest_price", "most_economically_advantageous", "unknown"] = Field(
+        description="How the winning bid is chosen: lowest price, most economically advantageous, or unknown.",
+    )
+    criteria: list[Criterion] = Field(
+        default_factory=list,
+        description="The individual scoring criteria, if any.",
     )
 
 
@@ -137,6 +189,10 @@ chat_model = ChatOllama(model=EXTRACTION_MODEL, temperature=0, num_ctx=OLLAMA_NU
 # more reliably on small local models than the default tool-calling path.
 classifier = chat_model.with_structured_output(CpvClassification, method="json_schema")
 critic = chat_model.with_structured_output(Critique, method="json_schema")
+
+# A separate binding with a larger context window for the bigger criteria input.
+criteria_model = ChatOllama(model=EXTRACTION_MODEL, temperature=0, num_ctx=CRITERIA_NUM_CTX)
+criteria_extractor = criteria_model.with_structured_output(EvaluationCriteria, method="json_schema")
 
 
 CLASSIFY_PROMPT = """You are reading CPV codes found in a Latvian public procurement \
@@ -166,81 +222,29 @@ If the main code is the best-supported choice and the additional list is correct
 accept. Otherwise answer revise and say briefly what to fix.
 """
 
+CRITERIA_PROMPT = """You are reading a Latvian public procurement notice to find its \
+EVALUATION CRITERIA -- the rules used to score bids. These may appear in the prose, in a \
+table, or both.
 
-# FILE READERS
-#
-# Each reader takes (bytes, filename) and returns text, or "" if it cannot read
-# the file. READER_PIPELINE is the ordered list of attempts; OCR and .doc readers
-# will be appended later without other changes.
+Latvian cues: "vērtēšanas kritēriji", "piedāvājuma izvēles kritērijs", "saimnieciski \
+visizdevīgākais piedāvājums" (most economically advantageous), "zemākā cena" (lowest \
+price). Criteria often carry weights in percent or points.
 
-def read_plain(data, name):
-    """Extract text from PDF, DOCX, XLSX, or TXT bytes by file extension."""
-    lower = name.lower()
-    try:
-        if lower.endswith(".pdf"):
-            import pdfplumber
-            with pdfplumber.open(io.BytesIO(data)) as pdf:
-                return "\n".join(page.extract_text() or "" for page in pdf.pages)
-        if lower.endswith(".docx"):
-            import docx
-            return "\n".join(p.text for p in docx.Document(io.BytesIO(data)).paragraphs)
-        if lower.endswith((".xlsx", ".xlsm")):
-            import openpyxl
-            workbook = openpyxl.load_workbook(io.BytesIO(data), read_only=True, data_only=True)
-            rows = []
-            for sheet in workbook.worksheets:
-                for row in sheet.iter_rows(values_only=True):
-                    cells = [str(c) for c in row if c is not None]
-                    if cells:
-                        rows.append("\t".join(cells))
-            return "\n".join(rows)
-        if lower.endswith((".txt", ".csv")):
-            return data.decode("utf-8", errors="ignore")
-    except Exception as error:
-        print(f"    could not read {name}: {error}")
-    return ""
+Extract the award method and the list of criteria with their weights. If no criteria are \
+present, set found to false.
 
+PROSE:
+{prose}
 
-READER_PIPELINE = [read_plain]
-
-
-def read_file(data, name):
-    """Return text from the first reader that produces a usable result."""
-    for reader in READER_PIPELINE:
-        text = reader(data, name)
-        if text and len(text.strip()) >= MIN_USEFUL_CHARS:
-            return text
-    return ""
-
-
-def iter_container_files(data, container_name, depth=0):
-    """Yield (filename, bytes) for every leaf file inside a ZIP or .edoc archive.
-
-    Nested archives are opened recursively, so a ZIP inside a ZIP (or a document
-    inside an .edoc) is unpacked until only real files remain. Bytes that are not
-    a valid archive are yielded unchanged as a single leaf file.
-    """
-    if depth >= MAX_CONTAINER_DEPTH:
-        return
-    try:
-        with zipfile.ZipFile(io.BytesIO(data)) as archive:
-            for info in archive.infolist():
-                if info.is_dir():
-                    continue
-                name = info.filename
-                payload = archive.read(info)
-                if name.lower().endswith(CONTAINER_EXTS):
-                    yield from iter_container_files(payload, name, depth + 1)
-                else:
-                    yield name, payload
-    except zipfile.BadZipFile:
-        yield container_name, data
+TABLES:
+{tables}
+{feedback}"""
 
 
 # GRAPH STATE
 #
 # One dict flows through every node. Nodes return only the keys they change, and
-# LangGraph merges them in. No reducer is needed here: the reflexion loop replaces
+# LangGraph merges them in. No reducer is needed here: the reflection loop replaces
 # the classification each attempt rather than accumulating, so a plain overwrite
 # is what we want.
 
@@ -248,6 +252,11 @@ class State(TypedDict):
     eis_id: str
     source_files: list[str]
     documents_text: str
+    tables: list[dict]              # tables found across all documents (not used for CPV)
+    criteria: Optional[dict]        # extracted evaluation criteria
+    criteria_attempts: int          # criteria reflexion loop counter
+    criteria_feedback: Optional[str]
+    criteria_check: Optional[str]   # "ok" or "revise" from the weight-sum check
     candidates: list[dict]          # [{code, context, count}]
     classification: Optional[dict]
     critique: Optional[dict]
@@ -267,13 +276,122 @@ def format_candidates(candidates):
     return "\n".join(lines)
 
 
+def locate_sections(text, keywords, window=CRITERIA_WINDOW, max_total=CRITERIA_PROSE_MAX):
+    """Return windows of text around keyword hits, merged and capped.
+
+    The same locate-then-focus idea as CPV: instead of feeding the whole document,
+    keep only the parts near a keyword so the relevant section reaches the model.
+    """
+    low = text.lower()
+    spans = []
+    for keyword in keywords:
+        start = 0
+        while True:
+            hit = low.find(keyword, start)
+            if hit == -1:
+                break
+            spans.append((max(0, hit - window // 2), min(len(text), hit + window // 2)))
+            start = hit + len(keyword)
+    if not spans:
+        return ""
+
+    spans.sort()
+    merged = [spans[0]]
+    for begin, end in spans[1:]:
+        if begin <= merged[-1][1]:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], end))
+        else:
+            merged.append((begin, end))
+
+    pieces = []
+    total = 0
+    for begin, end in merged:
+        piece = text[begin:end]
+        if total + len(piece) > max_total:
+            piece = piece[: max_total - total]
+        pieces.append(piece)
+        total += len(piece)
+        if total >= max_total:
+            break
+    return "\n...\n".join(pieces)
+
+
+def _cell(value, limit=CRITERIA_CELL_CHARS):
+    """Make one cell safe and short for a markdown table row.
+
+    Cells are truncated because a scoring table's methodology cells run to
+    hundreds of characters; the criterion name and weight sit at the start, so a
+    short prefix keeps what matters and leaves budget for every criterion.
+    """
+    text = str(value).replace("|", "/").replace("\n", " ").strip()
+    return text[:limit]
+
+
+def select_criteria_tables(tables):
+    """Keep only scoring tables, de-duplicated across documents.
+
+    A scoring table has several cells mentioning a criteria cue (kritērij, punkt,
+    vērtēšan, metodik); this discards the many form and signature tables. The same
+    table often appears in several files, so identical ones are dropped by a
+    signature built from their short cells (criterion names, letters, weights),
+    which is stable even when the long methodology text differs slightly.
+    """
+    chosen = []
+    seen = set()
+    for table in tables:
+        cells = [c for row in table["rows"] for c in row]
+        hits = sum(1 for c in cells if any(cue in c.lower() for cue in CRITERIA_TABLE_CUES))
+        if hits < 2:
+            continue
+        signature = tuple(sorted(c.strip().lower() for c in cells if 0 < len(c.strip()) < 40))
+        if signature in seen:
+            continue
+        seen.add(signature)
+        chosen.append(table)
+    return chosen
+
+
+def tables_to_markdown(tables, max_chars=CRITERIA_TABLES_MAX):
+    """Render tables as markdown (header preserved), capped to a character budget."""
+    blocks = []
+    total = 0
+    for table in tables:
+        rows = table["rows"]
+        if not rows:
+            continue
+        header = rows[0]
+        lines = [f"Table from {table['source']}:",
+                 "| " + " | ".join(_cell(c) for c in header) + " |",
+                 "| " + " | ".join("---" for _ in header) + " |"]
+        for row in rows[1:]:
+            lines.append("| " + " | ".join(_cell(c) for c in row) + " |")
+        block = "\n".join(lines)
+        if total + len(block) > max_chars:
+            break
+        blocks.append(block)
+        total += len(block)
+    return "\n\n".join(blocks)
+
+
+def find_total_points(state, default=CRITERIA_TOTAL_DEFAULT):
+    """Find the stated maximum total points, else fall back to the default.
+
+    Targets the total line ("Maksimālais iespējamais punktu skaits: 100"); the
+    word "iespējam" distinguishes it from the per-criterion maxima.
+    """
+    text = state.get("documents_text", "").lower()
+    match = re.search(r"iespējam\w*\s+punktu\s+skait\w*\D{0,12}(\d{2,3})", text)
+    return float(match.group(1)) if match else float(default)
+
+
 # GRAPH NODES
 
 def load_documents(state):
-    """Read every leaf file in the procurement folder into one text blob."""
+    """Read every leaf file into text, and collect any tables found."""
     folder = DOWNLOADS_DIR / state["eis_id"]
     texts = []
     file_names = []
+    tables = []
     unread = []
 
     for zip_path in sorted(folder.glob("*.zip")):
@@ -284,19 +402,86 @@ def load_documents(state):
             continue
 
         for name, data in iter_container_files(zip_bytes, zip_path.name):
-            text = read_file(data, name)
+            text = read_text(data, name)
             if text:
                 texts.append(f"Source file: {name}\n{text}")
                 file_names.append(name)
             else:
                 unread.append(name)
+            tables.extend(extract_tables(data, name))
 
     blob = "\n\n".join(texts)
-    message = f"  load_documents: {len(blob):,} chars from {len(file_names)} files"
+    message = (f"  load_documents: {len(blob):,} chars from {len(file_names)} files, "
+               f"{len(tables)} tables")
     if unread:
         message += f" ({len(unread)} unreadable, e.g. {unread[0]!r})"
     print(message)
-    return {"documents_text": blob, "source_files": file_names}
+    return {"documents_text": blob, "source_files": file_names, "tables": tables}
+
+
+def extract_criteria(state):
+    """Extract the evaluation criteria from the located prose and the scoring tables.
+
+    Criteria can live in prose, a table, or both, so the node sees both: a window
+    of prose around the criteria keywords plus the de-duplicated scoring tables as
+    markdown. On a re-run, the previous attempt's weight mismatch is fed back.
+    """
+    prose = locate_sections(state["documents_text"], EVAL_KEYWORDS)
+    tables = tables_to_markdown(select_criteria_tables(state["tables"]))
+    attempt = state.get("criteria_attempts", 0) + 1
+    feedback = state.get("criteria_feedback")
+    note = f"\nNote on your previous attempt: {feedback}" if feedback else ""
+
+    if not prose and not tables:
+        print("  extract_criteria: no criteria section or tables found")
+        return {"criteria": {"found": False, "award_method": "unknown", "criteria": []},
+                "criteria_attempts": attempt}
+
+    prompt = CRITERIA_PROMPT.format(prose=prose or "(none found)",
+                                    tables=tables or "(none found)", feedback=note)
+    try:
+        result = criteria_extractor.invoke(prompt)
+        criteria = result.model_dump()
+    except Exception as error:
+        print(f"  extract_criteria: extraction failed: {error}")
+        return {"criteria": {"found": False, "award_method": "unknown", "criteria": []},
+                "criteria_attempts": attempt}
+
+    print(f"  extract_criteria (attempt {attempt}): {len(criteria['criteria'])} criteria, "
+          f"method {criteria['award_method']}")
+    return {"criteria": criteria, "criteria_attempts": attempt}
+
+
+def check_criteria(state):
+    """Ground the criteria by checking their weights against the stated maximum.
+
+    This is the external tool step that makes the criteria loop a reflexion agent
+    rather than self-critique: a deterministic computation, not the model judging
+    itself. If the weights do not reconcile, it asks for one more extraction.
+    """
+    criteria = state.get("criteria") or {}
+    items = criteria.get("criteria") or []
+    weights = [c["weight"] for c in items if c.get("weight") is not None]
+    attempt = state.get("criteria_attempts", 0)
+
+    if not weights:
+        print("  check_criteria: no numeric weights to check")
+        return {"criteria_check": "ok"}
+
+    total = sum(weights)
+    target = find_total_points(state)
+    if abs(total - target) > 0.5 and attempt < MAX_CRITERIA_ATTEMPTS:
+        print(f"  check_criteria: weights sum to {total:g}, expected {target:g}; revising")
+        return {"criteria_check": "revise",
+                "criteria_feedback": (f"the criteria weights sum to {total:g} but the maximum is "
+                                      f"{target:g}; you may have missed a criterion or split one in two")}
+    print(f"  check_criteria: weights sum to {total:g} (expected {target:g})")
+    return {"criteria_check": "ok"}
+
+
+def route_after_criteria_check(state):
+    """Re-extract criteria if the weight check failed and an attempt remains."""
+    return "extract_criteria" if state.get("criteria_check") == "revise" else "finalize"
 
 
 def find_candidates(state):
@@ -399,24 +584,41 @@ def build_graph():
     """Build and compile the extraction graph."""
     graph = StateGraph(State)
     graph.add_node("load_documents", load_documents)
+    graph.add_node("extract_criteria", extract_criteria)
+    graph.add_node("check_criteria", check_criteria)
     graph.add_node("find_candidates", find_candidates)
     graph.add_node("classify", classify)
     graph.add_node("critique", critique)
-    graph.add_node("finalize", finalize)
+    # defer=True makes finalize wait for both parallel branches before running once
+    # (otherwise it fires once per branch, since the branches finish at different times).
+    graph.add_node("finalize", finalize, defer=True)
 
     graph.add_edge(START, "load_documents")
+
+    # After loading, two independent branches run in parallel: evaluation criteria
+    # and CPV codes. They write different state keys, so neither waits for the other.
+    graph.add_edge("load_documents", "extract_criteria")
     graph.add_edge("load_documents", "find_candidates")
-    # Skip the LLM if there are no codes to classify.
+
+    # Criteria branch: a reflexion loop grounded by the weight-sum check.
+    graph.add_edge("extract_criteria", "check_criteria")
+    graph.add_conditional_edges(
+        "check_criteria", route_after_criteria_check,
+        {"extract_criteria": "extract_criteria", "finalize": "finalize"},
+    )
+
+    # CPV branch: its reflection loop. Skip the LLM if there are no codes.
     graph.add_conditional_edges(
         "find_candidates", has_candidates,
         {"classify": "classify", "finalize": "finalize"},
     )
     graph.add_edge("classify", "critique")
-    # The reflexion loop: critique can send the answer back to classify.
     graph.add_conditional_edges(
         "critique", route_after_critique,
         {"classify": "classify", "finalize": "finalize"},
     )
+
+    # Both branches join here; finalize runs once after both complete.
     graph.add_edge("finalize", END)
 
     return graph.compile()
@@ -445,6 +647,11 @@ def initial_state(eis_id):
         "eis_id": eis_id,
         "source_files": [],
         "documents_text": "",
+        "tables": [],
+        "criteria": None,
+        "criteria_attempts": 0,
+        "criteria_feedback": None,
+        "criteria_check": None,
         "candidates": [],
         "classification": None,
         "critique": None,
@@ -469,6 +676,8 @@ def process_one(graph, eis_id):
         "candidates": state.get("candidates", []),   # kept for debugging
         "attempts": state.get("attempts", 0),
         "extracted": state.get("final"),
+        "evaluation_criteria": state.get("criteria"),
+        "tables": state.get("tables", []),            # captured for later structured-field work
     }
     out_path = OUTPUT_DIR / f"{eis_id}.json"
     out_path.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -509,17 +718,15 @@ if __name__ == "__main__":
 
 # ROADMAP
 #
-# 1. Validation: a separate script reads extracted/{eis_id}.json and compares the
-#    main code against the structured open data. additionalCpvType is often
-#    missing from that data, so there is no clean answer key for it; the reflexion
-#    step here is the quality mechanism in its place, and its real value should be
-#    measured (does revising change the answer, or just add latency?).
+# 1. Item-detail extraction: consume the captured tables with a reflexion agent
+#    (extract line items, check them against the actual rows/totals, revise).
+#    This is the natural home for true reflexion, since the table is external
+#    ground truth to check against.
 #
-# 2. More readers: append OCR (scanned PDFs) and a .doc reader to READER_PIPELINE.
+# 2. Per-document classification feeding a conditional edge (notice vs spec vs
+#    financial proposal), to route documents to field-specific extractors. This
+#    is where full multi-agent orchestration enters the graph.
 #
-# 3. Other fields: contract value, dates, and buyer could reuse this regex-then-
-#    judge shape where a pattern exists, or fall back to the earlier chunked
-#    LLM read for free text that has no reliable pattern.
-#
-# 4. Per-document classification feeding a conditional edge, the point where full
-#    multi-agent orchestration enters the graph.
+# 3. Efficiency: a scanned PDF is currently rasterised twice (once for OCR text,
+#    once for table detection). If that becomes a bottleneck, rasterise once and
+#    share the page images between read_ocr and the table path.
