@@ -62,22 +62,18 @@ CRITERIA_TABLES_MAX = 6000               # cap on total table markdown fed to th
 CRITERIA_CELL_CHARS = 200                # truncate each table cell (scoring methodology is huge)
 MAX_CRITERIA_ATTEMPTS = 2                # cap on the criteria reflexion loop
 CRITERIA_TOTAL_DEFAULT = 100             # assumed maximum points if the notice does not state one
+CRITERIA_DEDUP_OVERLAP = 0.6             # drop a scoring table this much covered by a fuller one
 
-# Latvian (and English) cues for locating the criteria PROSE.
+# Cues for locating the criteria PROSE, kept to the terms that actually fired across
+# the corpus (see inspect_criteria.py). "vērtēšanas kritērij" also matches inside
+# "izvērtēšanas kritērij"; "visizdevīgāk" covers the most-economically-advantageous
+# phrasings and "viszemāk" the lowest-price ones.
 EVAL_KEYWORDS = [
     "vērtēšanas kritērij",
-    "izvērtēšanas kritērij",
     "izvēles kritērij",
-    "vērtēšanas metodik",
-    "vērtēšanas kārtīb",
-    "kritērija nosaukums",
+    "visizdevīgāk",
+    "viszemāk",
     "punktu skait",
-    "punktu piešķir",
-    "saimnieciski visizdevīgāk",
-    "zemākā cena",
-    "zemāko piedāvāt",
-    "evaluation criteri",
-    "award criteri",
 ]
 
 # Cues that mark a TABLE as a scoring table (matched against its cells).
@@ -328,26 +324,37 @@ def _cell(value, limit=CRITERIA_CELL_CHARS):
 
 
 def select_criteria_tables(tables):
-    """Keep only scoring tables, de-duplicated across documents.
+    """Keep distinct scoring tables, dropping copies and fragments of the same one.
 
-    A scoring table has several cells mentioning a criteria cue (kritērij, punkt,
-    vērtēšan, metodik); this discards the many form and signature tables. The same
-    table often appears in several files, so identical ones are dropped by a
-    signature built from their short cells (criterion names, letters, weights),
-    which is stable even when the long methodology text differs slightly.
+    A scoring table has at least two cells hitting a criteria cue (kritērij, punkt,
+    vērtēšan, metodik); this discards the form and signature tables. The catch found
+    on real notices: the one real criteria table is repeated across files (the
+    regulations, the report, the EIS export) and fragmented differently by page
+    breaks, so an exact-signature match misses the copies. Instead we compare each
+    table's short cells (criterion names, letters, weights) as a set: considering the
+    fullest tables first, a later table whose short cells are mostly already covered
+    by a kept one is a copy or fragment and is dropped, while a genuinely different
+    (complementary) table is kept.
     """
-    chosen = []
-    seen = set()
+    # Collect each scoring table with the set of its short, identifying cells.
+    scoring = []
     for table in tables:
         cells = [c for row in table["rows"] for c in row]
         hits = sum(1 for c in cells if any(cue in c.lower() for cue in CRITERIA_TABLE_CUES))
         if hits < 2:
-            continue
-        signature = tuple(sorted(c.strip().lower() for c in cells if 0 < len(c.strip()) < 40))
-        if signature in seen:
-            continue
-        seen.add(signature)
-        chosen.append(table)
+            continue                                     # not a scoring table
+        short = {c.strip().lower() for c in cells if 0 < len(c.strip()) < 40}
+        if short:
+            scoring.append((short, table))
+
+    # Fullest first, so fragments and copies are measured against the richer table.
+    scoring.sort(key=lambda pair: len(pair[0]), reverse=True)
+    chosen, chosen_sets = [], []
+    for short, table in scoring:
+        covered = max((len(short & kept) / len(short) for kept in chosen_sets), default=0)
+        if covered < CRITERIA_DEDUP_OVERLAP:
+            chosen.append(table)
+            chosen_sets.append(short)
     return chosen
 
 
@@ -452,31 +459,59 @@ def extract_criteria(state):
     return {"criteria": criteria, "criteria_attempts": attempt}
 
 
-def check_criteria(state):
-    """Ground the criteria by checking their weights against the stated maximum.
+def _normalize_name(name):
+    """Lower-case a criterion name and drop the parenthetical English gloss."""
+    name = re.sub(r"\([^)]*\)", "", name.lower())     # remove "(Vehicle Price)" etc.
+    return " ".join(re.sub(r"[^\w ]", " ", name).split())
 
-    This is the external tool step that makes the criteria loop a reflexion agent
-    rather than self-critique: a deterministic computation, not the model judging
-    itself. If the weights do not reconcile, it asks for one more extraction.
+
+def dedup_criteria(items):
+    """Drop criteria that share a normalised name, keeping the first seen."""
+    seen = {}
+    for c in items:
+        key = _normalize_name(c.get("name", ""))
+        if key and key not in seen:
+            seen[key] = c
+    return list(seen.values())
+
+
+def check_criteria(state):
+    """Reconcile the extracted criteria deterministically, the reflexion tool step.
+
+    This does the work rather than trusting the model: it de-duplicates criteria by
+    name, then checks the weights against the stated maximum. If they do not add up
+    it asks for one more extraction with specific guidance; if they still do not add
+    up after the retry budget, it records the mismatch instead of pretending success.
     """
     criteria = state.get("criteria") or {}
-    items = criteria.get("criteria") or []
-    weights = [c["weight"] for c in items if c.get("weight") is not None]
+    items = dedup_criteria(criteria.get("criteria") or [])
+    criteria = {**criteria, "criteria": items}
     attempt = state.get("criteria_attempts", 0)
 
+    weights = [c["weight"] for c in items if c.get("weight") is not None]
     if not weights:
         print("  check_criteria: no numeric weights to check")
-        return {"criteria_check": "ok"}
+        return {"criteria": criteria, "criteria_check": "ok"}
 
     total = sum(weights)
     target = find_total_points(state)
-    if abs(total - target) > 0.5 and attempt < MAX_CRITERIA_ATTEMPTS:
+    reconciled = abs(total - target) <= 0.5
+
+    if not reconciled and attempt < MAX_CRITERIA_ATTEMPTS:
         print(f"  check_criteria: weights sum to {total:g}, expected {target:g}; revising")
-        return {"criteria_check": "revise",
-                "criteria_feedback": (f"the criteria weights sum to {total:g} but the maximum is "
-                                      f"{target:g}; you may have missed a criterion or split one in two")}
-    print(f"  check_criteria: weights sum to {total:g} (expected {target:g})")
-    return {"criteria_check": "ok"}
+        return {"criteria": criteria, "criteria_check": "revise",
+                "criteria_feedback": (
+                    f"you returned {len(items)} criteria whose weights sum to {total:g}, but the total "
+                    f"must be {target:g}. Either two entries are the same criterion worded differently "
+                    f"(merge them into one), or the weights are wrong (a weight is each criterion's share "
+                    f"of {target:g}, not a per-criterion maximum). Return criteria whose weights sum to {target:g}.")}
+
+    # Reconciled, or out of attempts: record honestly whether the numbers add up.
+    criteria = {**criteria, "weights_reconcile": reconciled,
+                "weights_total": total, "expected_total": target}
+    print(f"  check_criteria: weights sum to {total:g}, expected {target:g}"
+          + ("" if reconciled else "  -- UNRECONCILED, flagged in output"))
+    return {"criteria": criteria, "criteria_check": "ok"}
 
 
 def route_after_criteria_check(state):
@@ -714,19 +749,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-# ROADMAP
-#
-# 1. Item-detail extraction: consume the captured tables with a reflexion agent
-#    (extract line items, check them against the actual rows/totals, revise).
-#    This is the natural home for true reflexion, since the table is external
-#    ground truth to check against.
-#
-# 2. Per-document classification feeding a conditional edge (notice vs spec vs
-#    financial proposal), to route documents to field-specific extractors. This
-#    is where full multi-agent orchestration enters the graph.
-#
-# 3. Efficiency: a scanned PDF is currently rasterised twice (once for OCR text,
-#    once for table detection). If that becomes a bottleneck, rasterise once and
-#    share the page images between read_ocr and the table path.
