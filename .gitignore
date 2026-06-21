@@ -5,4 +5,6 @@ extracted/
 *.png/
 __pycache__/
 *.pyc/
-.DS_Store
+.DS_Store/
+validation_details.csv/
+graph.png
