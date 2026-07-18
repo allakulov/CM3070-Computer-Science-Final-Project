@@ -1,4 +1,4 @@
-"""Extract structured data from a procurement's documents.
+"""Extract the main and additional CPV codes from a procurement's documents.
 
 This is a LangGraph pipeline. For one procurement it reads every document
 (see readers.py), uses a regex to find every CPV code with its surrounding text,
@@ -16,7 +16,7 @@ chunking is needed for this field.
 
 Install:
     pip install langgraph langchain-ollama pydantic
-    pip install pdfplumber python-docx openpyxl pymupdf     # base readers
+    pip install pdfplumber python-docx openpyxl pymupdf    # base readers
     pip install easyocr                                     # OCR fallback (scanned PDFs)
     pip install transformers torch torchvision              # optional: Table Transformer
     ollama pull mistral-small
@@ -26,13 +26,15 @@ Run:
     python extract_graph.py --eis-id 123450  # just one
 """
 
+from __future__ import annotations
+
 import argparse
 import json
 import re
 from pathlib import Path
 from typing import Literal, Optional, TypedDict
 
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, Field, ValidationError, field_validator, model_validator
 from langgraph.graph import StateGraph, START, END
 from langchain_ollama import ChatOllama
 
@@ -45,13 +47,13 @@ DOWNLOADS_DIR = Path("downloads")        # input: downloads/{eis_id}/*.zip
 OUTPUT_DIR = Path("extracted")           # output: extracted/{eis_id}.json
 
 EXTRACTION_MODEL = "mistral-small"       # any tag listed by `ollama list`
-OLLAMA_NUM_CTX = 4096                    # ollama's default of 2048 is too small
+OLLAMA_NUM_CTX = 4096                    # Ollama's default of 2048 is too small
 
 CONTEXT_CHARS = 200                      # characters of context kept on each side of a code
 MAX_CLASSIFY_ATTEMPTS = 3                # cap on the reflection loop
 
-# evaluation-criteria extraction. its input (a prose section plus tables) is larger
-# than CPV's tiny candidate list, so it gets a bigger context window. we locate the
+# Evaluation-criteria extraction. Its input (a prose section plus tables) is larger
+# than CPV's tiny candidate list, so it gets a bigger context window. We locate the
 # criteria section by keyword rather than feeding the whole document.
 CRITERIA_NUM_CTX = 8192
 CRITERIA_WINDOW = 2000                   # chars of prose kept around each keyword hit
@@ -62,7 +64,7 @@ MAX_CRITERIA_ATTEMPTS = 2                # cap on the criteria reflexion loop
 CRITERIA_TOTAL_DEFAULT = 100             # assumed maximum points if the notice does not state one
 CRITERIA_DEDUP_OVERLAP = 0.6             # drop a scoring table this much covered by a fuller one
 
-# cues for locating the criteria prose, kept to the terms that actually fired across
+# Cues for locating the criteria PROSE, kept to the terms that actually fired across
 # the corpus (see inspect_criteria.py). "vērtēšanas kritērij" also matches inside
 # "izvērtēšanas kritērij"; "visizdevīgāk" covers the most-economically-advantageous
 # phrasings and "viszemāk" the lowest-price ones.
@@ -74,12 +76,13 @@ EVAL_KEYWORDS = [
     "punktu skait",
 ]
 
-# cues that mark a table as a scoring table (matched against its cells).
+# Cues that mark a TABLE as a scoring table (matched against its cells).
 CRITERIA_TABLE_CUES = ["kritērij", "punkt", "vērtēšan", "metodik"]
 
-# a CPV code is eight digits, a hyphen, then one check digit, e.g. 71220000-6.
-# the lookarounds stop us matching part of a longer run of digits.
-CPV_REGEX = r"\d{8}-\d"
+# CPV code: 8 digits, a dash, then the check digit. the class also allows the
+# unicode hyphen, non-breaking hyphen and en dash that OCR and PDF text sometimes
+# produce instead of a plain hyphen.
+CPV_REGEX = r"\d{8}[-\u2010\u2011\u2013]\d"
 CPV_PATTERN = re.compile(r"(?<!\d)" + CPV_REGEX + r"(?!\d)")
 
 
@@ -90,10 +93,10 @@ def looks_like_cpv(code):
 
 # EXTRACTION SCHEMAS
 #
-# each class name, docstring, and field description is sent to the model as part of
-# the prompt, so they are written for the model to read. the validators run when
-# LangChain parses the model's reply into the object; if one raises, the classify
-# node catches it and the reflection loop tries again.
+# Each class name, docstring, and field description is sent to the model as part
+# of the prompt, so they are written for the model to read. The validators run
+# when LangChain parses the model's reply into the object; if one raises, the
+# classify node catches it and the reflection loop tries again.
 
 class CpvClassification(BaseModel):
     """Split of the candidate CPV codes into the main code and the rest."""
@@ -109,11 +112,6 @@ class CpvClassification(BaseModel):
         description="One short sentence explaining the choice of main code.",
     )
 
-    # the three checks below are pydantic validators. they run automatically when the
-    # model's reply is parsed into this object. @classmethod is required by pydantic for
-    # a field validator: it receives the class (cls), not a finished instance, because it
-    # runs while the object is still being built. if a check raises, parsing fails and the
-    # classify node catches it and retries.
     @field_validator("main_cpv")
     @classmethod
     def main_must_be_cpv(cls, value):
@@ -180,7 +178,7 @@ class EvaluationCriteria(BaseModel):
 
 # MODEL
 #
-# built once and reused. constructing ChatOllama does not open a connection, so
+# Built once and reused. Constructing ChatOllama does not open a connection, so
 # importing this module without Ollama running is fine.
 
 chat_model = ChatOllama(model=EXTRACTION_MODEL, temperature=0, num_ctx=OLLAMA_NUM_CTX)
@@ -189,7 +187,7 @@ chat_model = ChatOllama(model=EXTRACTION_MODEL, temperature=0, num_ctx=OLLAMA_NU
 classifier = chat_model.with_structured_output(CpvClassification, method="json_schema")
 critic = chat_model.with_structured_output(Critique, method="json_schema")
 
-# a separate binding with a larger context window for the bigger criteria input.
+# A separate binding with a larger context window for the bigger criteria input.
 criteria_model = ChatOllama(model=EXTRACTION_MODEL, temperature=0, num_ctx=CRITERIA_NUM_CTX)
 criteria_extractor = criteria_model.with_structured_output(EvaluationCriteria, method="json_schema")
 
@@ -242,10 +240,10 @@ TABLES:
 
 # GRAPH STATE
 #
-# one dict flows through every node. each node returns only the keys it changes and
-# LangGraph merges them in. no reducer is needed here: the two parallel branches write
-# different keys (so they never collide), and inside a loop each attempt overwrites the
-# previous one rather than accumulating, which is what we want.
+# One dict flows through every node. Nodes return only the keys they change, and
+# LangGraph merges them in. No reducer is needed here: the reflection loop replaces
+# the classification each attempt rather than accumulating, so a plain overwrite
+# is what we want.
 
 class State(TypedDict):
     eis_id: str
@@ -283,7 +281,6 @@ def locate_sections(text, keywords, window=CRITERIA_WINDOW, max_total=CRITERIA_P
     """
     low = text.lower()
     spans = []
-    # find every keyword hit and take a window of text around each one
     for keyword in keywords:
         start = 0
         while True:
@@ -295,16 +292,14 @@ def locate_sections(text, keywords, window=CRITERIA_WINDOW, max_total=CRITERIA_P
     if not spans:
         return ""
 
-    # sort the windows, then merge any that overlap into single spans
     spans.sort()
     merged = [spans[0]]
     for begin, end in spans[1:]:
-        if begin <= merged[-1][1]:                              # overlaps the previous window
-            merged[-1] = (merged[-1][0], max(merged[-1][1], end))   # so extend that span
+        if begin <= merged[-1][1]:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], end))
         else:
-            merged.append((begin, end))                        # no overlap, start a new span
+            merged.append((begin, end))
 
-    # join the spans together, stopping once we reach the size cap
     pieces = []
     total = 0
     for begin, end in merged:
@@ -329,62 +324,38 @@ def _cell(value, limit=CRITERIA_CELL_CHARS):
     return text[:limit]
 
 
-def _is_scoring_table(table):
-    """Return True if a table looks like a scoring table.
-
-    It counts as one if at least two of its cells mention a scoring cue (kritērij,
-    punkt, vērtēšan, metodik). This discards the form and signature tables.
-    """
-    cells = [cell for row in table["rows"] for cell in row]
-    hits = sum(1 for cell in cells if any(cue in cell.lower() for cue in CRITERIA_TABLE_CUES))
-    return hits >= 2
-
-
-def _short_cells(table):
-    """Return the set of a table's short cells (names, letters, weights), lower-cased.
-
-    The long methodology cells are skipped. The short cells are what identify a
-    table, so two tables that share them are really the same table.
-    """
-    short = set()
-    for row in table["rows"]:
-        for cell in row:
-            text = cell.strip().lower()
-            if 0 < len(text) < 40:
-                short.add(text)
-    return short
-
-
 def select_criteria_tables(tables):
-    """Keep the distinct scoring tables, dropping copies and page-break fragments.
+    """Keep distinct scoring tables, dropping copies and fragments of the same one.
 
-    On real notices the one real scoring table is repeated across files (the
-    regulations, the report, the EIS export) and split differently by page breaks,
-    so the same table turns up several times in slightly different pieces. We keep
-    the fullest copy of each and drop the rest, comparing tables by their short
-    cells rather than by exact text (page breaks would defeat an exact match).
+    A scoring table has at least two cells hitting a criteria cue (kritērij, punkt,
+    vērtēšan, metodik); this discards the form and signature tables. The catch found
+    on real notices: the one real criteria table is repeated across files (the
+    regulations, the report, the EIS export) and fragmented differently by page
+    breaks, so an exact-signature match misses the copies. Instead we compare each
+    table's short cells (criterion names, letters, weights) as a set: considering the
+    fullest tables first, a later table whose short cells are mostly already covered
+    by a kept one is a copy or fragment and is dropped, while a genuinely different
+    (complementary) table is kept.
     """
-    # find the scoring tables, pairing each with its set of identifying short cells
+    # Collect each scoring table with the set of its short, identifying cells.
     scoring = []
     for table in tables:
-        if _is_scoring_table(table):
-            scoring.append((_short_cells(table), table))
+        cells = [c for row in table["rows"] for c in row]
+        hits = sum(1 for c in cells if any(cue in c.lower() for cue in CRITERIA_TABLE_CUES))
+        if hits < 2:
+            continue                                     # not a scoring table
+        short = {c.strip().lower() for c in cells if 0 < len(c.strip()) < 40}
+        if short:
+            scoring.append((short, table))
 
-    # sort richest first, so a fragment is always compared against the fuller table
+    # Fullest first, so fragments and copies are measured against the richer table.
     scoring.sort(key=lambda pair: len(pair[0]), reverse=True)
-
-    chosen = []          # the tables we keep
-    chosen_cells = []    # their short-cell sets, used to spot later copies
-    for cells, table in scoring:
-        # skip this table if a kept one already covers most of its short cells
-        already_covered = False
-        for kept in chosen_cells:
-            if cells and len(cells & kept) / len(cells) >= CRITERIA_DEDUP_OVERLAP:
-                already_covered = True
-                break
-        if not already_covered:
+    chosen, chosen_sets = [], []
+    for short, table in scoring:
+        covered = max((len(short & kept) / len(short) for kept in chosen_sets), default=0)
+        if covered < CRITERIA_DEDUP_OVERLAP:
             chosen.append(table)
-            chosen_cells.append(cells)
+            chosen_sets.append(short)
     return chosen
 
 
@@ -417,8 +388,6 @@ def find_total_points(state, default=CRITERIA_TOTAL_DEFAULT):
     word "iespējam" distinguishes it from the per-criterion maxima.
     """
     text = state.get("documents_text", "").lower()
-    # grab a 2-3 digit number shortly after "iespējam... punktu skait...".
-    # "iespējam" marks the overall maximum, telling it apart from per-criterion maxima.
     match = re.search(r"iespējam\w*\s+punktu\s+skait\w*\D{0,12}(\d{2,3})", text)
     return float(match.group(1)) if match else float(default)
 
@@ -482,8 +451,6 @@ def extract_criteria(state):
         result = criteria_extractor.invoke(prompt)
         criteria = result.model_dump()
     except Exception as error:
-        # any failure (a model error or a reply that could not be read): log it and
-        # return an empty result so the pipeline still finishes for this procurement.
         print(f"  extract_criteria: extraction failed: {error}")
         return {"criteria": {"found": False, "award_method": "unknown", "criteria": []},
                 "criteria_attempts": attempt}
@@ -510,14 +477,12 @@ def dedup_criteria(items):
 
 
 def check_criteria(state):
-    """Reconcile the extracted criteria deterministically: the reflexion step.
+    """Reconcile the extracted criteria deterministically, the reflexion tool step.
 
-    This is the reflexion step: the model's answer is checked against an external
-    fact (the weights must add up to the stated maximum), not just re-judged by the
-    model. It de-duplicates criteria by name, then checks the weights. If they do not
-    add up it asks for one more extraction with specific guidance; if they still do
-    not add up after the retry budget, it records the mismatch instead of pretending
-    success.
+    This does the work rather than trusting the model: it de-duplicates criteria by
+    name, then checks the weights against the stated maximum. If they do not add up
+    it asks for one more extraction with specific guidance; if they still do not add
+    up after the retry budget, it records the mismatch instead of pretending success.
     """
     criteria = state.get("criteria") or {}
     items = dedup_criteria(criteria.get("criteria") or [])
@@ -542,11 +507,11 @@ def check_criteria(state):
                     f"(merge them into one), or the weights are wrong (a weight is each criterion's share "
                     f"of {target:g}, not a per-criterion maximum). Return criteria whose weights sum to {target:g}.")}
 
-    # reconciled, or out of attempts: record honestly whether the numbers add up.
+    # Reconciled, or out of attempts: record honestly whether the numbers add up.
     criteria = {**criteria, "weights_reconcile": reconciled,
                 "weights_total": total, "expected_total": target}
     print(f"  check_criteria: weights sum to {total:g}, expected {target:g}"
-          + ("" if reconciled else "  (unreconciled, flagged in output)"))
+          + ("" if reconciled else "  -- UNRECONCILED, flagged in output"))
     return {"criteria": criteria, "criteria_check": "ok"}
 
 
@@ -582,19 +547,16 @@ def classify(state):
 
     try:
         result = classifier.invoke(prompt)
-    except Exception as error:
-        # any failure (a malformed answer a validator rejected, or a model error):
-        # log it and let the reflection loop try again.
-        print(f"  classify (attempt {attempt}): could not read the answer, will retry")
+    except ValidationError as error:
+        print(f"  classify (attempt {attempt}): invalid output, will retry")
         return {"classification": None,
-                "feedback": f"your previous answer could not be read: {error}",
+                "feedback": f"your previous answer was not valid: {error}",
                 "attempts": attempt}
 
-    # keep only codes that were actually in the candidate list (no invented codes),
-    # and never let the main code also sit in the additional list.
+    # Keep only codes that were actually in the candidate list (no hallucinations).
     valid = {c["code"] for c in state["candidates"]}
     main = result.main_cpv if result.main_cpv in valid else None
-    additional = [c for c in result.additional_cpv if c in valid and c != main]
+    additional = [c for c in result.additional_cpv if c in valid]
     classification = {"main_cpv": main, "additional_cpv": additional, "reasoning": result.reasoning}
 
     print(f"  classify (attempt {attempt}): main {main}, additional {additional} (model said {result.main_cpv!r})")
@@ -602,14 +564,10 @@ def classify(state):
 
 
 def critique(state):
-    """Judge the current classification and decide whether to revise it.
-
-    This is the reflection step: the model critiques its own answer, with no outside
-    check on it.
-    """
+    """Judge the current classification and decide whether to revise it."""
     classification = state.get("classification")
     if not classification:
-        # classify produced nothing valid; ask for another attempt.
+        # classify failed to produce valid output; ask for another attempt.
         return {"critique": {"verdict": "revise", "problem": "no valid classification produced"}}
 
     prompt = CRITIQUE_PROMPT.format(
@@ -618,14 +576,8 @@ def critique(state):
         additional=classification.get("additional_cpv"),
         reasoning=classification.get("reasoning"),
     )
-    try:
-        result = critic.invoke(prompt)
-        verdict = result.model_dump()
-    except Exception as error:
-        # if the critic call itself fails, accept what we have rather than loop on a
-        # broken call.
-        print(f"  critique: could not run ({error}); accepting current classification")
-        return {"critique": {"verdict": "accept", "problem": None}}
+    result = critic.invoke(prompt)
+    verdict = result.model_dump()
 
     print(f"  critique: {verdict['verdict']}" + (f" ({verdict['problem']})" if verdict.get("problem") else ""))
     update = {"critique": verdict}
@@ -679,19 +631,19 @@ def build_graph():
 
     graph.add_edge(START, "load_documents")
 
-    # after loading, two independent branches run in parallel: evaluation criteria
-    # and CPV codes. they write different state keys, so neither waits for the other.
+    # After loading, two independent branches run in parallel: evaluation criteria
+    # and CPV codes. They write different state keys, so neither waits for the other.
     graph.add_edge("load_documents", "extract_criteria")
     graph.add_edge("load_documents", "find_candidates")
 
-    # criteria branch: a reflexion loop grounded by the weight-sum check.
+    # Criteria branch: a reflexion loop grounded by the weight-sum check.
     graph.add_edge("extract_criteria", "check_criteria")
     graph.add_conditional_edges(
         "check_criteria", route_after_criteria_check,
         {"extract_criteria": "extract_criteria", "finalize": "finalize"},
     )
 
-    # CPV branch: its reflection loop. skip the LLM if there are no codes.
+    # CPV branch: its reflection loop. Skip the LLM if there are no codes.
     graph.add_conditional_edges(
         "find_candidates", has_candidates,
         {"classify": "classify", "finalize": "finalize"},
@@ -702,7 +654,7 @@ def build_graph():
         {"classify": "classify", "finalize": "finalize"},
     )
 
-    # both branches join here; finalize runs once after both complete.
+    # Both branches join here; finalize runs once after both complete.
     graph.add_edge("finalize", END)
 
     return graph.compile()
@@ -776,12 +728,7 @@ def main():
 
     OUTPUT_DIR.mkdir(exist_ok=True)
 
-    # build the list of procurements to process. for --eis-id, check the folder
-    # exists here so we do not need to re-check it inside the loop.
     if args.eis_id:
-        if not (DOWNLOADS_DIR / args.eis_id).is_dir():
-            print(f"no folder for {args.eis_id} in {DOWNLOADS_DIR}")
-            return
         eis_ids = [args.eis_id]
     else:
         eis_ids = sorted(p.name for p in DOWNLOADS_DIR.iterdir() if p.is_dir())
@@ -795,7 +742,10 @@ def main():
     print()
 
     for eis_id in eis_ids:
-        process_one(graph, eis_id)
+        if (DOWNLOADS_DIR / eis_id).is_dir():
+            process_one(graph, eis_id)
+        else:
+            print(f"skipping {eis_id}: no folder in {DOWNLOADS_DIR}")
 
 
 if __name__ == "__main__":
