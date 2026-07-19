@@ -602,7 +602,13 @@ def finalize(state):
     """Package the final result from the latest classification."""
     classification = state.get("classification")
     if not classification or not classification.get("main_cpv"):
-        final = {"found": False, "main_cpv": None, "additional_cpv": [], "reasoning": None}
+        final = {
+            "found": False,
+            "main_cpv": None,
+            "additional_cpv": [],
+            # keep the model's reasoning if it gave one, even when nothing was found
+            "reasoning": classification.get("reasoning") if classification else None,
+        }
     else:
         final = {
             "found": True,
