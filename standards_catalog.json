@@ -1,0 +1,197 @@
+{
+  "_comment": "Data for standards.py. Edit this file to teach the module new schemes or cues; no code change is needed. Aliases and cues are written folded: lower case, no Latvian diacritics.",
+  "schemes": {
+    "EU Ecolabel": {
+      "aliases": [
+        "eiropas ekomarkejum",
+        "es ekomarkejum",
+        "eu ecolabel"
+      ],
+      "green": true
+    },
+    "Nordic Swan": {
+      "aliases": [
+        "ziemelu gulb",
+        "nordic swan",
+        "svanen"
+      ],
+      "green": true
+    },
+    "Blue Angel": {
+      "aliases": [
+        "zilais engel",
+        "blauer engel",
+        "blue angel"
+      ],
+      "green": true
+    },
+    "Austrian Umweltzeichen": {
+      "aliases": [
+        "umweltzeichen"
+      ],
+      "green": true
+    },
+    "NF Environnement": {
+      "aliases": [
+        "nf vides markejum",
+        "marque nf"
+      ],
+      "green": true
+    },
+    "Milieukeur": {
+      "aliases": [
+        "milieukeur"
+      ],
+      "green": true
+    },
+    "AENOR": {
+      "aliases": [
+        "aenor"
+      ],
+      "green": true
+    },
+    "Bra Miljoval": {
+      "aliases": [
+        "bra miljoval"
+      ],
+      "green": true
+    },
+    "FSC": {
+      "aliases": [
+        "fsc",
+        "forest stewardship",
+        "mezu uzraudzibas padome"
+      ],
+      "green": true
+    },
+    "PEFC": {
+      "aliases": [
+        "pefc"
+      ],
+      "green": true
+    },
+    "IFOAM": {
+      "aliases": [
+        "ifoam"
+      ],
+      "green": true
+    },
+    "EU organic label": {
+      "aliases": [
+        "es biologiskas lauksaimniecibas markejum",
+        "eu organic",
+        "biologiskas lauksaimniecibas sertifikat"
+      ],
+      "green": true
+    },
+    "Energy Star": {
+      "aliases": [
+        "energy star"
+      ],
+      "green": true
+    },
+    "EU energy label": {
+      "aliases": [
+        "es energoefektivitates markejum",
+        "energoefektivitates markejum",
+        "energoefektivitates klas"
+      ],
+      "green": true
+    },
+    "EMAS": {
+      "aliases": [
+        "emas"
+      ],
+      "green": true
+    },
+    "Cradle to Cradle": {
+      "aliases": [
+        "cradle to cradle"
+      ],
+      "green": true
+    },
+    "GOTS": {
+      "aliases": [
+        "gots"
+      ],
+      "green": true
+    },
+    "OEKO-TEX": {
+      "aliases": [
+        "oeko-tex",
+        "oeko tex"
+      ],
+      "green": true
+    },
+    "CE marking": {
+      "aliases": [
+        "ce markejum"
+      ],
+      "green": false
+    }
+  },
+  "green_codes": [
+    "ISO 14001",
+    "ISO 50001",
+    "ISO 14020",
+    "ISO 14021",
+    "ISO 14024",
+    "ISO 14025"
+  ],
+  "green_regulations": [
+    "66/2010",
+    "1221/2009",
+    "834/2007",
+    "2018/848"
+  ],
+  "scheme_cues": [
+    "sertifik",
+    "shem",
+    "markejum",
+    "standart",
+    "kvalitat",
+    "lauksaimniecib",
+    "akredit"
+  ],
+  "green_keywords": [
+    "zalais publiskais iepirkum",
+    "zalais iepirkum",
+    "zpi",
+    "vides prasib",
+    "vides aizsardzib",
+    "videi draudzig",
+    "energoefektiv",
+    "atjaunojam",
+    "otrreizej",
+    "parstrad",
+    "biologisk",
+    "ilgtspej",
+    "oglekla ped",
+    "emisij",
+    "ekomarkejum"
+  ],
+  "section_markers": {
+    "award": [
+      "vertesanas kriterij",
+      "izveles kriterij",
+      "pieskirsanas kriterij",
+      "saimnieciski visizdevig",
+      "piedavajumu izvel",
+      "piedavajuma izvel"
+    ],
+    "selection": [
+      "atlases prasib",
+      "kvalifikacijas prasib",
+      "pretendentu atlas",
+      "pretendenta kvalifikac",
+      "atlases kriterij"
+    ],
+    "specification": [
+      "tehniska specifikac",
+      "tehniskaja specifikac",
+      "specifikac",
+      "tehniskais piedavajum",
+      "tehniskas prasib"
+    ]
+  }
+}
