@@ -38,7 +38,8 @@ from pydantic import BaseModel, Field, ValidationError, field_validator, model_v
 from langgraph.graph import StateGraph, START, END
 from langchain_ollama import ChatOllama
 
-from readers import iter_container_files, read_text, extract_tables
+from readers import iter_container_files, read_file
+from standards import find_standards
 
 
 # CONFIGURATION
@@ -250,6 +251,7 @@ class State(TypedDict):
     source_files: list[str]
     documents_text: str
     tables: list[dict]              # tables found across all documents (not used for CPV)
+    standards: Optional[dict]       # standards and certificates found in the documents
     criteria: Optional[dict]        # extracted evaluation criteria
     criteria_attempts: int          # criteria reflexion loop counter
     criteria_feedback: Optional[str]
@@ -410,13 +412,13 @@ def load_documents(state):
             continue
 
         for name, data in iter_container_files(zip_bytes, zip_path.name):
-            text = read_text(data, name)
+            text, file_tables = read_file(data, name)    # one parse per file
             if text:
                 texts.append(f"Source file: {name}\n{text}")
                 file_names.append(name)
             else:
                 unread.append(name)
-            tables.extend(extract_tables(data, name))
+            tables.extend(file_tables)
 
     blob = "\n\n".join(texts)
     message = (f"  load_documents: {len(blob):,} chars from {len(file_names)} files, "
@@ -426,6 +428,15 @@ def load_documents(state):
     print(message)
     return {"documents_text": blob, "source_files": file_names, "tables": tables}
 
+def extract_standards(state):
+    """Find the standards and certificates required in the documents.
+
+    Deterministic (see standards.py), so this branch needs no model call and adds
+    almost nothing to the runtime.
+    """
+    standards = find_standards(state["documents_text"], state["tables"])
+    print(f"  extract_standards: {len(standards)} standards")
+    return {"standards": standards}
 
 def extract_criteria(state):
     """Extract the evaluation criteria from the located prose and the scoring tables.
@@ -631,16 +642,19 @@ def build_graph():
     graph.add_node("find_candidates", find_candidates)
     graph.add_node("classify", classify)
     graph.add_node("critique", critique)
-    # defer=True makes finalize wait for both parallel branches before running once
+    graph.add_node("extract_standards", extract_standards)
+    # defer=True makes finalize wait for every parallel branch before running once
     # (otherwise it fires once per branch, since the branches finish at different times).
     graph.add_node("finalize", finalize, defer=True)
 
     graph.add_edge(START, "load_documents")
 
-    # After loading, two independent branches run in parallel: evaluation criteria
-    # and CPV codes. They write different state keys, so neither waits for the other.
+    # After loading, three independent branches run in parallel: evaluation criteria,
+    # CPV codes, and standards. They write different state keys, so none waits for
+    # the others.
     graph.add_edge("load_documents", "extract_criteria")
     graph.add_edge("load_documents", "find_candidates")
+    graph.add_edge("load_documents", "extract_standards")
 
     # Criteria branch: a reflexion loop grounded by the weight-sum check.
     graph.add_edge("extract_criteria", "check_criteria")
@@ -660,7 +674,10 @@ def build_graph():
         {"classify": "classify", "finalize": "finalize"},
     )
 
-    # Both branches join here; finalize runs once after both complete.
+    # Standards branch: deterministic, so it runs straight through with no loop.
+    graph.add_edge("extract_standards", "finalize")
+
+    # All three branches join here; finalize runs once after they complete.
     graph.add_edge("finalize", END)
 
     return graph.compile()
@@ -700,6 +717,7 @@ def initial_state(eis_id):
         "feedback": None,
         "attempts": 0,
         "final": None,
+         "standards": None,
     }
 
 
@@ -720,6 +738,7 @@ def process_one(graph, eis_id):
         "extracted": state.get("final"),
         "evaluation_criteria": state.get("criteria"),
         "tables": state.get("tables", []),            # captured for later structured-field work
+        "standards": state.get("standards"),
     }
     out_path = OUTPUT_DIR / f"{eis_id}.json"
     out_path.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")

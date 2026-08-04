@@ -11,6 +11,10 @@ Two outputs per file:
              digital PDFs use cheap library calls; scanned PDFs use the Table
              Transformer models, which are OFF by default because they are heavy.
 
+read_file() returns both of the above from a single parse, so the extraction loop
+reads each file once instead of twice; read_text() and extract_tables() are kept
+unchanged for callers that want only one side.
+
 The base readers (pdfplumber, python-docx, openpyxl) are imported at the top.
 The optional OCR and Table Transformer paths pull in torch, which is slow to
 import and large to install, so those libraries are imported inside the
@@ -45,7 +49,7 @@ OCR_DPI = 200                            # resolution for rasterising scanned PD
 # The Table Transformer path is heavy (two deep-learning models + OCR per cell)
 # and only needed for SCANNED tables, so it is off by default. Turn it on when you
 # start extracting structured fields from scanned documents.
-ENABLE_TABLE_TRANSFORMER = False
+ENABLE_TABLE_TRANSFORMER = True
 TATR_DETECTION_MODEL = "microsoft/table-transformer-detection"
 TATR_STRUCTURE_MODEL = "microsoft/table-structure-recognition-v1.1-all"
 TATR_THRESHOLD = 0.7                     # min confidence for a detected table/row/column
@@ -320,3 +324,108 @@ def _tables_from_scanned_pdf(data):
             if rows:
                 tables.append(rows)
     return tables
+
+
+# COMBINED READER (single parse per file)
+#
+# read_file() opens each file once and returns BOTH its text and its tables, so
+# the reading loop no longer parses every file twice (once via read_text, once via
+# extract_tables). Those functions and the per-format helpers above are left
+# untouched for callers that use them directly; read_file reuses read_ocr and
+# _tables_from_scanned_pdf, so the scanned fallbacks are shared. The one
+# consequence of a single open: a hard parse error now yields empty text and empty
+# tables together (one message), rather than each half failing independently.
+
+def _pdf_text_and_tables(data):
+    """Read a digital PDF's text and tables in one pass.
+
+    Mirrors read_plain (the PDF branch) and _tables_from_pdf, but opens the file
+    once: the page loop collects the text layer and the tables together, and the
+    same pass decides whether the PDF is scanned (which drives the Table Transformer).
+    """
+    text_parts, rows_list = [], []
+    has_text = False
+    with pdfplumber.open(io.BytesIO(data)) as pdf:
+        for page in pdf.pages:
+            page_text = page.extract_text() or ""
+            if page_text.strip():
+                has_text = True
+            text_parts.append(page_text)
+            for table in page.extract_tables():
+                rows = [["" if c is None else str(c) for c in row] for row in table]
+                if rows:
+                    rows_list.append(rows)
+    if not has_text and ENABLE_TABLE_TRANSFORMER:
+        rows_list.extend(_tables_from_scanned_pdf(data))
+    return "\n".join(text_parts), rows_list
+
+
+def _docx_text_and_tables(data):
+    """Read a DOCX's paragraph text and its tables from a single open."""
+    document = docx.Document(io.BytesIO(data))
+    text = "\n".join(p.text for p in document.paragraphs)
+    rows_list = []
+    for table in document.tables:
+        rows = [[cell.text.strip() for cell in row.cells] for row in table.rows]
+        if rows:
+            rows_list.append(rows)
+    return text, rows_list
+
+
+def _xlsx_text_and_tables(data):
+    """Read an XLSX's cell text and per-sheet tables from a single open.
+
+    The workbook is iterated once; each row becomes both the tab-joined text line
+    read_plain produced and the full-width row _tables_from_xlsx kept.
+    """
+    workbook = openpyxl.load_workbook(io.BytesIO(data), read_only=True, data_only=True)
+    text_lines, rows_list = [], []
+    for sheet in workbook.worksheets:
+        sheet_rows = []
+        for row in sheet.iter_rows(values_only=True):
+            text_cells = [str(c) for c in row if c is not None]
+            if text_cells:
+                text_lines.append("\t".join(text_cells))
+            table_cells = ["" if c is None else str(c) for c in row]
+            if any(cell.strip() for cell in table_cells):
+                sheet_rows.append(table_cells)
+        if sheet_rows:
+            rows_list.append(sheet_rows)
+    return "\n".join(text_lines), rows_list
+
+
+def read_file(data, name):
+    """Open one file once and return (text, tables).
+
+    Same outputs as read_text(data, name) and extract_tables(data, name) called
+    separately, but the file is parsed a single time. text is the plain reader's
+    output when it clears MIN_USEFUL_CHARS, otherwise the OCR fallback (scanned
+    PDFs only), otherwise "". tables is one entry per table found, each shaped
+    {"source": name, "rows": [[cell, ...], ...]}.
+    """
+    lower = name.lower()
+    try:
+        if lower.endswith(".pdf"):
+            plain, rows_list = _pdf_text_and_tables(data)
+        elif lower.endswith(".docx"):
+            plain, rows_list = _docx_text_and_tables(data)
+        elif lower.endswith((".xlsx", ".xlsm")):
+            plain, rows_list = _xlsx_text_and_tables(data)
+        elif lower.endswith((".txt", ".csv")):
+            plain, rows_list = data.decode("utf-8", errors="ignore"), []
+        else:
+            plain, rows_list = "", []
+    except Exception as error:
+        print(f"    could not read {name}: {error}")
+        return "", []
+
+    # Same threshold and OCR fallback as read_text: keep the plain text when it is
+    # substantial, else try OCR (a no-op for non-PDFs), else treat the file as unread.
+    if len(plain.strip()) >= MIN_USEFUL_CHARS:
+        text = plain
+    else:
+        ocr = read_ocr(data, name)
+        text = ocr if len(ocr.strip()) >= MIN_USEFUL_CHARS else ""
+
+    tables = [{"source": name, "rows": rows} for rows in rows_list]
+    return text, tables
