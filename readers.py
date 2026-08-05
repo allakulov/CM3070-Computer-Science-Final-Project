@@ -25,6 +25,7 @@ it with an install hint and return nothing.
 from __future__ import annotations
 
 import io
+import time
 import zipfile
 
 # Base readers, used on every run, are imported here as usual. The optional OCR
@@ -394,7 +395,7 @@ def _xlsx_text_and_tables(data):
     return "\n".join(text_lines), rows_list
 
 
-def read_file(data, name):
+def read_file(data, name, info=None):
     """Open one file once and return (text, tables).
 
     Same outputs as read_text(data, name) and extract_tables(data, name) called
@@ -402,30 +403,63 @@ def read_file(data, name):
     output when it clears MIN_USEFUL_CHARS, otherwise the OCR fallback (scanned
     PDFs only), otherwise "". tables is one entry per table found, each shaped
     {"source": name, "rows": [[cell, ...], ...]}.
+
+    If a dict is passed as info, it is filled in with what happened, so a caller
+    can report it: info["reader"] is the reader that produced the text ("pdf",
+    "docx", "xlsx", "text", "ocr", or None when the file was not read),
+    info["reason"] explains why an unread file was skipped (empty otherwise), and
+    info["parse_seconds"] / info["ocr_seconds"] are the time spent parsing the
+    file for text+tables and the time spent in OCR (0.0 when OCR was not needed).
     """
+    if info is None:
+        info = {}                 # scratch dict so the logic below is uniform
+    info["reader"] = None
+    info["reason"] = ""
+    info["parse_seconds"] = 0.0
+    info["ocr_seconds"] = 0.0
+
     lower = name.lower()
+    started = time.perf_counter()
     try:
         if lower.endswith(".pdf"):
             plain, rows_list = _pdf_text_and_tables(data)
+            fmt = "pdf"
         elif lower.endswith(".docx"):
             plain, rows_list = _docx_text_and_tables(data)
+            fmt = "docx"
         elif lower.endswith((".xlsx", ".xlsm")):
             plain, rows_list = _xlsx_text_and_tables(data)
+            fmt = "xlsx"
         elif lower.endswith((".txt", ".csv")):
             plain, rows_list = data.decode("utf-8", errors="ignore"), []
+            fmt = "text"
         else:
-            plain, rows_list = "", []
+            ext = name.lower().rsplit(".", 1)[-1] if "." in name else "?"
+            info["reason"] = f"unsupported type (.{ext})"
+            return "", []
     except Exception as error:
+        info["reason"] = f"{type(error).__name__}: {error}"
         print(f"    could not read {name}: {error}")
         return "", []
+    finally:
+        info["parse_seconds"] = round(time.perf_counter() - started, 2)
 
     # Same threshold and OCR fallback as read_text: keep the plain text when it is
     # substantial, else try OCR (a no-op for non-PDFs), else treat the file as unread.
     if len(plain.strip()) >= MIN_USEFUL_CHARS:
+        info["reader"] = fmt
         text = plain
     else:
+        started = time.perf_counter()
         ocr = read_ocr(data, name)
-        text = ocr if len(ocr.strip()) >= MIN_USEFUL_CHARS else ""
+        info["ocr_seconds"] = round(time.perf_counter() - started, 2)
+        if len(ocr.strip()) >= MIN_USEFUL_CHARS:
+            info["reader"] = "ocr"
+            text = ocr
+        else:
+            info["reason"] = ("no usable text (after OCR attempt)" if fmt == "pdf"
+                              else f"under {MIN_USEFUL_CHARS}-char threshold")
+            text = ""
 
     tables = [{"source": name, "rows": rows} for rows in rows_list]
     return text, tables
