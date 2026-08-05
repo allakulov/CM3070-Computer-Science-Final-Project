@@ -45,7 +45,9 @@ from standards import find_standards
 # CONFIGURATION
 
 DOWNLOADS_DIR = Path("downloads")        # input: downloads/{eis_id}/*.zip
-OUTPUT_DIR = Path("extracted")           # output: extracted/{eis_id}.json
+OUTPUT_DIR = Path("extracted")           # output: extracted/{eis_id}.json (agent conclusions)
+TABLES_DIR = Path("tables")              # output: tables/{eis_id}.json    (captured tables, per file)
+OCR_DIR = Path("ocr")                    # output: ocr/{eis_id}.json       (OCR text, per file)
 
 EXTRACTION_MODEL = "mistral-small"       # any tag listed by `ollama list`
 OLLAMA_NUM_CTX = 4096                    # Ollama's default of 2048 is too small
@@ -251,6 +253,8 @@ class State(TypedDict):
     source_files: list[str]
     documents_text: str
     tables: list[dict]              # tables found across all documents (not used for CPV)
+    ocr_records: list[dict]         # per-file OCR output, saved for evaluating the OCR model
+    table_records: list[dict]       # per-file captured tables, saved for evaluating extraction
     standards: Optional[dict]       # standards and certificates found in the documents
     criteria: Optional[dict]        # extracted evaluation criteria
     criteria_attempts: int          # criteria reflexion loop counter
@@ -402,7 +406,11 @@ def load_documents(state):
     texts = []
     file_names = []
     tables = []
-    unread = []
+    by_reader = {}       # reader label -> [names], what handled each read file
+    ocr_files = []       # (name, char_count, preview) for the OCR'd files
+    no_text = []         # (name, reason, table_count) for files that yielded no text
+    ocr_records = []     # {name, chars, seconds, text} per OCR'd file, saved for evaluation
+    table_records = []   # {name, seconds, tables} per file that produced tables
 
     for zip_path in sorted(folder.glob("*.zip")):
         try:
@@ -412,21 +420,48 @@ def load_documents(state):
             continue
 
         for name, data in iter_container_files(zip_bytes, zip_path.name):
-            text, file_tables = read_file(data, name)    # one parse per file
+            info = {}
+            text, file_tables = read_file(data, name, info)    # one parse per file
             if text:
                 texts.append(f"Source file: {name}\n{text}")
                 file_names.append(name)
+                by_reader.setdefault(info["reader"], []).append(name)
+                if info["reader"] == "ocr":
+                    preview = " ".join(text.split())[:120]
+                    ocr_files.append((name, len(text), preview))
+                    ocr_records.append({"name": name, "chars": len(text),
+                                        "seconds": info["ocr_seconds"], "text": text})
             else:
-                unread.append(name)
+                no_text.append((name, info.get("reason") or "unknown", len(file_tables)))
+            if file_tables:
+                table_records.append({"name": name, "seconds": info["parse_seconds"],
+                                      "tables": [t["rows"] for t in file_tables]})
             tables.extend(file_tables)
 
+    # Per-reader breakdown: which reader handled which files.
+    for reader in ("pdf", "docx", "xlsx", "text"):
+        names = by_reader.get(reader, [])
+        if names:
+            print(f"    {reader:6}({len(names)}): {', '.join(names)}")
+    # OCR gets its own block with a character count and a short preview of the result.
+    if ocr_files:
+        print(f"    ocr   ({len(ocr_files)}):")
+        for name, n_chars, preview in ocr_files:
+            print(f"      {name}: {n_chars:,} chars | {preview!r}")
+    # The full list of files that produced no text, with the reason where known.
+    # A file can yield no prose but still contribute a table (e.g. a terse scoring
+    # sheet), so that is noted rather than looking like the file was lost.
+    if no_text:
+        print(f"    no text({len(no_text)}):")
+        for name, reason, n_tables in no_text:
+            kept = f"  (+{n_tables} table{'s' if n_tables != 1 else ''} kept)" if n_tables else ""
+            print(f"      {name}: {reason}{kept}")
+
     blob = "\n\n".join(texts)
-    message = (f"  load_documents: {len(blob):,} chars from {len(file_names)} files, "
-               f"{len(tables)} tables")
-    if unread:
-        message += f" ({len(unread)} unreadable, e.g. {unread[0]!r})"
-    print(message)
-    return {"documents_text": blob, "source_files": file_names, "tables": tables}
+    print(f"  load_documents: {len(blob):,} chars from {len(file_names)} files, "
+          f"{len(tables)} tables")
+    return {"documents_text": blob, "source_files": file_names, "tables": tables,
+            "ocr_records": ocr_records, "table_records": table_records}
 
 def extract_standards(state):
     """Find the standards and certificates required in the documents.
@@ -707,6 +742,8 @@ def initial_state(eis_id):
         "source_files": [],
         "documents_text": "",
         "tables": [],
+        "ocr_records": [],
+        "table_records": [],
         "criteria": None,
         "criteria_attempts": 0,
         "criteria_feedback": None,
@@ -737,12 +774,20 @@ def process_one(graph, eis_id):
         "attempts": state.get("attempts", 0),
         "extracted": state.get("final"),
         "evaluation_criteria": state.get("criteria"),
-        "tables": state.get("tables", []),            # captured for later structured-field work
         "standards": state.get("standards"),
     }
     out_path = OUTPUT_DIR / f"{eis_id}.json"
     out_path.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"  saved {out_path}\n")
+
+    # Raw captured material is saved apart from the agents' conclusions above, so the
+    # OCR and table-extraction models each have their own artifact to evaluate against.
+    tables_path = TABLES_DIR / f"{eis_id}.json"
+    tables_path.write_text(json.dumps(state.get("table_records", []), indent=2,
+                                      ensure_ascii=False), encoding="utf-8")
+    ocr_path = OCR_DIR / f"{eis_id}.json"
+    ocr_path.write_text(json.dumps(state.get("ocr_records", []), indent=2,
+                                   ensure_ascii=False), encoding="utf-8")
+    print(f"  saved {out_path}, {tables_path}, {ocr_path}\n")
 
 
 def main():
@@ -752,6 +797,8 @@ def main():
     args = parser.parse_args()
 
     OUTPUT_DIR.mkdir(exist_ok=True)
+    TABLES_DIR.mkdir(exist_ok=True)
+    OCR_DIR.mkdir(exist_ok=True)
 
     if args.eis_id:
         eis_ids = [args.eis_id]
