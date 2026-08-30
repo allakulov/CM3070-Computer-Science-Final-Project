@@ -31,6 +31,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import time
 from pathlib import Path
 from typing import Literal, Optional, TypedDict
 
@@ -45,7 +46,7 @@ from standards import find_standards
 # CONFIGURATION
 
 DOWNLOADS_DIR = Path("downloads")        # input: downloads/{eis_id}/*.zip
-OUTPUT_DIR = Path("extracted")           # output: extracted/{eis_id}.json (agent conclusions)
+OUTPUT_DIR = Path("extracted")           # output: extracted/{model}/{eis_id}.json (per model)
 TABLES_DIR = Path("tables")              # output: tables/{eis_id}.json    (captured tables, per file)
 OCR_DIR = Path("ocr")                    # output: ocr/{eis_id}.json       (OCR text, per file)
 
@@ -170,9 +171,6 @@ class EvaluationCriteria(BaseModel):
     """How bids are scored in a procurement notice."""
 
     found: bool = Field(description="True if evaluation criteria are present in the text.")
-    award_method: Literal["lowest_price", "most_economically_advantageous", "unknown"] = Field(
-        description="How the winning bid is chosen: lowest price, most economically advantageous, or unknown.",
-    )
     criteria: list[Criterion] = Field(
         default_factory=list,
         description="The individual scoring criteria, if any.",
@@ -184,15 +182,23 @@ class EvaluationCriteria(BaseModel):
 # Built once and reused. Constructing ChatOllama does not open a connection, so
 # importing this module without Ollama running is fine.
 
-chat_model = ChatOllama(model=EXTRACTION_MODEL, temperature=0, num_ctx=OLLAMA_NUM_CTX)
-# method="json_schema" uses Ollama's constrained decoding, which fills the schema far
-# more reliably on small local models than the default tool-calling path.
-classifier = chat_model.with_structured_output(CpvClassification, method="json_schema")
-critic = chat_model.with_structured_output(Critique, method="json_schema")
+classifier = critic = criteria_extractor = None   # set by build_models()
 
-# A separate binding with a larger context window for the bigger criteria input.
-criteria_model = ChatOllama(model=EXTRACTION_MODEL, temperature=0, num_ctx=CRITERIA_NUM_CTX)
-criteria_extractor = criteria_model.with_structured_output(EvaluationCriteria, method="json_schema")
+
+def build_models(name):
+    """Build the CPV and criteria model bindings for one Ollama tag."""
+    global classifier, critic, criteria_extractor
+    # method="json_schema" uses Ollama's constrained decoding, which fills the schema
+    # far more reliably on small local models than the default tool-calling path.
+    chat_model = ChatOllama(model=name, temperature=0, num_ctx=OLLAMA_NUM_CTX)
+    classifier = chat_model.with_structured_output(CpvClassification, method="json_schema")
+    critic = chat_model.with_structured_output(Critique, method="json_schema")
+    # A larger context window for the bigger criteria input.
+    criteria_model = ChatOllama(model=name, temperature=0, num_ctx=CRITERIA_NUM_CTX)
+    criteria_extractor = criteria_model.with_structured_output(EvaluationCriteria, method="json_schema")
+
+
+build_models(EXTRACTION_MODEL)
 
 
 CLASSIFY_PROMPT = """You are reading CPV codes found in a Latvian public procurement \
@@ -230,7 +236,7 @@ Latvian cues: "vērtēšanas kritēriji", "piedāvājuma izvēles kritērijs", "
 visizdevīgākais piedāvājums" (most economically advantageous), "zemākā cena" (lowest \
 price). Criteria often carry weights in percent or points.
 
-Extract the award method and the list of criteria with their weights. If no criteria are \
+Extract the list of criteria with their weights. If no criteria are \
 present, set found to false.
 
 PROSE:
@@ -265,6 +271,8 @@ class State(TypedDict):
     critique: Optional[dict]
     feedback: Optional[str]         # note carried into the next classify attempt
     attempts: int
+    cpv_seconds: float              # model time spent in the CPV classify/critique loop
+    criteria_seconds: float         # model time spent extracting criteria
     final: Optional[dict]
 
 
@@ -488,22 +496,24 @@ def extract_criteria(state):
 
     if not prose and not tables:
         print("  extract_criteria: no criteria section or tables found")
-        return {"criteria": {"found": False, "award_method": "unknown", "criteria": []},
+        return {"criteria": {"found": False, "criteria": []},
                 "criteria_attempts": attempt}
 
     prompt = CRITERIA_PROMPT.format(prose=prose or "(none found)",
                                     tables=tables or "(none found)", feedback=note)
+    started = time.perf_counter()
     try:
         result = criteria_extractor.invoke(prompt)
         criteria = result.model_dump()
     except Exception as error:
+        secs = round(state.get("criteria_seconds", 0.0) + time.perf_counter() - started, 1)
         print(f"  extract_criteria: extraction failed: {error}")
-        return {"criteria": {"found": False, "award_method": "unknown", "criteria": []},
-                "criteria_attempts": attempt}
+        return {"criteria": {"found": False, "criteria": []},
+                "criteria_attempts": attempt, "criteria_seconds": secs}
+    secs = round(state.get("criteria_seconds", 0.0) + time.perf_counter() - started, 1)
 
-    print(f"  extract_criteria (attempt {attempt}): {len(criteria['criteria'])} criteria, "
-          f"method {criteria['award_method']}")
-    return {"criteria": criteria, "criteria_attempts": attempt}
+    print(f"  extract_criteria (attempt {attempt}): {len(criteria['criteria'])} criteria")
+    return {"criteria": criteria, "criteria_attempts": attempt, "criteria_seconds": secs}
 
 
 def _normalize_name(name):
@@ -591,13 +601,16 @@ def classify(state):
     note = f"\nNote on your previous attempt: {feedback}" if feedback else ""
     prompt = CLASSIFY_PROMPT.format(candidates=format_candidates(state["candidates"]), feedback=note)
 
+    started = time.perf_counter()
     try:
         result = classifier.invoke(prompt)
     except ValidationError as error:
+        cpv = round(state.get("cpv_seconds", 0.0) + time.perf_counter() - started, 1)
         print(f"  classify (attempt {attempt}): invalid output, will retry")
         return {"classification": None,
                 "feedback": f"your previous answer was not valid: {error}",
-                "attempts": attempt}
+                "attempts": attempt, "cpv_seconds": cpv}
+    cpv = round(state.get("cpv_seconds", 0.0) + time.perf_counter() - started, 1)
 
     # Keep only codes that were actually in the candidate list (no hallucinations).
     valid = {c["code"] for c in state["candidates"]}
@@ -606,7 +619,7 @@ def classify(state):
     classification = {"main_cpv": main, "additional_cpv": additional, "reasoning": result.reasoning}
 
     print(f"  classify (attempt {attempt}): main {main}, additional {additional} (model said {result.main_cpv!r})")
-    return {"classification": classification, "attempts": attempt}
+    return {"classification": classification, "attempts": attempt, "cpv_seconds": cpv}
 
 
 def critique(state):
@@ -622,11 +635,13 @@ def critique(state):
         additional=classification.get("additional_cpv"),
         reasoning=classification.get("reasoning"),
     )
+    started = time.perf_counter()
     result = critic.invoke(prompt)
     verdict = result.model_dump()
 
     print(f"  critique: {verdict['verdict']}" + (f" ({verdict['problem']})" if verdict.get("problem") else ""))
-    update = {"critique": verdict}
+    update = {"critique": verdict,
+              "cpv_seconds": round(state.get("cpv_seconds", 0.0) + time.perf_counter() - started, 1)}
     if verdict["verdict"] == "revise":
         update["feedback"] = verdict.get("problem") or "reconsider which code is the main CPV"
     return update
@@ -753,6 +768,8 @@ def initial_state(eis_id):
         "critique": None,
         "feedback": None,
         "attempts": 0,
+        "cpv_seconds": 0.0,
+        "criteria_seconds": 0.0,
         "final": None,
          "standards": None,
     }
@@ -772,8 +789,11 @@ def process_one(graph, eis_id):
         "source_files": state.get("source_files", []),
         "candidates": state.get("candidates", []),   # kept for debugging
         "attempts": state.get("attempts", 0),
+        "model_seconds": round(state.get("cpv_seconds", 0.0) + state.get("criteria_seconds", 0.0), 1),
         "extracted": state.get("final"),
+        "critique": state.get("critique"),
         "evaluation_criteria": state.get("criteria"),
+        "criteria_check": state.get("criteria_check"),
         "standards": state.get("standards"),
     }
     out_path = OUTPUT_DIR / f"{eis_id}.json"
@@ -794,9 +814,14 @@ def main():
     """Run extraction over the selected procurements."""
     parser = argparse.ArgumentParser(description="Extract CPV codes from procurements.")
     parser.add_argument("--eis-id", help="Process only this procurement id")
+    parser.add_argument("--model", default=EXTRACTION_MODEL, help="Ollama model tag to extract with")
     args = parser.parse_args()
 
-    OUTPUT_DIR.mkdir(exist_ok=True)
+    if args.model != EXTRACTION_MODEL:
+        build_models(args.model)
+    global OUTPUT_DIR
+    OUTPUT_DIR = Path("extracted") / args.model.replace(":", "-").replace("/", "-")
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     TABLES_DIR.mkdir(exist_ok=True)
     OCR_DIR.mkdir(exist_ok=True)
 
