@@ -50,7 +50,7 @@ OUTPUT_DIR = Path("extracted")           # output: extracted/{model}/{eis_id}.js
 TABLES_DIR = Path("tables")              # output: tables/{eis_id}.json    (captured tables, per file)
 OCR_DIR = Path("ocr")                    # output: ocr/{eis_id}.json       (OCR text, per file)
 
-EXTRACTION_MODEL = "mistral-small"       # any tag listed by `ollama list`
+EXTRACTION_MODEL = "gemma4:e4b"          # default model after evals
 OLLAMA_NUM_CTX = 4096                    # Ollama's default of 2048 is too small
 
 CONTEXT_CHARS = 200                      # characters of context kept on each side of a code
@@ -819,9 +819,10 @@ def main():
 
     if args.model != EXTRACTION_MODEL:
         build_models(args.model)
-    global OUTPUT_DIR
-    OUTPUT_DIR = Path("extracted") / args.model.replace(":", "-").replace("/", "-")
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    # global OUTPUT_DIR
+    # OUTPUT_DIR = Path("extracted") / args.model.replace(":", "-").replace("/", "-")
+    # OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True) #save to extracted folder, not model subfolders
     TABLES_DIR.mkdir(exist_ok=True)
     OCR_DIR.mkdir(exist_ok=True)
 
