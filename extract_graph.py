@@ -41,7 +41,7 @@ from langchain_ollama import ChatOllama
 
 from readers import iter_container_files, read_file
 from standards import find_standards
-
+import sys
 
 # CONFIGURATION
 
@@ -67,6 +67,18 @@ CRITERIA_CELL_CHARS = 200                # truncate each table cell (scoring met
 MAX_CRITERIA_ATTEMPTS = 2                # cap on the criteria reflexion loop
 CRITERIA_TOTAL_DEFAULT = 100             # assumed maximum points if the notice does not state one
 CRITERIA_DEDUP_OVERLAP = 0.6             # drop a scoring table this much covered by a fuller one
+
+class Tee:
+    """Write everything to the terminal and to a log file at once."""
+    def __init__(self, path):
+        self.terminal = sys.stdout
+        self.log = open(path, "w", encoding="utf-8")
+    def write(self, text):
+        self.terminal.write(text)
+        self.log.write(text)
+    def flush(self):
+        self.terminal.flush()
+        self.log.flush()
 
 # Cues for locating the criteria PROSE, kept to the terms that actually fired across
 # the corpus (see inspect_criteria.py). "vērtēšanas kritērij" also matches inside
@@ -116,22 +128,32 @@ class CpvClassification(BaseModel):
         description="One short sentence explaining the choice of main code.",
     )
 
+    # @field_validator("main_cpv")
+    # @classmethod
+    # def main_must_be_cpv(cls, value):
+    #     """Reject a main code that is not in CPV form."""
+    #     if not looks_like_cpv(value):
+    #         raise ValueError(f"{value!r} is not a CPV code")
+    #     return value
     @field_validator("main_cpv")
     @classmethod
     def main_must_be_cpv(cls, value):
-        """Reject a main code that is not in CPV form."""
-        if not looks_like_cpv(value):
-            raise ValueError(f"{value!r} is not a CPV code")
-        return value
+        """Keep a main code if in CPV form, return empty otherwise."""
+        return value if looks_like_cpv(value) else ""
 
+    # @field_validator("additional_cpv")
+    # @classmethod
+    # def additional_must_be_cpv(cls, value):
+    #     """Reject any additional code that is malformed."""
+    #     bad = [code for code in value if not looks_like_cpv(code)]
+    #     if bad:
+    #         raise ValueError(f"not CPV codes: {bad}")
+    #     return value
     @field_validator("additional_cpv")
     @classmethod
     def additional_must_be_cpv(cls, value):
-        """Reject any additional code that is malformed."""
-        bad = [code for code in value if not looks_like_cpv(code)]
-        if bad:
-            raise ValueError(f"not CPV codes: {bad}")
-        return value
+        """Keep an additional code if in CPV form, drop otherwise."""
+        return [code for code in value if looks_like_cpv(code)]
 
     @model_validator(mode="after")
     def main_not_in_additional(self):
@@ -542,6 +564,8 @@ def check_criteria(state):
     """
     criteria = state.get("criteria") or {}
     items = dedup_criteria(criteria.get("criteria") or [])
+    if len(items) == 1:
+        items[0]["weight"] = 100        # if only criterion is returned, assign full weight
     criteria = {**criteria, "criteria": items}
     attempt = state.get("criteria_attempts", 0)
 
@@ -812,27 +836,33 @@ def process_one(graph, eis_id):
 
 def main():
     """Run extraction over the selected procurements."""
-    parser = argparse.ArgumentParser(description="Extract CPV codes from procurements.")
-    parser.add_argument("--eis-id", help="Process only this procurement id")
+    sys.stdout = Tee("extraction_terminal_logs.txt")
+    parser = argparse.ArgumentParser(description="Extract structured fields from procurements.")
+    parser.add_argument("--id", nargs="+", help="One or more procurement ids to process")
+    parser.add_argument("--ids-file", help="A file with one procurement id per line")
     parser.add_argument("--model", default=EXTRACTION_MODEL, help="Ollama model tag to extract with")
     args = parser.parse_args()
 
     if args.model != EXTRACTION_MODEL:
         build_models(args.model)
-    # global OUTPUT_DIR
-    # OUTPUT_DIR = Path("extracted") / args.model.replace(":", "-").replace("/", "-")
-    # OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True) #save to extracted folder, not model subfolders
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)     # extracted/, not a per-model subfolder
     TABLES_DIR.mkdir(exist_ok=True)
     OCR_DIR.mkdir(exist_ok=True)
 
-    if args.eis_id:
-        eis_ids = [args.eis_id]
-    else:
+    eis_ids = list(args.id or [])
+    if args.ids_file:
+        ids_path = Path(args.ids_file)
+        if not ids_path.is_file():
+            print(f"ids file not found: {ids_path}")
+            return
+        eis_ids += [line.strip() for line in ids_path.read_text(encoding="utf-8").splitlines()
+                    if line.strip()]
+    if not eis_ids:
         eis_ids = sorted(p.name for p in DOWNLOADS_DIR.iterdir() if p.is_dir())
+    eis_ids = list(dict.fromkeys(eis_ids))            # drop duplicates, keep order
 
     if not eis_ids:
-        print(f"No procurements found in {DOWNLOADS_DIR}")
+        print(f"No procurement found in {DOWNLOADS_DIR}")
         return
 
     graph = build_graph()
