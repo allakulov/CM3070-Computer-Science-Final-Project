@@ -1,0 +1,18 @@
+# Streamlit theme
+# Theming reference:
+# https://docs.streamlit.io/develop/concepts/configuration/theming-customize-fonts
+#
+# Colors adapted from the Coat of arms of Latvia:
+# https://de.wikipedia.org/wiki/Datei:Latvia_coa.png
+# carmine red shield and beasts, azure sun field and stars, gold sun and stars.
+#
+# Open Sans is common on lawyer websites (loaded from Google Fonts, sans-serif fallback):
+# https://www.ilovewp.com/resources/wordpress-for-lawyers/most-used-google-fonts-on-lawyer-websites/
+
+[theme]
+primaryColor = "#9E3039"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F4EFE6"
+textColor = "#20232A"
+linkColor = "#0F4C81"
+font = "'Open Sans':https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap, sans-serif"
