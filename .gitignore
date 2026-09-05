@@ -7,7 +7,7 @@ downloads/
 
 # python
 __pycache__/
-*.pyc/
+*.pyc
 .DS_Store
 graph.png
 
