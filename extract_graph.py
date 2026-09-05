@@ -799,16 +799,11 @@ def initial_state(eis_id):
     }
 
 
-def process_one(graph, eis_id):
-    """Run the graph for one procurement and save the result to disk."""
-    print(f"Procurement {eis_id}")
-    try:
-        state = graph.invoke(initial_state(eis_id))
-    except Exception as error:
-        print(f"  pipeline failed: {error}")
-        return
-
-    result = {
+def build_record(eis_id, state):
+    """Build the extraction record for one procurement from its finished run state. The CLI and the
+    interface both call this, prevents difference between them.
+    """
+    return {
         "eis_id": eis_id,
         "source_files": state.get("source_files", []),
         "candidates": state.get("candidates", []),   # kept for debugging
@@ -819,18 +814,63 @@ def process_one(graph, eis_id):
         "evaluation_criteria": state.get("criteria"),
         "criteria_check": state.get("criteria_check"),
         "standards": state.get("standards"),
-    }
-    out_path = OUTPUT_DIR / f"{eis_id}.json"
-    out_path.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
+        }
+
+
+def save_result(eis_id, state, out_dir=OUTPUT_DIR, tables_dir=TABLES_DIR, ocr_dir=OCR_DIR):
+    """Write the record and its captured tables and OCR to the three output folders.
+    The extraction files are the same for the CLI and the interface both call this.
+    """
+    for folder in (out_dir, tables_dir, ocr_dir):
+        folder.mkdir(parents=True, exist_ok=True)
+    record = build_record(eis_id, state)
+    out_path = out_dir / f"{eis_id}.json"
+    out_path.write_text(json.dumps(record, indent=2, ensure_ascii=False), encoding="utf-8")
 
     # Raw captured material is saved apart from the agents' conclusions above, so the
     # OCR and table-extraction models each have their own artifact to evaluate against.
-    tables_path = TABLES_DIR / f"{eis_id}.json"
+    tables_path = tables_dir / f"{eis_id}.json"
     tables_path.write_text(json.dumps(state.get("table_records", []), indent=2,
                                       ensure_ascii=False), encoding="utf-8")
-    ocr_path = OCR_DIR / f"{eis_id}.json"
+    ocr_path = ocr_dir / f"{eis_id}.json"
     ocr_path.write_text(json.dumps(state.get("ocr_records", []), indent=2,
                                    ensure_ascii=False), encoding="utf-8")
+    return out_path, tables_path, ocr_path
+
+
+def process_one(graph, eis_id):
+    """Run the graph for one procurement and save the result to disk."""
+    print(f"Procurement {eis_id}")
+    try:
+        state = graph.invoke(initial_state(eis_id))
+    except Exception as error:
+        print(f"  pipeline failed: {error}")
+        return
+
+    # result = {
+    #     "eis_id": eis_id,
+    #     "source_files": state.get("source_files", []),
+    #     "candidates": state.get("candidates", []),   # kept for debugging
+    #     "attempts": state.get("attempts", 0),
+    #     "model_seconds": round(state.get("cpv_seconds", 0.0) + state.get("criteria_seconds", 0.0), 1),
+    #     "extracted": state.get("final"),
+    #     "critique": state.get("critique"),
+    #     "evaluation_criteria": state.get("criteria"),
+    #     "criteria_check": state.get("criteria_check"),
+    #     "standards": state.get("standards"),
+    # }
+    # out_path = OUTPUT_DIR / f"{eis_id}.json"
+    # out_path.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    # # Raw captured material is saved apart from the agents' conclusions above, so the
+    # # OCR and table-extraction models each have their own artifact to evaluate against.
+    # tables_path = TABLES_DIR / f"{eis_id}.json"
+    # tables_path.write_text(json.dumps(state.get("table_records", []), indent=2,
+    #                                   ensure_ascii=False), encoding="utf-8")
+    # ocr_path = OCR_DIR / f"{eis_id}.json"
+    # ocr_path.write_text(json.dumps(state.get("ocr_records", []), indent=2,
+    #                                ensure_ascii=False), encoding="utf-8")
+    out_path, tables_path, ocr_path = save_result(eis_id, state)
     print(f"  saved {out_path}, {tables_path}, {ocr_path}\n")
 
 

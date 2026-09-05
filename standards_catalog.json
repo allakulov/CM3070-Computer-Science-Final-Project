@@ -1,5 +1,5 @@
 {
-  "_comment": "Data for standards.py. Edit this file to teach the module new schemes or cues; no code change is needed. Aliases and cues are written folded: lower case, no Latvian diacritics.",
+  "_comment": "Data for standards.py. Edit this file to teach the module a new scheme; no code change is needed. Aliases and cues are written folded: lower case, no diacritics.",
   "schemes": {
     "EU Ecolabel": {
       "aliases": [
@@ -144,6 +144,13 @@
     "834/2007",
     "2018/848"
   ],
+  "green_cues": [
+    "biologisk",
+    "vides",
+    "eko",
+    "energoefektiv",
+    "ilgtspej"
+  ],
   "scheme_cues": [
     "sertifik",
     "shem",
@@ -152,23 +159,6 @@
     "kvalitat",
     "lauksaimniecib",
     "akredit"
-  ],
-  "green_keywords": [
-    "zalais publiskais iepirkum",
-    "zalais iepirkum",
-    "zpi",
-    "vides prasib",
-    "vides aizsardzib",
-    "videi draudzig",
-    "energoefektiv",
-    "atjaunojam",
-    "otrreizej",
-    "parstrad",
-    "biologisk",
-    "ilgtspej",
-    "oglekla ped",
-    "emisij",
-    "ekomarkejum"
   ],
   "section_markers": {
     "award": [

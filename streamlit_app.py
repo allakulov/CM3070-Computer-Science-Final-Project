@@ -93,29 +93,29 @@ def available_models():
         return []
 
 
-def record_from_state(eis_id, state):
-    """Assemble the record the pipeline saves (matching extract_graph.process_one)."""
-    return {
-        "eis_id": eis_id, "source_files": state.get("source_files", []),
-        "candidates": state.get("candidates", []), "attempts": state.get("attempts", 0),
-        "model_seconds": round(state.get("cpv_seconds", 0.0) + state.get("criteria_seconds", 0.0), 1),
-        "extracted": state.get("final"), "critique": state.get("critique"),
-        "evaluation_criteria": state.get("criteria"), "criteria_check": state.get("criteria_check"),
-        "standards": state.get("standards"),
-    }
+# def record_from_state(eis_id, state):
+#     """Assemble the record the pipeline saves (matching extract_graph.process_one)."""
+#     return {
+#         "eis_id": eis_id, "source_files": state.get("source_files", []),
+#         "candidates": state.get("candidates", []), "attempts": state.get("attempts", 0),
+#         "model_seconds": round(state.get("cpv_seconds", 0.0) + state.get("criteria_seconds", 0.0), 1),
+#         "extracted": state.get("final"), "critique": state.get("critique"),
+#         "evaluation_criteria": state.get("criteria"), "criteria_check": state.get("criteria_check"),
+#         "standards": state.get("standards"),
+#     }
 
 
-def save_extraction(eis_id, record, state):
-    """Write the same three files the CLI writes: the record, its tables, and its OCR."""
-    for home in (EXTRACTED_HOME, TABLES_HOME, OCR_HOME):
-        home.mkdir(parents=True, exist_ok=True)
-    (EXTRACTED_HOME / f"{eis_id}.json").write_text(
-        json.dumps(record, indent=2, ensure_ascii=False), encoding="utf-8")
-    (TABLES_HOME / f"{eis_id}.json").write_text(
-        json.dumps(state.get("table_records", []), indent=2, ensure_ascii=False), encoding="utf-8")
-    (OCR_HOME / f"{eis_id}.json").write_text(
-        json.dumps(state.get("ocr_records", []), indent=2, ensure_ascii=False), encoding="utf-8")
-    return EXTRACTED_HOME / f"{eis_id}.json"
+# def save_extraction(eis_id, record, state):
+#     """Write the same three files the CLI writes: the record, its tables, and its OCR."""
+#     for home in (EXTRACTED_HOME, TABLES_HOME, OCR_HOME):
+#         home.mkdir(parents=True, exist_ok=True)
+#     (EXTRACTED_HOME / f"{eis_id}.json").write_text(
+#         json.dumps(record, indent=2, ensure_ascii=False), encoding="utf-8")
+#     (TABLES_HOME / f"{eis_id}.json").write_text(
+#         json.dumps(state.get("table_records", []), indent=2, ensure_ascii=False), encoding="utf-8")
+#     (OCR_HOME / f"{eis_id}.json").write_text(
+#         json.dumps(state.get("ocr_records", []), indent=2, ensure_ascii=False), encoding="utf-8")
+#     return EXTRACTED_HOME / f"{eis_id}.json"
 
 
 def iter_standards(standards):
@@ -458,8 +458,10 @@ if run and selected:
         except Exception as error:
             st.error(f"Pipeline failed: {error}")
             st.stop()
-        record = record_from_state(eis_id, state)
-        saved_path = save_extraction(eis_id, record, state)
+        # record = record_from_state(eis_id, state)
+        # saved_path = save_extraction(eis_id, record, state)
+        record = pipeline.build_record(eis_id, state)
+        saved_path, _, _ = pipeline.save_result(eis_id, state, EXTRACTED_HOME, TABLES_HOME, OCR_HOME)
         st.session_state.update(record=record, saved=str(saved_path), log=log.getvalue(),
                                 timings=times, wall=wall, cpv_s=state.get("cpv_seconds", 0.0),
                                 criteria_s=state.get("criteria_seconds", 0.0),
@@ -476,8 +478,10 @@ if run and selected:
                 progress.progress(i / len(selected), text=f"Running {eid} ({i + 1}/{len(selected)})")
                 try:
                     eid_state = graph.invoke(initial_state(eid))
-                    eid_record = record_from_state(eid, eid_state)
-                    save_extraction(eid, eid_record, eid_state)
+                    # eid_record = record_from_state(eid, eid_state)
+                    # save_extraction(eid, eid_record, eid_state)
+                    eid_record = pipeline.build_record(eid, eid_state)
+                    pipeline.save_result(eid, eid_state, EXTRACTED_HOME, TABLES_HOME, OCR_HOME)
                     records.append(eid_record)
                 except Exception as error:
                     records.append({"eis_id": eid, "error": str(error), "extracted": None,

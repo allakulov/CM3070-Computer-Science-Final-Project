@@ -15,8 +15,9 @@ decides whether it really is a required or referenced standard.
 The agent has two tools and chooses between them. A clear case goes to
 record_decision and is applied without stopping. An ambiguous case goes to
 request_review, which the human-in-the-loop middleware interrupts on, so a person
-sees the evidence and approves, edits or rejects the call. A rejection carries a
-message back to the model as feedback, which is the hint that steers the retry.
+sees the evidence and approves the model's verdict, amends it with their own
+decision and reason, or sends the model more information to reconsider. An amend is
+the reviewer's final word; sending information lets the model decide again.
 
 The outcome is written back into the same extracted file, added to each candidate
 rather than replacing it, so the pattern pass stays visible next to the verdict.
@@ -42,13 +43,15 @@ from langgraph.types import Command
 
 EXTRACTED_DIR = Path("extracted")    # where extract_graph.py saves its results
 RUNS_PATH = Path("standards_review_runs.jsonl")   # one line per run, for comparing models
-REVIEW_MODEL = "mistral-small"       # any tag listed by `ollama list`
+REVIEW_MODEL = "gemma4:e4b"        
 OLLAMA_NUM_CTX = 4096                # Ollama's default of 2048 is too small
 
 
 REVIEW_PROMPT = """You are reading one candidate standard or certificate found in a \
 Latvian public procurement notice. It was found by pattern matching, so it may be a \
-false match.
+false match. Along with the candidate, you are provided evidence in the form of \
+text surrounding the pattern that was matched. This evidence is the main basis for\
+your evaluation, not the name of the candidate standard or certification scheme.
 
 Decide whether this is genuinely a standard, certificate or certification scheme that \
 the procurement requires or references for what is being bought.
@@ -63,9 +66,8 @@ something a bidder must hold or a product must meet, for example data protection
 Set applies to true only when a bidder, a product or a service must meet or hold it.
 
 Call record_decision when the evidence is clear either way. Call request_review when \
-the evidence is short, ambiguous, or you are not confident. Whichever tool you call, \
-give your best judgement in applies rather than a neutral guess, and make the reason \
-agree with it.
+the evidence is ambiguous or too short, meaning it doesn't contain enough relevant information. \
+Whichever tool you call, give your best judgement based on the evidence prose.
 
 CANDIDATE: {name}
 CATEGORY: {category}
@@ -102,7 +104,7 @@ def record_decision(name: str, applies: bool, reason: str) -> str:
 def request_review(name: str, applies: bool, reason: str) -> str:
     """Ask a person to decide about a candidate standard.
 
-    Use when the evidence is ambiguous or you are not confident.
+    Use when the evidence is ambiguous or doesn't contain enough information.
 
     Args:
         name: The candidate standard or certificate.
@@ -118,8 +120,9 @@ def build_reviewer(model=None):
     """Build the review agent with the human-in-the-loop middleware.
 
     interrupt_on maps a tool to whether a person must see it: record_decision runs
-    straight through, request_review pauses. The checkpointer saves the run so it can
-    resume after the person answers.
+    straight through, request_review pauses. The reviewer can approve the verdict,
+    amend it (edit, authoritative), or send more information (reject) for the model to
+    reconsider. The checkpointer saves the run so it can resume after the person answers.
     """
     model = model or ChatOllama(model=REVIEW_MODEL, temperature=0, num_ctx=OLLAMA_NUM_CTX)
     return create_agent(
@@ -143,8 +146,9 @@ def build_reviewer(model=None):
 def ask_person(finding, request):
     """Show one paused candidate and return the person's decision.
 
-    The prompt spells out what each key does, because the thing being approved is the
-    model's verdict, not the candidate itself.
+    The reviewer approves the model's verdict, amends it with their own decision and
+    reason, or sends the model more information to reconsider. The thing being judged
+    is the verdict, not the candidate, so the prompt shows what the model concluded.
 
     Args:
         finding (dict): The candidate read from the extracted file.
@@ -156,7 +160,6 @@ def ask_person(finding, request):
     arguments = request.get("args", {})
     applies = arguments.get("applies")
     verdict = "IS a required standard" if applies else "is NOT a required standard"
-    opposite = "not required" if applies else "required"
 
     print("\n  review needed")
     print(f"    candidate: {finding['name']} ({finding['category']})")
@@ -165,17 +168,19 @@ def ask_person(finding, request):
     for snippet in finding["evidence"]:
         print(f"      ({snippet['phase']}) {snippet['text']}")
     print(f"    the model's verdict: this {verdict}, because {arguments.get('reason')}")
-    print(f"    decide on that verdict:  a accept (applies={applies})   "
-          f"e change to {opposite}   r send back with a correction")
-    answer = input("    [a/e/r]: ").strip().lower()
+    print("    decide:  a approve the verdict   m amend it with your own decision and reason   "
+          "i send the model more information to reconsider")
+    answer = input("    [a/m/i]: ").strip().lower()
 
-    if answer.startswith("e"):
+    if answer.startswith("m"):
         chosen = input("    is it a required standard? [y/n]: ").strip().lower().startswith("y")
+        note = input("    your reason: ").strip()
         return {"type": "edit",
                 "edited_action": {"name": "request_review",
-                                  "args": {**arguments, "applies": chosen}}}
-    if answer.startswith("r"):
-        return {"type": "reject", "message": input("    what is wrong with the verdict: ").strip()}
+                                  "args": {**arguments, "applies": chosen,
+                                           "reason": note or arguments.get("reason")}}}
+    if answer.startswith("i"):
+        return {"type": "reject", "message": input("    what should the model consider: ").strip()}
     return {"type": "approve"}
 
 
@@ -212,6 +217,7 @@ def review_finding(agent, finding, index):
     result, seconds = timed_invoke(agent, {"messages": [{"role": "user", "content": prompt}]}, config)
     pauses = 0
     proposed = None
+    amend = None
 
     # the middleware pauses by raising an interrupt; answer it and resume.
     while result.interrupts:
@@ -222,12 +228,18 @@ def review_finding(agent, finding, index):
                 if proposed is None:
                     # what the model itself suggested, before any correction from me
                     proposed = request["args"].get("applies")
-                decisions.append(ask_person(finding, request))
+                decision = ask_person(finding, request)
+                if decision["type"] == "edit":
+                    amend = decision["edited_action"]["args"]
+                decisions.append(decision)
         result, extra = timed_invoke(agent, Command(resume={"decisions": decisions}), config)
         seconds += extra
 
     verdict = last_tool_call(result)
     if verdict:
+        if amend is not None:                       # a human amend is the final word
+            verdict["applies"] = amend.get("applies")
+            verdict["reason"] = amend.get("reason") or verdict.get("reason")
         verdict["seconds"] = round(seconds, 1)
         verdict["pauses"] = pauses
         # with no pause the model decided alone, so its proposal is the verdict
@@ -311,7 +323,7 @@ def main():
 
     print(f"\n{summary['model']}: {summary['seconds']}s total, "
           f"{summary['seconds_each']}s per candidate, {summary['pauses']} paused for review, "
-          f"{summary['overridden']} corrected by me")
+          f"{summary['overridden']} amended by me")
     print(f"kept {len(kept)} of {len(findings)} candidates")
     for finding in kept:
         print(f"  {finding['name']} ({finding['category']}, {', '.join(finding['phases'])})")
