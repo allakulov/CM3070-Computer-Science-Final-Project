@@ -1,10 +1,28 @@
 .venv/
+
+# the input data
 data/
 downloads/
-extracted/
 *.png/
+
+# python
 __pycache__/
 *.pyc/
 .DS_Store/
-validation_details.csv/
 graph.png
+
+# generated outputs
+extracted/
+ocr/
+tables/
+extraction_terminal_logs.txt
+standards_review_runs.jsonl
+
+# validation outputs
+validation_extracted.csv
+validation_details.csv
+
+# other files
+my_tree_structure.txt
+tatr_probe.txt
+output.md
