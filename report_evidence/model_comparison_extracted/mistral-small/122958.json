@@ -1,0 +1,225 @@
+{
+  "eis_id": "122958",
+  "source_files": [
+    "Līguma projekts_VAMOIC 2024_42_Apstiprinats.docx",
+    "Objektu saraksts 2024.docx",
+    "Nolikums_1.docx",
+    "Pielikums Nr_6_TS_Vārtu un barjeru remonti un apkopes.docx",
+    "Informācija- EIS -_1.docx",
+    "Nolikums_ar_grozījumiem.docx",
+    "122958_PD.ANY_1_2_1_20240711103403.pdf",
+    "Pielikums Nr.1_Pieteikums.docx",
+    "Pielikums Nr.9_Arvalsts_pretendenta_amatpersonu_saraksts.docx",
+    "Pielikums Nr.4_Apliecinajums_resursi_1.docx",
+    "Pielikums Nr.3_Apaksuznemeju_saraksts.docx",
+    "Pielikums Nr.4_Apliecinajums_resursi.docx",
+    "Pielikums Nr.2_Darbinieku saraksts.docx",
+    "Pielikums Nr.12_Apliecinājums_pieredze.docx",
+    "Pielikums Nr.8_Apliecinajums_sankcijas.docx",
+    "FP-1-DAĻA_.xlsx",
+    "FP-2-DAĻA.xlsx",
+    "FP-3-DAĻA.xlsx",
+    "122958_PD.ANY_1_2_2_20240711103404.pdf",
+    "Pielikums Nr.1_Pieteikums.docx",
+    "Pielikums Nr.9_Arvalsts_pretendenta_amatpersonu_saraksts.docx",
+    "Pielikums Nr.4_Apliecinajums_resursi_1.docx",
+    "Pielikums Nr.3_Apaksuznemeju_saraksts.docx",
+    "Pielikums Nr.4_Apliecinajums_resursi.docx",
+    "Pielikums Nr.2_Darbinieku saraksts.docx",
+    "Pielikums Nr.12_Apliecinājums_pieredze.docx",
+    "Pielikums Nr.8_Apliecinajums_sankcijas.docx",
+    "FP-1-DAĻA_.xlsx",
+    "FP-2-DAĻA.xlsx",
+    "FP-3-DAĻA.xlsx",
+    "122958_PD.ANY_1_2_3_20240711103405.pdf",
+    "Pielikums Nr.1_Pieteikums.docx",
+    "Pielikums Nr.9_Arvalsts_pretendenta_amatpersonu_saraksts.docx",
+    "Pielikums Nr.4_Apliecinajums_resursi_1.docx",
+    "Pielikums Nr.3_Apaksuznemeju_saraksts.docx",
+    "Pielikums Nr.4_Apliecinajums_resursi.docx",
+    "Pielikums Nr.2_Darbinieku saraksts.docx",
+    "Pielikums Nr.12_Apliecinājums_pieredze.docx",
+    "Pielikums Nr.8_Apliecinajums_sankcijas.docx",
+    "FP-1-DAĻA_.xlsx",
+    "FP-2-DAĻA.xlsx",
+    "FP-3-DAĻA.xlsx",
+    "_meeting_openingprotocol_71874_OPNPRT_20240731150316.docx",
+    "Pa_2024-223_SIA_Iekārtu_serviss_PIL_EIS.pdf",
+    "Pa_2024-221_SIA_Fittero_PIL_EIS.pdf",
+    "Pa_2024-228_SIA_Quant_Latvia_PIL_EIS.pdf"
+  ],
+  "candidates": [
+    {
+      "code": "50111000-6",
+      "context": "r Publisko iepirkumu likumu (turpmāk – PIL) un Ministru kabineta 2017. gada 28. februāra noteikumiem Nr. 107 „Iepirkumu procedūru un metu konkursu norises kārtība” (turpmāk – MK Noteikumi).\nCPV-kods: 50111000-6.\nFinansējuma avots: valsts budžets (100%).\nTehniskās specifikācijas aktualizācijas datums: 23.02.2024.\nPasūtītājs un konkursa rīkotājs: Valsts aizsardzības militāro objektu un iepirkumu centrs (turpm",
+      "count": 2
+    }
+  ],
+  "attempts": 1,
+  "model_seconds": 158.3,
+  "extracted": {
+    "found": true,
+    "main_cpv": "50111000-6",
+    "additional_cpv": [],
+    "reasoning": "The code 50111000-6 is mentioned as the CPV-kods, which indicates it is the main code for this procurement notice."
+  },
+  "critique": {
+    "verdict": "accept",
+    "problem": null
+  },
+  "evaluation_criteria": {
+    "found": true,
+    "award_method": "most_economically_advantageous",
+    "criteria": [
+      {
+        "name": "Cena bez PVN (Price without VAT)",
+        "weight": null,
+        "description": null
+      }
+    ]
+  },
+  "criteria_check": "ok",
+  "standards": [
+    {
+      "name": "EU regulation 2016/679",
+      "category": "regulation",
+      "green": false,
+      "count": 4,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "S DATU AIZSARDZĪBA Fiziskās personas datu apstrāde šī Līguma ietvaros tiek veikta saskaņā ar Eiropas Parlamenta un Padomes 2016.gada 27.aprīļa regulu (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (turpmāk šīs sadaļas"
+        },
+        {
+          "phase": "specification",
+          "text": "UAIZSARDZIBA 14.1. Fiziskās personas datu apstrāde šī Līguma ietvaros tiek veikta saskaņā ar Eiropas Parlamenta un Padomes 2016.gada 27.aprīļa regulu (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (turpmāk šīs sadaļas"
+        },
+        {
+          "phase": "specification",
+          "text": "AIZSARDZÍBA 14.1. Fiziskās personas datu apstrāde šī Līguma ietvaros tiek veikta saskaņā ar Eiropas Parlamenta un Padomes 2016.gada 27.aprīļa regulu (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (turpmāk šīs sadaļas"
+        },
+        {
+          "phase": "specification",
+          "text": "apakšuzņēmējus bez Pasūtītāja rakstiskas piekrišanas. 14. PERSONAS DATU AIZSARDZIBA Ii ia i as s s s d aa s Padomes 2016.gada 27.aprīļa regulu (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (turpmāk šīs sadaļas"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 2022/576",
+      "category": "regulation",
+      "green": false,
+      "count": 9,
+      "phases": [
+        "specification",
+        "selection",
+        "award"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "personām (turpmāk šajā apliecinājumā kopā un katrs atsevišķi saukti arī – komersanti) neattiecas 2022.gada 8.aprīļa Eiropas Komisijas Padomes regulā (ES) 2022/576, ar kuru groza Regulu (ES) Nr.833/2014 par ierobežojošiem pasākumiem saistībā ar Krievijas darbībām, kas destabilizē situāciju Ukrainā, kas stājas sp"
+        },
+        {
+          "phase": "selection",
+          "text": "tas iegūst saskaņā ar 42. panta piektajā daļā noteikto kārtību. Iepirkuma komisija atbilstoši 2022. gada 8. aprīļa Eiropas Komisijas Padomes regulai (ES) 2022/576, ar kuru groza Regulu (ES) Nr. 833/2014 par ierobežojošiem pasākumiem saistībā ar Krievijas darbībām, kas destabilizē situāciju Ukrainā, kas stājas s"
+        },
+        {
+          "phase": "award",
+          "text": "personām (turpmāk šajā apliecinājumā kopā un katrs atsevišķi saukti arī - komersanti) neattiecas 2022.gada 8.aprīļa Eiropas Komisijas Padomes regulā (ES) 2022/576, ar kuru groza Regulu (ES) Nr.833/2014 par ierobežojošiem pasākumiem saistībā ar Krievijas darbībām, kas destabilizē situāciju Ukrainā, kas stājas sp"
+        },
+        {
+          "phase": "specification",
+          "text": "personām (turpmāk šajā apliecinājumā kopā un katrs atsevišķi saukti arī – komersanti) neattiecas 2022.gada 8.aprīļa Eiropas Komisijas Padomes regulā (ES) 2022/576, ar kuru groza Regulu (ES) Nr.833/2014 par ierobežojošiem pasākumiem saistībā arKrievijas darbībām, kas destabilizē situāciju Ukrainā, kas stājas spē"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 833/2014",
+      "category": "regulation",
+      "green": false,
+      "count": 7,
+      "phases": [
+        "specification",
+        "selection",
+        "award"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "ā kopā un katrs atsevišķi saukti arī – komersanti) neattiecas 2022.gada 8.aprīļa Eiropas Komisijas Padomes regulā (ES) 2022/576, ar kuru groza Regulu (ES) Nr.833/2014 par ierobežojošiem pasākumiem saistībā ar Krievijas darbībām, kas destabilizē situāciju Ukrainā, kas stājas spēkā 2022.gada 9.aprīlī, noteiktie līgum"
+        },
+        {
+          "phase": "selection",
+          "text": "ktajā daļā noteikto kārtību. Iepirkuma komisija atbilstoši 2022. gada 8. aprīļa Eiropas Komisijas Padomes regulai (ES) 2022/576, ar kuru groza Regulu (ES) Nr. 833/2014 par ierobežojošiem pasākumiem saistībā ar Krievijas darbībām, kas destabilizē situāciju Ukrainā, kas stājas spēkā 2022. gada 9. aprīlī, pārbauda vai"
+        },
+        {
+          "phase": "selection",
+          "text": "ktajā daļā noteikto kārtību. Iepirkuma komisija atbilstoši 2022. gada 8. aprīļa Eiropas Komisijas Padomes regulai (ES) 2022/576, ar kuru groza Regulu (ES) Nr. 833/2014 par ierobežojošiem pasākumiem saistībā ar Krievijas darbībām, kas destabilizē situāciju Ukrainā, kas stājas spēkā 2022. gada 9. aprīlī, pārbauda vai"
+        },
+        {
+          "phase": "award",
+          "text": "ā kopā un katrs atsevišķi saukti arī - komersanti) neattiecas 2022.gada 8.aprīļa Eiropas Komisijas Padomes regulā (ES) 2022/576, ar kuru groza Regulu (ES) Nr.833/2014 par ierobežojošiem pasākumiem saistībā ar Krievijas darbībām, kas destabilizē situāciju Ukrainā, kas stājas spēkā 2022.gada 9.aprīlī, noteiktie līgum"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 95/46",
+      "category": "regulation",
+      "green": false,
+      "count": 6,
+      "phases": [
+        "specification",
+        "award"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "27.aprīļa regulu (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (turpmāk šīs sadaļas ietvaros – Regula) un citiem normatīvajiem aktiem, kas attiecas uz fiziskas personas datu aizsardzību un apstrādi, izņemot gadīj"
+        },
+        {
+          "phase": "award",
+          "text": "27.aprīļa regula Nr.2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsardzības regula) (turpmāk – GDPR). Ja iepirkuma priekšmets saskaņā ar GDPR preambulas 16.panta noteikumiem ir saistīts ar valsts"
+        },
+        {
+          "phase": "award",
+          "text": "27.aprīļa regula Nr.2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsardzības regula) (turpmāk – GDPR). Ja iepirkuma priekšmets saskaņā ar GDPR preambulas 16.panta noteikumiem ir saistīts ar valsts"
+        },
+        {
+          "phase": "specification",
+          "text": "27.aprīļa regulu (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (turpmāk šīs sadaļas ietvaros – Regula) un citiem normatīvajiem aktiem, kas attiecas uz fiziskas personas datu ŠIS DOKUMENTS IR PARAKSTITS AR DROŠU E"
+        }
+      ]
+    },
+    {
+      "name": "Ministru kabineta noteikumi Nr. 1041",
+      "category": "regulation",
+      "green": false,
+      "count": 5,
+      "phases": [
+        "award",
+        "selection"
+      ],
+      "evidence": [
+        {
+          "phase": "award",
+          "text": "ar Nr. Apliecinām, ka pakalpojuma izpildē iesaistītajiem darbiniekiem ir šāda profesionālā kvalifikācija: * atbilstoši 2013.gada 8.oktobra Ministru kabineta noteikumiem Nr. 1041 “Noteikumi par obligāti piemērojamo energostandartu, kas nosaka elektroapgādes objektu ekspluatācijas organizatoriskās un tehniskās drošības prasības"
+        },
+        {
+          "phase": "award",
+          "text": "ar Nr. Apliecinām, ka pakalpojuma izpildē iesaistītajiem darbiniekiem ir šāda profesionālā kvalifikācija: * atbilstoši 2013.gada 8.oktobra Ministru kabineta noteikumiem Nr. 1041 “Noteikumi par obligāti piemērojamo energostandartu, kas nosaka elektroapgādes objektu ekspluatācijas organizatoriskās un tehniskās drošības prasības"
+        },
+        {
+          "phase": "award",
+          "text": "ar Nr. Apliecinām, ka pakalpojuma izpildē iesaistītajiem darbiniekiem ir šāda profesionālā kvalifikācija: * atbilstoši 2013.gada 8.oktobra Ministru kabineta noteikumiem Nr. 1041 “Noteikumi par obligāti piemērojamo energostandartu, kas nosaka elektroapgādes objektu ekspluatācijas organizatoriskās un tehniskās drošības prasības"
+        },
+        {
+          "phase": "selection",
+          "text": "7.2.2. apakšpunkts). Pretendentam jānodrošina vismaz viens speciālists ar B vai Bz vai C vai Cz elektrodrošības grupu atbilstoši 2013.gada 8.oktobra Ministru kabineta noteikumiem Nr. 1041 “Noteikumi par obligāti piemērojamo energostandartu, kas nosaka elektroapgādes objektu ekspluatācijas organizatoriskās un tehniskās drošības prasības"
+        }
+      ]
+    }
+  ]
+}

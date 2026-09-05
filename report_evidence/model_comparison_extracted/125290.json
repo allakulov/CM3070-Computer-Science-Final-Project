@@ -1,0 +1,3073 @@
+{
+  "eis_id": "125290",
+  "source_files": [
+    "2024-3-1.pielikums_Pieteikums dalîbai.docx",
+    "2024-3-10.pielikums_Vërtë╒anas kritëriji un kârtîba.docx",
+    "2024-3-2.pielikums-Tehniskâ specifikâcija-Tehniskais piedâvâjums.docx",
+    "2024-3-3.pielikums_Finan╒u piedâvâjums.xlsx",
+    "2024-3-4.pielikums_Apliecinâjums par neatkarîgi izstrâdâtu piedâvâjumu.docx",
+    "2024-3-5.pielikums_Informâcija par iepriek╒ëjo pieredzi.docx",
+    "2024-3-6.pielikums_Iepirkuma lîguma projekts_15.05.2024..docx",
+    "2024-3-9.pielikums_Piedâvâjuma nodro╒inâjuma noteikumi.docx",
+    "Nolikums_mikroautobuss_2024_3.docx",
+    "Termiņa pagarinājums_12.07.2024..docx",
+    "termiņa pagarinājums_25.07.2024..docx",
+    "2024-3-2.pielikums-Tehniskâ specifikâcija-Tehniskais piedâvâjums_06.08.2024..docx",
+    "2024-3-6.pielikums_Iepirkuma lîguma projekts_06.08.2024..docx",
+    "Grozîjumi_06.08.2024..docx",
+    "Nolikums_mikroautobuss_2024_3_ANM_06.08.2024..docx",
+    "125290_PD.ANY_1_4_1_20240807111349.pdf",
+    "2024-3-1.pielikums_Pieteikums dalībai.docx",
+    "2024-3-4.pielikums_Apliecinājums par neatkarīgi izstrādātu piedāvājumu.docx",
+    "2024-3-5.pielikums_Informācija par iepriekšējo pieredzi.docx",
+    "2024-3-3.pielikums_Finanšu piedāvājums.xlsx",
+    "2024-3-2.pielikums-Tehniskā specifikācija-Tehniskais piedāvājums_06.08.2024..docx"
+  ],
+  "candidates": [],
+  "attempts": 0,
+  "extracted": {
+    "found": false,
+    "main_cpv": null,
+    "additional_cpv": [],
+    "reasoning": null
+  },
+  "evaluation_criteria": {
+    "found": true,
+    "award_method": "most_economically_advantageous",
+    "criteria": [
+      {
+        "name": "Transportlīdzekļa cena (Vehicle Price)",
+        "weight": 50.0,
+        "description": null
+      },
+      {
+        "name": "Transportlīdzekļa tehnisko apkopju izmaksas garantijas laikā (Vehicle Maintenance Costs During Warranty Period)",
+        "weight": 50.0,
+        "description": null
+      }
+    ],
+    "weights_reconcile": true,
+    "weights_total": 100.0,
+    "expected_total": 100.0
+  },
+  "tables": [
+    {
+      "source": "2024-3-1.pielikums_Pieteikums dalîbai.docx",
+      "rows": [
+        [
+          "",
+          ""
+        ],
+        [
+          "sabiedrības nosaukums",
+          "reģistrācijas numurs"
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-1.pielikums_Pieteikums dalîbai.docx",
+      "rows": [
+        [
+          "kuras vārdā saskaņā ar",
+          "",
+          "rīkojas"
+        ],
+        [
+          "",
+          "pārstāvības pamats",
+          "amats, \nvārds un uzvārds"
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-1.pielikums_Pieteikums dalîbai.docx",
+      "rows": [
+        [
+          "Mikrouzņēmums (uzņēmums, kurā nodarbināti mazāk nekā 10 darbinieku un uzņēmuma gada apgrozījums un/vai gada bilances kopsumma nepārsniedz 2 miljonus euro)"
+        ],
+        [
+          "Mazais uzņēmums (uzņēmums, kurā nodarbinātas mazāk nekā 50 personas un gada apgrozījums un/vai gada bilance kopā nepārsniedz 10 miljonus euro)"
+        ],
+        [
+          "Vidējais uzņēmums (uzņēmums, kurā nodarbinātas mazāk nekā 250 personas un kura gada apgrozījums nepārsniedz 50 miljonus euro, un/vai, kura gada bilance kopā nepārsniedz 43 miljonus euro)."
+        ],
+        [
+          "Lielais uzņēmums (uzņēmums, kurā nodarbinātas vairāk nekā 250 personas un kura gada apgrozījums pārsniedz 50 miljonus euro, un/vai, kura gada bilance kopā pārsniedz 43 miljonus euro)."
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-1.pielikums_Pieteikums dalîbai.docx",
+      "rows": [
+        [
+          "Personas, kurām pretendentā ir izšķiroša ietekme uz līdzdalības pamata normatīvo aktu par koncerniem izpratnē (atzīmēt atbilstošo ar “x” un, ja atbilst, norādīt):",
+          "šādām personām ir izšķiroša nozīme:\n (ja ir, tad norādīt personas):"
+        ],
+        [
+          "Personas, kurām pretendentā ir izšķiroša ietekme uz līdzdalības pamata normatīvo aktu par koncerniem izpratnē (atzīmēt atbilstošo ar “x” un, ja atbilst, norādīt):",
+          "nav personu, kurām pretendentā ir izšķiroša ietekme"
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-1.pielikums_Pieteikums dalîbai.docx",
+      "rows": [
+        [
+          "Šo sadaļu aizpilda tikai ārvalstu pretendenti. Pretendents sniedz informāciju par to, vai ir reģistrēts arī Latvijas Republikas Uzņēmumu reģistrā (atzīmēt atbilstošo ar “x” un, ja atbilst, norādīt reģistrācijas numuru):",
+          "Pretendents ir reģistrēts arī Latvijas Republikas Uzņēmumu reģistrā (ja ir, tad norādīt reģistrācijas numuru):"
+        ],
+        [
+          "Šo sadaļu aizpilda tikai ārvalstu pretendenti. Pretendents sniedz informāciju par to, vai ir reģistrēts arī Latvijas Republikas Uzņēmumu reģistrā (atzīmēt atbilstošo ar “x” un, ja atbilst, norādīt reģistrācijas numuru):",
+          "Pretendents nav reģistrēts Latvijas Republikas Uzņēmumu reģistrā"
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-1.pielikums_Pieteikums dalîbai.docx",
+      "rows": [
+        [
+          "Apakšuzņēmējus līguma izpildē piesaistīt nav paredzēts\n(ja apakšuzņēmējus līguma izpildē piesaistīt nav paredzēts, izdara attiecīgu atzīmi un tabulu par apakšuzņēmējiem nododamo darbu apjomu nav nepieciešams aizpildīt)",
+          "Apakšuzņēmējus līguma izpildē piesaistīt nav paredzēts\n(ja apakšuzņēmējus līguma izpildē piesaistīt nav paredzēts, izdara attiecīgu atzīmi un tabulu par apakšuzņēmējiem nododamo darbu apjomu nav nepieciešams aizpildīt)",
+          "Apakšuzņēmējus līguma izpildē piesaistīt nav paredzēts\n(ja apakšuzņēmējus līguma izpildē piesaistīt nav paredzēts, izdara attiecīgu atzīmi un tabulu par apakšuzņēmējiem nododamo darbu apjomu nav nepieciešams aizpildīt)",
+          "Apakšuzņēmējus līguma izpildē piesaistīt nav paredzēts\n(ja apakšuzņēmējus līguma izpildē piesaistīt nav paredzēts, izdara attiecīgu atzīmi un tabulu par apakšuzņēmējiem nododamo darbu apjomu nav nepieciešams aizpildīt)"
+        ],
+        [
+          "Apakšuzņēmējus līguma izpildē ir paredzēts piesaistīt\n (tabulā norāda apakšuzņēmējiem nododamo darbu apjomu un veidus)",
+          "Apakšuzņēmējus līguma izpildē ir paredzēts piesaistīt\n (tabulā norāda apakšuzņēmējiem nododamo darbu apjomu un veidus)",
+          "Apakšuzņēmējus līguma izpildē ir paredzēts piesaistīt\n (tabulā norāda apakšuzņēmējiem nododamo darbu apjomu un veidus)",
+          "Apakšuzņēmējus līguma izpildē ir paredzēts piesaistīt\n (tabulā norāda apakšuzņēmējiem nododamo darbu apjomu un veidus)"
+        ],
+        [
+          "Apakšuzņēmēja nosaukums, reģistrācijas numurs",
+          "Apakšuzņēmēja nosaukums, reģistrācijas numurs",
+          "Norāda kāds ir apakšuzņēmēja statuss",
+          "Veicamo darbu apjoms EUR bez PVN",
+          "Veicamo darbu raksturojums"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-1.pielikums_Pieteikums dalîbai.docx",
+      "rows": [
+        [
+          "Amatpersonas vai pilnvarotās personas paraksts:",
+          "Dokuments ir parakstīts ar drošu elektronisko parakstu vai Elektronisko iepirkumu sistēmas parakstu"
+        ],
+        [
+          "Parakstītāja vārds, uzvārds un amats:",
+          ""
+        ],
+        [
+          "Juridiskā adrese:",
+          ""
+        ],
+        [
+          "Kontaktpersona:",
+          ""
+        ],
+        [
+          "Tālruņa numurs:",
+          ""
+        ],
+        [
+          "E-pasta adrese:",
+          ""
+        ],
+        [
+          "Datums",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-2.pielikums-Tehniskâ specifikâcija-Tehniskais piedâvâjums.docx",
+      "rows": [
+        [
+          "Nr. p.k.",
+          "Parametri",
+          "Tehniskā specifikācija \n(parametri, minimālās prasības)",
+          "Tehniskais piedāvājums\n(jānorāda konkrēti piedāvātās preces tehniskie parametri un detalizēti prasību izpildes apraksti)***"
+        ],
+        [
+          "",
+          "Transportlīdzekļa nosaukums, marka, modelis, ražotājs",
+          "Transportlīdzekļa nosaukums, marka, modelis, ražotājs",
+          ""
+        ],
+        [
+          "",
+          "Transporta līdzekļa izlaiduma gads",
+          "Jauna,  izlaiduma gads ne vēlāks par 2024.gadu",
+          ""
+        ],
+        [
+          "",
+          "Transportlīdzekļa kategorija",
+          "M1",
+          ""
+        ],
+        [
+          "",
+          "Daudzums",
+          "Viens gabals",
+          ""
+        ],
+        [
+          "",
+          "Nobraukums",
+          "Ne vairāk kā 150 km",
+          ""
+        ],
+        [
+          "",
+          "Transporta līdzekļa izmēri",
+          "Salona augstums ne mazāk kā 1700 mm.\nAutomašīnas pilnais garums ne mazāk kā 5900 mm.",
+          ""
+        ],
+        [
+          "",
+          "Durvju skaits",
+          "4 (četras), kur aizmugurējās divviru durvis bez stiklojuma, salona sānu durvis bīdāmas.",
+          ""
+        ],
+        [
+          "",
+          "Degvielas veids",
+          "Benzīns vai benzīns/hibrīds",
+          ""
+        ],
+        [
+          "",
+          "Atbilstība piesārņojuma emisijas standartam",
+          "Vismaz EURO 6 (norādīts  COC sertifikātā)\nnormu atbilstība - Regula nr. 459/2012 (https://eur-lex.europa.eu/eli/reg/2012/459/oj/?locale=LV )",
+          ""
+        ],
+        [
+          "",
+          "Jauda",
+          "Ne mazāk kā 85 kW",
+          ""
+        ],
+        [
+          "",
+          "CO2 izmešu daudzums kombinētajā ciklā",
+          "g/km, pēc WLTP",
+          ""
+        ],
+        [
+          "",
+          "Degvielas patēriņš   kombinētajā ciklā (l/100 km)",
+          "Ne vairāk kā 10 pēc WLTP",
+          ""
+        ],
+        [
+          "",
+          "Transmisija",
+          "Manuālā",
+          ""
+        ],
+        [
+          "",
+          "Pilnā masa (kg)",
+          "Ne vairāk kā 3500",
+          ""
+        ],
+        [
+          "",
+          "Vietu skaits, ieskaitot vadītāju",
+          "9 (8+1) ne mazāk kā 8.\nPriekšā  – 1 + 2\n2.rinda – 3\n3.rinda – 3, no kurām izņemamas viena vai divas vietas, kas nepieciešamas pasažiera ratiņkrēslā pārvadāšanai.",
+          ""
+        ],
+        [
+          "",
+          "Ratiņkrēslu vietas",
+          "1 (viena)",
+          ""
+        ],
+        [
+          "",
+          "Drošības jostas",
+          "Visiem sēdekļiem 3 punktu drošības jostas.",
+          ""
+        ],
+        [
+          "",
+          "Ratiņkrēsla stiprināšana",
+          "Ratiņkrēsla stiprināšanai automātiskās spoles 4.gab. Ratiņkēslā sēdošajam pasažierim sienā integrēta 3 punktu drošības josta.",
+          ""
+        ],
+        [
+          "",
+          "Ātrie stiprinājumi",
+          "Visi salona sēdekļi stiprināti ar ātrās fiksācijas sēdekļu kājām uz sliedēm ar pārlikšanas iespējām par 180 grādiem (pārlikt pretējā virzienā), regulējamu attālumu vai ekvivalents.",
+          ""
+        ],
+        [
+          "",
+          "Kāpslis",
+          "Elektriski izbīdāms pakāpiens pie sānu bīdāmajām durvīm.",
+          ""
+        ],
+        [
+          "",
+          "Roku balsti",
+          "Pie iekāpšanas pa sānu durvīm, jāparedz abās pusē roku balsti dzeltenā krāsa.",
+          ""
+        ],
+        [
+          "",
+          "Apgaismojums",
+          "Dimmējošs dienas un nakts apgaismojums pasažieru salonā, apgaismojums virs ratiņkrēslu lifta darba zonas apgaismošanai, apgaismojums virs iekāpšanas durvīm (ārpusē).",
+          ""
+        ],
+        [
+          "",
+          "Lifts",
+          "Iekšējais elektro/hidrauliskais  ratiņkrēslu pacēlājs ar kravnesību vismaz 250 kg.",
+          ""
+        ],
+        [
+          "",
+          "Logu izsišanas ierīces",
+          "Logu izsišanas āmuriņi, piestiprināti ar trosīti, āmuriņi ar integrētu nazi drošības jostu pārgriešanai.",
+          ""
+        ],
+        [
+          "",
+          "Stereo sistēma",
+          "Integrēts Radio ar navigācijas iespējām un skaļruņiem salona priekšā un aizmugurē (pasažieriem)",
+          ""
+        ],
+        [
+          "",
+          "Drošība",
+          "Imobilaizers vai cita veida drošības sistēma, atbilstoša KASKO** apdrošināšanas prasībām.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Signalizācija, centrālās atslēgas sistēma ar tālvadību.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "ABS – bremžu pretbloķēšanas sistēma.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "ESP- elektroniskā stabilitātes kontrole",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Atpakaļskata kamera un displejs.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Ne mazāk kā priekšējo sēdvietu drošības spilveni.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Regulējama stūre ar stūres pastiprinātāju",
+          ""
+        ],
+        [
+          "",
+          "Aprīkojums",
+          "Salonā paredzēt vismaz vienu transformējamu galda virsmu, stiprināmu pie salona sienas vai sliedes (vietu saskaņot ar Pasūtītāju).",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Dalītā klimata kontrole vismaz priekšā/aizmugurē jābūt kondicionierim",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Lietus sensors, sānu vēja asistents.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Elektriski vadāmi vismaz priekšējie sānu logi.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Apsildāms ergonomisks vadītāja sēdeklis.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Pasažieru salona autonomā apsilde.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Elektriski regulējami, apsildāmi spoguļi.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Slēgts plaukts abās pusēs virs pasažieru sēdvietām ar vismaz 2 (diviem) atveramiem nodalījumiem katrā pusē.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Noņemams sakabes āķis.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Dubļu sargi visiem riteņiem.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Gumijas paklājiņi vismaz priekšējām sēdvietām, pasažieru salonā jābūt mitrumizturīgiem un nodilizturīgiem paklājiem.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Strāvas pārveidotājs 12/220.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Interneta ruteris interneta nodrošināšanai darba vajadzībām).",
+          ""
+        ],
+        [
+          "",
+          "Riepas, diski",
+          "Atbilstoši sezonai vasaras  un ziemas (bez radzēm) riepu komplekti, katram riepu komplektam vieglmetāla diski (vismaz R16). \nRiepas un disku izmēri saskaņā ar automobiļa ražotāja prasībām, riepu ražošanas gads ne vecāks par 2024. gadu. Diskiem jābūt oriģināliem no  ražotāja rūpnīcas. \nRiepām jāatbilst normatīvajos aktos noteiktajām prasībām, tajā skaitā, jābūt marķētām ar atbilstošu marķējumu.",
+          ""
+        ],
+        [
+          "",
+          "Virsbūves krāsa",
+          "Ahromātiskā/neitrālā krāsā (balta, melna, pelēka krāsa dažādos toņos).",
+          ""
+        ],
+        [
+          "",
+          "Salona apdare",
+          "Tumšas krāsas, viegli kopjama (ādas vai pusādas sēdekļu apdare).",
+          ""
+        ],
+        [
+          "",
+          "Pretkorozijas apstrāde virsbūvei",
+          "Pilna pretkorozijas apstrāde (iesniegt apliecinošu dokumentu).",
+          ""
+        ],
+        [
+          "",
+          "Tehniskās apkopes periodi garantijas termiņā",
+          "Ņemot vērā paredzamo nobraukumu 100 000 km trīs gadu garantijas periodā, ar intervālu 20 000 km.",
+          ""
+        ],
+        [
+          "",
+          "Garantijas remonta un tehniskās apkopes vieta",
+          "Jānodrošina vismaz vienu  transporta līdzekļa ražotāja vai oficiālā izplatītāja autorizēta autoservisa (norādīt nosaukumu, reģistrācijas numuru, adresi, attālumu km), kurā nodrošinās garantijas apkalpošanu un remontu transporta līdzekļa garantijas termiņā. Autoservisam jāatrodas ne tālāk kā 50 km rādiusā no Aģentūras adreses – Jūrmala, Slokas iela 61.\nAttālums tiks mērīts izmantojot  https://www.google.com/maps, ņemot vērā īsāko maršrutu no adreses Jūrmala, Slokas iela 61 līdz pretendenta piedāvātajai adresei.",
+          ""
+        ],
+        [
+          "",
+          "Virsbūves aplīmēšana",
+          "Plānotais līmēšanas apjoms 30 % no virsbūves apjoma, vizualizāciju saskaņojot ar pasūtītāju. (SIVA korporatīvās krāsas, SIVA logo, info par SIVA koledžu tel, nr., e-pasts)",
+          ""
+        ],
+        [
+          "",
+          "Aizmugurējie sānu logi",
+          "Sānu logu tonēšana. Redzamās gaismas caurlaidība 20%.",
+          ""
+        ],
+        [
+          "",
+          "Komplektācija",
+          "Lietošanas rokasgrāmatu, ekspluatācijas noteikumus un apkopes noteikumus latviešu valodā.",
+          ""
+        ],
+        [
+          "",
+          "Rezerves ritenis",
+          "Pilna izmēra ritenis (vissezonas riepa (M+S)) - nostiprināts, novietots, ražotāja paredzētajā vietā.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Instrumentu komplekts, hidrauliskais pacēlājs.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Brīdinājuma trijstūris (atbilstoši 30.05.2017. Ministru kabineta noteikumiem Nr.295 „Noteikumi par transportlīdzekļu valsts tehnisko apskati un tehnisko kontroli uz ceļiem”).",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Ugunsdzēsības aparāts (atbilstoši 30.05.2017. Ministru kabineta noteikumiem Nr.295 „Noteikumi par transportlīdzekļu valsts tehnisko apskati un tehnisko kontroli uz ceļiem”).",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Pirmās palīdzības aptieciņa (atbilstoši 03.08.2010. Ministru kabineta noteikumiem Nr.713 „Noteikumi par kārtību, kādā nodrošina apmācību pirmās palīdzības sniegšanā, un pirmās palīdzības aptieciņas medicīnisko materiālu minimumu”).",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Gaismu atstarojošā veste 1 gab.",
+          ""
+        ],
+        [
+          "",
+          "Transportlīdzekļa garantijas termiņš",
+          "Transportlīdzeklim - vismaz 3 gadi  vai 100 000 km nobraukums, atkarībā no tā, kurš apstāklis iestājas pirmais; \nvirsbūves krāsojumam - ne mazāk kā 3 gadi; virsbūvei garantija pret caurrūsēšanu - ne mazāk kā 10 gadi no piegādes dienas.",
+          ""
+        ],
+        [
+          "",
+          "Transportlīdzekļa reģistrācija",
+          "Automašīnas pirmreizējā reģistrācija CSDD uz Pasūtītāja vārda (apliecība, numura zīmes, pirmreizējā tehniskā apskate).\nOCTA* un KASKO** 12 mēnešu periodam, skaitot no  Preces pieņemšanas – nodošanas akta parakstīšanas dienas.\nKASKO apdrošināšana ietver apdrošināšanu pret bojājumiem (sadursme ar transportlīdzekli un/vai šķērsli, mikroautobusa apgāšanās, krišana, grimšana, sadursme ar dzīvām būtnēm, ugunsgrēks, eksplozija, dabas stihijas, trešās personas rīcība, krītošu priekšmetu iedarbība) un apdrošināšanu pret zādzību (transportlīdzekļa vai tās daļu slepena vai atklāta nolaupīšana, ja tā saistīta ar vardarbību vai vardarbības piedraudējumu, prettiesiska iekļūšana (ielaušanās) transportlīdzeklī).",
+          ""
+        ],
+        [
+          "",
+          "Transportlīdzekļa piegāde",
+          "Ne ilgāk kā 12 mēneši no iepirkuma Līguma noslēgšanas brīža.",
+          ""
+        ],
+        [
+          "",
+          "Personāla apmācība",
+          "5 darba dienu laikā pēc Preces piegādes veikt Pasūtītāja personāla apmācību par transportlīdzekļa lietošanu, apkopi, ekspluatāciju ne mazāk kā 3 stundas.",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-2.pielikums-Tehniskâ specifikâcija-Tehniskais piedâvâjums.docx",
+      "rows": [
+        [
+          "Amatpersonas vai pilnvarotās personas paraksts:",
+          "Dokuments parakstīts ar drošu elektronisko parakstu, vai dokuments parakstīts ar Elektronisko iepirkumu sistēmas parakstu"
+        ],
+        [
+          "Parakstītāja vārds, uzvārds un amats:",
+          ""
+        ],
+        [
+          "Pretendenta nosaukums:",
+          ""
+        ],
+        [
+          "Datums",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-3.pielikums_Finan╒u piedâvâjums.xlsx",
+      "rows": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "Atklāta konkursa SIVA 2024/3/ANM\nnolikuma 3.pielikums",
+          ""
+        ],
+        [
+          "Finanšu piedāvājums ",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "N.p.k.",
+          "Iepirkuma priekšmeta nosaukums ",
+          "Plānotais minimālais iegādes  daudzums ",
+          "Transportlīdzekļa marka, modelis",
+          "Transportlīdzekļa cena, euro bez PVN",
+          "Transportlīdzekļa tehniskās apkopes izmaksas garantijas laikā, euro bez PVN",
+          "Kopējā piedāvājuma  summa, euro bez PVN                                               (5.+ 6.)x 3."
+        ],
+        [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        [
+          "1",
+          "Mikroautobuss  (transportlīdzekļa kategorija (M1)) ",
+          "1",
+          "",
+          "",
+          "",
+          "0"
+        ],
+        [
+          "",
+          "Amatpersonas vai pilnvarotās personas paraksts:",
+          "",
+          "Dokuments parakstīts ar drošu elektronisko parakstu, vai dokuments parakstīts ar Elektronisko iepirkumu sistēmas parakstu",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "Parakstītāja vārds, uzvārds un amats:",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "Pretendenta nosaukums:",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "Datums",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-4.pielikums_Apliecinâjums par neatkarîgi izstrâdâtu piedâvâjumu.docx",
+      "rows": [
+        [
+          "4.1. ir iesniedzis piedāvājumu neatkarīgi no konkurentiem un bez konsultācijām, līgumiem vai vienošanām, vai cita veida saziņas ar konkurentiem;"
+        ],
+        [
+          "4.2. tam ir bijušas konsultācijas, līgumi, vienošanās vai cita veida saziņa ar vienu vai vairākiem konkurentiem saistībā ar šo iepirkumu, un tādēļ Pretendents šim apliecinājumam pievienotajā formā atklāj izsmeļošu un patiesu informāciju par to, ieskaitot konkurentu nosaukumus un šādas saziņas mērķi, raksturu un saturu."
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-4.pielikums_Apliecinâjums par neatkarîgi izstrâdâtu piedâvâjumu.docx",
+      "rows": [
+        [
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Paraksts"
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-4.pielikums_Apliecinâjums par neatkarîgi izstrâdâtu piedâvâjumu.docx",
+      "rows": [
+        [
+          "Nr.",
+          "Uzņēmums – konkurents, ar kuru ir bijusi saziņa",
+          "Saziņas veids, mērķis, raksturs un saturs"
+        ],
+        [
+          "",
+          "[Komersanta nosaukums, reģ. Nr.]",
+          ""
+        ],
+        [
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-4.pielikums_Apliecinâjums par neatkarîgi izstrâdâtu piedâvâjumu.docx",
+      "rows": [
+        [
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Paraksts"
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-5.pielikums_Informâcija par iepriek╒ëjo pieredzi.docx",
+      "rows": [
+        [
+          "Līguma priekšmets",
+          ""
+        ],
+        [
+          "Pasūtītājs",
+          ""
+        ],
+        [
+          "Izpildītājs",
+          ""
+        ],
+        [
+          "Norāda informāciju atbilstoši nolikuma 3.10. punktā noteiktajam (transportlīdzekļa kategorija, marka, modelis utml.)",
+          ""
+        ],
+        [
+          "Norāda kāds iesniegtais dokuments apliecina uzrādīto pieredzi",
+          ""
+        ],
+        [
+          "Līguma izpildes termiņš",
+          ""
+        ],
+        [
+          "Kontaktinformācija",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-5.pielikums_Informâcija par iepriek╒ëjo pieredzi.docx",
+      "rows": [
+        [
+          "Sagatavotāja vārds, uzvārds un amats:",
+          ""
+        ],
+        [
+          "Pretendenta nosaukums:",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-6.pielikums_Iepirkuma lîguma projekts_15.05.2024..docx",
+      "rows": [
+        [
+          "<Pasūtītāja rekvizīti>",
+          "<Piegādātāja rekvizīti>"
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-6.pielikums_Iepirkuma lîguma projekts_15.05.2024..docx",
+      "rows": [
+        [
+          "Marka, modelis, ražotājs",
+          ""
+        ],
+        [
+          "Transportlīdzekļa identifikācijas (šasijas) numurs",
+          ""
+        ],
+        [
+          "Nobraukums km,\ndegvielas daudzums bāka l\n….",
+          ""
+        ],
+        [
+          "Tehniskā dokumentācija",
+          ""
+        ],
+        [
+          "Aprīkojums",
+          ""
+        ],
+        [
+          "Piegādes datums",
+          ""
+        ],
+        [
+          "Piezīmes",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-6.pielikums_Iepirkuma lîguma projekts_15.05.2024..docx",
+      "rows": [
+        [
+          "Piegādātāja atbildīgā persona:\n<amats> \n<paraksts><vārds, uzvārds>\n<datums>",
+          "Pasūtītāja atbildīgā persona : \n<amats> \n<paraksts><vārds, uzvārds>\n<datums>",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-6.pielikums_Iepirkuma lîguma projekts_15.05.2024..docx",
+      "rows": [
+        [
+          "Preces nosaukums",
+          "Konstatētais defekts/ piegādes termiņa kavējums",
+          "Defekta novēršanas veids",
+          "Defekta novēršanas termiņš",
+          "Defektu konstatējošās personas\n(vārds, uzvārds)",
+          "Atzīme par novērsto defektu"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-6.pielikums_Iepirkuma lîguma projekts_15.05.2024..docx",
+      "rows": [
+        [
+          "Piegādātāja atbildīgā persona :\n<amats> \n<paraksts><vārds, uzvārds>\n<datums>",
+          "Pasūtītāja atbildīgā persona: \n<amats> \n<paraksts><vārds, uzvārds>\n<datums>"
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-6.pielikums_Iepirkuma lîguma projekts_15.05.2024..docx",
+      "rows": [
+        [
+          "<Pasūtītāja rekvizīti>",
+          "<Piegādātāja rekvizīti>"
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_mikroautobuss_2024_3.docx",
+      "rows": [
+        [
+          "Pasūtītājs"
+        ],
+        [
+          "Sociālās integrācijas valsts aģentūra (turpmāk - SIVA)\nreģistrācijas Nr.:90001790030\nadrese: Dubultu prospekts 71, Jūrmala, LV-2015"
+        ],
+        [
+          "Iepirkuma priekšmets"
+        ],
+        [
+          "Jauna specializēta transportlīdzekļa (turpmāk - Prece) piegāde SIVA darbības nodrošināšanai, atbilstoši Tehniskai specifikācijai/Tehniskam piedāvājumam (nolikuma 2.pielikums) un Finanšu piedāvājumā (pēc formas – nolikuma 3.pielikums) noteiktajām prasībām. Prece konstruēta vai pārveidota (pielāgota) tā, lai viens ratiņkrēslā sēdošs cilvēks tajā varētu iekļūt ar pacēlāju un tiktu droši pārvadāts pa ceļiem."
+        ],
+        [
+          "CPV kods"
+        ],
+        [
+          "34114300-2 (Sociālās palīdzības dienestu transportlīdzekļi)"
+        ],
+        [
+          "Iepirkuma līguma izpildes laiks un vieta"
+        ],
+        [
+          "Līguma izpildes laiks - ne vēlāk kā 12 (divpadsmit) mēnešu laikā no Līguma abpusējas parakstīšanas dienas.\nLīguma izpildes vieta -  Slokas iela 61, Jūrmala, Latvija, LV-2015.\nIepirkumu procedūra"
+        ],
+        [
+          "Iepirkuma procedūra tiek veikta atbilstoši Publisko iepirkumu likumam. Iepirkuma procedūras veids ir atklāts konkurss.\nPamatojums iepirkuma līguma slēgšanas tiesību piešķiršanai, nedalot iepirkumu daļās ir: viens pretendentu loks; Preces viena gabala iegāde.\n\nProjekts \nIepirkums tiek finansēts no Eiropas Savienības Atveseļošanas un noturības mehānisma plāna 3.1.2.4.i.  investīcijas “Sociālās un profesionālās rehabilitācijas pakalpojumu sinerģiska attīstība cilvēku ar funkcionāliem traucējumiem drošumspējas veicināšanai” (turpmāk – investīcija) projekta “RAITI: Rehabilitācija. Atbalsts. Iekļaušana. TālākIzglītība.” ietvaros, (turpmāk – Projekts) un Pasūtītāja finanšu līdzekļiem."
+        ],
+        [
+          "Kontaktpersona"
+        ],
+        [
+          "Par Preces Tehnisko specifikāciju Saimnieciskā nodrošinājuma nodaļas vadītāja Dace Šternberga, tālr. 67771024 , e-pasts: Dace.Sternberga@siva.gov.lv .\nPar iepirkuma dokumentāciju Baiba Millere, tālr. 28616433, e-pasts: Baiba.Millere@siva.gov.lv ."
+        ],
+        [
+          "Piedāvājumu iesniegšanas termiņš"
+        ],
+        [
+          "Piedāvājumi iesniedzami Elektronisko iepirkumu sistēmas (turpmāk tekstā EIS) e-konkursu apakšsistēmā (https://www.eis.gov.lv/EKEIS/Supplier/). Konkrēts piedāvājumu iesniegšanas termiņš skatāms attiecīgajā Iepirkumu uzraudzības biroja (turpmāk tekstā IUB) tīmekļvietnes paziņojumā un Elektronisko iepirkumu sistēmas e-konkursu apakšsistēmā.\nPēc noteiktā termiņa beigām EIS e-konkursu apakšsistēmā iesniegtie piedāvājumi netiks atvērti. Ārpus EIS e-konkursu apakšsistēmas iesniegtie piedāvājumi tiks atgriezti iesniedzējiem. \nJa konstatēti EIS darbības traucējumi, kuru dēļ nav bijis iespējams iesniegt piedāvājumus kopumā vismaz divas stundas pēdējo 24 (divdesmit četru) stundu laikā vai 10 (desmit) minūtes pēdējo četru stundu laikā līdz piedāvājumu iesniegšanas termiņa beigām, sistēmas turētājs pēc sistēmas darbības atjaunošanas pārceļ piedāvājumu iesniegšanas termiņu par vienu darbdienu. Sistēmas darbības atjaunošanas dienā tajā ievieto paziņojumu par sistēmas darbības traucējumiem, norādot iepirkumus un iepirkuma procedūras, kuru termiņi pārcelti. Šāda termiņa pārcelšana nav uzskatāma par grozījumiem iepirkuma vai iepirkuma procedūras dokumentos vai par piedāvājumu vai pieteikumu iesniegšanas termiņa pagarināšanu Publisko iepirkumu likuma 35. panta trešās daļas izpratnē.\nPiedāvājumu noformē atbilstoši nolikuma 7.pielikuma “Prasības piedāvājuma noformēšanai un iesniegšanai” noteikumiem."
+        ],
+        [
+          "Piedāvājumu atvēršanas vieta un laiks"
+        ],
+        [
+          "Piedāvājumu atvēršana notiek EIS e-konkursu apakšsistēmā. Piedāvājumu atvēršanas laiks skatāms attiecīgajā IUB tīmekļvietnes paziņojumā un EIS sistēmas e-konkursu apakšsistēmā.\nPasūtītājs publicē pretendentu iesniegto finanšu piedāvājumu apkopojumu EIS e-konkursu apakšsistēmā pēc piedāvājumu atvēršanas līdz attiecīgās darba dienas beigām.\nJa ir iesniegts iesniegums Iepirkumu uzraudzības birojā attiecībā uz prasībām, kas noteiktas atklāta konkursa nolikumā vai paziņojumā par līgumu, tad pasūtītājs rīkojas Ministru kabineta 2017.gada 28.februāra noteikumu Nr.107 “Iepirkumu procedūru un metu konkursu norises kārtība” 14.punktā noteiktajā kārtībā.\n\nIepirkuma procedūras dokumenti\nNolikumam ar pielikumiem ir nodrošināta tieša un brīva elektroniskā pieeja pasūtītāja pircēja profilā Elektronisko iepirkumu sistēmā https://www.eis.gov.lv/EKEIS/Supplier/Organizer/432  \nElektronisko iepirkumu sistēmā reģistrēta ieinteresētā persona var reģistrēties kā Nolikuma saņēmējs, skatīt: https://www.eis.gov.lv/EIS/Publications/PublicationView.aspx?PublicationId=883."
+        ],
+        [
+          "Pretendenta piedāvājuma nodrošinājums"
+        ],
+        [
+          "Piedāvājuma nodrošinājums ir noteikts EUR 2000,00 (divi tūkstoši euro) apmērā un minimālais termiņš 6 (seši) mēneši no piedāvājuma atvēršanas dienas.\nPiedāvājuma nodrošinājums ir noteiktās naudas summas iemaksa pasūtītāja norādītajā kontā, bankas garantija vai apdrošināšana par noteikto naudas summu, kuru pretendents kopā ar piedāvājumu iesniedz kā nodrošinājumu piedāvājuma spēkā esamībai.\nPiedāvājuma nodrošinājums atbilst nolikuma 9.pielikumā (Piedāvājuma nodrošinājuma noteikumi) ietvertajiem noteikumiem."
+        ],
+        [
+          "Papildu informācija"
+        ],
+        [
+          "Jebkura papildu informācija, kas tiks sniegta saistībā ar šo iepirkuma procedūru, tiks publicēta pasūtītāja pircēja profilā Elektronisko iepirkumu sistēmā https://www.eis.gov.lv/EKEIS/Supplier/Organizer/432. Ieinteresētajam piegādātājam ir pienākums sekot līdzi publicētajai informācijai. Komisija nav atbildīga par to, ja kāda ieinteresētā persona nav iepazinusies ar informāciju, kam ir nodrošināta brīva un tieša elektroniskā pieeja.\nJa piegādātājs ir laikus pieprasījis papildu informāciju par iepirkuma procedūras dokumentos iekļautajām prasībām, Komisija to sniedz piecu darbdienu laikā, bet ne vēlāk kā sešas dienas pirms pieteikumu un piedāvājumu iesniegšanas termiņa beigām.\nPapildu informāciju Komisija nosūta piegādātājam, kas uzdevis jautājumu, un vienlaikus ievieto šo informāciju pircēja profilā, kur ir pieejami iepirkuma procedūras dokumenti, norādot arī uzdoto jautājumu.\nJa piegādātājs papildu informāciju ir pieprasījis, izmantojot EIS – Komisija papildu informāciju piegādātājam sniedz, ievietojot šo informāciju EIS, pie iepirkuma dokumentiem, norādot arī uzdoto jautājumu, kā arī, izmantojot EIS pieejamos rīkus, nosūta piegādātājam.\nJa piegādātājs papildu informāciju pieprasījis, nosūtot papildu informācijas pieprasījumu uz iepirkuma dokumentos norādīto e-pastu, nosūtot pa pastu, vai iesniedzot personīgi, Komisija papildu informāciju piegādātājam sniedz, to nosūtot piegādātājam uz tā e-adresi, vai, ja piegādātājam nav e-adreses, uz norādīto e-pasta adresi, vienlaikus ievietojot šo informāciju EIS, pie iepirkuma dokumentiem, norādot arī uzdoto jautājumu."
+        ],
+        [
+          "Datu aizsardzība\nPamatojoties uz 2016. gada 27. aprīļa Eiropas Parlamenta un Padomes Regulu 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti, ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsardzības regula), atklātam konkursam iesniegtajos dokumentos norādīto fizisko personu dati tiks apstrādāti, lai nodrošinātu konkursa norisi atbilstoši normatīvajiem aktiem."
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_mikroautobuss_2024_3.docx",
+      "rows": [
+        [
+          "Iepirkuma priekšmeta apraksts:"
+        ],
+        [
+          "Jauna specializēta transportlīdzekļa (turpmāk - Prece) piegāde SIVA darbības nodrošināšanai, atbilstoši Tehniskā specifikācijā/Tehniskā piedāvājumā (pēc formas – nolikuma 2.pielikums) un Finanšu piedāvājumā (pēc formas – nolikuma 3.pielikums) noteiktajām prasībām. Prece konstruēta vai pārveidota (pielāgota) tā, lai viens ratiņkrēslā sēdošs cilvēks tajā varētu iekļūt ar pacēlāju un tikt droši pārvadāts pa ceļiem.\nUz sociālās palīdzības dienestu transportlīdzekļiem, Preci, nav attiecināms Publisko iepirkumu likuma 54. pantā noteiktais."
+        ],
+        [
+          "Garantija"
+        ],
+        [
+          "Pretendentam jānodrošina piegādātajai Precei garantiju atbilstoši tehniskajā specifikācijā noteiktajam."
+        ],
+        [
+          "Līgumcenas noteikšanas nosacījumi"
+        ],
+        [
+          "Preces cenā ir ietvertas visas izmaksas, kas saistītas ar pasūtītāja izstrādātajai tehniskajai specifikācijai atbilstošas preces izgatavošanu, piegādi, garantiju, kā arī ar līguma saistību izpildi, ņemot vērā iepirkuma līguma projektā noteiktos izpildītāja pienākumus, tajā skaitā arī nodokļi un nodevas, izņemot pievienotās vērtības nodokli.\nPretendents, nosakot līgumcenu, ņem vērā un iekļauj līgumcenā visus iespējamos sadārdzinājumus un citas cenu izmaiņas:\nTransportlīdzekļa cenu (nolikuma 3.pielikums, Finanšu piedāvājuma 5.aile), euro\nTransportlīdzekļa tehniskās apkopes izmaksas garantijas laikā (nolikuma 3.pielikums, Finanšu piedāvājuma 6.aile), euro ."
+        ],
+        [
+          "Tehniskā specifikācija aktualizēta 2024.gada 2.aprīlī."
+        ],
+        [
+          "Ekvivalenti"
+        ],
+        [
+          "Ja tehniskajās specifikācijās ir norādīta konkrēta ražotāja produkcija, pretendents drīkst piedāvāt tās ekvivalentu. Ja pretendents piedāvā ekvivalentu produkciju, tad pretendents Tehniskai specifikācijai/Tehniskam piedāvājumam pievieno informāciju par ekvivalenta ražotāju un marku un pievieno piedāvājumam dokumentus, kas sniedz pietiekamu informāciju par piedāvāto produktu. Informācijā obligāti ir jānorāda, kurām tehniskās specifikācijas pozīcijām tiek piedāvāts katrs ekvivalents. Pretendents savā piedāvājumā ar ražotāja dokumentāciju vai kompetentas institūcijas izsniegtu apliecinājumu par pārbaudes rezultātiem pierāda, ka piedāvājums ir ekvivalents un apmierina pasūtītāja prasības, kas izteiktas tehniskajās specifikācijās."
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_mikroautobuss_2024_3.docx",
+      "rows": [
+        [
+          "Prasība:",
+          "Iesniedzamais dokuments:"
+        ],
+        [
+          "Pretendents ir piegādātājs, kurš ir iesniedzis piedāvājumu. Piegādātājs var būt fiziskā vai juridiskā persona vai pasūtītājs, šādu personu apvienība jebkurā to kombinācijā, kas attiecīgi piedāvā tirgū piegādāt preces vai sniegt pakalpojumus.",
+          "a) Pieteikums dalībai atklātā konkursā (pēc formas – nolikuma 1.pielikums);\nb) Piedāvājuma nodrošinājums, kas atbilst nolikuma 9.pielikumā “Piedāvājuma nodrošinājuma noteikumi” ietvertajiem noteikumiem;\nc) Apliecinājums par neatkarīgi izstrādātu piedāvājumu (pēc formas – nolikuma 4.pielikums)."
+        ],
+        [
+          "Piegādātājs var balstīties uz citu personu saimnieciskajām un finansiālajām iespējām, ja tas ir nepieciešams konkrētā iepirkuma līguma izpildei, neatkarīgi no savstarpējo attiecību tiesiskā rakstura.\nŠajā gadījumā piegādātājs un persona, uz kuras saimnieciskajām un finansiālajām iespējām tas balstās, ir solidāri atbildīgi par iepirkuma līguma izpildi.",
+          "a) Pretendents pierāda Komisijai, ka viņa rīcībā būs nepieciešamie resursi, iesniedzot, piemēram, šo personu apliecinājumu vai vienošanos par sadarbību konkrētā iepirkuma līguma izpildē.\nb) Pretendenta un personas, uz kuras saimnieciskajām un finansiālajām iespējām pretendents balstās, savstarpēji parakstīts apliecinājums vai noslēgta vienošanās, kurā  norādīts, ka persona, uz kuras saimnieciskajām un finansiālajām iespējām pretendents balstās, uzņemas solidāro atbildību par iepirkuma līguma izpildi, kā arī norādīts, kādā veidā un/vai formā šī persona ir paredzējusi uzņemties solidāro atbildību par iepirkuma līguma izpildi."
+        ],
+        [
+          "Piegādātājs var balstīties uz citu personu tehniskajām un profesionālajām iespējām, ja tas ir nepieciešams konkrētā iepirkuma līguma izpildei, neatkarīgi no savstarpējo attiecību tiesiskā rakstura. \nPiegādātājs, lai apliecinātu profesionālo pieredzi vai pasūtītāja prasībām atbilstoša personāla pieejamību, var balstīties uz citu personu iespējām tikai tad, ja šīs personas sniegs pakalpojumus, kuru izpildei attiecīgās spējas ir nepieciešamas.",
+          "Pretendents pierāda Komisijai, ka tā rīcībā būs nepieciešamie resursi, iesniedzot šo personu apliecinājumu vai vienošanos par nepieciešamo resursu nodošanu piegādātāja rīcībā, norādot, kādi resursi pretendenta rīcībā tiks nodoti."
+        ],
+        [
+          "Ja piedāvājumu iesniedz piegādātāju apvienība, piedāvājuma dokumentus paraksta atbilstoši piegādātāju savstarpējās vienošanās nosacījumiem.",
+          "Piedāvājumam pievieno visu apvienības dalībnieku parakstītu vienošanos par kopīga piedāvājuma iesniegšanu. Vienošanās dokumentā jānorāda katra apvienības dalībnieka līguma daļa, atbildības sadalījums starp apvienības dalībniekiem, tiesības un pienākumi iesniedzot piedāvājumu, kā arī attiecībā uz iespējamo iepirkuma līguma slēgšanu."
+        ],
+        [
+          "Pretendentam jāiesniedz dokumenti par katru apvienības dalībnieku. Uz katru apvienības dalībnieku attiecas nolikuma 3.6.punkts, 3.7.punkts un 3.8.punkts, bet pārējos nolikuma punktos izvirzītās prasības jāizpilda piegādātāju apvienībai kopumā, ņemot vērā tās pienākumus iespējamā iepirkuma līguma izpildē.",
+          "Piedāvājumam pievieno visu apvienības dalībnieku parakstītu vienošanos par kopīga piedāvājuma iesniegšanu. Vienošanās dokumentā jānorāda katra apvienības dalībnieka līguma daļa, atbildības sadalījums starp apvienības dalībniekiem, tiesības un pienākumi iesniedzot piedāvājumu, kā arī attiecībā uz iespējamo iepirkuma līguma slēgšanu."
+        ],
+        [
+          "Pretendentu, kuram būtu piešķiramas iepirkuma līguma slēgšanas tiesības, izslēdz no dalības iepirkuma procedūrā, ja uz to attiecināms kāds no PIL 42.panta otrās daļas 1., 2., 3., 4., 5., 6., 7., 10., 11., 12., 13., 14. punktā noteiktajiem izslēgšanas iemesliem.\nPasūtītājs pārbaudi veiks attiecībā uz PIL 42. panta trešajā daļā minētajām personām.",
+          "Komisija pretendentu izslēgšanas gadījumus pārbauda Publisko iepirkumu likuma 42.pantā noteiktajā kārtībā.\nJa Komisija konstatē, ka pretendents būtu izslēdzams no dalības iepirkuma procedūrā, pamatojoties uz šajā punktā norādītajiem iemesliem, tas (atbilstoši attiecīgajam izslēgšanas gadījuma veidam) rīkojas saskaņā ar PIL 42. pantā un/vai 43.pantā noteikto."
+        ],
+        [
+          "Pretendentu, kuram būtu piešķiramas  iepirkuma līguma slēgšanas tiesības, izslēdz no turpmākās dalības iepirkuma procedūrā, ja uz pretendentu ir attiecināmi Starptautisko un Latvijas Republikas nacionālo sankciju likuma 11.1 pantā noteiktie izslēgšanas gadījumi.",
+          "Pretendentu izslēgšanas gadījumi tiks pārbaudīti Starptautisko un Latvijas Republikas nacionālo sankciju likuma 11.1 pantā noteiktajā kārtībā."
+        ],
+        [
+          "Pretendents ir reģistrēts, licencēts un/vai sertificēts atbilstoši attiecīgās valsts normatīvo aktu prasībām, tiesīgs veikt Pasūtītājam nepieciešamās piegādes.",
+          "Komisija pārliecinās par pretendenta reģistrācijas faktu pēc Uzņēmumu reģistra datiem, kas pieejami Elektronisko iepirkumu sistēmā (https://www.eis.gov.lv/). \nb) Ārvalstī reģistrētam pretendentam, kas nav reģistrēts Uzņēmumu reģistrā, reģistrācija ir jāapliecina atbilstoši attiecīgās valsts nosacījumiem (piemēram, norādot publiski pieejamu reģistru, kur pasūtītājs varētu pārliecināties par pretendenta reģistrācijas faktu)."
+        ],
+        [
+          "Pretendents ir ražotājs vai tam ir iepirkuma līguma izpildei nepieciešamās tiesības pārdot konkrētā ražotāja produkciju un uzņemties garantijas saistības.",
+          "Dokuments, kas apliecina Pretendenta tiesības pārdot konkrētā ražotāja produkciju un uzņemties garantijas saistības.\nPiedāvātā transporta līdzekļa ražotāja vai oficiālā izplatītāja autorizēta autoservisa, kas ir norādīts Pretendenta  tehniskajā piedāvājumā, izsniegts apliecinājums par to, ka tas līguma slēgšanas tiesību piešķiršanas gadījumā uzņemas nodrošināt garantijas apkalpošanu un remontu transporta līdzekļa garantijas termiņā."
+        ],
+        [
+          "Pretendentam iepriekšējo 3 (trīs) gadu laikā (2021., 2022., 2023.gadā un 2024.gadā līdz piedāvājumu iesniegšanas termiņa beigām) ir pieredze vismaz 1(viena) līdzīga līguma izpildē. \n\nPar līdzīgu līgumu šī iepirkuma ietvaros tiks atzīts līgums par jauna transportlīdzekļa (M1 kategorijas, ka ir specializēti aprīkots) piegādi un garantijas apkalpošanu.",
+          "a) Informācija par iepriekšējo pieredzi (pēc formas – nolikuma 5.pielikums).\nb) Par pretendenta pieredzes līgumu pievieno attiecīgā līguma pasūtītāja atsauksmi vai jebkuru citu dokumentu, kas apliecina uzrādīto pieredzi (piemēram, piegādes dokumenti, pieņemšanas – nodošanas akti vai citi dokumenti, no kuriem nepārprotami secināms, ka Pretendents ir veicis piegādi)."
+        ],
+        [
+          "Pretendenta piesaistītajiem apakšuzņēmējiem ir visi nepieciešamie sertifikāti, licences un atļaujas norādīto darba daļu veikšanai.",
+          "a) Norāda informāciju formā “Pieteikums dalībai atklātā konkursā” (pēc formas – nolikuma 1.pielikums).\nb) Piedāvājumam pievieno vienošanos ar katru apakšuzņēmēju par konkrētu darbu izpildi vai apakšuzņēmēja apliecinājumu par dalību līguma izpildē konkrētā pozīcijā, norādot veicamos darbus, ja līgums tiktu piešķirts pretendentam (ja attiecas)."
+        ],
+        [
+          "Pretendents ir iesniedzis tehnisko piedāvājumu konkursam.",
+          "a) Tehniskā specifikācija/ Tehniskais piedāvājums (pēc formas – nolikuma 2.pielikums).\nb) piedāvātā transportlīdzekļa plānoto pārbaužu un tehnisko apkopju plāns, kurā ir norādīti tehnisko apkopju intervāli (km), apkopju materiāli un to cenas, apkopju palīgmateriāli un to cenas, maināmās rezerves daļas un to cenas, apkopju vai detaļu maiņas ilgums darba stundās un darba stundas izmaksas, ņemot vērā paredzamo nobraukumu 100 000 km trīs gadu garantijas periodā, ar intervālu 20 000 km;\nc) piedāvātā transportlīdzekļa \tražotāja garantijas nosacījumi (uz kādiem agregātiem attiecas garantija, šīs garantijas termiņš un kādos gadījumos šī garantija zaudē spēku), ņemot vērā  Tehniskā specifikācija/ Tehniskais piedāvājums (pēc formas – nolikuma 2.pielikums) norādīto."
+        ],
+        [
+          "Pretendents ir iesniedzis finanšu piedāvājumu konkursam.",
+          "Finanšu piedāvājums (pēc formas – nolikuma 3.pielikums)."
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_mikroautobuss_2024_3.docx",
+      "rows": [
+        [
+          "Pamatojoties uz Publisko iepirkumu likuma 51.pantu, Komisija piešķir līguma slēgšanas tiesības saimnieciski visizdevīgākajam piedāvājumam, kuru nosaka, ņemot vērā cenu un ar iepirkuma līguma priekšmetu saistītus izmaksu kritērijus, atbilstoši nolikuma 10.pielikumā noteiktajiem izvēles kritērijiem un kārtībai."
+        ],
+        [
+          "Komisija izvēlas saimnieciski visizdevīgāko piedāvājumu, kas atbilst nolikuma un tā pielikumu prasībām, nav atzīts par nepamatoti lētu."
+        ],
+        [
+          "Gadījumā, ja divu vai vairāku Pretendentu novērtējums, pamatojoties uz atbilstoši nolikuma 10. pielikumā “Vērtēšanas kritēriji un kārtība” noteiktajiem izvēles kritērijiem un kārtībai, ir vienāds, izšķirošais vērtēšanas kritērijs ir Finanšu piedāvājuma 6.kolonnā norādītā zemākā transportlīdzekļa cena (izšķirošais piedāvājuma izvēles kritērijs)."
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_mikroautobuss_2024_3.docx",
+      "rows": [
+        [
+          "1.pielikums",
+          "Pieteikums dalībai atklātā konkursā",
+          "VEIDNE"
+        ],
+        [
+          "2.pielikums",
+          "Tehniskā specifikācija/Tehniskais piedāvājums",
+          "VEIDNE"
+        ],
+        [
+          "3.pielikums",
+          "Finanšu piedāvājums",
+          "VEIDNE"
+        ],
+        [
+          "4.pielikums",
+          "Apliecinājums par neatkarīgi izstrādātu piedāvājumu",
+          ""
+        ],
+        [
+          "5.pielikums",
+          "Informācija par iepriekšējo pieredzi",
+          "VEIDNE"
+        ],
+        [
+          "6.pielikums",
+          "Iepirkuma līguma projekts",
+          "VEIDNE"
+        ],
+        [
+          "7.pielikums",
+          "Prasības piedāvājuma noformēšanai un iesniegšanai",
+          ""
+        ],
+        [
+          "8.pielikums",
+          "Vērtēšanas nosacījumi",
+          ""
+        ],
+        [
+          "9.pielikums",
+          "Piedāvājuma nodrošinājuma noteikumi",
+          "VEIDNE"
+        ],
+        [
+          "10.pielikums",
+          "Vērtēšanas kritēriji un kārtība",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_mikroautobuss_2024_3.docx",
+      "rows": [
+        [
+          "Piedāvājums jāiesniedz elektroniski Elektronisko iepirkumu sistēmas e-konkursu apakšsistēmā, ievērojot šādas Pretendenta izvēles iespējas:\nizmantojot Elektronisko iepirkumu sistēmas e-konkursu apakšsistēmas piedāvātos rīkus, aizpildot minētās sistēmas e-konkursu apakšsistēmā šā iepirkuma sadaļā ievietotās formas;\nelektroniski aizpildāmos dokumentus elektroniski sagatavojot ārpus Elektronisko iepirkumu sistēmas e-konkursu apakšsistēmas un augšupielādējot sistēmas attiecīgajās vietnēs aizpildītas formas, t.sk. ar formā integrētajiem failiem (šādā gadījumā pretendents ir atbildīgs par aizpildāmo formu atbilstību dokumentācijas prasībām un formu paraugiem);\nelektroniski sagatavoto piedāvājumu šifrējot ārpus e-konkursu apakšsistēmas ar trešās personas piedāvātiem datu aizsardzības rīkiem un aizsargājot ar elektronisku atslēgu un paroli (šādā gadījumā Pretendents ir atbildīgs par aizpildāmo formu atbilstību dokumentācijas prasībām un formu paraugiem, kā arī dokumenta atvēršanas un nolasīšanas iespējām)."
+        ],
+        [
+          "Sagatavojot piedāvājumu, Pretendents ievēro, ka:\nPiedāvājuma dokumenti jāaizpilda elektroniskā dokumentā ar Microsoft Office 2010 (vai vēlākas programmatūras versijas) rīkiem lasāmā formātā;\nFinanšu piedāvājuma forma (nolikuma 3.pielikums) jāaizpilda pilnībā, nemainot Pasūtītāja noteikto secību un pozīciju skaitu; \nPiedāvājumā cena jānorāda euro, noapaļojot ar 2 (divām) decimālzīmēm aiz komata;\nDokumentus paraksta pretendenta paraksttiesīga amatpersona vai pilnvarota persona. Ja dokumentus paraksta pilnvarotā persona, piedāvājumam pievieno attiecīgās pilnvaras apliecinātu kopiju;\nDokumentus Pretendents pēc saviem ieskatiem ir tiesīgs iesniegt elektroniskā formā, gan parakstot ar Elektronisko iepirkumu sistēmas piedāvāto elektronisko parakstu, gan parakstot ar drošu elektronisko parakstu."
+        ],
+        [
+          "Pretendents drīkst iesniegt tikai vienu piedāvājuma variantu. Ja pretendents iesniegs vairākus piedāvājuma variantus, tie visi tiks atzīti par nederīgiem."
+        ],
+        [
+          "Pretendentam jāiesniedz dokumenti, kas aizpildīti atbilstoši nolikumam klāt pievienoto veidlapu formai."
+        ],
+        [
+          "Pretendentam piedāvājums jāiesniedz latviešu valodā. Ja piedāvājumā iekļaujamā informācija ir citā valodā, pretendents pievieno tulkojumu latviešu valodā, kas sagatavots atbilstoši normatīvajiem aktiem par kārtību, kādā apliecināmi dokumentu tulkojumi valsts valodā."
+        ],
+        [
+          "Pretendents ir tiesīgs visu piedāvājumā iesniegto dokumentu atvasinājumu un tulkojumu pareizību apliecināt ar vienu apliecinājumu. Ja pasūtītājam radīsies šaubas par iesniegtās dokumenta kopijas autentiskumu, tas pieprasīs, lai pretendents uzrāda dokumenta oriģinālu vai iesniedz apliecinātu dokumenta kopiju (Dokuments iesniedzams e-konkursu apakšsistēmas sadaļā “Citas prasības”)."
+        ],
+        [
+          "Piedāvājumā norāda, vai attiecībā uz piedāvājuma priekšmetu vai atsevišķām tā daļām nepieciešams ievērot komercnoslēpumu. Ja piedāvājums vai kāda tā daļa satur komercnoslēpumu, pretendents norāda, kura informācija ir komercnoslēpums un kāds ir šāda statusa tiesiskais pamats. Piegādātājs nevar prasīt ievērot komercnoslēpumu uz tādu informāciju, kas ir vispārpieejama saskaņā ar normatīvajiem aktiem."
+        ],
+        [
+          "Pretendents pirms piedāvājumu iesniegšanas termiņa beigām var grozīt vai atsaukt iesniegto piedāvājumu."
+        ],
+        [
+          "Komisija pieņem Eiropas vienoto iepirkuma procedūras dokumentu kā sākotnējo pierādījumu atbilstībai iepirkuma procedūras dokumentos noteiktajām pretendentu atlases prasībām. Pretendents ir tiesīgs iesniegt Eiropas vienoto iepirkuma procedūras dokumentu (turpmāk – EVIPD) (EVIPD veidlapu paraugus nosaka Eiropas Komisijas 2016. gada 5. janvāra Īstenošanas regula 2016/7, ar ko nosaka standarta veidlapu Eiropas vienotajam iepirkuma procedūras dokumentam). Ja Pretendents izvēlējies iesniegt EVIPD, lai apliecinātu, ka tas atbilst iepirkuma procedūras dokumentos noteiktajām Pretendentu atlases prasībām, tas iesniedz šo dokumentu arī par katru personu, uz kuras iespējām Pretendents balstās, lai apliecinātu, ka tā kvalifikācija atbilst iepirkuma procedūras dokumentos noteiktajām prasībām, un par tā norādīto apakšuzņēmēju, kuram nodoto pakalpojumu vērtība ir vismaz 10 000 euro, bez PVN. Piegādātāju apvienība iesniedz atsevišķu EVIPD par katru tās dalībnieku. Pasūtītājam jebkurā iepirkuma procedūras stadijā ir tiesības prasīt, lai Pretendents iesniedz visus dokumentus vai daļu no tiem, kas apliecina tā atbilstību iepirkuma procedūras dokumentos noteiktajām Pretendentu atlases prasībām. EVIPD pieejams Elektronisko iepirkumu sistēmā: http://espd.eis.gov.lv. EVIPD ir jānorāda arī, vai Pretendents, persona, uz kuras iespējām Pretendents balstās, lai apliecinātu, ka tā kvalifikācija atbilst iepirkuma procedūras dokumentos noteiktajām prasībām, un katrs tā norādītais apakšuzņēmējs, atbilst Publisko iepirkumu likuma 42.panta otrās daļas 2. un 3.punktā minētajam izslēgšanas nosacījumam."
+        ],
+        [
+          "Tiek uzskatīts, ka pretendenti, iesniedzot savus piedāvājumus, apliecina, ka ir iepazinušies un piekrīt nolikuma un tā pielikumu, tajā skaitā iepirkuma līguma projekta, nosacījumiem, kā arī ir iepazinušies ar visiem spēkā esošiem normatīvajiem aktiem, kas jebkādā veidā var ietekmēt vai var attiekties uz līgumā noteiktajām vai ar to saistītajām darbībām."
+        ],
+        [
+          "Iesniedzot piedāvājumu, Pretendents pilnībā atzīst visus Nolikumā (t.sk. tā pielikumos un formās, kuras ir ievietotas Elektronisko iepirkumu sistēmā e-konkursu apakšsistēmas šā iepirkuma sadaļā) ietvertos nosacījumus."
+        ],
+        [
+          "Piedāvājums jāsagatavo tā, lai nekādā veidā netiktu apdraudēta Elektronisko iepirkumu sistēmas e-konkursu apakšsistēmas darbība un nebūtu ierobežota piekļuve piedāvājumā ietvertajai informācijai, tostarp piedāvājums nedrīkst saturēt datorvīrusus un citas kaitīgas programmatūras vai to ģeneratorus. Ja piedāvājums saturēs kādu no šajā punktā minētajiem riskiem, tas netiks izskatīts."
+        ],
+        [
+          "Ja pretendents piedāvājuma datu aizsardzībai izmantojis piedāvājuma šifrēšanu, pretendentam, ne vēlāk ka 15 (piecpadsmit) minūtes pēc piedāvājumu iesniegšanas termiņa beigām Komisijai jāiesniedz derīga elektroniskā atslēga ar paroli šifrētā dokumenta atvēršanai."
+        ],
+        [
+          "Piegādātāju apvienība, attiecībā uz kuru pieņemts lēmums slēgt līgumu, pēc savas izvēles izveidojas atbilstoši noteiktam juridiskam statusam vai noslēdz sabiedrības līgumu, vienojoties par apvienības dalībnieku atbildības sadalījumu, ja tas nepieciešams iepirkuma līguma noteikumu sekmīgai izpildei."
+        ],
+        [
+          "Saskaņā ar Publisko iepirkumu likuma 60.panta desmito daļu, pasūtītājs publicēs noslēgtā iepirkuma līguma tekstu Pasūtīja pircēja profilā Elektronisko iepirkumu sistēmā."
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_mikroautobuss_2024_3.docx",
+      "rows": [
+        [
+          "Iepirkuma procedūru veic ar  Sociālās integrācijas valsts aģentūras direktores 2024.gada 26.janvāra rīkojumu Nr.1-4/14 par iepirkumu komisijas izveidošanu, izveidotā Iepirkumu komisija,  (Nolikumā arī – Komisija)."
+        ],
+        [
+          "Piedāvājumu noformējuma pārbaudi, pretendentu atlasi un piedāvājumu vērtēšanu Komisija veic slēgtā sēdē."
+        ],
+        [
+          "Komisija, pamatojoties uz Ministru kabineta 2017.gada 28.februāra noteikumu Nr.107 “Iepirkuma procedūru un metu konkursu norises kārtība” 16.punktu, pretendentu kvalifikācijas atbilstības pārbaudi veiks tikai tam pretendentam, kuram būtu piešķiramas iespējamas iepirkuma līguma slēgšanas tiesības. Komisija piedāvājumu vērtēšanu veic šādā secībā:\npārbauda vai nav konstatējamas aritmētiskās kļūdas visu pretendentu piedāvājumos. Ja Komisija konstatē aritmētiskās kļūdas, tad rīkojas atbilstoši Publisko iepirkumu likuma 41. panta devītajai daļai;\npārliecinās par visu pretendentu tehnisko piedāvājumu vispārīgu atbilstību nolikumā noteiktajām prasībām;\nņemot vērā konkursa nolikumā noteiktos piedāvājumu izvēles kritērijus, pārbauda visu pretendentu piedāvājumus atbilstoši kritēriju vērtēšanas nosacījumiem.\nkonstatē, kuram pretendentam, atbilstoši noteiktajiem piedāvājuma izvēles kritērijiem un kārtībai, būtu piešķiramas iespējamas līguma slēgšanas tiesības. Sekojoši šim pretendentam veic:\nparaksttiesību pārbaudi,\niesniegtā piedāvājuma atbilstības noformējuma prasībām pārbaudi, \niesniegtā piedāvājuma atbilstību nolikumā noteiktajām pretendentu atlases prasībām,\niesniegtā tehniskā un finanšu piedāvājuma atbilstību;\nja Komisijai piedāvājums šķiet nepamatoti lēts, tad rīkojas atbilstoši Publisko iepirkumu likuma 53. pantā noteiktajai kārtībai."
+        ],
+        [
+          "Piedāvājumu noformējuma pārbaudes, pretendentu atlases un piedāvājumu vērtēšanas laikā Komisija nodrošina piedāvājumu glabāšanu tā, lai tiem nevarētu piekļūt personas, kas nav iesaistītas piedāvājuma noformējuma pārbaudē, pretendentu atlasē un piedāvājumu vērtēšanā."
+        ],
+        [
+          "Ja Komisijai rodas šaubas par iesniegtās dokumenta kopijas autentiskumu, tā pieprasa, lai pretendents uzrāda dokumenta oriģinālu vai iesniedz apliecinātu dokumenta kopiju."
+        ],
+        [
+          "Piedāvājumu vērtēšanas gaitā Komisija ir tiesīga pieprasīt, lai tiek izskaidrota piedāvājumā iekļautā informācija."
+        ],
+        [
+          "Ja Komisija pieprasa, lai pretendents precizē iesniegto informāciju, tā nosaka termiņu, līdz kuram pretendentam jāsniedz atbilde."
+        ],
+        [
+          "Ja pretendents neiesniedz komisijas pieprasītās ziņas vai paskaidrojumus, Komisija piedāvājumu vērtē pēc tiem dokumentiem, kas ir iekļauti piedāvājumā."
+        ],
+        [
+          "Piedāvājuma noformējuma pārbaudei, pretendentu atlasei, kā arī piedāvājumu vērtēšanai un salīdzināšanai Komisija var pieaicināt ekspertu."
+        ],
+        [
+          "Eksperts nesniedz atzinumu, ja ir ieinteresēts konkrēta pretendenta izvēlē vai darbībā. Pirms darbības sākšanas eksperts paraksta apliecinājumu, ka nav tādu apstākļu, kuru dēļ viņš varētu būt ieinteresēts konkrēta pretendenta izvēlē vai darbībā. Šo apliecinājumu eksperts pievieno atzinumam."
+        ],
+        [
+          "Ekspertam ir tiesības iepazīties ar piedāvājumiem, kā arī lūgt Komisiju pieprasīt no pretendenta papildu informāciju, kas ir nepieciešama atzinuma sagatavošanai."
+        ],
+        [
+          "Eksperts piedāvājumā ietverto un pretendenta papildus sniegto informāciju drīkst izmantot tikai sava atzinuma sniegšanai."
+        ],
+        [
+          "Vērtējot piedāvājumus, Komisija ir tiesīga ņemt vērā un vērtēt pretendenta un/vai speciālistu pieredzi, kas nav norādīta pretendenta piedāvājumā, bet ir iegūta pie pasūtītāja, ja tā ir atbilstoša iepirkuma nolikumā izvirzītajām prasībām."
+        ],
+        [
+          "Ja Komisija konstatē, ka pretendents neatbilst nolikumā izvirzītajām kvalifikācijas prasībām vai pretendenta tehniskais un/vai finanšu piedāvājums neatbilst nolikumā izvirzītajā prasībām Komisijai ir tiesības noraidīt pretendentu vai pretendenta piedāvājumu un neizskatīt to nākamajā izvērtēšanas posmā."
+        ],
+        [
+          "Triju darba dienu laikā pēc lēmuma pieņemšanas Komisija informē visus Pretendentus par pieņemto lēmumu, nosūtot uz Pretendenta e-adresi. Ja pretendentam nav e-adreses, informācija par rezultātiem tiks nosūtīta uz pieteikumā norādīto elektroniskā pasta adresi."
+        ]
+      ]
+    },
+    {
+      "source": "Termiņa pagarinājums_12.07.2024..docx",
+      "rows": [
+        [
+          "Nr.\np.k.",
+          "Grozījumi:"
+        ],
+        [
+          "",
+          "Piedāvājumu iesniegšanas termiņš tiek pagarināts atbilstoši Ministru kabineta 2017. gada 28. februārī noteikumu Nr. 107 “Iepirkuma procedūru un metu konkursu norises kārtība” 9.punktā noteiktajam. Konkrēts piedāvājumu iesniegšanas termiņš skatāms attiecīgajā IUB tīmekļvietnes paziņojumā un Elektronisko iepirkumu sistēmas e-konkursu apakšsistēmā."
+        ]
+      ]
+    },
+    {
+      "source": "termiņa pagarinājums_25.07.2024..docx",
+      "rows": [
+        [
+          "Nr.\np.k.",
+          "Grozījumi:"
+        ],
+        [
+          "",
+          "Piedāvājumu iesniegšanas termiņš tiek pagarināts atbilstoši Ministru kabineta 2017. gada 28. februārī noteikumu Nr. 107 “Iepirkuma procedūru un metu konkursu norises kārtība” 9.punktā noteiktajam. Konkrēts piedāvājumu iesniegšanas termiņš skatāms attiecīgajā IUB tīmekļvietnes paziņojumā un Elektronisko iepirkumu sistēmas e-konkursu apakšsistēmā."
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-2.pielikums-Tehniskâ specifikâcija-Tehniskais piedâvâjums_06.08.2024..docx",
+      "rows": [
+        [
+          "Nr. p.k.",
+          "Parametri",
+          "Tehniskā specifikācija \n(parametri, minimālās prasības)",
+          "Tehniskais piedāvājums\n(jānorāda konkrēti piedāvātās preces tehniskie parametri un detalizēti prasību izpildes apraksti)***"
+        ],
+        [
+          "",
+          "Transportlīdzekļa nosaukums, marka, modelis, ražotājs",
+          "Transportlīdzekļa nosaukums, marka, modelis, ražotājs",
+          ""
+        ],
+        [
+          "",
+          "Transporta līdzekļa izlaiduma gads",
+          "Jauna,  izlaiduma gads ne vēlāks par 2023.gadu",
+          ""
+        ],
+        [
+          "",
+          "Transportlīdzekļa kategorija",
+          "M1",
+          ""
+        ],
+        [
+          "",
+          "Daudzums",
+          "Viens gabals",
+          ""
+        ],
+        [
+          "",
+          "Nobraukums",
+          "Ne vairāk kā 150 km",
+          ""
+        ],
+        [
+          "",
+          "Transporta līdzekļa izmēri",
+          "Salona augstums ne mazāk kā 1700 mm.\nAutomašīnas pilnais garums ne mazāk kā 5900 mm.",
+          ""
+        ],
+        [
+          "",
+          "Durvju skaits",
+          "4 (četras), kur aizmugurējās divviru durvis bez stiklojuma, salona sānu durvis bīdāmas.",
+          ""
+        ],
+        [
+          "",
+          "Degvielas veids",
+          "Benzīns vai benzīns/hibrīds",
+          ""
+        ],
+        [
+          "",
+          "Atbilstība piesārņojuma emisijas standartam",
+          "Vismaz EURO 6 (norādīts  COC sertifikātā)\nnormu atbilstība - Regula nr. 459/2012 (https://eur-lex.europa.eu/eli/reg/2012/459/oj/?locale=LV )",
+          ""
+        ],
+        [
+          "",
+          "Jauda",
+          "Ne mazāk kā 85 kW",
+          ""
+        ],
+        [
+          "",
+          "Degvielas patēriņš",
+          "(l/100 km)",
+          ""
+        ],
+        [
+          "",
+          "Transmisija",
+          "Manuālā vai automātiskā",
+          ""
+        ],
+        [
+          "",
+          "Pilnā masa (kg)",
+          "Ne vairāk kā 3500",
+          ""
+        ],
+        [
+          "",
+          "Vietu skaits, ieskaitot vadītāju",
+          "Ne vairāk kā 9 sēdvietas (8 pasažieru + 1 šoferis). Ar iespēju transportlīdzekļa aizmugurē speciāli aprīkotā vietā nofiksēt vismaz vienu invalīdu ratiņkrēslu (ar vai bez sēdvietu izņemšanas).",
+          ""
+        ],
+        [
+          "",
+          "Ratiņkrēslu vietas",
+          "1 (viena)",
+          ""
+        ],
+        [
+          "",
+          "Drošības jostas",
+          "Visiem sēdekļiem 3 punktu drošības jostas.",
+          ""
+        ],
+        [
+          "",
+          "Ratiņkrēsla stiprināšana",
+          "Ratiņkrēsla stiprināšanai automātiskās spoles 4.gab. Ratiņkēslā sēdošajam pasažierim sienā integrēta 3 punktu drošības josta.",
+          ""
+        ],
+        [
+          "",
+          "Ātrie stiprinājumi",
+          "Visi salona sēdekļi stiprināti ar ātrās fiksācijas sēdekļu kājām uz sliedēm ar pārlikšanas iespējām par 180 grādiem (pārlikt pretējā virzienā), regulējamu attālumu vai ekvivalents.",
+          ""
+        ],
+        [
+          "",
+          "Kāpslis",
+          "Elektriski izbīdāms pakāpiens pie sānu bīdāmajām durvīm.",
+          ""
+        ],
+        [
+          "",
+          "Roku balsti",
+          "Pie iekāpšanas pa sānu durvīm, jāparedz abās pusē roku balsti dzeltenā krāsa.",
+          ""
+        ],
+        [
+          "",
+          "Apgaismojums",
+          "Dimmējošs dienas un nakts apgaismojums pasažieru salonā, apgaismojums virs ratiņkrēslu lifta darba zonas apgaismošanai, apgaismojums virs iekāpšanas durvīm (ārpusē).",
+          ""
+        ],
+        [
+          "",
+          "Lifts",
+          "Iekšējais elektro/hidrauliskais  ratiņkrēslu pacēlājs ar kravnesību vismaz 250 kg.",
+          ""
+        ],
+        [
+          "",
+          "Logu izsišanas ierīces",
+          "Logu izsišanas āmuriņi, piestiprināti ar trosīti, āmuriņi ar integrētu nazi drošības jostu pārgriešanai.",
+          ""
+        ],
+        [
+          "",
+          "Stereo sistēma",
+          "Integrēts Radio ar navigācijas iespējām un skaļruņiem salona priekšā un aizmugurē (pasažieriem)",
+          ""
+        ],
+        [
+          "",
+          "Drošība",
+          "Imobilaizers vai cita veida drošības sistēma, atbilstoša KASKO** apdrošināšanas prasībām.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Signalizācija, centrālās atslēgas sistēma ar tālvadību.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "ABS – bremžu pretbloķēšanas sistēma.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "ESP- elektroniskā stabilitātes kontrole",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Atpakaļskata kamera un displejs.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Ne mazāk kā priekšējo sēdvietu drošības spilveni.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Regulējama stūre ar stūres pastiprinātāju",
+          ""
+        ],
+        [
+          "",
+          "Aprīkojums",
+          "Salonā paredzēt vismaz vienu transformējamu galda virsmu, stiprināmu pie salona sienas vai sliedes (vietu saskaņot ar Pasūtītāju).",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Dalītā klimata kontrole vismaz priekšā/aizmugurē jābūt kondicionierim",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Lietus sensors, sānu vēja asistents.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Elektriski vadāmi vismaz priekšējie sānu logi.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Apsildāms ergonomisks vadītāja sēdeklis.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Pasažieru salona autonomā apsilde.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Elektriski regulējami, apsildāmi spoguļi.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Slēgts plaukts abās pusēs virs pasažieru sēdvietām ar vismaz 2 (diviem) atveramiem nodalījumiem katrā pusē.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Noņemams sakabes āķis.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Dubļu sargi visiem riteņiem.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Gumijas paklājiņi vismaz priekšējām sēdvietām, pasažieru salonā jābūt mitrumizturīgiem un nodilizturīgiem paklājiem.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Strāvas pārveidotājs 12/220.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Interneta ruteris interneta nodrošināšanai darba vajadzībām).",
+          ""
+        ],
+        [
+          "",
+          "Riepas, diski",
+          "Atbilstoši sezonai vasaras  un ziemas (bez radzēm) riepu komplekti, katram riepu komplektam vieglmetāla diski (vismaz R16). \nRiepas un disku izmēri saskaņā ar automobiļa ražotāja prasībām, riepu ražošanas gads ne vecāks par 2023. gadu. Diskiem jābūt oriģināliem no  ražotāja rūpnīcas. \nRiepām jāatbilst normatīvajos aktos noteiktajām prasībām, tajā skaitā, jābūt marķētām ar atbilstošu marķējumu.",
+          ""
+        ],
+        [
+          "",
+          "Virsbūves krāsa",
+          "Ahromātiskā/neitrālā krāsā (balta, melna, pelēka krāsa dažādos toņos).",
+          ""
+        ],
+        [
+          "",
+          "Salona apdare",
+          "Tumšas krāsas, viegli kopjama (ādas vai pusādas sēdekļu apdare).",
+          ""
+        ],
+        [
+          "",
+          "Pretkorozijas apstrāde virsbūvei",
+          "Pilna pretkorozijas apstrāde (iesniegt apliecinošu dokumentu).",
+          ""
+        ],
+        [
+          "",
+          "Tehniskās apkopes periodi garantijas termiņā",
+          "Ņemot vērā paredzamo nobraukumu 100 000 km trīs gadu garantijas periodā, ar intervālu 20 000 km.",
+          ""
+        ],
+        [
+          "",
+          "Garantijas remonta un tehniskās apkopes vieta",
+          "Jānodrošina vismaz vienu  transporta līdzekļa ražotāja vai oficiālā izplatītāja autorizēta autoservisa (norādīt nosaukumu, reģistrācijas numuru, adresi, attālumu km), kurā nodrošinās garantijas apkalpošanu un remontu transporta līdzekļa garantijas termiņā. Autoservisam jāatrodas ne tālāk kā 150 km rādiusā no Aģentūras adreses – Jūrmala, Slokas iela 61.\nAttālums tiks mērīts izmantojot  https://www.google.com/maps, ņemot vērā īsāko maršrutu no adreses Jūrmala, Slokas iela 61 līdz pretendenta piedāvātajai adresei.",
+          ""
+        ],
+        [
+          "",
+          "Virsbūves aplīmēšana",
+          "Plānotais līmēšanas apjoms 30 % no virsbūves apjoma, vizualizāciju saskaņojot ar pasūtītāju. (SIVA korporatīvās krāsas, SIVA logo, info par SIVA koledžu tel, nr., e-pasts)",
+          ""
+        ],
+        [
+          "",
+          "Aizmugurējie sānu logi",
+          "Sānu logu tonēšana. Redzamās gaismas caurlaidība 20%.",
+          ""
+        ],
+        [
+          "",
+          "Komplektācija",
+          "Lietošanas rokasgrāmatu, ekspluatācijas noteikumus un apkopes noteikumus latviešu valodā.",
+          ""
+        ],
+        [
+          "",
+          "Rezerves ritenis",
+          "Pilna izmēra ritenis (vissezonas riepa (M+S)) - nostiprināts, novietots, ražotāja paredzētajā vietā.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Instrumentu komplekts, hidrauliskais pacēlājs.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Brīdinājuma trijstūris (atbilstoši 30.05.2017. Ministru kabineta noteikumiem Nr.295 „Noteikumi par transportlīdzekļu valsts tehnisko apskati un tehnisko kontroli uz ceļiem”).",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Ugunsdzēsības aparāts (atbilstoši 30.05.2017. Ministru kabineta noteikumiem Nr.295 „Noteikumi par transportlīdzekļu valsts tehnisko apskati un tehnisko kontroli uz ceļiem”).",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Pirmās palīdzības aptieciņa (atbilstoši 03.08.2010. Ministru kabineta noteikumiem Nr.713 „Noteikumi par kārtību, kādā nodrošina apmācību pirmās palīdzības sniegšanā, un pirmās palīdzības aptieciņas medicīnisko materiālu minimumu”).",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Gaismu atstarojošā veste 1 gab.",
+          ""
+        ],
+        [
+          "",
+          "Transportlīdzekļa garantijas termiņš",
+          "Transportlīdzeklim - vismaz 3 gadi  vai 100 000 km nobraukums, atkarībā no tā, kurš apstāklis iestājas pirmais; \nvirsbūves krāsojumam - ne mazāk kā 3 gadi; virsbūvei garantija pret caurrūsēšanu - ne mazāk kā 10 gadi no piegādes dienas.",
+          ""
+        ],
+        [
+          "",
+          "Transportlīdzekļa reģistrācija",
+          "Automašīnas pirmreizējā reģistrācija CSDD uz Pasūtītāja vārda (apliecība, numura zīmes, pirmreizējā tehniskā apskate).\nOCTA* un KASKO** 12 mēnešu periodam, skaitot no  Preces pieņemšanas – nodošanas akta parakstīšanas dienas.\nKASKO apdrošināšana ietver apdrošināšanu pret bojājumiem (sadursme ar transportlīdzekli un/vai šķērsli, mikroautobusa apgāšanās, krišana, grimšana, sadursme ar dzīvām būtnēm, ugunsgrēks, eksplozija, dabas stihijas, trešās personas rīcība, krītošu priekšmetu iedarbība) un apdrošināšanu pret zādzību (transportlīdzekļa vai tās daļu slepena vai atklāta nolaupīšana, ja tā saistīta ar vardarbību vai vardarbības piedraudējumu, prettiesiska iekļūšana (ielaušanās) transportlīdzeklī).",
+          ""
+        ],
+        [
+          "",
+          "Transportlīdzekļa piegāde",
+          "Ne ilgāk kā 12 mēneši no iepirkuma Līguma noslēgšanas brīža.",
+          ""
+        ],
+        [
+          "",
+          "Personāla apmācība",
+          "5 darba dienu laikā pēc Preces piegādes veikt Pasūtītāja personāla (3 cilvēki) apmācību par transportlīdzekļa lietošanu, apkopi, ekspluatāciju ne mazāk kā 3 stundas.",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-2.pielikums-Tehniskâ specifikâcija-Tehniskais piedâvâjums_06.08.2024..docx",
+      "rows": [
+        [
+          "Amatpersonas vai pilnvarotās personas paraksts:",
+          "Dokuments parakstīts ar drošu elektronisko parakstu, vai dokuments parakstīts ar Elektronisko iepirkumu sistēmas parakstu"
+        ],
+        [
+          "Parakstītāja vārds, uzvārds un amats:",
+          ""
+        ],
+        [
+          "Pretendenta nosaukums:",
+          ""
+        ],
+        [
+          "Datums",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-6.pielikums_Iepirkuma lîguma projekts_06.08.2024..docx",
+      "rows": [
+        [
+          "<Pasūtītāja rekvizīti>",
+          "<Piegādātāja rekvizīti>"
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-6.pielikums_Iepirkuma lîguma projekts_06.08.2024..docx",
+      "rows": [
+        [
+          "Marka, modelis, ražotājs",
+          ""
+        ],
+        [
+          "Transportlīdzekļa identifikācijas (šasijas) numurs",
+          ""
+        ],
+        [
+          "Nobraukums km,\ndegvielas daudzums bāka l\n….",
+          ""
+        ],
+        [
+          "Tehniskā dokumentācija",
+          ""
+        ],
+        [
+          "Aprīkojums",
+          ""
+        ],
+        [
+          "Piegādes datums",
+          ""
+        ],
+        [
+          "Piezīmes",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-6.pielikums_Iepirkuma lîguma projekts_06.08.2024..docx",
+      "rows": [
+        [
+          "Piegādātāja atbildīgā persona:\n<amats> \n<paraksts><vārds, uzvārds>\n<datums>",
+          "Pasūtītāja atbildīgā persona : \n<amats> \n<paraksts><vārds, uzvārds>\n<datums>",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-6.pielikums_Iepirkuma lîguma projekts_06.08.2024..docx",
+      "rows": [
+        [
+          "Preces nosaukums",
+          "Konstatētais defekts/ piegādes termiņa kavējums",
+          "Defekta novēršanas veids",
+          "Defekta novēršanas termiņš",
+          "Defektu konstatējošās personas\n(vārds, uzvārds)",
+          "Atzīme par novērsto defektu"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-6.pielikums_Iepirkuma lîguma projekts_06.08.2024..docx",
+      "rows": [
+        [
+          "Piegādātāja atbildīgā persona :\n<amats> \n<paraksts><vārds, uzvārds>\n<datums>",
+          "Pasūtītāja atbildīgā persona: \n<amats> \n<paraksts><vārds, uzvārds>\n<datums>"
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-6.pielikums_Iepirkuma lîguma projekts_06.08.2024..docx",
+      "rows": [
+        [
+          "<Pasūtītāja rekvizīti>",
+          "<Piegādātāja rekvizīti>"
+        ]
+      ]
+    },
+    {
+      "source": "Grozîjumi_06.08.2024..docx",
+      "rows": [
+        [
+          "Nr.\np.k.",
+          "Grozījumi:"
+        ],
+        [
+          "",
+          "Grozīt nolikuma 1.13. punktu un izteikt 1.13. punktu šādā redakcijā:\n“1.13.\tDatu aizsardzība\n1.13.1.\tIesniedzot pieteikumu, pasūtītājs kā pārzinis veiks pieteikumā norādīto datu subjektu personas datu apstrādi iesniegtā piedāvājuma izvērtēšanai atbilstoši konkursa nolikumā noteiktajām prasībām, iepirkuma procesa administrēšanai, uzvarētāja noteikšanai un lēmuma pieņemšanai, informācijas sniegšanai pretendentiem un trešajām personām (ja attiecas) par iepirkuma procedūras rezultātiem. Pasūtītājs atbilstoši Vispārīgās datu aizsardzības regulas 13. panta nosacījumiem informē par šādiem datu apstrādes apstākļiem:\n1.13.1.1.\tPārziņa datu aizsardzības speciālists: eksperts drošības jomā Ilze Šulte (e-pasts: datudrosiba@siva.gov.lv);\n1.13.1.2.\tpersonas datu apstrādes tiesiskais pamats ir nepieciešamo darbību veikšana, lai noslēgtu iepirkuma līgumu un normatīvajos aktos, kas reglamentē iepirkuma procedūra organizēšanas kārtību, noteikto pienākumu izpilde;\n1.13.1.3.\tpersonas datu apstrādes ietvaros tiks apstrādāti šādi dati: vārds, uzvārds, personas kods, kontaktinformācija (e-pasts, telefona numurs), datu subjekta sniegtā cita informācija, izpildot iepirkuma procedūras dokumentos noteiktās prasības. Pasūtītājs apstrādā personas datus tikai tādā apjomā, kāds ir noteikts iepirkuma procedūras dokumentos;\n1.13.1.4.\tpersonas datu saņēmēju kategorijas: pasūtītāja pilnvarotie darbinieki iepirkuma procesa organizēšanas un lēmuma pieņemšanas nolūkos; Iepirkumu uzraudzības birojs Publisko iepirkumu likumā noteikto pienākumu izpildei; tiesas sūdzības par pieņemtā lēmuma saņemšanas gadījumā; Datu valsts inspekcija sūdzības gadījumā par iespējamo datu aizsardzības prasību pārkāpumu; tiesībaizsardzības iestādes normatīvajos aktos noteiktajos gadījumos;\n1.13.1.5.\tpersonas datu ieguves avoti: atklātā konkursa pretendents un citas trešās personas, ja vien šādu datu ieguvi paredz normatīvie akti;\n1.13.1.6.\tautomatizēta lēmuma pieņemšana un personas datu nodošana trešājām valstīm vai starptautiskai organizācijai iepirkuma organizēšanas ietvaros nav paredzēta. \n1.13.1.7.\tdatu subjektam ir tiesības pieprasīt no pārziņa piekļuvi saviem personas datiem un to labošanu vai dzēšanu, vai apstrādes ierobežošanu attiecībā uz datu subjektu, kā arī tiesības iesniegt sūdzību uzraudzības iestādei;\nPasūtītājs piedāvājumu un iepirkuma procedūras dokumentus glabā 10 (desmit) gadus pēc iepirkuma līguma noslēgšanas.”"
+        ],
+        [
+          "",
+          "Precizēt nolikuma 1.8.1. punktā norādīto saiti uz Elektronisko iepirkumu sistēmas (turpmāk tekstā EIS) e-konkursu apakšsistēmu https://www.eis.gov.lv/EKEIS/Supplier/Procurement/125290 ."
+        ],
+        [
+          "",
+          "Svītrot nolikuma 2.5. punktu."
+        ],
+        [
+          "",
+          "Izteikt nolikuma 3.8. punkta a) apakšpunktu  šādā redakcijā: “ a) Komisija pārliecinās par pretendenta reģistrācijas faktu, piemēram, Uzņēmumu reģistra tīmekļvietnē https://www.ur.gov.lv/lv/, Latvijas Republikas Valsts ieņēmumu dienesta Nodokļu maksātāju reģistrā ( turpmāk-VID) kā saimnieciskās darbības veicēji.”"
+        ],
+        [
+          "",
+          "Papildināt 3.8. punkta b) apakšpunktu ar saīsinājumu “VID”."
+        ],
+        [
+          "",
+          "Aizstāt nolikuma 5.3. punktā ciparu “6” ar ciparu “5”."
+        ],
+        [
+          "",
+          "Papildināt nolikuma 7. pielikumu  “Prasības piedāvājuma noformēšanai un iesniegšanai”  9. punkta pirmo teikumu ar skaidrojumu “(EVIPD  aizpilda II daļu “Informācija par ekonomikas dalībnieku”, III daļu “Izslēgšanas iemesli” , IV daļu “Atlases kritēriji” un VI daļa “Noslēguma apliecinājumi”)” un  pēdējā teikumā aizstāt ciparus un vārdu “ 2. un 3.”  ar  cipariem “1., 2., 3., 4., 5., 6., 7., 10., 11., 12., 13., 14.”,\nun izteikt nolikuma 7. pielikumu  “Prasības piedāvājuma noformēšanai un iesniegšanai” 9. punktu jaunā redakcijā:\n“Komisija pieņem Eiropas vienoto iepirkuma procedūras dokumentu kā sākotnējo pierādījumu atbilstībai iepirkuma procedūras dokumentos noteiktajām pretendentu atlases prasībām (EVIPD  aizpilda II daļu “Informācija par ekonomikas dalībnieku”, III daļu “Izslēgšanas iemesli” , IV daļu “Atlases kritēriji” un VI daļa “Noslēguma apliecinājumi”). Pretendents ir tiesīgs iesniegt Eiropas vienoto iepirkuma procedūras dokumentu (turpmāk – EVIPD) (EVIPD veidlapu paraugus nosaka Eiropas Komisijas 2016. gada 5. janvāra Īstenošanas regula 2016/7, ar ko nosaka standarta veidlapu Eiropas vienotajam iepirkuma procedūras dokumentam). Ja Pretendents izvēlējies iesniegt EVIPD, lai apliecinātu, ka tas atbilst iepirkuma procedūras dokumentos noteiktajām Pretendentu atlases prasībām, tas iesniedz šo dokumentu arī par katru personu, uz kuras iespējām Pretendents balstās, lai apliecinātu, ka tā kvalifikācija atbilst iepirkuma procedūras dokumentos noteiktajām prasībām, un par tā norādīto apakšuzņēmēju, kuram nodoto pakalpojumu vērtība ir vismaz 10 000 euro, bez PVN. Piegādātāju apvienība iesniedz atsevišķu EVIPD par katru tās dalībnieku. Pasūtītājam jebkurā iepirkuma procedūras stadijā ir tiesības prasīt, lai Pretendents iesniedz visus dokumentus vai daļu no tiem, kas apliecina tā atbilstību iepirkuma procedūras dokumentos noteiktajām Pretendentu atlases prasībām. EVIPD pieejams Elektronisko iepirkumu sistēmā: http://espd.eis.gov.lv. EVIPD ir jānorāda arī, vai Pretendents, persona, uz kuras iespējām Pretendents balstās, lai apliecinātu, ka tā kvalifikācija atbilst iepirkuma procedūras dokumentos noteiktajām prasībām, un katrs tā norādītais apakšuzņēmējs, atbilst Publisko iepirkumu likuma 42.panta otrās daļas 1., 2., 3., 4., 5., 6., 7., 10., 11., 12., 13., 14. punktā minētajiem pretendentu izslēgšanas nosacījumiem.”"
+        ],
+        [
+          "",
+          "Grozīt nolikuma 4.pielikums “Iepirkuma līguma projekts” ( turpmāk – Līgums) papildinot ar sekojošiem Līguma punktiem:\n“13.6.4. apakšuzņēmēja maiņas rezultātā tiktu izdarīti tādi grozījumi pretendenta piedāvājumā, kuri, ja sākotnēji būtu tajā iekļauti, ietekmētu piedāvājuma izvēli atbilstoši iepirkuma procedūras dokumentos noteiktajiem piedāvājuma izvērtēšanas kritērijiem;\n13.6.5.\tnav norādīts apakšuzņēmēju veicamo darbu apjoms euro, ievērojot, ka  apakšuzņēmēja sniedzamo pakalpojumu kopējo vērtību nosaka, ņemot vērā apakšuzņēmēja un visu attiecīgā Konkursa ietvaros tā saistīto uzņēmumu sniedzamo pakalpojumu vērtību. Šā punkta izpratnē par saistīto uzņēmumu uzskata kapitālsabiedrību, kurā saskaņā ar koncerna statusu nosakošajiem normatīvajiem aktiem apakšuzņēmējam ir izšķirošā ietekme vai kurai ir izšķirošā ietekme apakšuzņēmējā, vai kapitālsabiedrību, kurā izšķirošā ietekme ir citai kapitālsabiedrībai, kurai vienlaikus ir izšķirošā ietekme attiecīgajā apakšuzņēmējā.\n13.7. Pasūtītājs nepiekrīt jauna apakšuzņēmēja piesaistei gadījumā, kad šādas izmaiņas, ja tās tiktu veiktas sākotnējā piedāvājumā, būtu ietekmējušas piedāvājuma izvēli atbilstoši iepirkuma procedūras dokumentos noteiktajiem piedāvājuma izvērtēšanas kritērijiem.\n13.8. Pārbaudot jaunā apakšuzņēmēja atbilstību, Pasūtītājs piemēro Publisko iepirkumu likuma 42. panta noteikumus un izslēgšanas iemeslu pārbaudi veic tajā datumā, kad Pasūtītājs lemj par atļaujas sniegšanu Piegādātājam nomainīt Apakšuzņēmēju vai piesaistīt jaunu Apakšuzņēmēju līguma izpildes nodrošināšanai. Publisko iepirkumu likuma 42.panta ceturtās daļas 2., 3. un 4. punktā minētos termiņus skaita no dienas, kad lūgums par Apakšuzņēmēja nomaiņu iesniegts Pasūtītājam.”;\nSvītrot Līguma 10.1. punktā atsauci “Publisko iepirkumu likuma 61. pantā noteiktajos gadījumos”;\naizstāt Līguma 13.4.1. punktā vārdus “ īpatsvaru kopējā Līgumcenā” ar vārdiem “apjoms euro”;\npapildināt Līguma 13.6.3. punktā atsauci uz  Publisko iepirkumu likuma 42. pantu ar “otrās daļas 1., 2., 3., 4., 5., 6., 7., 10., 11., 12., 13., 14. punktā”\nsvītrot Līguma 6. pielikuma “FINANŠU GARANTIJAS NOTEIKUMI” 1.2.4.  punktā “un vēl vismaz 30 (trīsdesmit) dienas pēc tā”;\npapildināt Līguma 10.5. punkta pirmo teikumu ar vārdiem “vai labāku”;\n\nun aizstājot ar grozīto nolikuma 4.pielikums “Iepirkuma līguma projekts”_06.08.2024."
+        ],
+        [
+          "",
+          "Grozīt nolikuma 2. pielikuma “Tehniskā specifikācija/tehniskais piedāvājums” (turpmāk – tehniskā specifikācija):\naizstāt 2. punktā ciparu “2024” ar ciparu “2023”;\nsvītrot 11.punktu;\naizstāt 12.punktā\nar\n\n  \npapildināt 13.punktā ar vārdiem “vai automātiskā”;\nprecizēt 15. punktā un izteikt šādā redakcijā “Ne vairāk kā 9 sēdvietas (8 pasažieru + 1 šoferis). Ar iespēju transportlīdzekļa aizmugurē speciāli aprīkotā vietā nofiksēt vismaz vienu invalīdu ratiņkrēslu (ar vai bez sēdvietu izņemšanas).”;\naizstāt 46. punktā ciparu “2024” ar ciparu “2023”;\naizstāt 51. punktā skaitli “50” ar skaitli “150” ;\npapildināt 64. punktā ar skaitli un vārdu “(3 cilvēki)”;\nun aizstājot ar grozīto nolikuma 2.pielikumu “Tehniskā specifikācija/tehniskais piedāvājums” _06.08.2024."
+        ],
+        [
+          "",
+          "Piedāvājumu iesniegšanas termiņš tiek pagarināts atbilstoši Ministru kabineta 2017. gada 28. februārī noteikumu Nr. 107 “Iepirkuma procedūru un metu konkursu norises kārtība” 10.punktā noteiktajam. Konkrēts piedāvājumu iesniegšanas termiņš skatāms attiecīgajā IUB tīmekļvietnes paziņojumā un Elektronisko iepirkumu sistēmas e-konkursu apakšsistēmā."
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_mikroautobuss_2024_3_ANM_06.08.2024..docx",
+      "rows": [
+        [
+          "Pasūtītājs"
+        ],
+        [
+          "Sociālās integrācijas valsts aģentūra (turpmāk - SIVA)\nreģistrācijas Nr.:90001790030\nadrese: Dubultu prospekts 71, Jūrmala, LV-2015"
+        ],
+        [
+          "Iepirkuma priekšmets"
+        ],
+        [
+          "Jauna specializēta transportlīdzekļa (turpmāk - Prece) piegāde SIVA darbības nodrošināšanai, atbilstoši Tehniskai specifikācijai/Tehniskam piedāvājumam (nolikuma 2.pielikums) un Finanšu piedāvājumā (pēc formas – nolikuma 3.pielikums) noteiktajām prasībām. Prece konstruēta vai pārveidota (pielāgota) tā, lai viens ratiņkrēslā sēdošs cilvēks tajā varētu iekļūt ar pacēlāju un tiktu droši pārvadāts pa ceļiem."
+        ],
+        [
+          "CPV kods"
+        ],
+        [
+          "34114300-2 (Sociālās palīdzības dienestu transportlīdzekļi)"
+        ],
+        [
+          "Iepirkuma līguma izpildes laiks un vieta"
+        ],
+        [
+          "Līguma izpildes laiks - ne vēlāk kā 12 (divpadsmit) mēnešu laikā no Līguma abpusējas parakstīšanas dienas.\nLīguma izpildes vieta -  Slokas iela 61, Jūrmala, Latvija, LV-2015.\nIepirkumu procedūra"
+        ],
+        [
+          "Iepirkuma procedūra tiek veikta atbilstoši Publisko iepirkumu likumam. Iepirkuma procedūras veids ir atklāts konkurss.\nPamatojums iepirkuma līguma slēgšanas tiesību piešķiršanai, nedalot iepirkumu daļās ir: viens pretendentu loks; Preces viena gabala iegāde.\n\nProjekts \nIepirkums tiek finansēts no Eiropas Savienības Atveseļošanas un noturības mehānisma plāna 3.1.2.4.i.  investīcijas “Sociālās un profesionālās rehabilitācijas pakalpojumu sinerģiska attīstība cilvēku ar funkcionāliem traucējumiem drošumspējas veicināšanai” (turpmāk – investīcija) projekta “RAITI: Rehabilitācija. Atbalsts. Iekļaušana. TālākIzglītība.” ietvaros, (turpmāk – Projekts) un Pasūtītāja finanšu līdzekļiem."
+        ],
+        [
+          "Kontaktpersona"
+        ],
+        [
+          "Par Preces Tehnisko specifikāciju Saimnieciskā nodrošinājuma nodaļas vadītāja Dace Šternberga, tālr. 67771024 , e-pasts: Dace.Sternberga@siva.gov.lv .\nPar iepirkuma dokumentāciju Baiba Millere, tālr. 28616433, e-pasts: Baiba.Millere@siva.gov.lv ."
+        ],
+        [
+          "Piedāvājumu iesniegšanas termiņš"
+        ],
+        [
+          "Piedāvājumi iesniedzami Elektronisko iepirkumu sistēmas (turpmāk tekstā EIS) e-konkursu apakšsistēmā (https://www.eis.gov.lv/EKEIS/Supplier/Procurement/125290 ) Konkrēts piedāvājumu iesniegšanas termiņš skatāms attiecīgajā Iepirkumu uzraudzības biroja (turpmāk tekstā IUB) tīmekļvietnes paziņojumā un Elektronisko iepirkumu sistēmas e-konkursu apakšsistēmā.\nPēc noteiktā termiņa beigām EIS e-konkursu apakšsistēmā iesniegtie piedāvājumi netiks atvērti. Ārpus EIS e-konkursu apakšsistēmas iesniegtie piedāvājumi tiks atgriezti iesniedzējiem. \nJa konstatēti EIS darbības traucējumi, kuru dēļ nav bijis iespējams iesniegt piedāvājumus kopumā vismaz divas stundas pēdējo 24 (divdesmit četru) stundu laikā vai 10 (desmit) minūtes pēdējo četru stundu laikā līdz piedāvājumu iesniegšanas termiņa beigām, sistēmas turētājs pēc sistēmas darbības atjaunošanas pārceļ piedāvājumu iesniegšanas termiņu par vienu darbdienu. Sistēmas darbības atjaunošanas dienā tajā ievieto paziņojumu par sistēmas darbības traucējumiem, norādot iepirkumus un iepirkuma procedūras, kuru termiņi pārcelti. Šāda termiņa pārcelšana nav uzskatāma par grozījumiem iepirkuma vai iepirkuma procedūras dokumentos vai par piedāvājumu vai pieteikumu iesniegšanas termiņa pagarināšanu Publisko iepirkumu likuma 35. panta trešās daļas izpratnē.\nPiedāvājumu noformē atbilstoši nolikuma 7.pielikuma “Prasības piedāvājuma noformēšanai un iesniegšanai” noteikumiem."
+        ],
+        [
+          "Piedāvājumu atvēršanas vieta un laiks"
+        ],
+        [
+          "Piedāvājumu atvēršana notiek EIS e-konkursu apakšsistēmā. Piedāvājumu atvēršanas laiks skatāms attiecīgajā IUB tīmekļvietnes paziņojumā un EIS sistēmas e-konkursu apakšsistēmā.\nPasūtītājs publicē pretendentu iesniegto finanšu piedāvājumu apkopojumu EIS e-konkursu apakšsistēmā pēc piedāvājumu atvēršanas līdz attiecīgās darba dienas beigām.\nJa ir iesniegts iesniegums Iepirkumu uzraudzības birojā attiecībā uz prasībām, kas noteiktas atklāta konkursa nolikumā vai paziņojumā par līgumu, tad pasūtītājs rīkojas Ministru kabineta 2017.gada 28.februāra noteikumu Nr.107 “Iepirkumu procedūru un metu konkursu norises kārtība” 14.punktā noteiktajā kārtībā.\n\nIepirkuma procedūras dokumenti\nNolikumam ar pielikumiem ir nodrošināta tieša un brīva elektroniskā pieeja pasūtītāja pircēja profilā Elektronisko iepirkumu sistēmā https://www.eis.gov.lv/EKEIS/Supplier/Organizer/432  \nElektronisko iepirkumu sistēmā reģistrēta ieinteresētā persona var reģistrēties kā Nolikuma saņēmējs, skatīt: https://www.eis.gov.lv/EIS/Publications/PublicationView.aspx?PublicationId=883."
+        ],
+        [
+          "Pretendenta piedāvājuma nodrošinājums"
+        ],
+        [
+          "Piedāvājuma nodrošinājums ir noteikts EUR 2000,00 (divi tūkstoši euro) apmērā un minimālais termiņš 6 (seši) mēneši no piedāvājuma atvēršanas dienas.\nPiedāvājuma nodrošinājums ir noteiktās naudas summas iemaksa pasūtītāja norādītajā kontā, bankas garantija vai apdrošināšana par noteikto naudas summu, kuru pretendents kopā ar piedāvājumu iesniedz kā nodrošinājumu piedāvājuma spēkā esamībai.\nPiedāvājuma nodrošinājums atbilst nolikuma 9.pielikumā (Piedāvājuma nodrošinājuma noteikumi) ietvertajiem noteikumiem."
+        ],
+        [
+          "Papildu informācija"
+        ],
+        [
+          "Jebkura papildu informācija, kas tiks sniegta saistībā ar šo iepirkuma procedūru, tiks publicēta pasūtītāja pircēja profilā Elektronisko iepirkumu sistēmā https://www.eis.gov.lv/EKEIS/Supplier/Organizer/432. Ieinteresētajam piegādātājam ir pienākums sekot līdzi publicētajai informācijai. Komisija nav atbildīga par to, ja kāda ieinteresētā persona nav iepazinusies ar informāciju, kam ir nodrošināta brīva un tieša elektroniskā pieeja.\nJa piegādātājs ir laikus pieprasījis papildu informāciju par iepirkuma procedūras dokumentos iekļautajām prasībām, Komisija to sniedz piecu darbdienu laikā, bet ne vēlāk kā sešas dienas pirms pieteikumu un piedāvājumu iesniegšanas termiņa beigām.\nPapildu informāciju Komisija nosūta piegādātājam, kas uzdevis jautājumu, un vienlaikus ievieto šo informāciju pircēja profilā, kur ir pieejami iepirkuma procedūras dokumenti, norādot arī uzdoto jautājumu.\nJa piegādātājs papildu informāciju ir pieprasījis, izmantojot EIS – Komisija papildu informāciju piegādātājam sniedz, ievietojot šo informāciju EIS, pie iepirkuma dokumentiem, norādot arī uzdoto jautājumu, kā arī, izmantojot EIS pieejamos rīkus, nosūta piegādātājam.\nJa piegādātājs papildu informāciju pieprasījis, nosūtot papildu informācijas pieprasījumu uz iepirkuma dokumentos norādīto e-pastu, nosūtot pa pastu, vai iesniedzot personīgi, Komisija papildu informāciju piegādātājam sniedz, to nosūtot piegādātājam uz tā e-adresi, vai, ja piegādātājam nav e-adreses, uz norādīto e-pasta adresi, vienlaikus ievietojot šo informāciju EIS, pie iepirkuma dokumentiem, norādot arī uzdoto jautājumu."
+        ],
+        [
+          "Datu aizsardzība\nIesniedzot pieteikumu, pasūtītājs kā pārzinis veiks pieteikumā norādīto datu subjektu personas datu apstrādi iesniegtā piedāvājuma izvērtēšanai atbilstoši konkursa nolikumā noteiktajām prasībām, iepirkuma procesa administrēšanai, uzvarētāja noteikšanai un lēmuma pieņemšanai, informācijas sniegšanai pretendentiem un trešajām personām (ja attiecas) par iepirkuma procedūras rezultātiem. Pasūtītājs atbilstoši Vispārīgās datu aizsardzības regulas 13. panta nosacījumiem informē par šādiem datu apstrādes apstākļiem:\nPārziņa datu aizsardzības speciālists: eksperts drošības jomā Ilze Šulte (e-pasts: datudrosiba@siva.gov.lv);\npersonas datu apstrādes tiesiskais pamats ir nepieciešamo darbību veikšana, lai noslēgtu iepirkuma līgumu un normatīvajos aktos, kas reglamentē iepirkuma procedūra organizēšanas kārtību, noteikto pienākumu izpilde;\npersonas datu apstrādes ietvaros tiks apstrādāti šādi dati: vārds, uzvārds, personas kods, kontaktinformācija (e-pasts, telefona numurs), datu subjekta sniegtā cita informācija, izpildot iepirkuma procedūras dokumentos noteiktās prasības. Pasūtītājs apstrādā personas datus tikai tādā apjomā, kāds ir noteikts iepirkuma procedūras dokumentos;\npersonas datu saņēmēju kategorijas: pasūtītāja pilnvarotie darbinieki iepirkuma procesa organizēšanas un lēmuma pieņemšanas nolūkos; Iepirkumu uzraudzības birojs Publisko iepirkumu likumā noteikto pienākumu izpildei; tiesas sūdzības par pieņemtā lēmuma saņemšanas gadījumā; Datu valsts inspekcija sūdzības gadījumā par iespējamo datu aizsardzības prasību pārkāpumu; tiesībaizsardzības iestādes normatīvajos aktos noteiktajos gadījumos;\npersonas datu ieguves avoti: atklātā konkursa pretendents un citas trešās personas, ja vien šādu datu ieguvi paredz normatīvie akti;\nautomatizēta lēmuma pieņemšana un personas datu nodošana trešājām valstīm vai starptautiskai organizācijai iepirkuma organizēšanas ietvaros nav paredzēta. \ndatu subjektam ir tiesības pieprasīt no pārziņa piekļuvi saviem personas datiem un to labošanu vai dzēšanu, vai apstrādes ierobežošanu attiecībā uz datu subjektu, kā arī tiesības iesniegt sūdzību uzraudzības iestādei;\nPasūtītājs piedāvājumu un iepirkuma procedūras dokumentus glabā 10 (desmit) gadus pēc iepirkuma līguma noslēgšanas."
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_mikroautobuss_2024_3_ANM_06.08.2024..docx",
+      "rows": [
+        [
+          "Iepirkuma priekšmeta apraksts:"
+        ],
+        [
+          "Jauna specializēta transportlīdzekļa (turpmāk - Prece) piegāde SIVA darbības nodrošināšanai, atbilstoši Tehniskā specifikācijā/Tehniskā piedāvājumā (pēc formas – nolikuma 2.pielikums) un Finanšu piedāvājumā (pēc formas – nolikuma 3.pielikums) noteiktajām prasībām. Prece konstruēta vai pārveidota (pielāgota) tā, lai viens ratiņkrēslā sēdošs cilvēks tajā varētu iekļūt ar pacēlāju un tikt droši pārvadāts pa ceļiem.\nUz sociālās palīdzības dienestu transportlīdzekļiem, Preci, nav attiecināms Publisko iepirkumu likuma 54. pantā noteiktais."
+        ],
+        [
+          "Garantija"
+        ],
+        [
+          "Pretendentam jānodrošina piegādātajai Precei garantiju atbilstoši tehniskajā specifikācijā noteiktajam."
+        ],
+        [
+          "Līgumcenas noteikšanas nosacījumi"
+        ],
+        [
+          "Preces cenā ir ietvertas visas izmaksas, kas saistītas ar pasūtītāja izstrādātajai tehniskajai specifikācijai atbilstošas preces izgatavošanu, piegādi, garantiju, kā arī ar līguma saistību izpildi, ņemot vērā iepirkuma līguma projektā noteiktos izpildītāja pienākumus, tajā skaitā arī nodokļi un nodevas, izņemot pievienotās vērtības nodokli.\nPretendents, nosakot līgumcenu, ņem vērā un iekļauj līgumcenā visus iespējamos sadārdzinājumus un citas cenu izmaiņas:\nTransportlīdzekļa cenu (nolikuma 3.pielikums, Finanšu piedāvājuma 5.aile), euro\nTransportlīdzekļa tehniskās apkopes izmaksas garantijas laikā (nolikuma 3.pielikums, Finanšu piedāvājuma 6.aile), euro ."
+        ],
+        [
+          "Tehniskā specifikācija aktualizēta 2024.gada 2.aprīlī."
+        ],
+        [
+          "Ekvivalenti"
+        ],
+        [
+          "Ja tehniskajās specifikācijās ir norādīta konkrēta ražotāja produkcija, pretendents drīkst piedāvāt tās ekvivalentu. Ja pretendents piedāvā ekvivalentu produkciju, tad pretendents Tehniskai specifikācijai/Tehniskam piedāvājumam pievieno informāciju par ekvivalenta ražotāju un marku un pievieno piedāvājumam dokumentus, kas sniedz pietiekamu informāciju par piedāvāto produktu. Informācijā obligāti ir jānorāda, kurām tehniskās specifikācijas pozīcijām tiek piedāvāts katrs ekvivalents. Pretendents savā piedāvājumā ar ražotāja dokumentāciju vai kompetentas institūcijas izsniegtu apliecinājumu par pārbaudes rezultātiem pierāda, ka piedāvājums ir ekvivalents un apmierina pasūtītāja prasības, kas izteiktas tehniskajās specifikācijās."
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_mikroautobuss_2024_3_ANM_06.08.2024..docx",
+      "rows": [
+        [
+          "Prasība:",
+          "Iesniedzamais dokuments:"
+        ],
+        [
+          "Pretendents ir piegādātājs, kurš ir iesniedzis piedāvājumu. Piegādātājs var būt fiziskā vai juridiskā persona vai pasūtītājs, šādu personu apvienība jebkurā to kombinācijā, kas attiecīgi piedāvā tirgū piegādāt preces vai sniegt pakalpojumus.",
+          "a) Pieteikums dalībai atklātā konkursā (pēc formas – nolikuma 1.pielikums);\nb) Piedāvājuma nodrošinājums, kas atbilst nolikuma 9.pielikumā “Piedāvājuma nodrošinājuma noteikumi” ietvertajiem noteikumiem;\nc) Apliecinājums par neatkarīgi izstrādātu piedāvājumu (pēc formas – nolikuma 4.pielikums)."
+        ],
+        [
+          "Piegādātājs var balstīties uz citu personu saimnieciskajām un finansiālajām iespējām, ja tas ir nepieciešams konkrētā iepirkuma līguma izpildei, neatkarīgi no savstarpējo attiecību tiesiskā rakstura.\nŠajā gadījumā piegādātājs un persona, uz kuras saimnieciskajām un finansiālajām iespējām tas balstās, ir solidāri atbildīgi par iepirkuma līguma izpildi.",
+          "a) Pretendents pierāda Komisijai, ka viņa rīcībā būs nepieciešamie resursi, iesniedzot, piemēram, šo personu apliecinājumu vai vienošanos par sadarbību konkrētā iepirkuma līguma izpildē.\nb) Pretendenta un personas, uz kuras saimnieciskajām un finansiālajām iespējām pretendents balstās, savstarpēji parakstīts apliecinājums vai noslēgta vienošanās, kurā  norādīts, ka persona, uz kuras saimnieciskajām un finansiālajām iespējām pretendents balstās, uzņemas solidāro atbildību par iepirkuma līguma izpildi, kā arī norādīts, kādā veidā un/vai formā šī persona ir paredzējusi uzņemties solidāro atbildību par iepirkuma līguma izpildi."
+        ],
+        [
+          "Piegādātājs var balstīties uz citu personu tehniskajām un profesionālajām iespējām, ja tas ir nepieciešams konkrētā iepirkuma līguma izpildei, neatkarīgi no savstarpējo attiecību tiesiskā rakstura. \nPiegādātājs, lai apliecinātu profesionālo pieredzi vai pasūtītāja prasībām atbilstoša personāla pieejamību, var balstīties uz citu personu iespējām tikai tad, ja šīs personas sniegs pakalpojumus, kuru izpildei attiecīgās spējas ir nepieciešamas.",
+          "Pretendents pierāda Komisijai, ka tā rīcībā būs nepieciešamie resursi, iesniedzot šo personu apliecinājumu vai vienošanos par nepieciešamo resursu nodošanu piegādātāja rīcībā, norādot, kādi resursi pretendenta rīcībā tiks nodoti."
+        ],
+        [
+          "Ja piedāvājumu iesniedz piegādātāju apvienība, piedāvājuma dokumentus paraksta atbilstoši piegādātāju savstarpējās vienošanās nosacījumiem.",
+          "Piedāvājumam pievieno visu apvienības dalībnieku parakstītu vienošanos par kopīga piedāvājuma iesniegšanu. Vienošanās dokumentā jānorāda katra apvienības dalībnieka līguma daļa, atbildības sadalījums starp apvienības dalībniekiem, tiesības un pienākumi iesniedzot piedāvājumu, kā arī attiecībā uz iespējamo iepirkuma līguma slēgšanu."
+        ],
+        [
+          "Pretendentam jāiesniedz dokumenti par katru apvienības dalībnieku. Uz katru apvienības dalībnieku attiecas nolikuma 3.6.punkts, 3.7.punkts un 3.8.punkts, bet pārējos nolikuma punktos izvirzītās prasības jāizpilda piegādātāju apvienībai kopumā, ņemot vērā tās pienākumus iespējamā iepirkuma līguma izpildē.",
+          "Piedāvājumam pievieno visu apvienības dalībnieku parakstītu vienošanos par kopīga piedāvājuma iesniegšanu. Vienošanās dokumentā jānorāda katra apvienības dalībnieka līguma daļa, atbildības sadalījums starp apvienības dalībniekiem, tiesības un pienākumi iesniedzot piedāvājumu, kā arī attiecībā uz iespējamo iepirkuma līguma slēgšanu."
+        ],
+        [
+          "Pretendentu, kuram būtu piešķiramas iepirkuma līguma slēgšanas tiesības, izslēdz no dalības iepirkuma procedūrā, ja uz to attiecināms kāds no PIL 42.panta otrās daļas 1., 2., 3., 4., 5., 6., 7., 10., 11., 12., 13., 14. punktā noteiktajiem izslēgšanas iemesliem.\nPasūtītājs pārbaudi veiks attiecībā uz PIL 42. panta trešajā daļā minētajām personām.",
+          "Komisija pretendentu izslēgšanas gadījumus pārbauda Publisko iepirkumu likuma 42.pantā noteiktajā kārtībā.\nJa Komisija konstatē, ka pretendents būtu izslēdzams no dalības iepirkuma procedūrā, pamatojoties uz šajā punktā norādītajiem iemesliem, tas (atbilstoši attiecīgajam izslēgšanas gadījuma veidam) rīkojas saskaņā ar PIL 42. pantā un/vai 43.pantā noteikto."
+        ],
+        [
+          "Pretendentu, kuram būtu piešķiramas  iepirkuma līguma slēgšanas tiesības, izslēdz no turpmākās dalības iepirkuma procedūrā, ja uz pretendentu ir attiecināmi Starptautisko un Latvijas Republikas nacionālo sankciju likuma 11.1 pantā noteiktie izslēgšanas gadījumi.",
+          "Pretendentu izslēgšanas gadījumi tiks pārbaudīti Starptautisko un Latvijas Republikas nacionālo sankciju likuma 11.1 pantā noteiktajā kārtībā."
+        ],
+        [
+          "Pretendents ir reģistrēts, licencēts un/vai sertificēts atbilstoši attiecīgās valsts normatīvo aktu prasībām, tiesīgs veikt Pasūtītājam nepieciešamās piegādes.",
+          "Komisija pārliecinās par pretendenta reģistrācijas faktu, piemēram, Uzņēmumu reģistra tīmekļvietnē https://www.ur.gov.lv/lv/, Latvijas Republikas Valsts ieņēmumu dienesta Nodokļu maksātāju reģistrā ( turpmāk-VID) kā saimnieciskās darbības veicēji.\nb) Ārvalstī reģistrētam pretendentam, kas nav reģistrēts Uzņēmumu reģistrā vai VID, reģistrācija ir jāapliecina atbilstoši attiecīgās valsts nosacījumiem (piemēram, norādot publiski pieejamu reģistru, kur pasūtītājs varētu pārliecināties par pretendenta reģistrācijas faktu)."
+        ],
+        [
+          "Pretendents ir ražotājs vai tam ir iepirkuma līguma izpildei nepieciešamās tiesības pārdot konkrētā ražotāja produkciju un uzņemties garantijas saistības.",
+          "Dokuments, kas apliecina Pretendenta tiesības pārdot konkrētā ražotāja produkciju un uzņemties garantijas saistības.\nPiedāvātā transporta līdzekļa ražotāja vai oficiālā izplatītāja autorizēta autoservisa, kas ir norādīts Pretendenta  tehniskajā piedāvājumā, izsniegts apliecinājums par to, ka tas līguma slēgšanas tiesību piešķiršanas gadījumā uzņemas nodrošināt garantijas apkalpošanu un remontu transporta līdzekļa garantijas termiņā."
+        ],
+        [
+          "Pretendentam iepriekšējo 3 (trīs) gadu laikā (2021., 2022., 2023.gadā un 2024.gadā līdz piedāvājumu iesniegšanas termiņa beigām) ir pieredze vismaz 1(viena) līdzīga līguma izpildē. \n\nPar līdzīgu līgumu šī iepirkuma ietvaros tiks atzīts līgums par jauna transportlīdzekļa (M1 kategorijas, ka ir specializēti aprīkots) piegādi un garantijas apkalpošanu.",
+          "a) Informācija par iepriekšējo pieredzi (pēc formas – nolikuma 5.pielikums).\nb) Par pretendenta pieredzes līgumu pievieno attiecīgā līguma pasūtītāja atsauksmi vai jebkuru citu dokumentu, kas apliecina uzrādīto pieredzi (piemēram, piegādes dokumenti, pieņemšanas – nodošanas akti vai citi dokumenti, no kuriem nepārprotami secināms, ka Pretendents ir veicis piegādi)."
+        ],
+        [
+          "Pretendenta piesaistītajiem apakšuzņēmējiem ir visi nepieciešamie sertifikāti, licences un atļaujas norādīto darba daļu veikšanai.",
+          "a) Norāda informāciju formā “Pieteikums dalībai atklātā konkursā” (pēc formas – nolikuma 1.pielikums).\nb) Piedāvājumam pievieno vienošanos ar katru apakšuzņēmēju par konkrētu darbu izpildi vai apakšuzņēmēja apliecinājumu par dalību līguma izpildē konkrētā pozīcijā, norādot veicamos darbus, ja līgums tiktu piešķirts pretendentam (ja attiecas)."
+        ],
+        [
+          "Pretendents ir iesniedzis tehnisko piedāvājumu konkursam.",
+          "a) Tehniskā specifikācija/ Tehniskais piedāvājums (pēc formas – nolikuma 2.pielikums).\nb) piedāvātā transportlīdzekļa plānoto pārbaužu un tehnisko apkopju plāns, kurā ir norādīti tehnisko apkopju intervāli (km), apkopju materiāli un to cenas, apkopju palīgmateriāli un to cenas, maināmās rezerves daļas un to cenas, apkopju vai detaļu maiņas ilgums darba stundās un darba stundas izmaksas, ņemot vērā paredzamo nobraukumu 100 000 km trīs gadu garantijas periodā, ar intervālu 20 000 km;\nc) piedāvātā transportlīdzekļa \tražotāja garantijas nosacījumi (uz kādiem agregātiem attiecas garantija, šīs garantijas termiņš un kādos gadījumos šī garantija zaudē spēku), ņemot vērā  Tehniskā specifikācija/ Tehniskais piedāvājums (pēc formas – nolikuma 2.pielikums) norādīto."
+        ],
+        [
+          "Pretendents ir iesniedzis finanšu piedāvājumu konkursam.",
+          "Finanšu piedāvājums (pēc formas – nolikuma 3.pielikums)."
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_mikroautobuss_2024_3_ANM_06.08.2024..docx",
+      "rows": [
+        [
+          "Pamatojoties uz Publisko iepirkumu likuma 51.pantu, Komisija piešķir līguma slēgšanas tiesības saimnieciski visizdevīgākajam piedāvājumam, kuru nosaka, ņemot vērā cenu un ar iepirkuma līguma priekšmetu saistītus izmaksu kritērijus, atbilstoši nolikuma 10.pielikumā noteiktajiem izvēles kritērijiem un kārtībai."
+        ],
+        [
+          "Komisija izvēlas saimnieciski visizdevīgāko piedāvājumu, kas atbilst nolikuma un tā pielikumu prasībām, nav atzīts par nepamatoti lētu."
+        ],
+        [
+          "Gadījumā, ja divu vai vairāku Pretendentu novērtējums, pamatojoties uz atbilstoši nolikuma 10. pielikumā “Vērtēšanas kritēriji un kārtība” noteiktajiem izvēles kritērijiem un kārtībai, ir vienāds, izšķirošais vērtēšanas kritērijs ir Finanšu piedāvājuma 5.kolonnā norādītā zemākā transportlīdzekļa cena (izšķirošais piedāvājuma izvēles kritērijs)."
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_mikroautobuss_2024_3_ANM_06.08.2024..docx",
+      "rows": [
+        [
+          "1.pielikums",
+          "Pieteikums dalībai atklātā konkursā",
+          "VEIDNE"
+        ],
+        [
+          "2.pielikums",
+          "Tehniskā specifikācija/Tehniskais piedāvājums",
+          "VEIDNE"
+        ],
+        [
+          "3.pielikums",
+          "Finanšu piedāvājums",
+          "VEIDNE"
+        ],
+        [
+          "4.pielikums",
+          "Apliecinājums par neatkarīgi izstrādātu piedāvājumu",
+          ""
+        ],
+        [
+          "5.pielikums",
+          "Informācija par iepriekšējo pieredzi",
+          "VEIDNE"
+        ],
+        [
+          "6.pielikums",
+          "Iepirkuma līguma projekts",
+          "VEIDNE"
+        ],
+        [
+          "7.pielikums",
+          "Prasības piedāvājuma noformēšanai un iesniegšanai",
+          ""
+        ],
+        [
+          "8.pielikums",
+          "Vērtēšanas nosacījumi",
+          ""
+        ],
+        [
+          "9.pielikums",
+          "Piedāvājuma nodrošinājuma noteikumi",
+          "VEIDNE"
+        ],
+        [
+          "10.pielikums",
+          "Vērtēšanas kritēriji un kārtība",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_mikroautobuss_2024_3_ANM_06.08.2024..docx",
+      "rows": [
+        [
+          "Piedāvājums jāiesniedz elektroniski Elektronisko iepirkumu sistēmas e-konkursu apakšsistēmā, ievērojot šādas Pretendenta izvēles iespējas:\nizmantojot Elektronisko iepirkumu sistēmas e-konkursu apakšsistēmas piedāvātos rīkus, aizpildot minētās sistēmas e-konkursu apakšsistēmā šā iepirkuma sadaļā ievietotās formas;\nelektroniski aizpildāmos dokumentus elektroniski sagatavojot ārpus Elektronisko iepirkumu sistēmas e-konkursu apakšsistēmas un augšupielādējot sistēmas attiecīgajās vietnēs aizpildītas formas, t.sk. ar formā integrētajiem failiem (šādā gadījumā pretendents ir atbildīgs par aizpildāmo formu atbilstību dokumentācijas prasībām un formu paraugiem);\nelektroniski sagatavoto piedāvājumu šifrējot ārpus e-konkursu apakšsistēmas ar trešās personas piedāvātiem datu aizsardzības rīkiem un aizsargājot ar elektronisku atslēgu un paroli (šādā gadījumā Pretendents ir atbildīgs par aizpildāmo formu atbilstību dokumentācijas prasībām un formu paraugiem, kā arī dokumenta atvēršanas un nolasīšanas iespējām)."
+        ],
+        [
+          "Sagatavojot piedāvājumu, Pretendents ievēro, ka:\nPiedāvājuma dokumenti jāaizpilda elektroniskā dokumentā ar Microsoft Office 2010 (vai vēlākas programmatūras versijas) rīkiem lasāmā formātā;\nFinanšu piedāvājuma forma (nolikuma 3.pielikums) jāaizpilda pilnībā, nemainot Pasūtītāja noteikto secību un pozīciju skaitu; \nPiedāvājumā cena jānorāda euro, noapaļojot ar 2 (divām) decimālzīmēm aiz komata;\nDokumentus paraksta pretendenta paraksttiesīga amatpersona vai pilnvarota persona. Ja dokumentus paraksta pilnvarotā persona, piedāvājumam pievieno attiecīgās pilnvaras apliecinātu kopiju;\nDokumentus Pretendents pēc saviem ieskatiem ir tiesīgs iesniegt elektroniskā formā, gan parakstot ar Elektronisko iepirkumu sistēmas piedāvāto elektronisko parakstu, gan parakstot ar drošu elektronisko parakstu."
+        ],
+        [
+          "Pretendents drīkst iesniegt tikai vienu piedāvājuma variantu. Ja pretendents iesniegs vairākus piedāvājuma variantus, tie visi tiks atzīti par nederīgiem."
+        ],
+        [
+          "Pretendentam jāiesniedz dokumenti, kas aizpildīti atbilstoši nolikumam klāt pievienoto veidlapu formai."
+        ],
+        [
+          "Pretendentam piedāvājums jāiesniedz latviešu valodā. Ja piedāvājumā iekļaujamā informācija ir citā valodā, pretendents pievieno tulkojumu latviešu valodā, kas sagatavots atbilstoši normatīvajiem aktiem par kārtību, kādā apliecināmi dokumentu tulkojumi valsts valodā."
+        ],
+        [
+          "Pretendents ir tiesīgs visu piedāvājumā iesniegto dokumentu atvasinājumu un tulkojumu pareizību apliecināt ar vienu apliecinājumu. Ja pasūtītājam radīsies šaubas par iesniegtās dokumenta kopijas autentiskumu, tas pieprasīs, lai pretendents uzrāda dokumenta oriģinālu vai iesniedz apliecinātu dokumenta kopiju (Dokuments iesniedzams e-konkursu apakšsistēmas sadaļā “Citas prasības”)."
+        ],
+        [
+          "Piedāvājumā norāda, vai attiecībā uz piedāvājuma priekšmetu vai atsevišķām tā daļām nepieciešams ievērot komercnoslēpumu. Ja piedāvājums vai kāda tā daļa satur komercnoslēpumu, pretendents norāda, kura informācija ir komercnoslēpums un kāds ir šāda statusa tiesiskais pamats. Piegādātājs nevar prasīt ievērot komercnoslēpumu uz tādu informāciju, kas ir vispārpieejama saskaņā ar normatīvajiem aktiem."
+        ],
+        [
+          "Pretendents pirms piedāvājumu iesniegšanas termiņa beigām var grozīt vai atsaukt iesniegto piedāvājumu."
+        ],
+        [
+          "Komisija pieņem Eiropas vienoto iepirkuma procedūras dokumentu kā sākotnējo pierādījumu atbilstībai iepirkuma procedūras dokumentos noteiktajām pretendentu atlases prasībām (EVIPD  aizpilda II daļu “Informācija par ekonomikas dalībnieku”, III daļu “Izslēgšanas iemesli” , IV daļu “Atlases kritēriji” un VI daļa “Noslēguma apliecinājumi”). Pretendents ir tiesīgs iesniegt Eiropas vienoto iepirkuma procedūras dokumentu (turpmāk – EVIPD) (EVIPD veidlapu paraugus nosaka Eiropas Komisijas 2016. gada 5. janvāra Īstenošanas regula 2016/7, ar ko nosaka standarta veidlapu Eiropas vienotajam iepirkuma procedūras dokumentam). Ja Pretendents izvēlējies iesniegt EVIPD, lai apliecinātu, ka tas atbilst iepirkuma procedūras dokumentos noteiktajām Pretendentu atlases prasībām, tas iesniedz šo dokumentu arī par katru personu, uz kuras iespējām Pretendents balstās, lai apliecinātu, ka tā kvalifikācija atbilst iepirkuma procedūras dokumentos noteiktajām prasībām, un par tā norādīto apakšuzņēmēju, kuram nodoto pakalpojumu vērtība ir vismaz 10 000 euro, bez PVN. Piegādātāju apvienība iesniedz atsevišķu EVIPD par katru tās dalībnieku. Pasūtītājam jebkurā iepirkuma procedūras stadijā ir tiesības prasīt, lai Pretendents iesniedz visus dokumentus vai daļu no tiem, kas apliecina tā atbilstību iepirkuma procedūras dokumentos noteiktajām Pretendentu atlases prasībām. EVIPD pieejams Elektronisko iepirkumu sistēmā: http://espd.eis.gov.lv. EVIPD ir jānorāda arī, vai Pretendents, persona, uz kuras iespējām Pretendents balstās, lai apliecinātu, ka tā kvalifikācija atbilst iepirkuma procedūras dokumentos noteiktajām prasībām, un katrs tā norādītais apakšuzņēmējs, atbilst Publisko iepirkumu likuma 42.panta otrās daļas 1., 2., 3., 4., 5., 6., 7., 10., 11., 12., 13., 14. punktā minētajiem pretendentu izslēgšanas nosacījumiem."
+        ],
+        [
+          "Tiek uzskatīts, ka pretendenti, iesniedzot savus piedāvājumus, apliecina, ka ir iepazinušies un piekrīt nolikuma un tā pielikumu, tajā skaitā iepirkuma līguma projekta, nosacījumiem, kā arī ir iepazinušies ar visiem spēkā esošiem normatīvajiem aktiem, kas jebkādā veidā var ietekmēt vai var attiekties uz līgumā noteiktajām vai ar to saistītajām darbībām."
+        ],
+        [
+          "Iesniedzot piedāvājumu, Pretendents pilnībā atzīst visus Nolikumā (t.sk. tā pielikumos un formās, kuras ir ievietotas Elektronisko iepirkumu sistēmā e-konkursu apakšsistēmas šā iepirkuma sadaļā) ietvertos nosacījumus."
+        ],
+        [
+          "Piedāvājums jāsagatavo tā, lai nekādā veidā netiktu apdraudēta Elektronisko iepirkumu sistēmas e-konkursu apakšsistēmas darbība un nebūtu ierobežota piekļuve piedāvājumā ietvertajai informācijai, tostarp piedāvājums nedrīkst saturēt datorvīrusus un citas kaitīgas programmatūras vai to ģeneratorus. Ja piedāvājums saturēs kādu no šajā punktā minētajiem riskiem, tas netiks izskatīts."
+        ],
+        [
+          "Ja pretendents piedāvājuma datu aizsardzībai izmantojis piedāvājuma šifrēšanu, pretendentam, ne vēlāk ka 15 (piecpadsmit) minūtes pēc piedāvājumu iesniegšanas termiņa beigām Komisijai jāiesniedz derīga elektroniskā atslēga ar paroli šifrētā dokumenta atvēršanai."
+        ],
+        [
+          "Piegādātāju apvienība, attiecībā uz kuru pieņemts lēmums slēgt līgumu, pēc savas izvēles izveidojas atbilstoši noteiktam juridiskam statusam vai noslēdz sabiedrības līgumu, vienojoties par apvienības dalībnieku atbildības sadalījumu, ja tas nepieciešams iepirkuma līguma noteikumu sekmīgai izpildei."
+        ],
+        [
+          "Saskaņā ar Publisko iepirkumu likuma 60.panta desmito daļu, pasūtītājs publicēs noslēgtā iepirkuma līguma tekstu Pasūtīja pircēja profilā Elektronisko iepirkumu sistēmā."
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_mikroautobuss_2024_3_ANM_06.08.2024..docx",
+      "rows": [
+        [
+          "Iepirkuma procedūru veic ar  Sociālās integrācijas valsts aģentūras direktores 2024.gada 26.janvāra rīkojumu Nr.1-4/14 par iepirkumu komisijas izveidošanu, izveidotā Iepirkumu komisija,  (Nolikumā arī – Komisija)."
+        ],
+        [
+          "Piedāvājumu noformējuma pārbaudi, pretendentu atlasi un piedāvājumu vērtēšanu Komisija veic slēgtā sēdē."
+        ],
+        [
+          "Komisija, pamatojoties uz Ministru kabineta 2017.gada 28.februāra noteikumu Nr.107 “Iepirkuma procedūru un metu konkursu norises kārtība” 16.punktu, pretendentu kvalifikācijas atbilstības pārbaudi veiks tikai tam pretendentam, kuram būtu piešķiramas iespējamas iepirkuma līguma slēgšanas tiesības. Komisija piedāvājumu vērtēšanu veic šādā secībā:\npārbauda vai nav konstatējamas aritmētiskās kļūdas visu pretendentu piedāvājumos. Ja Komisija konstatē aritmētiskās kļūdas, tad rīkojas atbilstoši Publisko iepirkumu likuma 41. panta devītajai daļai;\npārliecinās par visu pretendentu tehnisko piedāvājumu vispārīgu atbilstību nolikumā noteiktajām prasībām;\nņemot vērā konkursa nolikumā noteiktos piedāvājumu izvēles kritērijus, pārbauda visu pretendentu piedāvājumus atbilstoši kritēriju vērtēšanas nosacījumiem.\nkonstatē, kuram pretendentam, atbilstoši noteiktajiem piedāvājuma izvēles kritērijiem un kārtībai, būtu piešķiramas iespējamas līguma slēgšanas tiesības. Sekojoši šim pretendentam veic:\nparaksttiesību pārbaudi,\niesniegtā piedāvājuma atbilstības noformējuma prasībām pārbaudi, \niesniegtā piedāvājuma atbilstību nolikumā noteiktajām pretendentu atlases prasībām,\niesniegtā tehniskā un finanšu piedāvājuma atbilstību;\nja Komisijai piedāvājums šķiet nepamatoti lēts, tad rīkojas atbilstoši Publisko iepirkumu likuma 53. pantā noteiktajai kārtībai."
+        ],
+        [
+          "Piedāvājumu noformējuma pārbaudes, pretendentu atlases un piedāvājumu vērtēšanas laikā Komisija nodrošina piedāvājumu glabāšanu tā, lai tiem nevarētu piekļūt personas, kas nav iesaistītas piedāvājuma noformējuma pārbaudē, pretendentu atlasē un piedāvājumu vērtēšanā."
+        ],
+        [
+          "Ja Komisijai rodas šaubas par iesniegtās dokumenta kopijas autentiskumu, tā pieprasa, lai pretendents uzrāda dokumenta oriģinālu vai iesniedz apliecinātu dokumenta kopiju."
+        ],
+        [
+          "Piedāvājumu vērtēšanas gaitā Komisija ir tiesīga pieprasīt, lai tiek izskaidrota piedāvājumā iekļautā informācija."
+        ],
+        [
+          "Ja Komisija pieprasa, lai pretendents precizē iesniegto informāciju, tā nosaka termiņu, līdz kuram pretendentam jāsniedz atbilde."
+        ],
+        [
+          "Ja pretendents neiesniedz komisijas pieprasītās ziņas vai paskaidrojumus, Komisija piedāvājumu vērtē pēc tiem dokumentiem, kas ir iekļauti piedāvājumā."
+        ],
+        [
+          "Piedāvājuma noformējuma pārbaudei, pretendentu atlasei, kā arī piedāvājumu vērtēšanai un salīdzināšanai Komisija var pieaicināt ekspertu."
+        ],
+        [
+          "Eksperts nesniedz atzinumu, ja ir ieinteresēts konkrēta pretendenta izvēlē vai darbībā. Pirms darbības sākšanas eksperts paraksta apliecinājumu, ka nav tādu apstākļu, kuru dēļ viņš varētu būt ieinteresēts konkrēta pretendenta izvēlē vai darbībā. Šo apliecinājumu eksperts pievieno atzinumam."
+        ],
+        [
+          "Ekspertam ir tiesības iepazīties ar piedāvājumiem, kā arī lūgt Komisiju pieprasīt no pretendenta papildu informāciju, kas ir nepieciešama atzinuma sagatavošanai."
+        ],
+        [
+          "Eksperts piedāvājumā ietverto un pretendenta papildus sniegto informāciju drīkst izmantot tikai sava atzinuma sniegšanai."
+        ],
+        [
+          "Vērtējot piedāvājumus, Komisija ir tiesīga ņemt vērā un vērtēt pretendenta un/vai speciālistu pieredzi, kas nav norādīta pretendenta piedāvājumā, bet ir iegūta pie pasūtītāja, ja tā ir atbilstoša iepirkuma nolikumā izvirzītajām prasībām."
+        ],
+        [
+          "Ja Komisija konstatē, ka pretendents neatbilst nolikumā izvirzītajām kvalifikācijas prasībām vai pretendenta tehniskais un/vai finanšu piedāvājums neatbilst nolikumā izvirzītajā prasībām Komisijai ir tiesības noraidīt pretendentu vai pretendenta piedāvājumu un neizskatīt to nākamajā izvērtēšanas posmā."
+        ],
+        [
+          "Triju darba dienu laikā pēc lēmuma pieņemšanas Komisija informē visus Pretendentus par pieņemto lēmumu, nosūtot uz Pretendenta e-adresi. Ja pretendentam nav e-adreses, informācija par rezultātiem tiks nosūtīta uz pieteikumā norādīto elektroniskā pasta adresi."
+        ]
+      ]
+    },
+    {
+      "source": "125290_PD.ANY_1_4_1_20240807111349.pdf",
+      "rows": [
+        [
+          "N.p.k.",
+          "Prasības",
+          "Ievadlauks",
+          "Dokumenti"
+        ],
+        [
+          "1.",
+          "Pieteikums\nPieteikums dalībai atklātā konkursā (pēc formas – nolikuma 1.pielikums)\nPielikumi: Pielikums: 1.pielikums Pieteikums (2024-3-1.pielikums_Pieteikums\ndalībai.docx)",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Viena datne, Jebkura\ndatne"
+        ],
+        [
+          "2.",
+          "Piedāvājuma nodrošinājums\n1.11.1.Piedāvājuma nodrošinājums ir noteikts EUR 2000,00 (divi tūkstoši euro)\napmērā un minimālais termiņš 6 (seši) mēneši no piedāvājuma atvēršanas dienas.\n1.11.2.Piedāvājuma nodrošinājums ir noteiktās naudas summas iemaksa pasūtītāja\nnorādītajā kontā, bankas garantija vai apdrošināšana par noteikto naudas summu,\nkuru pretendents kopā ar piedāvājumu iesniedz kā nodrošinājumu piedāvājuma\nspēkā esamībai.\n1.11.3.Piedāvājuma nodrošinājums atbilst nolikuma 9.pielikumā (Piedāvājuma\nnodrošinājuma noteikumi) ietvertajiem noteikumiem.",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ],
+        [
+          "3.",
+          "Apliecinājums\nApliecinājums par neatkarīgi izstrādātu piedāvājumu (pēc formas – nolikuma\n4.pielikums).\nPielikumi: Pielikumi: 4.pielikums Apliecinājums par neatkarīgi izstrādātu\npiedāvājumu (2024-3-4.pielikums_Apliecinājums par neatkarīgi izstrādātu\npiedāvājumu.docx)",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ],
+        [
+          "4.",
+          "Informācija par iepriekšējo pieredzi\n3.1.Pretendents ir ražotājs vai tam ir iepirkuma līguma izpildei nepieciešamās\ntiesības pārdot konkrētā ražotāja produkciju un uzņemties garantijas saistības.\n3.2.Pretendentam iepriekšējo 3 (trīs) gadu laikā (2021., 2022., 2023.gadā un\n2024.gadā līdz piedāvājumu iesniegšanas termiņa beigām) ir pieredze vismaz\n1(viena) līdzīga līguma izpildē.\nPar līdzīgu līgumu šī iepirkuma ietvaros tiks atzīts līgums par jauna transportlīdzekļa\n(M1 kategorijas, ka ir specializēti aprīkots) piegādi un garantijas apkalpošanu.\nPielikumi: Pielikumi: 5.pielikums Informācija par iepriekšējo pieredzi (2024-3-\n5.pielikums_Informācija par iepriekšējo pieredzi.docx)",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ]
+      ]
+    },
+    {
+      "source": "125290_PD.ANY_1_4_1_20240807111349.pdf",
+      "rows": [
+        [
+          "5.",
+          "Pieredzi apliecinoši dokumenti\n3.10. b) Par pretendenta pieredzes līgumu pievieno attiecīgā līguma pasūtītāja\natsauksmi vai jebkuru citu dokumentu, kas apliecina uzrādīto pieredzi (piemēram,\npiegādes dokumenti, pieņemšanas – nodošanas akti vai citi dokumenti, no kuriem\nnepārprotami secināms, ka Pretendents ir veicis piegādi).",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ],
+        [
+          "6.",
+          "Ražotāja vai tiesības pārdot ražotāja produkciju\n3.9.Pretendents ir ražotājs vai tam ir iepirkuma līguma izpildei nepieciešamās\ntiesības pārdot konkrētā ražotāja produkciju un uzņemties garantijas saistības.",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ]
+      ]
+    },
+    {
+      "source": "125290_PD.ANY_1_4_1_20240807111349.pdf",
+      "rows": [
+        [
+          "N.p.k.",
+          "Prasības",
+          "Ievadlauks",
+          "Dokumenti"
+        ],
+        [
+          "1.",
+          "Tehniskā specifikācija/Tehniskais piedāvājums\n3.12.Pretendents ir iesniedzis tehnisko piedāvājumu konkursam.\na) Tehniskā specifikācija/ Tehniskais piedāvājums (pēc formas – nolikuma\n2.pielikums).\nb) piedāvātā transportlīdzekļa plānoto pārbaužu un tehnisko apkopju plāns, kurā ir\nnorādīti tehnisko apkopju intervāli (km), apkopju materiāli un to cenas, apkopju\npalīgmateriāli un to cenas, maināmās rezerves daļas un to cenas, apkopju vai\ndetaļu maiņas ilgums darba stundās un darba stundas izmaksas, ņemot vērā\nparedzamo nobraukumu 100 000 km trīs gadu garantijas periodā, ar intervālu 20\n000 km;\nc) piedāvātā transportlīdzekļa ražotāja garantijas nosacījumi (uz kādiem agregātiem\nattiecas garantija, šīs garantijas termiņš un kādos gadījumos šī garantija zaudē\nspēku), ņemot vērā Tehniskā specifikācija/ Tehniskais piedāvājums (pēc formas –\nnolikuma 2.pielikums) norādīto.\nPielikumi: Pielikumi: 2.pielikums Tehniskā specifikācija/Tehniskais piedāvājums\n(2024-3-2.pielikums-Tehniskā specifikācija-Tehniskais\npiedāvājums_06.08.2024..docx)\nPēdējie grozījumi: 07.08.2024",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ]
+      ]
+    },
+    {
+      "source": "125290_PD.ANY_1_4_1_20240807111349.pdf",
+      "rows": [
+        [
+          "N.p.k.",
+          "Prasības",
+          "Ievadlauks",
+          "Dokumenti"
+        ],
+        [
+          "1.",
+          "Cena EUR bez PVN",
+          "Valūta (obligāts, no 0.00 (neieskaitot) EUR)",
+          "Dokumenta ievade nav paredzēta."
+        ],
+        [
+          "2.",
+          "Finanšu piedāvājums\n3.13.Pretendents ir iesniedzis finanšu piedāvājumu konkursam.\nFinanšu piedāvājums (pēc formas – nolikuma 3.pielikums).\nPielikumi: Pielikumi:3.pielikums Finanšu piedāvājums (2024-3-3.pielikums_Finanšu\npiedāvājums.xlsx)",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Viena datne, Jebkura\ndatne"
+        ]
+      ]
+    },
+    {
+      "source": "125290_PD.ANY_1_4_1_20240807111349.pdf",
+      "rows": [
+        [
+          "N.p.k.",
+          "Prasības",
+          "Ievadlauks",
+          "Dokumenti"
+        ],
+        [
+          "1.",
+          "Citi dokumenti\nCiti dokumenti, kurus pretendents vai kandidāts uzskata par nepieciešamu\npievienot piedāvājumam vai pieteikumam.",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es atļauta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ],
+        [
+          "2.",
+          "Eiropas vienotais prasību dokuments (ESPD)\nŠeit Piegādātājs pēc saviem ieskatiem var pievienot ESPD datni (PDF, docx vai\nxml formātā).\nPapildinformācija: http://espd.eis.gov.lv/",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es atļauta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ]
+      ]
+    },
+    {
+      "source": "125290_PD.ANY_1_4_1_20240807111349.pdf",
+      "rows": [
+        [
+          "N.p.k.",
+          "Kritērijs",
+          "Vērtēšana",
+          "Attiecas uz prasībām"
+        ]
+      ]
+    },
+    {
+      "source": "125290_PD.ANY_1_4_1_20240807111349.pdf",
+      "rows": [
+        [
+          "1.",
+          "Cena EUR bez PVN\n5.1.Pamatojoties uz Publisko iepirkumu likuma 51.pantu, Komisija\npiešķir līguma slēgšanas tiesības saimnieciski visizdevīgākajam\npiedāvājumam, kuru nosaka, ņemot vērā cenu un ar iepirkuma\nlīguma priekšmetu saistītus izmaksu kritērijus, atbilstoši nolikuma\n10.pielikumā noteiktajiem izvēles kritērijiem un kārtībai.\nPunktu piešķiršanas nosacījumi: 2.Vērtēšanas kritēriji:\n2.1.Transportlīdzekļa cena;\n2.2.Transportlīdzekļa tehnisko apkopju izmaksas garantijas laikā.\n3.Katra piedāvājuma vērtējumu atbilstoši augstāk noteiktajiem\nvērtēšanas kritērijiem, Komisijas locekļi aprēķina pēc formulas:\nV= P1 + P2, kur\nP1- attiecīgā piedāvājuma transportlīdzekļa cena (nolikuma\n3.pielikums, Finanšu piedāvājuma 5.aile), euro;\nP2- attiecīgā piedāvājuma transportlīdzekļa tehniskās apkopes\nizmaksas garantijas laikā (nolikuma 3.pielikums, Finanšu\npiedāvājuma 6.aile), euro.",
+          "Maksimālais punktu skaits (iesk.): 100.00",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-1.pielikums_Pieteikums dalībai.docx",
+      "rows": [
+        [
+          "",
+          ""
+        ],
+        [
+          "sabiedrības nosaukums",
+          "reģistrācijas numurs"
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-1.pielikums_Pieteikums dalībai.docx",
+      "rows": [
+        [
+          "kuras vārdā saskaņā ar",
+          "",
+          "rīkojas"
+        ],
+        [
+          "",
+          "pārstāvības pamats",
+          "amats, \nvārds un uzvārds"
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-1.pielikums_Pieteikums dalībai.docx",
+      "rows": [
+        [
+          "Mikrouzņēmums (uzņēmums, kurā nodarbināti mazāk nekā 10 darbinieku un uzņēmuma gada apgrozījums un/vai gada bilances kopsumma nepārsniedz 2 miljonus euro)"
+        ],
+        [
+          "Mazais uzņēmums (uzņēmums, kurā nodarbinātas mazāk nekā 50 personas un gada apgrozījums un/vai gada bilance kopā nepārsniedz 10 miljonus euro)"
+        ],
+        [
+          "Vidējais uzņēmums (uzņēmums, kurā nodarbinātas mazāk nekā 250 personas un kura gada apgrozījums nepārsniedz 50 miljonus euro, un/vai, kura gada bilance kopā nepārsniedz 43 miljonus euro)."
+        ],
+        [
+          "Lielais uzņēmums (uzņēmums, kurā nodarbinātas vairāk nekā 250 personas un kura gada apgrozījums pārsniedz 50 miljonus euro, un/vai, kura gada bilance kopā pārsniedz 43 miljonus euro)."
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-1.pielikums_Pieteikums dalībai.docx",
+      "rows": [
+        [
+          "Personas, kurām pretendentā ir izšķiroša ietekme uz līdzdalības pamata normatīvo aktu par koncerniem izpratnē (atzīmēt atbilstošo ar “x” un, ja atbilst, norādīt):",
+          "šādām personām ir izšķiroša nozīme:\n (ja ir, tad norādīt personas):"
+        ],
+        [
+          "Personas, kurām pretendentā ir izšķiroša ietekme uz līdzdalības pamata normatīvo aktu par koncerniem izpratnē (atzīmēt atbilstošo ar “x” un, ja atbilst, norādīt):",
+          "nav personu, kurām pretendentā ir izšķiroša ietekme"
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-1.pielikums_Pieteikums dalībai.docx",
+      "rows": [
+        [
+          "Šo sadaļu aizpilda tikai ārvalstu pretendenti. Pretendents sniedz informāciju par to, vai ir reģistrēts arī Latvijas Republikas Uzņēmumu reģistrā (atzīmēt atbilstošo ar “x” un, ja atbilst, norādīt reģistrācijas numuru):",
+          "Pretendents ir reģistrēts arī Latvijas Republikas Uzņēmumu reģistrā (ja ir, tad norādīt reģistrācijas numuru):"
+        ],
+        [
+          "Šo sadaļu aizpilda tikai ārvalstu pretendenti. Pretendents sniedz informāciju par to, vai ir reģistrēts arī Latvijas Republikas Uzņēmumu reģistrā (atzīmēt atbilstošo ar “x” un, ja atbilst, norādīt reģistrācijas numuru):",
+          "Pretendents nav reģistrēts Latvijas Republikas Uzņēmumu reģistrā"
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-1.pielikums_Pieteikums dalībai.docx",
+      "rows": [
+        [
+          "Apakšuzņēmējus līguma izpildē piesaistīt nav paredzēts\n(ja apakšuzņēmējus līguma izpildē piesaistīt nav paredzēts, izdara attiecīgu atzīmi un tabulu par apakšuzņēmējiem nododamo darbu apjomu nav nepieciešams aizpildīt)",
+          "Apakšuzņēmējus līguma izpildē piesaistīt nav paredzēts\n(ja apakšuzņēmējus līguma izpildē piesaistīt nav paredzēts, izdara attiecīgu atzīmi un tabulu par apakšuzņēmējiem nododamo darbu apjomu nav nepieciešams aizpildīt)",
+          "Apakšuzņēmējus līguma izpildē piesaistīt nav paredzēts\n(ja apakšuzņēmējus līguma izpildē piesaistīt nav paredzēts, izdara attiecīgu atzīmi un tabulu par apakšuzņēmējiem nododamo darbu apjomu nav nepieciešams aizpildīt)",
+          "Apakšuzņēmējus līguma izpildē piesaistīt nav paredzēts\n(ja apakšuzņēmējus līguma izpildē piesaistīt nav paredzēts, izdara attiecīgu atzīmi un tabulu par apakšuzņēmējiem nododamo darbu apjomu nav nepieciešams aizpildīt)"
+        ],
+        [
+          "Apakšuzņēmējus līguma izpildē ir paredzēts piesaistīt\n (tabulā norāda apakšuzņēmējiem nododamo darbu apjomu un veidus)",
+          "Apakšuzņēmējus līguma izpildē ir paredzēts piesaistīt\n (tabulā norāda apakšuzņēmējiem nododamo darbu apjomu un veidus)",
+          "Apakšuzņēmējus līguma izpildē ir paredzēts piesaistīt\n (tabulā norāda apakšuzņēmējiem nododamo darbu apjomu un veidus)",
+          "Apakšuzņēmējus līguma izpildē ir paredzēts piesaistīt\n (tabulā norāda apakšuzņēmējiem nododamo darbu apjomu un veidus)"
+        ],
+        [
+          "Apakšuzņēmēja nosaukums, reģistrācijas numurs",
+          "Apakšuzņēmēja nosaukums, reģistrācijas numurs",
+          "Norāda kāds ir apakšuzņēmēja statuss",
+          "Veicamo darbu apjoms EUR bez PVN",
+          "Veicamo darbu raksturojums"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-1.pielikums_Pieteikums dalībai.docx",
+      "rows": [
+        [
+          "Amatpersonas vai pilnvarotās personas paraksts:",
+          "Dokuments ir parakstīts ar drošu elektronisko parakstu vai Elektronisko iepirkumu sistēmas parakstu"
+        ],
+        [
+          "Parakstītāja vārds, uzvārds un amats:",
+          ""
+        ],
+        [
+          "Juridiskā adrese:",
+          ""
+        ],
+        [
+          "Kontaktpersona:",
+          ""
+        ],
+        [
+          "Tālruņa numurs:",
+          ""
+        ],
+        [
+          "E-pasta adrese:",
+          ""
+        ],
+        [
+          "Datums",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-4.pielikums_Apliecinājums par neatkarīgi izstrādātu piedāvājumu.docx",
+      "rows": [
+        [
+          "4.1. ir iesniedzis piedāvājumu neatkarīgi no konkurentiem un bez konsultācijām, līgumiem vai vienošanām, vai cita veida saziņas ar konkurentiem;"
+        ],
+        [
+          "4.2. tam ir bijušas konsultācijas, līgumi, vienošanās vai cita veida saziņa ar vienu vai vairākiem konkurentiem saistībā ar šo iepirkumu, un tādēļ Pretendents šim apliecinājumam pievienotajā formā atklāj izsmeļošu un patiesu informāciju par to, ieskaitot konkurentu nosaukumus un šādas saziņas mērķi, raksturu un saturu."
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-4.pielikums_Apliecinājums par neatkarīgi izstrādātu piedāvājumu.docx",
+      "rows": [
+        [
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Paraksts"
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-4.pielikums_Apliecinājums par neatkarīgi izstrādātu piedāvājumu.docx",
+      "rows": [
+        [
+          "Nr.",
+          "Uzņēmums – konkurents, ar kuru ir bijusi saziņa",
+          "Saziņas veids, mērķis, raksturs un saturs"
+        ],
+        [
+          "",
+          "[Komersanta nosaukums, reģ. Nr.]",
+          ""
+        ],
+        [
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-4.pielikums_Apliecinājums par neatkarīgi izstrādātu piedāvājumu.docx",
+      "rows": [
+        [
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Paraksts"
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-5.pielikums_Informācija par iepriekšējo pieredzi.docx",
+      "rows": [
+        [
+          "Līguma priekšmets",
+          ""
+        ],
+        [
+          "Pasūtītājs",
+          ""
+        ],
+        [
+          "Izpildītājs",
+          ""
+        ],
+        [
+          "Norāda informāciju atbilstoši nolikuma 3.10. punktā noteiktajam (transportlīdzekļa kategorija, marka, modelis utml.)",
+          ""
+        ],
+        [
+          "Norāda kāds iesniegtais dokuments apliecina uzrādīto pieredzi",
+          ""
+        ],
+        [
+          "Līguma izpildes termiņš",
+          ""
+        ],
+        [
+          "Kontaktinformācija",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-5.pielikums_Informācija par iepriekšējo pieredzi.docx",
+      "rows": [
+        [
+          "Sagatavotāja vārds, uzvārds un amats:",
+          ""
+        ],
+        [
+          "Pretendenta nosaukums:",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-3.pielikums_Finanšu piedāvājums.xlsx",
+      "rows": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "Atklāta konkursa SIVA 2024/3/ANM\nnolikuma 3.pielikums",
+          ""
+        ],
+        [
+          "Finanšu piedāvājums ",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "N.p.k.",
+          "Iepirkuma priekšmeta nosaukums ",
+          "Plānotais minimālais iegādes  daudzums ",
+          "Transportlīdzekļa marka, modelis",
+          "Transportlīdzekļa cena, euro bez PVN",
+          "Transportlīdzekļa tehniskās apkopes izmaksas garantijas laikā, euro bez PVN",
+          "Kopējā piedāvājuma  summa, euro bez PVN                                               (5.+ 6.)x 3."
+        ],
+        [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        [
+          "1",
+          "Mikroautobuss  (transportlīdzekļa kategorija (M1)) ",
+          "1",
+          "",
+          "",
+          "",
+          "0"
+        ],
+        [
+          "",
+          "Amatpersonas vai pilnvarotās personas paraksts:",
+          "",
+          "Dokuments parakstīts ar drošu elektronisko parakstu, vai dokuments parakstīts ar Elektronisko iepirkumu sistēmas parakstu",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "Parakstītāja vārds, uzvārds un amats:",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "Pretendenta nosaukums:",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "Datums",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-2.pielikums-Tehniskā specifikācija-Tehniskais piedāvājums_06.08.2024..docx",
+      "rows": [
+        [
+          "Nr. p.k.",
+          "Parametri",
+          "Tehniskā specifikācija \n(parametri, minimālās prasības)",
+          "Tehniskais piedāvājums\n(jānorāda konkrēti piedāvātās preces tehniskie parametri un detalizēti prasību izpildes apraksti)***"
+        ],
+        [
+          "",
+          "Transportlīdzekļa nosaukums, marka, modelis, ražotājs",
+          "Transportlīdzekļa nosaukums, marka, modelis, ražotājs",
+          ""
+        ],
+        [
+          "",
+          "Transporta līdzekļa izlaiduma gads",
+          "Jauna,  izlaiduma gads ne vēlāks par 2023.gadu",
+          ""
+        ],
+        [
+          "",
+          "Transportlīdzekļa kategorija",
+          "M1",
+          ""
+        ],
+        [
+          "",
+          "Daudzums",
+          "Viens gabals",
+          ""
+        ],
+        [
+          "",
+          "Nobraukums",
+          "Ne vairāk kā 150 km",
+          ""
+        ],
+        [
+          "",
+          "Transporta līdzekļa izmēri",
+          "Salona augstums ne mazāk kā 1700 mm.\nAutomašīnas pilnais garums ne mazāk kā 5900 mm.",
+          ""
+        ],
+        [
+          "",
+          "Durvju skaits",
+          "4 (četras), kur aizmugurējās divviru durvis bez stiklojuma, salona sānu durvis bīdāmas.",
+          ""
+        ],
+        [
+          "",
+          "Degvielas veids",
+          "Benzīns vai benzīns/hibrīds",
+          ""
+        ],
+        [
+          "",
+          "Atbilstība piesārņojuma emisijas standartam",
+          "Vismaz EURO 6 (norādīts  COC sertifikātā)\nnormu atbilstība - Regula nr. 459/2012 (https://eur-lex.europa.eu/eli/reg/2012/459/oj/?locale=LV )",
+          ""
+        ],
+        [
+          "",
+          "Jauda",
+          "Ne mazāk kā 85 kW",
+          ""
+        ],
+        [
+          "",
+          "Degvielas patēriņš",
+          "(l/100 km)",
+          ""
+        ],
+        [
+          "",
+          "Transmisija",
+          "Manuālā vai automātiskā",
+          ""
+        ],
+        [
+          "",
+          "Pilnā masa (kg)",
+          "Ne vairāk kā 3500",
+          ""
+        ],
+        [
+          "",
+          "Vietu skaits, ieskaitot vadītāju",
+          "Ne vairāk kā 9 sēdvietas (8 pasažieru + 1 šoferis). Ar iespēju transportlīdzekļa aizmugurē speciāli aprīkotā vietā nofiksēt vismaz vienu invalīdu ratiņkrēslu (ar vai bez sēdvietu izņemšanas).",
+          ""
+        ],
+        [
+          "",
+          "Ratiņkrēslu vietas",
+          "1 (viena)",
+          ""
+        ],
+        [
+          "",
+          "Drošības jostas",
+          "Visiem sēdekļiem 3 punktu drošības jostas.",
+          ""
+        ],
+        [
+          "",
+          "Ratiņkrēsla stiprināšana",
+          "Ratiņkrēsla stiprināšanai automātiskās spoles 4.gab. Ratiņkēslā sēdošajam pasažierim sienā integrēta 3 punktu drošības josta.",
+          ""
+        ],
+        [
+          "",
+          "Ātrie stiprinājumi",
+          "Visi salona sēdekļi stiprināti ar ātrās fiksācijas sēdekļu kājām uz sliedēm ar pārlikšanas iespējām par 180 grādiem (pārlikt pretējā virzienā), regulējamu attālumu vai ekvivalents.",
+          ""
+        ],
+        [
+          "",
+          "Kāpslis",
+          "Elektriski izbīdāms pakāpiens pie sānu bīdāmajām durvīm.",
+          ""
+        ],
+        [
+          "",
+          "Roku balsti",
+          "Pie iekāpšanas pa sānu durvīm, jāparedz abās pusē roku balsti dzeltenā krāsa.",
+          ""
+        ],
+        [
+          "",
+          "Apgaismojums",
+          "Dimmējošs dienas un nakts apgaismojums pasažieru salonā, apgaismojums virs ratiņkrēslu lifta darba zonas apgaismošanai, apgaismojums virs iekāpšanas durvīm (ārpusē).",
+          ""
+        ],
+        [
+          "",
+          "Lifts",
+          "Iekšējais elektro/hidrauliskais  ratiņkrēslu pacēlājs ar kravnesību vismaz 250 kg.",
+          ""
+        ],
+        [
+          "",
+          "Logu izsišanas ierīces",
+          "Logu izsišanas āmuriņi, piestiprināti ar trosīti, āmuriņi ar integrētu nazi drošības jostu pārgriešanai.",
+          ""
+        ],
+        [
+          "",
+          "Stereo sistēma",
+          "Integrēts Radio ar navigācijas iespējām un skaļruņiem salona priekšā un aizmugurē (pasažieriem)",
+          ""
+        ],
+        [
+          "",
+          "Drošība",
+          "Imobilaizers vai cita veida drošības sistēma, atbilstoša KASKO** apdrošināšanas prasībām.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Signalizācija, centrālās atslēgas sistēma ar tālvadību.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "ABS – bremžu pretbloķēšanas sistēma.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "ESP- elektroniskā stabilitātes kontrole",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Atpakaļskata kamera un displejs.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Ne mazāk kā priekšējo sēdvietu drošības spilveni.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Regulējama stūre ar stūres pastiprinātāju",
+          ""
+        ],
+        [
+          "",
+          "Aprīkojums",
+          "Salonā paredzēt vismaz vienu transformējamu galda virsmu, stiprināmu pie salona sienas vai sliedes (vietu saskaņot ar Pasūtītāju).",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Dalītā klimata kontrole vismaz priekšā/aizmugurē jābūt kondicionierim",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Lietus sensors, sānu vēja asistents.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Elektriski vadāmi vismaz priekšējie sānu logi.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Apsildāms ergonomisks vadītāja sēdeklis.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Pasažieru salona autonomā apsilde.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Elektriski regulējami, apsildāmi spoguļi.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Slēgts plaukts abās pusēs virs pasažieru sēdvietām ar vismaz 2 (diviem) atveramiem nodalījumiem katrā pusē.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Noņemams sakabes āķis.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Dubļu sargi visiem riteņiem.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Gumijas paklājiņi vismaz priekšējām sēdvietām, pasažieru salonā jābūt mitrumizturīgiem un nodilizturīgiem paklājiem.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Strāvas pārveidotājs 12/220.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Interneta ruteris interneta nodrošināšanai darba vajadzībām).",
+          ""
+        ],
+        [
+          "",
+          "Riepas, diski",
+          "Atbilstoši sezonai vasaras  un ziemas (bez radzēm) riepu komplekti, katram riepu komplektam vieglmetāla diski (vismaz R16). \nRiepas un disku izmēri saskaņā ar automobiļa ražotāja prasībām, riepu ražošanas gads ne vecāks par 2023. gadu. Diskiem jābūt oriģināliem no  ražotāja rūpnīcas. \nRiepām jāatbilst normatīvajos aktos noteiktajām prasībām, tajā skaitā, jābūt marķētām ar atbilstošu marķējumu.",
+          ""
+        ],
+        [
+          "",
+          "Virsbūves krāsa",
+          "Ahromātiskā/neitrālā krāsā (balta, melna, pelēka krāsa dažādos toņos).",
+          ""
+        ],
+        [
+          "",
+          "Salona apdare",
+          "Tumšas krāsas, viegli kopjama (ādas vai pusādas sēdekļu apdare).",
+          ""
+        ],
+        [
+          "",
+          "Pretkorozijas apstrāde virsbūvei",
+          "Pilna pretkorozijas apstrāde (iesniegt apliecinošu dokumentu).",
+          ""
+        ],
+        [
+          "",
+          "Tehniskās apkopes periodi garantijas termiņā",
+          "Ņemot vērā paredzamo nobraukumu 100 000 km trīs gadu garantijas periodā, ar intervālu 20 000 km.",
+          ""
+        ],
+        [
+          "",
+          "Garantijas remonta un tehniskās apkopes vieta",
+          "Jānodrošina vismaz vienu  transporta līdzekļa ražotāja vai oficiālā izplatītāja autorizēta autoservisa (norādīt nosaukumu, reģistrācijas numuru, adresi, attālumu km), kurā nodrošinās garantijas apkalpošanu un remontu transporta līdzekļa garantijas termiņā. Autoservisam jāatrodas ne tālāk kā 150 km rādiusā no Aģentūras adreses – Jūrmala, Slokas iela 61.\nAttālums tiks mērīts izmantojot  https://www.google.com/maps, ņemot vērā īsāko maršrutu no adreses Jūrmala, Slokas iela 61 līdz pretendenta piedāvātajai adresei.",
+          ""
+        ],
+        [
+          "",
+          "Virsbūves aplīmēšana",
+          "Plānotais līmēšanas apjoms 30 % no virsbūves apjoma, vizualizāciju saskaņojot ar pasūtītāju. (SIVA korporatīvās krāsas, SIVA logo, info par SIVA koledžu tel, nr., e-pasts)",
+          ""
+        ],
+        [
+          "",
+          "Aizmugurējie sānu logi",
+          "Sānu logu tonēšana. Redzamās gaismas caurlaidība 20%.",
+          ""
+        ],
+        [
+          "",
+          "Komplektācija",
+          "Lietošanas rokasgrāmatu, ekspluatācijas noteikumus un apkopes noteikumus latviešu valodā.",
+          ""
+        ],
+        [
+          "",
+          "Rezerves ritenis",
+          "Pilna izmēra ritenis (vissezonas riepa (M+S)) - nostiprināts, novietots, ražotāja paredzētajā vietā.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Instrumentu komplekts, hidrauliskais pacēlājs.",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Brīdinājuma trijstūris (atbilstoši 30.05.2017. Ministru kabineta noteikumiem Nr.295 „Noteikumi par transportlīdzekļu valsts tehnisko apskati un tehnisko kontroli uz ceļiem”).",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Ugunsdzēsības aparāts (atbilstoši 30.05.2017. Ministru kabineta noteikumiem Nr.295 „Noteikumi par transportlīdzekļu valsts tehnisko apskati un tehnisko kontroli uz ceļiem”).",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Pirmās palīdzības aptieciņa (atbilstoši 03.08.2010. Ministru kabineta noteikumiem Nr.713 „Noteikumi par kārtību, kādā nodrošina apmācību pirmās palīdzības sniegšanā, un pirmās palīdzības aptieciņas medicīnisko materiālu minimumu”).",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Gaismu atstarojošā veste 1 gab.",
+          ""
+        ],
+        [
+          "",
+          "Transportlīdzekļa garantijas termiņš",
+          "Transportlīdzeklim - vismaz 3 gadi  vai 100 000 km nobraukums, atkarībā no tā, kurš apstāklis iestājas pirmais; \nvirsbūves krāsojumam - ne mazāk kā 3 gadi; virsbūvei garantija pret caurrūsēšanu - ne mazāk kā 10 gadi no piegādes dienas.",
+          ""
+        ],
+        [
+          "",
+          "Transportlīdzekļa reģistrācija",
+          "Automašīnas pirmreizējā reģistrācija CSDD uz Pasūtītāja vārda (apliecība, numura zīmes, pirmreizējā tehniskā apskate).\nOCTA* un KASKO** 12 mēnešu periodam, skaitot no  Preces pieņemšanas – nodošanas akta parakstīšanas dienas.\nKASKO apdrošināšana ietver apdrošināšanu pret bojājumiem (sadursme ar transportlīdzekli un/vai šķērsli, mikroautobusa apgāšanās, krišana, grimšana, sadursme ar dzīvām būtnēm, ugunsgrēks, eksplozija, dabas stihijas, trešās personas rīcība, krītošu priekšmetu iedarbība) un apdrošināšanu pret zādzību (transportlīdzekļa vai tās daļu slepena vai atklāta nolaupīšana, ja tā saistīta ar vardarbību vai vardarbības piedraudējumu, prettiesiska iekļūšana (ielaušanās) transportlīdzeklī).",
+          ""
+        ],
+        [
+          "",
+          "Transportlīdzekļa piegāde",
+          "Ne ilgāk kā 12 mēneši no iepirkuma Līguma noslēgšanas brīža.",
+          ""
+        ],
+        [
+          "",
+          "Personāla apmācība",
+          "5 darba dienu laikā pēc Preces piegādes veikt Pasūtītāja personāla (3 cilvēki) apmācību par transportlīdzekļa lietošanu, apkopi, ekspluatāciju ne mazāk kā 3 stundas.",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "2024-3-2.pielikums-Tehniskā specifikācija-Tehniskais piedāvājums_06.08.2024..docx",
+      "rows": [
+        [
+          "Amatpersonas vai pilnvarotās personas paraksts:",
+          "Dokuments parakstīts ar drošu elektronisko parakstu, vai dokuments parakstīts ar Elektronisko iepirkumu sistēmas parakstu"
+        ],
+        [
+          "Parakstītāja vārds, uzvārds un amats:",
+          ""
+        ],
+        [
+          "Pretendenta nosaukums:",
+          ""
+        ],
+        [
+          "Datums",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "_meeting_openingprotocol_72875_PROPFIS_20240830140241.docx",
+      "rows": [
+        [
+          "",
+          "Sociālās integrācijas valsts aģentūra",
+          ""
+        ],
+        [
+          "",
+          "(reģ. Nr. 90001790030)",
+          ""
+        ],
+        [
+          "",
+          "Atklāts konkurss",
+          ""
+        ],
+        [
+          "",
+          "„Mikroautobusa iegāde”",
+          ""
+        ],
+        [
+          "",
+          "(Iepirkuma identifikācijas Nr. SIVA 2024/3/ANM)",
+          ""
+        ],
+        [
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "PRETENDENTU IESNIEGTO FINANŠU PIEDĀVĀJUMU APKOPOJUMS",
+          ""
+        ],
+        [
+          "",
+          "(piedāvājumu atvēršana)",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "_meeting_openingprotocol_72875_PROPFIS_20240830140241.docx",
+      "rows": [
+        [
+          "",
+          "Elektronisko iepirkumu sistēmas e-konkursu apakšsistēmas ģenerēts apkopojums",
+          ""
+        ],
+        [
+          "",
+          "Apkopojuma sagatavošanas laiks: 30.08.2024; 14:02",
+          ""
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1006 @@
+PROJEKTĒŠANAS UZDEVUMS
+
+Būvprojekta *Dreņģeru iebraucamās sētas pārbūve un restaurācija Plūdoņa ielā 26 A,
+
+Bauskā” izstrāde un autoruzraudzība
+
+1 Zemes vienības
+kadastra 4001 003 0220
+apzīmējums
+2 | Būves kadastra 4001 003 0118 001
+apzīmējums
+Š Zemes ca ēku Bauskas novada pašvaldība, reģ. Nr. 90009116223
+īpašnieks
+4 Objekta adrese Plūdoņa iela 26A Bauska, Bauskas nov., LV-3901
+5 | Būvniecības veids Būvniecība
+Jauna Novie- | Pārbūve | Nojauk- | Atjau- Restaurācija
+būvniecība tošana šana nošana
+o = X o - X
+6 Būvprojekta Projektēšanu nav paredzēts sadalīt kārtās.
+projektēšana Ēkas norobežojošo konstrukciju, jumta konstrukciju, pamatu pārbūve,
+inženiertīklu izbūve, jumta un ēkas ārsienu siltināšana, jumta seguma maiņa, logu
+un durvju restaurācija un nomaiņa, lifta ierīkošana, teritorijas labiekārtošana.
+7 Ēkas grupa, Būves klasifikācijas kods:
+galvenais * esošais - 1230 Vairumtirdzniecības un mazunttirdzniecības ēkas;
+lietošanas veids |. pēc pārbūves - 1262 Muzeji un bibliotēkas; muzeja vai bibliotēkas telpu grupa.
+un parametri Parametri:
+* ēkas apbūves laukums -349,3 m2;
+* ēkas kopējā platība — 639 m2;
+* ēkas būvtilpums -2360 m3;
+* ēkas lietderībā platība 489,4 m2;
+* virszemes stāvu skaits - 2;
+* pazemes stāvu skaits — 0;
+* 2 grupas ēka.
+8 Būvniecības Bauskas novada pašvaldība,
+ierosinātājs Reģ. Nr. 90009116223, Uzvaras iela 1, Bauska, Bauskas novads
+9 Būvniecības Bauskas novada pašvaldības izpilddirektors
+ierosinātāja Ivars Romānovs
+atbildīgais tel. 29221927, e-pasts: ivars.romanovs(Obauskasnovads.lv
+L pārstāvis
+10 Būvniecības
+ieceres Būvprojekts minimālā sastāvā x
+dokumentācijas
+veids, saskaņā ar
+19.08.2014. MK Būvprojekts x
+not. Nr.500
+"Vispārīgie Būvniecības iesniegumu iesniedz Būvniecības informācijas
+būvnoteikumi", | sistēmā (BIS) https://bis.gov.lv/bisp/lv x
+02.09.2014. MK
+
+
+noteikumiem
+Nr.529 "Ēku
+
+būvnoteikumi"
+
+11
+
+Esošās situācijas/
+objekta apraksts
+
+Dreņģeru iebraucamā sēta ir valsts nozīmes arhitektūras piemineklis (valsts
+aizsardzības Nr.6168) un valsts nozīmes pilsētbūvniecības pieminekļa Bauskas
+pilsētas vēsturiskais centrs” (valsts aizsardzības Nr. 7425) vēsturiskās apbūves
+daļa. Tajā atrodas divi vietējas nozīmes mākslas pieminekļi *Portāls” (valsts
+aizsardzības Nr. 8643) un "Durvju komplekts” (valsts aizsardzības Nr. 8642).
+
+Dreņģeru iebraucamā sēta ir viena no senākajām koka ēkām Bauskas
+vecpilsētā, vēsturisko koka apbūvi raksturojoša ēka ar augstu autentiskuma pakāpi
+un kultūrvēsturisko vērtību. Senākais tās korpuss gar Plūdoņa ielu celts 1787.-
+1788.gadā, 19.gs.sākumā būvēts pagalma korpuss ar kolonādi, un 19.gs.beigās —
+korpuss gar Kalna ielu. Tā ir pilsētas vēsturiskā centra kvartāla stūra ēka ar
+nošļauptu stūri, kas ir uztverama vairākos skata punktos no pieguļošajām ielām un
+Rātslaukuma. Ēka ir saglabājusi savu vēsturisko apjomu, daļēji — plānojumu,
+konstrukcijas, vērtīgas vēsturiskās apdares detaļas un būvgaldniecības
+izstrādājumus.
+
+Ēka ir viena stāva koka ēka ar pakavveida plānojumu. Ēkas stūrī piebūvēts
+ieejas portāls koka konstrukcijā. Ēkas pamati no laukakmeņiem un māla
+ķieģeļiem, mūrēti kaļķu javā. Ēkai ir divslīpju jumts ar nošļauptiem zelmiņiem.
+Jumts sākotnēji segts ar S veida māla dakstiņiem. Ēkas fasādēs izteiksmīgākais
+elements ir izteikti profilēta dzega, lievenis un uz kolonnām balstīta pārkare, kā arī
+augstāk pieminētais stūra portāls Kalna un Plūdoņa ielu stūrī. Saglabājies
+19.gs.beigās veiktais fasādes apšuvums ar horizontāli liktiem gropētiem
+profilētiem dēļiem.
+
+Pārbūvju rezultātā 20. gadsimtā otrajā pusē ielas korpusos iebūvēti jauni logi
+un durvis. Ēkai demontētas daudzas iekšējās guļbaļķu sienas, tādējādi izjaucot ēkas
+nesošo sienu konstrukciju shēmu. Ēkas ārsienas stipri bojātas. Jumta konstrukcijas
+pārbūvētas. 20. gadsimta otrā pusē ēkai ieklāts azbestcementa viļņoto lokšņu
+jumts. Tas ilgstoši nav remontēts, kā rezultātā ēkas jumta konstrukcija un
+pārsegumu konstrukcija ir stipri bojātas.
+
+Ēkā nav funkcionējošu iekšējo inženiertīklu, tā nav pieslēgta ārējiem
+inženiertīkliem.
+
+12
+
+Projektēšanas
+uzdevuma mērķis
+un sasniedzamais
+
+rezultāts
+
+Mērķis:
+
+Būvprojekts nodrošina valsts nozīmes kultūras pieminekļa saglabāšanu un
+atjaunošanu, ēkas vides pieejamību, estētiski kvalitatīvu, ergonomisku vidi, kā arī
+infrastruktūras uzlabojumu. Būvprojektā iekļauti risinājumi, kas nodrošina
+racionālu un tradicionālu būvniecības metožu un materiālu izmantošanu,
+samazinot ēkas pārbūves laiku un izmaksas.
+
+Sasniedzamais rezultāts:
+
+Izstrādāts un būvvaldē akceptēts būvprojekts ”Dreņģeru iebraucamās sētas
+pārbūve un restaurācija Plūdoņa ielā 26 A, Bauskā”, kas paredz risinājumus ēkas
+pārbūvei un restaurācijai, vides pieejamības prasībām un teritorijas
+labiekārtošanai.
+
+
+13
+
+Energoefektivitātes minimālais līmenis līdz 90 kWh/m? gadā.
+
+Būvprojektā ietvert risinājumus:
+
+10.
+
+11.
+12.
+
+13.
+14.
+15.
+
+Visi projekta risinājumi veicami saskaņā ar Nacionālās kultūras mantojuma pārvaldes
+noteikumiem un norādījumiem.
+
+Projekta darbības paredzēts īstenot, ievērojot Jaunā Eiropas Bauhaus” principus: estētika,
+ilgtspēja, iekļautība, tai skaitā, nodrošinot publiskās ārtelpas attīstības risinājumu
+iekļaušanos apkārtējā ainavā, dabā balstīto risinājumu, universālā dizaina principu
+ievērošanu atbilstoši Davosas būvkultūras kvalitātes sistēmas kritērijiem.
+
+Projektu izstrādāt funkcionāli pamatota arhitektūras, dizaina, mākslas un kultūras
+komponenti saskaņā ar kultūras mantojumu, ainavu un vietas identitāti.
+
+Projektā izmantot dabīgos, ilgtspējīgos būvniecības materiālus, un īstenot vismaz viena
+materiāla otrreizējas izmantošanas iespējas.
+
+Projektā nodrošināt dažādu grupu intereses un vajadzības, kā arī līdzvērtīgas infrastruktūras
+izmantošanas iespējas saskaņā ar universālā dizaina principiem.
+
+Pirms projektēšanas uzsākšanas Izpildītājam jāveic objekta apsekošanu, jāiepazīstas ar
+Tehniskās apsekošanas atzinumu, Ģeotehnisko izpētes darbu pārskatu, Arhitektoniski
+māksliniecisko inventarizāciju (turpmāk — AMI) un plānoto ēkas funkciju. Dokumentus
+nodrošina Pasūtītājs.
+
+Pirms detalizēta projekta risinājumu izstrādes, jāsagatavo trīs iespējamie teritorijas
+labiekārtošanas, ēkas vizualizācijas un telpu plānojuma skiču varianti un jāprezentē
+Pasūtītājam. Pēc skiču prezentācijas veicot publisku apspriedi Pasūtītājs pieņem lēmumu
+par atbilstošākā varianta tālāku virzību būvprojekta izstrādāšanai.
+
+Projektā paredzēt risinājumus ēkas atjaunošanai saskaņā ar topogrāfisko plānu, AMI, ēkas
+tehniskās apsekošanas atzinumu, saglabājot ēkas būvapjomu un restaurējot saglabājušos
+vēsturiskos būvgaldniecības izstrādājumus (durvis, logus, portālu kolonnas, dzegas, ārsienu
+apdares elementus utt.) un metālkalumus.
+
+Projektā iekļaut fasāžu, iekšsienu, griestu un grīdas apdares materiālu specifikācijas saskaņā
+ar AMI. Izvērtēt iespēju izmantot atgūtos materiālus un būvgaldniecības izstrādājumus no
+citiem vēsturiskajiem objektiem.
+
+Projektā paredzēt iekšpagalma teritorijas labiekārtošanas darbus un autostāvvietas izveidi,
+ūdensapgādes un kanalizācijas, apkures un ventilācijas sistēmu izbūvi, elektroapgādi un
+telpu apgaismojumu, ēkas telpu pārplānošanu, atbilstoši ēkas plānotajai funkcijai.
+
+Otrajā stāvā paredzēt telpās dabīgās dienas gaismas apgaismojumu.
+
+Visās telpās paredzēt vājstrāvu tīklus (t.sk. interneta pieslēgumu darbiniekiem un bezvadu
+interneta pieslēgumu (WiFi) apmeklētājiem), apsardzes un ugunsdrošības signalizāciju,
+videonovērošanas sistēmu.
+
+Paredzēt ekspozīciju izgaismošanu.
+
+Paredzēt vides piekļūstamību.
+
+Projektu izstrādāt atbilstoši spēkā esošiem normatīvajiem aktiem un noformēt atbilstoši
+28.08.2018. MK not. Nr.545,Noteikumi par Latvijas būvnormatīvu LBN 202-18
+„Būvniecības ieceres dokumentācijas noformēšana” prasībām. Būvizmaksu aprēķinu veikt
+
+
+16.
+
+17.
+
+18.
+
+19.
+
+20.
+
+2
+
+i
+
+22.
+
+23.
+
+24.
+
+25.
+
+saskaņā ar 03.05.2017. MK not. Nr.239 „Noteikumi par Latvijas būvnormatīvu LBN 501-
+17 „Būvizmaksu noteikšanas kārtība”.
+
+Projektēt funkcionālus, estētiskus, videi draudzīgus un ilgtspējīgus arhitektūras
+risinājumus.
+
+Projektēt zemas ēkas ekspluatācijas kopējās izmaksas, pamatot risinājumu detalizāciju ar
+matemātiskām ekspluatācijas izdevumu aprēķināšanas metodēm.
+
+Būvprojektā iekļaut tikai tādus materiālus, risinājumus un iekārtas, kuriem pieejami vismaz
+2 alternatīvi varianti, ja tas nav iespējams, tad risinājumus saskaņot ar Pasūtītāju.
+
+Projektēt individuālus mezglus vai iekļaut tipveida mezglus, kuros doti ārsienu, iekšsienu
+un starpsienu savienojumu risinājumi ar citām konstrukcijām t.sk. divu dažādu materiālu
+salaidumu mezgli (piemēram, grīdas — sienas, sienas — pārsegums, sienas-jumts, logi pie
+sienām, dažādi dekoratīvie apšuvumi u.c.).
+
+Konstruktīvo mezglu siltuma caurlaidības koeficienta U aprēķinus apkopot un norādīt
+kopējā tabulā.
+
+„ Izvēlēties vēsturiskai ēkai piemērotus būvniecības risinājumus un materiālus, kas samazina
+
+virsmas siltuma zudumus, lai izvairītos no termisko tiltu veidošanās iespējas. Termisko tiltu
+aprēķini pēc LVS EN ISO10211 «Termiskie tilti būvkonstrukcijās. Siltuma plūsmas un
+virsmas temperatūras. Detalizēti aprēķini.» un LVS ISO14683 «Termiskie tilti
+būvkonstrukcijās. Lineārās siltumapmaiņas koeficients. Vienkāršota aprēķināšanas
+metodika un standartvērtības.» Aprēķina rezultātus mezgliem attēlot vizualizācijās.
+Projektēt interjera dizainu un telpu plānojumu tā, lai mēbeļu un iekārtu izkārtojums būtu
+drošs un ergonomisks. Atbilstoši darba vietas izvietojumam paredzēt nepieciešamos
+inženiertīklus un vājstrāvas tīklus.
+
+Darba apjomu tabulas ar nepārprotamu un saprotamu detalizācijas līmeni. Norādīt
+minimālās prasības visiem materiāliem.
+
+Projekta apjomos jābūt sīkajam inventāram, bez kura nevar nodot ekspluatācijā ēku
+(piemēram kā karoga turētājs, ēkas numura zīme, stāvu plāni, evakuācijas shēmas,
+ugunsdzēšamie aparāti u.c.).
+
+Arhitektūras sadaļas plānojuma sastādīšana veicama ar Pasūtītāja norādījumiem.
+Nepieciešams iekļaut (būvgaldniecības darbnīcu, lietišķās mākslas studiju, semināru telpu
+— zāli, virtuves zonu),
+
+tehniskās telpas (apkures, ventilācijas, ūdensapgādes, sakaru tīklu - servera telpa) pēc
+iespējas izvietot otrajā stāvā mansarda zonā.
+
+1.stāvā:
+
+sanitārās telpas (tualete cilvēkiem ar funkcionāliem traucējumiem, iekļaujot bērnu pārtinamo galdiņu,
+kā arī vīriešu un sieviešu tualetes apmeklētājiem un personālam, atbilstoši LBN 200-21 Būvju
+vispārīgo prasību būvnormatīva prasībām),
+
+kokamatniecības restaurācijas, būvgaldniecības darbnīca,
+
+austuves telpas ar virtuves zonu nodarbību organizēšanai
+
+saimniecības inventāra telpa (ar ūdens un kanalizācijas pievadiem)
+
+kāpnes uz otro stāvu un lifts.
+
+
+2.stāvā:
+divi darbinieku kabineti
+lietišķās mākslas studija, semināru telpa - zāle
+saimniecības inventāra telpa (ar ūdens un kanalizācijas pievadiem)
+*telpu skaits ir norādīts provizoriski — precizējams projektēšanas gaitā
+
+26. Teritorijas sadaļas projektēšana veicama saskaņā ar Pasūtītāja norādījumiem.
+27. Arhitektūras sadaļas stāvu plānojuma sastādīšana veicama ar Pasūtītāja norādījumiem.
+28. Projekta risinājumus projektēšanas gaitā saskaņot ar Pasūtītāju.
+
+PRASĪBA IZSTRĀDĀT
+
+Sagatavot Tehniskos noteikumus pieprasa Izpildītājs
+izejmateriālus
+projektēšanai
+
+15
+
+Ēkas
+energoefektivitāte
+s prasības
+
+Atbilstoši 2021.gada 8.aprīlī MK not. Nr.222 „Ēku energoefektivitātes aprēķina
+metodes un ēku energosertifikācijas noteikumi”
+
+16
+
+Tehnoloģisko
+iekārtu Jā
+izvietojumu
+
+17
+
+Nestandarta
+iekārtu/objektu Jā
+izvietojumu
+
+BŪVNIECĪBAS IECERES IEROSINĀŠANAI UN
+BŪVPROJEKTĒŠANAI NEPIECIEŠAMIE DOKUMENTI
+
+18
+
+Būvniecības ieceres dokumentācijas iesnieguma veids, saskaņā ar 02.09.2014. MK noteikumiem
+
+Nr.529 "Ēku būvnoteikumi" ir Būvniecības iesniegums ar būvprojektu minimālā sastāvā, būvprojekts
+
+19
+
+Būvatļaujā Izsniedz Bauskas novada Būvvalde
+iekļaujamie
+nosacījumi
+
+20
+
+Īpašuma tiesību | Izsniedz būvniecības ierosinātājs
+apliecinošie
+dokumenti
+
+21
+
+Zemes gabala | Pasūta Izpildītājs
+topogrāfiskais
+plāns
+
+22
+
+AMI Izsniedz būvniecības ierosinātājs
+
+NEPIECIEŠAMIE TEHNISKIE NOTEIKUMI
+
+23
+
+Kultūras Ir nepieciešami
+pieminekļa
+aizsardzības
+
+prasības
+
+24
+
+Ūdensapgādei Ir nepieciešami
+
+
+25 Kanalizācijai Ir nepieciešami
+26 Siltumapgādei Ir nepieciešami
+27 Elektroapgādei Ir nepieciešami
+28 Telekomunikā- Ir nepieciešami
+cijām
+29 Ceļu Ir nepieciešami
+infrastruktūrai
+30 Ielu Ir nepieciešami
+apgaismojumam
+31 Sanitāri Ir nepieciešami
+higiēniskais
+uzdevums
+NOSACĪJUMI
+32 | Saskaņošana ar | 1.Ar Pasūtītāju saskaņots Projekta izstrādes laika grafiks, kalendārais plāns ar
+būvniecības norādēm. Projekta kļūdu labošanas nodrošināšana. Nosauktas projektēšanā
+ierosinātāju iesaistītās personas un viņu kontakti informācijas apmaiņai: tālrunis, e-pasts,
+pasta adrese sūtījumu piegādei. Pastāvīga Pušu piedalīšanās projekta
+koordinācijas sanāksmēs, atskaitīšanās par projekta virzības gaitu ne retāk kā 1x
+divās nedēļās.
+
+2. Darba apjoma izmaiņu (detalizācijas) precizēšanai notiek šādu Pasūtītāja
+
+personu viedokļa rakstveida apkopošana:
+e Attīstības un būvniecības departamenta vadītājs
+e Būvniecības nodaļas vadītājs
+e Būvniecības speciālists
+« Bauskas novada kultūrvēsturiskā mantojuma saglabāšanas un attīstības
+komisijas priekšsēdētāja
+33 Nosacījumu 1. Būvprojekta minimālā sastāvā iesniegšana Nacionālā kultūras mantojuma
+izpildes termiņi pārvaldei saskaņojuma saņemšanai ne vēlāk kā 2 (divu) mēnešu laikā pēc
+Līguma noslēgšanas dienas.
+
+2. Būvprojekta minimālā sastāvā saskaņošana ar Pasūtītāju un būvvaldē ne vēlāk
+kā 3 (trīs) mēnešu laikā pēc Līguma noslēgšanas dienas.
+
+3.Būvprojekta iesniegšana Nacionālā kultūras mantojuma pārvaldei saskaņojuma
+saņemšanai ne vēlāk kā 7 (septiņu) mēnešu laikā pēc Būvprojekta minimālā
+sastāvā saskaņošanas būvvaldē.
+
+4. Būvvaldes atzīme par projektēšanas nosacījumu izpildi — 2 (divu) mēnešu laikā
+no Nacionālā kultūras mantojuma pārvaldes saskaņojuma vai saskaņojuma ar
+noteikumiem saņemšanas.
+
+5. Būvprojekta izstrāde, saskaņošana ar Nacionālās kultūras mantojuma pārvaldi
+un Pasūtītāju, un būvvaldes atzīme par projektēšanas nosacījumu izpildi — 12
+(divpadsmit) mēnešu laikā no līguma spēkā stāšanās brīža.
+
+34 Būvprojekta « Būvniecības iesniegums.
+minimālā sastāvā | Būvprojekts minimālā sastāvā (pievienoti nepieciešamie atzinumi, skaņojumi).
+apjoms
+
+
+| Būvniecības ieceres dokumentāciju ar veidlapu "Būvniecības iesniegums”
+
+elektroniski iesniedz, izmantojot Būvniecības informācijas sistēmu (BIS). E-
+pakalpojuma adrese: https://bis.gov.lv/bisp/
+35 Būvprojekta 1. Būvprojekta sastāvam pievienoti visi projektēšanai nepieciešamie izejmateriāli,
+sastāvs un atzinumi, skaņojumi ar tehnisko noteikumu izdevēju un Bauskas būvvaldi.
+eksemplāru skaits | 2 Iekļauts būvniecības izmaksu aprēķins: tāmes pa būvprojekta sadaļām un
+saskaņā ar skaņojums ar pasūtītāju.
+02. ba 5 3. Būvniecības dokumentācija papīra formātā 3 (trīs) eksemplāros ar orģinālajiem
+noteikumiem a
+Nr.529 "Ēku cerams I _ l
+būvnoteikumi” 4. Būvprojekts elektroniskā formā — rasējumi DWG formātā un PDF formātā,
+darbu apjomi un tāmes MS Excel — 1 eksemplārs elektroniskajā datu nesējā
+(USB).
+36 Prasības Būvprojekta realizācijas autoruzraudzību veikt atbilstoši 19.08.2014. MK
+autoruzraudzībai | noteikumiem Nr.500 "Vispārējie būvnoteikumi” un noslēgtā iepirkuma līgumā
+noteiktajiem nosacījumiem.
+PAPILDUS NOSACĪJUMI
+37 | Vispārīgajā daļā iekļaut visus izejmateriālus projektēšanai, tai skaitā, fotofiksācijas (FF), tehniskās
+| apsekošanas atzinumu (TAA), tehniskos noteikumus un pirmsprojekta izpētes materiālu.
+38 | Veikt ēkas energoefektivitātes novērtējumu aprēķinātajai energoefektivitātei atbilstoši MK noteikumi
+Nr.222 *Ēku energoefektivitātes aprēķina metodes un ēku energosertifikācijas noteikumi”.
+39 | Projektēšanas gaitā izmantot BIM modelēšanas rīkus projekta stadiju vizualizācijai.
+Visu projektu sadaļu rasējumiem jābūt ar nepieciešamo detalizācijas pakāpi, lai varētu nodrošināt
+būvniecību un tiem jābūt nepārprotamiem.
+40 | Atbilstoši Ēku būvnoteikumu prasībām būvprojektā pievienot visas nepieciešamās būvprojekta daļas
+
+un sadaļas atbilstoši projekta risinājumiem:
+
+| l.Arhitektūras daļā paredzēt:
+
+« ēkas jumta un stāvu plāni ar telpu izmēriem un sadalījumu telpu grupās un telpu grupu lietošanas
+veidu eksplikāciju;
+
+« ēkas fasādes ar būtisko elementu augstuma atzīmēm;
+
+raksturīgie griezumi ar esošā un (vai) plānotā reljefa, grīdu un galveno būvelementu augstuma
+atzīmēm;
+
+« tehnisko iekārtu izvietojums un būvizstrādājumu specifikācijas;
+
+. galveno ēkas detaļu mezglu risinājumi;
+
+e interjera projekta ietvaros izstrādāt iekšējās apdares risinājumus, tai skaitā telpu sienu notinumus (ar
+iekārtu apdares un iebūvēto mēbeļu piesaistēm, t.sk virtuves zonā.).
+
+| 2.Būvkonstrukciju daļā paredzēt:
+« konstrukciju būtiskāko slodžu uzņemšanas mezglu detalizācija;
+
+« detalizēts būvkonstrukciju aprēķins, visas slodzes, slodžu shēmas un kopējais aprēķins;
+
+« grafiskā daļa, kas ietver konstrukciju plānus, griezumus, izklājumus un mezglus;
+
+. būvizstrādājumu specifikācijas.
+
+3.Inženiertīklu daļā paredzēt AVK-A, AVK-V, AVK-K, EL, ELT, UK, UKT, LKT, SM, ESS,
+
+UAS, ESS-VN, ESS-TK, IE (t.sk. konstrukciju un materiālu kopsavilkumu).
+
+7
+
+
+4.Darbu organizēšanas projektu DOP;
+
+5.Ugunsdrošības pasākumu pārskatu UPP
+
+6.Ekonomikas daļā — iekārtu, konstrukciju un materiālu kopsavilkumu IS, būvdarbu apjomu sarakstu
+BA un izmaksu aprēķinu T sadaļu.
+
+41 GP Projektējamās ēkas pieguļošās teritorijas labiekārtošanu:
+TS-L Iekšpagalma ietvju virsmas segumu materiālu un dizainu saskaņot ar
+Pasūtītāju.
+Apmeklētāju atpūtas vietu, soliņu, velosipēdu statīvu/novietni un apstādījumu
+izveidi saskaņot ar Pasūtītāju.
+Izveidot ieejas mezglu paredzot vējtveri un nepieciešamības gadījumā
+projektēt uzbrauktuvi/pandusu vides pieejamībai.
+Paredzēt a/m stāvvietas izbūvi un nepieciešamo lietus ūdens savākšanas un
+novades tīklu izbūvi, horizontālo apzīmējumu izveidi.
+Teritorijas vertikālais plānojums.
+42 AR Jumtu konstrukcijas, siltumizolāciju un S veida māla kārniņu segumu
+projektēt atbilstoši:
+19.10.2021. MK noteikumiem Nr.693 Būvju vispārējo prasību
+būvnormatīvu LBN 200-21”;
+30.06.2015. MK noteikumiem Nr.333 Noteikumi par Latvijas
+būvnormatīvu LBN201-15 "Būvju ugunsdrošība”;
+16.06.2015. MK noteikumiem Nr.312 Noteikumi par Latvijas
+būvnormatīvu LBN 016-15 "Būvakustika"”;
+25.06.2019 MK noteikumiem Nr.280 Noteikumi par Latvijas
+būvnormatīvu LBN 0002-19 *Ēku norobežojošo konstrukciju
+siltumtehnika” prasībām.
+Jumta seguma ieklāšanas un stiprināšanas risinājumus projektēt atbilstoši jumta
+seguma ražotāja instrukcijām.
+Ēkas ārsienu siltināšanu projektēt ar siltumizolācijas materiālu, ar siltuma
+caurlaidības koeficientu ne lielāku par U=0,045 W/(m2xK) un atbilstošu apdari.
+Ēkas norobežojošo konstrukciju siltināšanu projektēt ievērojot ETAG 004
+prasības.
+Projektēt pamatu siltināšanu un cokola apmales atjaunošanu.
+Projektēt pamatu hidroizolāciju, lai pasargātu no gruntsūdeņiem un lietus ūdens.
+Hidroizolējamo un siltināmo virsmu sagatavošanas un remonta tehnoloģijas,
+materiālus, apjomus norādīt konkrēti un detalizēti.
+Interjera projekta ietvaros izstrādāt iekšējās apdares risinājumus, tai skaitā telpu
+sienu notinumus (ar iekārtu apdares un iebūvēto mēbeļu piesaistēm, t.sk virtuves
+zonā.)
+43 BK Būvkonstrukciju daļā rasējumi jāizstrādā ar tādu detalizācijas pakāpi, lai tie
+
+būtu nepārprotami un pilnvērtīgi varētu nodrošināt būvniecības procesu (t.sk.
+konstrukciju un materiālu kopsavilkumu).
+Projektā paredzēt pamatu un koka konstrukciju reciklēšanu.
+
+8
+
+
+Projektā iekļaut ēkas konstruktīvos materiālus saskaņā af AMI.
+Projektēt norobežojošo konstrukciju siltuma transmisijas koeficientu tabulu un
+telpu siltuma zudumu aprēķina tabulu.
+
+44
+
+45
+
+AVK
+
+EL un ELT
+
+Projektēt apkures sistēmu piemērojot āra gaisa temperatūras saskaņā ar
+17.09.2019. MK not. Nr.432 "Noteikumi par Latvijas būvnormatīvu LBN 003-
+19 "Būvklimatoloģija””.
+
+Projektēt ekonomiski izdevīgāko apkures sistēmu izvērtējot arī gāzes apkures
+ierīkošanu ar gāzes pievada ierīkošanu, vai iespēju izveidot pieslēgumu ar
+Bauskas kultūras centra katlu māju.
+
+Projektēt divcauruļu apkures sistēmu, paredzot apkures sistēmas balansēšanas
+un siltumenerģijas regulēšanas iespēju, uzstādīt siltuma regulatorus radiatoriem
+(termogalvas) vai izvērtēt iespēju izmantot zemapmetuma kapilāro apkures
+sistēmu.
+
+Koplietošanas telpās siltumapgādes elementiem jābūt mehāniski izturīgiem un
+bez iespējām tos nesankcionēti regulēt.
+
+Projektēt jaunus dabīgās ventilācijas kanālus.
+
+Projektēt no ēkas izvadāmā gaisa siltuma atgūšanu ar centralizētas rekuperācijas
+iekārtām.
+
+Projektēt spēka tīklu un saskaņot ar Pasūtītāju.
+Projektēt jaunu ēkas apgaismojuma un spēka tīklu, to salāgojot ar interjera
+dizainu (apkures, ventilācijas iekārtu, kokapstrādes darbagaldu, virtuves iekārtu
+novietojumu), telpu plānojumu, projektējamajiem inženiertīkliem un atbilstoši
+darba vietas izvietojumam.
+Projektēt elektrības pieslēguma rozetes servera telpās, ugunsdrošības
+un apsardzes paneļiem.
+Projektēt telpu LED apgaismojumu (gaismas krāsas temperatūru un gaismekļu
+izvēli saskaņot ar Pasūtītāju).
+Projektēt elektrības maģistrālo kabeļu un sadalņu pārbūvi.
+Projektēt elektrības pieslēguma rozetes un gaismekļus ( ar iespēju mainīt
+apgaismojuma augstumu, novietojumu) katrai darba vietai.
+Darba galdu elektrības pieslēgumus projektēt ar izvadu no grīdas.
+Visās stāvu koplietošanas telpās uzstādīt kustības gaismas sensorus un relejus,
+kas ieslēdz apgaismojumu.
+Šīs projekta sadaļas dokumentācijai jābūt saskaņotai līdz būvdarbu uzsākšanai.
+
+46
+
+UK un UKT
+
+Projektēt aukstā, karstā ūdens apgādi un kanalizācijas tīklus ņemot vērā telpu
+izmantošanas mērķi un higiēnas prasību nosacījumus.
+
+Projektēt nepieciešamos maģistrālos inženiertīklus un pieslēgumus atbilstoši
+tehniskajiem noteikumiem.
+
+
+47
+
+48
+
+LKT
+
+Projektēt jaunu jumta lietus ūdeņu novadīšanas sistēmu nepieciešamajā apjomā.
+Būvprojektā uzrādīt plānu, garenprofilus, griezumus, mezglus, apjomus,
+materiālu specifikāciju.
+
+Virszemes lietus ūdeni ievadīt pilsētas lietus ūdens kanalizācijā.
+
+SM
+
+Projektēt jauna siltummezgla ierīkošanu apkurei un karstā ūdens sagatavošanai.
+Siltummezglam jābūt aprīkotam ar patērētās siltumenerģijas uzskaiti un
+informācijas attālinātu nolasīšanu.
+
+49
+
+Apsardzes/
+piekļuves
+signalizācija
+
+Telpās paredzēt apsardzes signalizāciju, saskaņojot ar Pasūtītāju.
+
+Ēkas drošības režīma nodrošināšanai paredzēt kustības sensorus, kā arī izmantot
+durvju magnētiskos kontaktus, ēkas pirmā stāva logiem paredzēt kombinētos
+kustības un stikla plīšanas sensorus.
+
+Apsardzes/piekļuves kontroles signalizācija nodrošina trauksmes signāla
+nodošanu uz apsardzes pakalpojuma sniedzēja diennakts apsardzes pulti (objekta
+atbildīgās personas tālruni).
+
+Paredzēt vismaz divus dažādu veidu sakaru kanālus ar apsardzes pakalpojuma
+sniedzēja apsardzes pulti (GSM, Internet vai Radiosakaru) apsardzes sistēmas
+sakaru drošības paaugstināšanai.
+
+Apsardzes/piekļuves kontroles signalizācijai jābūt ar attālinātas vadības iespējam
+Projektēt apsardzes režīma vadību no vadības centrālā paneļa un attālināti.
+Sienu šķērsojošos kabeļus montēt instalācijas caurulēs.
+
+50
+
+Video
+novērošanas
+sistēma
+
+Objektā projektēt IP videonovērošanas sistēmu, kā drošības sistēmu sastāvdaļu,
+kas nodrošina ēkas iekštelpas un ārējā perimetra vizuālo kontroli. Sistēmu
+veidot, izmantojot Hikvision IP videokameras, kas atbalsta H.265+ datu plūsmas
+saspiešanu/kodēšanu, cilvēku un automašīnu noteikšanas funkciju ar ne mazāk
+kā 4 MP izšķirtspēju:
+
+- Stacionārās, ārpus telpām uzstādāmas IP videonovērošanas kameras ir ar
+fiksētu objektīvu un IR izgaismojumu ne mazāk kā 50m, atbalsta ColorVu
+un AcuSense tehnoloģiju. Kameras izvietotas ēkas iekšpagalma teritorijā
+(nav stiprinātas pie ēkas!). Kameru ieteicamā uzstādīšanas vieta ir
+iekšpagalma pusē pie apgaismes stabiem. Šīm kamerām jānodrošina visa
+iekšpagalma videonovērošanu, t.sk. piebraucamos/izbraucamos ceļus un
+ieejas ēkā;
+
+- Stacionārās iekštelpās uzstādāmas IP videonovērošanas kameras ir ar fiksētu
+objektīvu IR izgaismojumu ne mazāk kā 30m un DarkFighter (vai ColorVu)
+un AcuSense tehnoloģiju.
+
+Projektēt statnē montējamu IP video reģistratoru (ar atbilstoša datu uzglabāšanas
+
+vietu IP videonovērošanas kameru skaitam, to maksimālajai izšķirtspējai,
+
+ierakstu režīmam (notikums) un papildus iegūto attēlu uzglabāšanai). Jāatbalsta
+
+DarkFighter, ColorVu un AcuSense tehnoloģijas. Videoieraksta uzraudzībai
+
+jābūt ar attālinātas uzraudzības un novērošanas iespējām.
+
+Projektēt statnē uzstādīt nepārtrauktās barošanas (UPS) iekārtai ar ne mazāk kā
+
+3000VA/2700W jaudu videonovērošanas sistēmas darbības nodrošināšanai 4
+
+stundu ilgumā.
+
+10
+
+51
+
+ESS
+
+Kameras izvietot sekojoši: ārpus telpām nodrošina visas ēkai pieguļošās
+teritorijas novērošanu. Iekštelpās nodrošina visu ēkas galvenās ieejas/izejas
+durvju, galerijas, kāpņu telpas, darbnīcu un gaiteņu novērošanu. Kameru
+savienošanai ar statnē izvietoto aparatūru izmantot kabeļus un PatchPanel, kas
+atbilst CAT6 izpildījumam. Āra kameru savienošanai ar 2. stāva serveru telpas
+iekārtām izmantot CAT6 datu pārraides kabeli, kas paredzēts guldīšanai zemē un
+ir ar mitrumu atgrūdošu (gēla) pildījumu. Uz katru
+
+IP videonovērošanas kameru el. barošanai un datu pārraidei izmantot vadāmu
+(Managed L3) tīkla maršrutizētājus kas atbalsta 802.3af PoE, 802.3at PoE+
+standarta iekārtu el. barošanas un datu pārraides standartus.
+
+Izmantojamas iekārtas ar sekojošiem minimālajiem parametriem: Piegādājam
+ieraksta un kameru vadības sistēma Hikvision, kas ir integrējama esošajā
+pašvaldības videonovērošanas sistēmā un ir pilnībā savietojama ar
+piegādājamajām Hikvision kamerām un nodrošina vienlaicīgu visu kameru
+signālu ierakstu katrai kamerai ar vismaz 15fps pie HD izšķirtspējas. Iekārtai
+jābūt ne mazāk kā 30% brīvu IP kanālu.
+
+Ieraksta sistēmai jānodrošina datu arhivēšana un uzglabāšana vismaz 30
+diennaktis (vai mazāk, saskaņojot ar Pasūtītāju) iekštelpu kamerām un 90
+diennaktis ārtelpu kamerām. Sistēmai jāatbalsta ne mazāk kā 5 lietotāju attālināta
+pieslēgšanās sistēmai vienlaikus. Videonovērošanas sistēmai jābūt integrējamai
+esošajā pašvaldības videonovērošanas infrastruktūrā. Sistēmas elementu
+izvietojumu saskaņot ar Pasūtītāju.
+
+Projektēt centrālo komutācijas statni 20U (vai 22U) izmēra 19" brīvi stāvošs
+
+skapis ar priekšējām stikla durvīm ēkas 2. stāvā, kur paredzēt vietu
+
+videonovērošanas sistēmas iekārtu, datu pārraides tīkla iekārtu, UPS un
+
+PatchPanel izvietošanai.
+
+Projektējot nodrošināt bezvadu iekārtu un datorrozešu savienošanu ar datu
+
+pieslēgumu kabeļu garumu ne lielāku par 90m.
+
+Kabeļiem, datorrozetēm un PatchPanel izmantot CAT6 izpildījuma produkciju;
+
+Projektēt no rozetēm izbūvēt kabeļus caurulēs sienās un uz kabeļu plauktiem.
+
+Vertikālos kabeļu stāvvadus projektēt sienu nišās. No visiem pieslēgumu
+
+punktiem kabeļus izbūvēt līdz telekomunikāciju skapjiem.
+
+Projektētos telekomunikāciju mezglus pieslēgt ēkas elektroapgādei un zemējuma
+
+kopnei. Paredzēt kabeļu marķējumus abos galos, nodrošināt identificēšanu pēc
+
+kabeļu iestrādes.
+
+Projektēt izmantojot Mikrotik WiFi divu diapozonu (2,4 GHz un 5 GHz)
+
+pārklājumu 100% ēkas telpās, kas iekļautu centralizētu tās vadību. Izmantot
+
+bezvadu iekārtas, kas atbalsta 802.3af PoE, 802.3at PoE+ standarta iekārtu el.
+
+barošanas un datu pārraides standartus.
+
+Katrai darbinieka darba vietai paredzēt ne mazāk par divām datortīkla
+
+pieslēgvietām (RJ45 savienojums).
+
+Mansarda stāva telekomunikāciju skapī paredzēt uzstādīt:
+
+- centrālo tīkla maršrutizētāju uzvēlēties ar RouterOS (Mikrotik)
+programmatūru vadāmu (Managed L3) Mikrotik LO09UiGS-RM tīkla
+
+11
+
+
+maršrutizētāju, aprīkotu un SFP+ moduļa pieslēgvietu un 8-portu
+Gigabitīgajiem RJ45 pieslēgvietām;
+
+- 24-portu vadāmu (Managed L3) Mikrotik tīkla maršrutizētāju kas atbalsta
+802.3af PoE, 802.3at PoE+ standarta iekārtu el. barošanas un datu pārraides
+standartus;
+
+-  24-portu vadāmu (Managed L3) Mikrotik tīkla maršrutizētāju;
+
+- Uzstādīt nepārtrauktās barošanas (UPS) iekārtu.
+
+WiFi iekārtām un tīkla komunikatoriem jābūt ar RouterOS (Mikrotik)
+
+programmatūru un jābūt integrējamai esošajā pašvaldības datu pārraides
+
+infrastruktūrā. Iekārtu izvietojumu saskaņot ar Pasūtītāju.
+
+Visi tīkla komutatori ir savstarpēji savienoti (izmantojot optiskās šķiedras
+
+kabeļus un SFP+ pārveidotājus).
+
+Paredzēt telpu, kurā atradīsies centrālais komunikāciju statnis un
+
+videonovērošanas serveris, to aprīkot ar gaisa dzesēšanas iekārtu.
+
+Strukturētie datu tīkli jāprojektē atbilstoši LVS EN 50173, LVS EN 50174,
+
+standartu prasībām. Izpildījumu saskaņot ar Pasūtītāju.
+
+52
+
+UAS
+
+Projektēt automātisko ugunsgrēka atklāšanas un trauksmes signalizācijas
+sistēmu, atbilstošu ēkas specifikai un normatīvajiem aktiem. Ugunsgrēka
+izziņošanas sistēmai ir jāatbilst ēkas darba specifikai.
+Projektējot sistēmu izmantot ugunsdrošības adrešu sistēmu paneli ar atbilstošu
+zonu skaitu un rezerves akumulatoru skaitu.
+
+Projektēt vājstrāvu tīklu izbūvi (caurulēs), nepazeminot esošo būvkonstrukciju
+tehniskās un ugunsizturības robežas. Automātiskajai ugunsgrēka atklāšanas un
+trauksmes signalizācijas sistēmai jābūt tehnoloģiski savienotai ar
+apsardzes/piekļuves kontroles signalizāciju. Automātiskās ugunsgrēka
+atklāšanas un trauksmes signalizācijas sistēmas trauksmes signālu vai signālu
+par sistēmas un sakaru kanāla bojājumu pārraida uz paneli, kuru pastāvīgi
+(diennakti) uzrauga. No ugunsaizsardzības sistēmas jāpienāk trauksmes
+signālam par ugunsgrēka izcelšanos vai sistēmas bojājumu, kā stacionārās
+ugunsdzēsības sistēmas tehniskā stāvokļa paziņojumi.
+
+Vides
+pieejamība
+
+Izstrādāti objekta vides piekļūstamības risinājumi, piesaistot vides pieejamības
+jomas ekspertus, atbilstoši dizaina domāšanas principiem.
+Projektējot ieejas mezglu nodrošināt iekļūšanu ar ratiņkrēslu un bērnu ratiņiem.
+Projektēt kāpņu apgaismojumu 1501x, atbilstoši MK not. Nr.359 Darba
+aizsardzības prasības darba vietās”.
+Paredzēt liftu, darbiniekiem un apmeklētājiem t.sk. personām ar ratiņkrēslu.
+Vides pieejamības jautājumu risināt kontekstā ar evakuācijas prasību
+nodrošināšanu ugunsgrēka gadījumā.
+Projektētās telpas atbilst Vides pieejamības prasībām un Universālā dizaina
+principiem (daudzveidīga izmantošana, viegli izprotams pielietojums, minimāla
+fiziskā piepūle, viegli uztverama informācija, samazināta iespēja kļūdīties,
+kustībai un lietošanai atbilstošs telpas izmērs, ērta lietošana ikvienam).
+
+- Pie ēkas ieejas durvīm trauksmes (izsaukuma) zvana poga.
+
+12
+
+
+54 Zibens Projektēt jaunu zibens aizsardzības sistēmu.
+aizsardzība Projektēt zibens aizsardzības sistēmu, tā lai samazinātu fiziskos bojājumus,
+
+kādus būvei var nodarīt zibens izlāde.
+Zibens aizsardzību projektēt pēc iespējas mazāk vizuāli pamanāmu.
+
+55 | Komunikāciju Projektēt komunikāciju kanālus elektrības un vājstrāvas kabeļiem, kas savieno
+
+šahtas 1. un 2. stāvu.
+
+Pārvados caur pārsegumu nodrošināt ugunsdrošo blīvējumu.
+Projektēt sadalnes katrā stāvā.
+
+56 Iekšdarbi un Vispārējās prasības apdares materiāliem:
+
+apdare Projektā iekļaut apdares materiālus saskaņā ar AMI.
+
+Visus apdares materiālus izvēlēties atbilstoši LBN 200-21 *Būvju vispārīgo
+prasību būvnormatīvs”, LBN 201-15 *Būvju ugunsdrošība” un LBN 016-15
+*Būvakustika” prasībām.
+Visu apdares materiālu uguns reakcijas klases paredzēt atbilstošas UPP un LBN
+201-15 *Būvju ugunsdrošība”.
+Projektējot visu veidu apdari, paredzēt nepieciešamos tehniskā inventāra
+stiprinājumus. Stiprinājumus montēt pirms apdares slāņa ieklāšanas.
+Projektā precizēt un aprēķinos iekļaut nepieciešamos palīgmateriālus —
+stiprinājumus, līmes, grīdlīstes, noseglīstes kā arī ņemt vērā materiāla
+atgriezumu daudzumu.
+Visiem akmens masas flīžu segumiem nodrošināt pretslīdes klasi R10 sanitāri
+tehniskajās telpās ar akmens masas flīžu segumu. Flīžu dizainu saskaņot ar
+Pasūtītāju.
+Flīzētās zonas augstumu telpās ar keramikas flīžu apdari, paredzēt 1,8 — 2,0m.
+
+57 | Logi un durvis Projektēt koka logus un durvis saskaņā ar AMI, visiem restaurējamajiem logiem
+
+neņemt vērā zemāk norādītās prasības, attiecināt tikai uz no jauna
+uzstādāmajiem logiem un durvīm.
+
+Visiem logiem uzstādīt kontrolēta svaigā gaisa pieplūdes risinājumus ar dabisko
+ventilāciju.
+
+Vēja slodžu izturības klase EN 12210, EN 12211, logiem un balkonu durvīm ne
+zemāka par B3 (1/200, 1200Pa). Vēja slodžu izturībā ne mazāk kā 0,5 kN/m2,
+ar frontālo izlieci ne lielāku kā 1/200, atbilstoši LVS EN 1991-1-4 Eirokodekss
+— iedarbes uz konstrukcijām -1-4.daļa: Vispārīgās iedarbes - Vēja iedarbes.
+Siltumcaurlaidības koeficients: siltumizolācija saskaņā ar EN14351-1 punkts
+4.12. Logu siltuma caurlaidības koeficientu vērtība ne augstāka par: UW <1,2
+W/m2K, aplodas/stiklojuma siltumcauvrlaidības attiecība UF/Ug < 2,2. Ārdurvju
+siltuma caurlaidības koeficientu vērtības ne augstākas par UD <1,4 W/m2K.
+Akustiskās īpašības (skaņas izolācija) saskaņā ar EN 14351-1 punkts 4.11.,
+logiem, balkona durvīm un ārdurvīm atbilstoši LBN 016-15 *"Būvakustika”.
+Ūdens necaurlaidība saskaņā ar EN 14351-1 punkts 4.11, logu un balkona durvju
+ūdens necaurlaidības klase ne zemāka par — 9A. Ārdurvju klase novietojumam
+A (tieši pakļautas lietus iedarbībai) ne zemāka par — GA, bet novietojumam B
+(zem nojumes vai ēkas izvirzījuma) ne zemāka par — 7B.
+
+13
+
+
+Drošības stiklojumi saskaņā ar EN ISO12541 vai EN ISO14321-2.
+Ja nenorobežoti stiklojumi vai to daļa atrodas zemāk par 800mm no
+ekspluatācijas piekļuves līmeņa, stiklojumam ir jāpielieto speciāli drošības
+risinājumi, rūdīti vai laminēti stiklojumi, kas plīstot neveido bīstamas lauskas.
+Stiklojuma starojuma caurlaidība. Enerģijas starojuma kopējās caurlaidība „g”
+vērtība atkarībā no loga novietojuma attiecībā pret debess pusēm:
+
+a) Dienvidu puses logiem bez dabiska noēnojuma 0,4 (40%);
+
+b) Rietumu puses logiem bez dabiska noēnojuma 0,6 (60%).
+Visā ēkā izmantot viena ražotāja durvis katram durvju tipam.
+Durvis atbilst Universālā dizaina rekomendācijām.
+
+58
+
+Grīdas
+
+Jāparedz telpu grīdas segumu izveidošana. Projektā iekļaut grīdas apdares
+materiālu specifikācijas saskaņā ar AMI.
+
+Projektēt kāpnes ar veselībai nekaitīgu (nedilstošu, bez ķīmiskiem
+izgarojumiem) un ugunsgrēka evakuācijas ceļiem derīgu tehnoloģiju un
+materiālu.
+
+Kāpņu pakāpieniem, kāpņu laukumiem jābūt neslīdošiem.
+
+59
+
+Lifts
+
+Būvprojektā paredzēt liftu (lifta risinājums nedrīkst eksponēties ārtelpā (ne
+fasādēs, ne jumtā).
+
+Atbilst Vides pieejamības prasībām un Universālā dizaina rekomendācijām.
+Apkalpo divas pieturas: 1.stāvs, 2.stāvs.
+
+Lifta izsaukšanas pogai jābūt ne augstāk kā 1,20m no grīdas līmeņa un spilgti
+iezīmētai.
+
+Liftā jānodrošina audio informācija par lifta darbību (kurā stāvā atrodas,
+braukšanas virziens, durvju vēršanās).
+
+Lifta vadības panelim nedrīkst būt sensora pogas, pogām jābūt spiežamām ar
+kontrastējošu ciparu, ciparam jābūt taktīlam vai uzrakstītam Braila rakstā.
+Ievērot 2021. gada 19. oktobra Ministru kabineta noteikumos Nr. 693 *Būvju
+vispārīgo prasību būvnormatīvs LBN 200-21” 7. daļā noteikto.
+
+Izvietojuma un dizaina risinājumu saskaņot ar Pasūtītāju.
+
+60
+
+Būvprojekta
+vadība
+
+Būvprojekta vadītājam ir šādi pienākumi:
+
+« vadīt būvprojekta izstrādes darbus, kā arī koordinēt atsevišķo būvprojekta daļu
+savstarpējo atbilstību būvprojektam kopumā;
+
+« pārliecināties, ka ir saņemta pietiekama un aktuāla būvprojekta izstrādei
+nepieciešamā informācija, un, ja nepieciešams, pieprasīt papildu informāciju un
+nodrošināt savlaicīgu tās nodošanu būvprojekta daļu atbildīgajiem speciālistiem;
+
+« informēt būvprojekta daļu vadītājus par viņu izstrādei nodoto darbu apjomu;
+
+« pārbaudīt atsevišķo būvprojekta daļu atbilstību būvniecības iecerei un to
+savstarpējo saskaņotību;
+
+« darīt zināmu būvniecības procesa dalībniekiem jebkādu saņemto informāciju,
+kas ietekmē vai var ietekmēt projektēšanas darbu izpildi;
+
+« būvprojekta izmaiņu gadījumā nodrošināt atbilstošu to iestrādāšanu visās
+attiecīgajās būvprojekta daļās, ja nepieciešams, informēt par izmaiņām
+
+būvatļauju izdevušo institūciju un organizēt atbilstošu saskaņošanas procedūru;
+
+14
+
+
+61
+
+Vizualizācija
+
+« nodrošināt komunikāciju starp būvprojekta izstrādātājiem un Pasūtītāju,
+organizēt tikšanās ar Pasūtītāju būvprojekta izstrādes starpposmos, lai
+nodrošinātu savlaicīgu Pasūtītāja prasību iekļaušanu būvprojektā un
+nepieciešamo saskaņojumu saņemšanu no Pasūtītāja norādīto iestāžu/nodaļu
+pārstāvju puses.
+
+Būvprojekta vadība ietver:
+
+« būvprojekta izstrādei nepieciešamo dokumentu saņemšanu, apkopošanu,
+izstrādi, sagatavošanu, pasūtīšana u.t.t., ieskaitot visu nepieciešamo tehnisko
+noteikumu pieprasīšanu;
+
+e« inženierizpētes darbu organizēšanu un koordinēšanu;
+
+« būvprojekta izstrādes darbu koordināciju (t.sk. sapulču protokolu sagatavošanu,
+saskaņošanu) un komunikācijas vadīšanu starp visiem procesā iesaistītajiem
+dalībniekiem, tai skaitā, ar Pasūtītāju;
+
+« būvprojekta izstrādes darbu progresa pārskatu (darbu izpildes kalendāro grafiku)
+sagatavošanu, ja to pieprasa Pasūtītājs,
+
+« būvprojekta daļu apkopošanu un pārbaudi (pārbaudot to savstarpējo saderību un
+atbilstību);
+
+« būvprojekta un tā daļu saskaņošanu visās atbildīgajās institūcijās, t.sk. ar
+Pasūtītāju.
+
+Projekta robežas norādītas provizoriski, projektēšanas laikā nepieciešamības gadījum.
+var tikt precizētas.
+
+15
+
+
+Projektēšanas uzdevums sastādīts uz 16 (sešpadsmit) lapām.
+
+Datums
+23..05.2024.
+
+Sastādīja:
+
+Būvniecības speciālists (er A.Bērziņš
+
+Saskaņoja:
+
+Attīstības un būvniecības departamenta vadītājs M.Veinbergs
+
+Būvniecības nodaļas vadītājs (N R.Simanovičs
+ss ci V M M
+
+Vecākā projektu vadītāja . flut x od J. Kalinka
+
+Bauskas novada kultūrvēsturiskā mantojuma saglabāšanas un / M. Putniņa
+
+attīstības komisijas priekšsēdētāja dj
+
+16

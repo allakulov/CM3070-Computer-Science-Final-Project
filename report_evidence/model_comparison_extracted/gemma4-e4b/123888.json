@@ -1,0 +1,194 @@
+{
+  "eis_id": "123888",
+  "source_files": [
+    "Nolikums_ar_pielikumiem_fin_fin.docx",
+    "123888_PD.ANY_1_1_1_20240615171943.pdf",
+    "_meeting_openingprotocol_71259_OPNPRT_20240716140155.docx",
+    "Nosleguma_zinojums_fin.docx",
+    "Līgums_SantaMonicaNetworks_LVRTC_publ_EIS.pdf"
+  ],
+  "candidates": [
+    {
+      "code": "72261000-2",
+      "context": "etode – atklāts konkurss saskaņā ar Publisko iepirkumu likumu (turpmāk – PIL).\nPiedāvājuma izvēles kritērijs: saimnieciski visizdevīgākais piedāvājums ar viszemāko cenu.\nIepirkuma galvenais CPV kods: 72261000-2 (Programmatūras atbalsta pakalpojumi). \nCPV papildkods: 72253200-5 (Sistēmas un atbalsta pakalpojumi).\nIepriekšējais informatīvais paziņojums Eiropas Savienības oficiālajā vēstnesī publicēts 20.04.20",
+      "count": 1
+    },
+    {
+      "code": "72253200-5",
+      "context": "māk – PIL).\nPiedāvājuma izvēles kritērijs: saimnieciski visizdevīgākais piedāvājums ar viszemāko cenu.\nIepirkuma galvenais CPV kods: 72261000-2 (Programmatūras atbalsta pakalpojumi). \nCPV papildkods: 72253200-5 (Sistēmas un atbalsta pakalpojumi).\nIepriekšējais informatīvais paziņojums Eiropas Savienības oficiālajā vēstnesī publicēts 20.04.2024.\nPiegādātāju apspriede Iepirkumu uzraudzības biroja Publikāciju ",
+      "count": 1
+    }
+  ],
+  "attempts": 1,
+  "model_seconds": 120.9,
+  "extracted": {
+    "found": true,
+    "main_cpv": "72261000-2",
+    "additional_cpv": [
+      "72253200-5"
+    ],
+    "reasoning": "The text explicitly labels 'Iepirkuma galvenais CPV kods' (The procurement's main CPV code) as 72261000-2."
+  },
+  "critique": {
+    "verdict": "accept",
+    "problem": null
+  },
+  "evaluation_criteria": {
+    "found": true,
+    "award_method": "most_economically_advantageous",
+    "criteria": [
+      {
+        "name": "saimnieciski visizdevīgākais piedāvājums ar viszemāko cenu",
+        "weight": null,
+        "description": "The contract will be awarded to the bidder who submits the lowest price and meets all requirements specified in the Tender Documents."
+      }
+    ]
+  },
+  "criteria_check": "ok",
+  "standards": [
+    {
+      "name": "EU regulation 2016/679",
+      "category": "regulation",
+      "green": false,
+      "count": 3,
+      "phases": [
+        "specification",
+        "award"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "gtajā datu nesējā esošas ļaunatūras dēļ; apliecina, ka kā patstāvīgs datu pārzinis ievēro Eiropas Parlamenta un Padomes 2016. gada 27. aprīļa regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ direktīvu 95/46/EK (Vispārīgā datu aizsa"
+        },
+        {
+          "phase": "award",
+          "text": "tīvajos aktos noteiktās prasības šādu datu apstrādei un aizsardzībai, tajā skaitā ievērojot Eiropas Parlamenta un Padomes 2016.gada 27.aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsa"
+        },
+        {
+          "phase": "award",
+          "text": "tīvajos aktos noteiktās prasības šādu datu apstrādei un aizsardzībai, tajā skaitā ievērojot Eiropas Parlamenta un Padomes 2016.gada 27.aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsa"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 2022/576",
+      "category": "regulation",
+      "green": false,
+      "count": 10,
+      "phases": [
+        "award",
+        "specification",
+        "selection"
+      ],
+      "evidence": [
+        {
+          "phase": "award",
+          "text": "dātu piedāvājumu” (forma); 3. pielikums “Apakšuzņēmēju saraksts” (forma); 4. pielikums “Apliecinājums atbilstoši Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 5.k. panta 1. punktam” (forma); 5. pielikums “Tehniskā specifikācija - Tehniskais piedāvājums” (forma"
+        },
+        {
+          "phase": "specification",
+          "text": "), kuras kavē vai padara neiespējamu Līguma izpildi; Ja attiecībā uz Izpildītāju Līguma izpildes laikā iestājas 2022. gada 8. aprīļa Padomes regulas (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 par ierobežojošiem pasākumiem saistībā ar Krievijas darbībām, kas destabilizē situāciju Ukrainā 5.k p"
+        },
+        {
+          "phase": "selection",
+          "text": "ndents ir tiesīgs veikt ražotāja Scality tehnisko atbalstu Latvijas Republikā. 3.5.2. Apliecinājums atbilstoši Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 Apliecinājums atbilstoši Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes r"
+        },
+        {
+          "phase": "selection",
+          "text": "2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 3.5.2.1. Informācija Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 5.k.panta 1.punktam. Aizpildīts un parakstīts apliecinājums atbilstoši Nolikuma 4. pielikuma “Aplieci"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 833/2014",
+      "category": "regulation",
+      "green": false,
+      "count": 10,
+      "phases": [
+        "award",
+        "specification",
+        "selection"
+      ],
+      "evidence": [
+        {
+          "phase": "award",
+          "text": "kšuzņēmēju saraksts” (forma); 4. pielikums “Apliecinājums atbilstoši Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 5.k. panta 1. punktam” (forma); 5. pielikums “Tehniskā specifikācija - Tehniskais piedāvājums” (forma); 6. pielikums “Finanšu piedāvājums” (forma); 7"
+        },
+        {
+          "phase": "specification",
+          "text": "izpildi; Ja attiecībā uz Izpildītāju Līguma izpildes laikā iestājas 2022. gada 8. aprīļa Padomes regulas (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 par ierobežojošiem pasākumiem saistībā ar Krievijas darbībām, kas destabilizē situāciju Ukrainā 5.k panta 1. punktā ietvertais aizliegums; Ja Līguma"
+        },
+        {
+          "phase": "selection",
+          "text": "hnisko atbalstu Latvijas Republikā. 3.5.2. Apliecinājums atbilstoši Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 Apliecinājums atbilstoši Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 3.5.2.1. Informācija Pa"
+        },
+        {
+          "phase": "selection",
+          "text": "ar kuru groza Padomes regulu (ES) Nr. 833/2014 3.5.2.1. Informācija Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 5.k.panta 1.punktam. Aizpildīts un parakstīts apliecinājums atbilstoši Nolikuma 4. pielikuma “Apliecinājums atbilstoši Padomes 2022. gada 8. aprīļa"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 95/46",
+      "category": "regulation",
+      "green": false,
+      "count": 3,
+      "phases": [
+        "specification",
+        "award"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": ". aprīļa regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ direktīvu 95/46/EK (Vispārīgā datu aizsardzības regula) prasības un ir nodrošinājis tiesisko pamatu Piedāvājumā norādīto personas datu apstrādei un nodošanai Pasūtītāja"
+        },
+        {
+          "phase": "award",
+          "text": "7.aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsardzības regula) prasības. Puse, kura Līguma izpildes ietvaros nodod otrai Pusei fizisko personu datus, atbild par tiesiskā pamat"
+        },
+        {
+          "phase": "award",
+          "text": "7.aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsardzības regula) prasības. 7.2. Puse, kura Līguma izpildes ietvaros nodod otrai Pusei fizisko personu datus, atbild par tiesiskā"
+        }
+      ]
+    },
+    {
+      "name": "EN ISO 50001:2018",
+      "category": "standard",
+      "green": true,
+      "count": 2,
+      "phases": [
+        "award"
+      ],
+      "evidence": [
+        {
+          "phase": "award",
+          "text": "iem lūgums balstīts, kā arī nepieciešamo Pakalpojuma izpildes pagarinājuma termiņu. Izpildītājs ir informēts, ka Pasūtītājs ir sertificēts atbilstoši EN ISO 50001:2018 standartam “Energopārvaldības sistēmas. Prasības un lietošanas norādījumi”. Izpildītājs, parakstot Līgumu, apliecina, ka ir iepazinies ar Pasūtītāja"
+        },
+        {
+          "phase": "award",
+          "text": "gums balstīts, kā arī nepieciešamo Pakalpojuma izpildes pagarinājuma termiņu. 4.16. Izpildītājs ir informēts, ka Pasūtītājs ir sertificēts atbilstoši EN ISO 50001:2018 standartam “Energopārvaldības sistēmas. Prasības un lietošanas norādījumi”. 4.17. Izpildītājs, parakstot Līgumu, apliecina, ka ir iepazinies ar Pasūt"
+        }
+      ]
+    },
+    {
+      "name": "ISO9001:2015",
+      "category": "standard",
+      "green": false,
+      "count": 2,
+      "phases": [
+        "award"
+      ],
+      "evidence": [
+        {
+          "phase": "award",
+          "text": "as izmaiņām. Izpildītājs apliecina, ka ir informēts, ka Pasūtītājam ir ieviesta un tiek uzturēta kvalitātes pārvaldības sistēma saskaņā ar standarta ISO9001:2015 prasībām. Izpildītājs, parakstot Līgumu, apliecina, ka ir iepazinies ar Pasūtītāja mājas lapā https://www.lvrtc.lv/par-lvrtc/par-mums/ publicēto Pasū"
+        },
+        {
+          "phase": "award",
+          "text": "maiņām. 4.18. Izpildītājs apliecina, ka ir informēts, ka Pasūtītājam ir ieviesta un tiek uzturēta kvalitātes pārvaldības sistēma saskaņā ar standarta ISO9001:2015 prasībām. 4.19. Izpildītājs, parakstot Līgumu, apliecina, ka ir iepazinies ar Pasūtītāja mājas lapā https://www.lvrtc.lv/par-lvrtc/par-mums/ publicēt"
+        }
+      ]
+    }
+  ]
+}

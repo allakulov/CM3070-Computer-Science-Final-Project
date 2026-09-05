@@ -1,0 +1,18 @@
+{
+  "eis_id": "document_urls_2024-06-15.json",
+  "source_files": [],
+  "candidates": [],
+  "attempts": 0,
+  "extracted": {
+    "found": false,
+    "main_cpv": null,
+    "additional_cpv": [],
+    "reasoning": null
+  },
+  "evaluation_criteria": {
+    "found": false,
+    "award_method": "unknown",
+    "criteria": []
+  },
+  "tables": []
+}

@@ -1,0 +1,4 @@
+eis_id,main_cpv_extracted,main_cpv_truth,main_cpv_match,additional_cpv_extracted,additional_cpv_truth,additional_cpv_match,weights_extracted,weights_truth,weights_match,criteria_names_extracted,criteria_names_truth
+121448,45000000-7,45000000-7,True,,,True,,1,False,,Zemākā cena
+123450,55524000-9,55524000-9,True,,,True,,15; 15; 15; 25; 25; 25; 30; 30; 30; 30; 30; 30,False,,"BL, NPKS, LPIA produktu piegāde  | BL, NPKS, LPIA produktu daudzums. | Darba organizācijas apraksts un ēdienkartes piedāvājums  | Līgumcena  | BL, NPKS, LPIA produktu piegāde  | BL, NPKS, LPIA produktu daudzums. | Darba organizācijas apraksts un ēdienkartes piedāvājums  | Līgumcena  | BL, NPKS, LPIA produktu piegāde  | BL, NPKS, LPIA produktu daudzums. | Darba organizācijas apraksts  | Līgumcena "
+125290,,34114300-2,False,,,True,,,True,Transportlīdzekļa cena (Vehicle Price) | Transportlīdzekļa tehnisko apkopju izmaksas garantijas laikā (Maintenance Costs during Warranty),Cena

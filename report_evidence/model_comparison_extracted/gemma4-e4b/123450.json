@@ -1,0 +1,458 @@
+{
+  "eis_id": "123450",
+  "source_files": [
+    "NOLIKUMS_27.docx",
+    "1_pielikums_Tehniskā_specifikācija_1_dala_Priekulu_vidusskola_fin.docx",
+    "1_pielikums_Tehniskā_specifikācija_2_dala_Liepas_pamatskola_fin.docx",
+    "1_pielikums_Tehniskā_specifikācija_3_dala_Mezmalina_fin.docx",
+    "6_pielikums_Finansu piedavajums.xlsx",
+    "13_pielikums_Ēdināšanas_Līgumu_projekts.docx",
+    "14_pielikums_Nomas_ligums.docx",
+    "15_pielikums_Pakalpojuma_liguma_forma_ar_vecakiem.docx",
+    "123450_PD.ANY_1_1_1_20240615173645.pdf",
+    "123450_PD.ANY_1_1_2_20240615173646.pdf",
+    "123450_PD.ANY_1_1_3_20240615173647.pdf",
+    "DOCUMENT-CERT-CESUNP_MKlim-123450-20240715.pdf",
+    "_meeting_openingprotocol_71157_OPNPRT_20240715090229.docx",
+    "zinojums.docx",
+    "Ligums_Priekulu_vidusskola_1_dala.docx",
+    "Ligums_Liepas_pamatsk_2_dala_Lucrum.docx",
+    "Ligums_Mezmalina_CNC_3_dala.docx"
+  ],
+  "candidates": [
+    {
+      "code": "55524000-9",
+      "context": "rkuma priekšmets: Ēdināšanas pakalpojuma nodrošināšana Cēsu novada izglītības iestādēs saskaņā ar  Iepirkuma nolikuma pielikumiem, Tehnisko specifikāciju (Iepirkuma nolikuma 1. pielikums). \nCPV kods: 55524000-9 (Skolas ēdināšanas pakalpojumi).\nIepirkuma daļas: Iepirkuma priekšmets tiek dalīts 3 (trīs) Iepirkuma daļās:\nIepirkuma 1. daļa: Ēdināšanas pakalpojumu sniegšana Priekuļu vidusskolā.\nIepirkuma 2. daļa",
+      "count": 1
+    }
+  ],
+  "attempts": 1,
+  "model_seconds": 97.4,
+  "extracted": {
+    "found": true,
+    "main_cpv": "55524000-9",
+    "additional_cpv": [],
+    "reasoning": "Only one CPV code was provided in the input, making it the main code by default."
+  },
+  "critique": {
+    "verdict": "accept",
+    "problem": null
+  },
+  "evaluation_criteria": {
+    "found": true,
+    "award_method": "most_economically_advantageous",
+    "criteria": [
+      {
+        "name": "Saimnieciski izdevīgākais piedāvājums (Most economically advantageous offer)",
+        "weight": null,
+        "description": "The criteria and numerical weights are specified in Appendix 12 of the Procurement Rules (Iepirkuma nolikuma 12. pielikums). No specific criteria or weights are listed in the provided text."
+      }
+    ]
+  },
+  "criteria_check": "ok",
+  "standards": [
+    {
+      "name": "BL",
+      "category": "defined_scheme",
+      "green": true,
+      "count": 1176,
+      "phases": [
+        "specification",
+        "award",
+        "selection"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "informāciju par produktiem, kurus Pretendents izmantos ēdināšanas pakalpojuma nodrošināšanai un kuri atbilst bioloģiskās lauksaimniecības (turpmāk – BL), nacionālās pārtikas kvalitātes shēmas (turpmāk – NPKS) vai lauksaimniecības produktu integrētās audzēšanas (LPIA) prasībām, kas noteiktas Ministru"
+        },
+        {
+          "phase": "specification",
+          "text": "informāciju par produktiem, kurus Pretendents izmantos ēdināšanas pakalpojuma nodrošināšanai un kuri atbilst bioloģiskās lauksaimniecības (turpmāk – BL), nacionālās pārtikas kvalitātes shēmas (turpmāk – NPKS) vai lauksaimniecības produktu integrētās audzēšanas (LPIA) prasībām, kas noteiktas Ministru"
+        },
+        {
+          "phase": "specification",
+          "text": "informāciju par produktiem, kurus Pretendents izmantos ēdināšanas pakalpojuma nodrošināšanai un kuri atbilst bioloģiskās lauksaimniecības (turpmāk – BL), nacionālās pārtikas kvalitātes shēmas (turpmāk – NPKS) vai lauksaimniecības produktu integrētās audzēšanas (LPIA) prasībām, kas noteiktas Ministru"
+        },
+        {
+          "phase": "specification",
+          "text": "informāciju par produktiem, kurus Pretendents izmantos ēdināšanas pakalpojuma nodrošināšanai un kuri atbilst bioloģiskās lauksaimniecības (turpmāk – BL), nacionālās pārtikas kvalitātes shēmas (turpmāk – NPKS) vai lauksaimniecības produktu integrētās audzēšanas (LPIA) prasībām, kas noteiktas Ministru"
+        }
+      ]
+    },
+    {
+      "name": "LPIA",
+      "category": "defined_scheme",
+      "green": false,
+      "count": 720,
+      "phases": [
+        "specification",
+        "award",
+        "selection"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "loģiskās lauksaimniecības (turpmāk – BL), nacionālās pārtikas kvalitātes shēmas (turpmāk – NPKS) vai lauksaimniecības produktu integrētās audzēšanas (LPIA) prasībām, kas noteiktas Ministru kabineta 2014. gada 12. augusta noteikumos Nr.461 „Prasības pārtikas kvalitātes shēmām, to ieviešanas, darbības, uz"
+        },
+        {
+          "phase": "award",
+          "text": "irkuma daļas piedāvājuma BL, NPKS, LPIA produktu tabulas 8. kolonnas punktu kopsumma; Vmax – lielākā attiecīgās Iepirkuma daļas piedāvājuma BL, NPKS, LPIA produktu tabulas 8. kolonnas punktu kopsumma; 2. BL, NPKS, LPIA produktu daudzums Maksimālais punktu skaits (iesk.): 30.00 Šajā kritērijā maksimālo p"
+        },
+        {
+          "phase": "specification",
+          "text": "eciešamas objektīvu, no Izpildītāja neatkarīgu iemeslu dēļ un sarakstā minētais produkts tiek aizstāts ar līdzvērtīgu produktu, kas atbilst BL, NPKS, LPIA prasībām. Izglītības iestāde apņemas informēt Izpildītāju par izglītojamajiem, kuriem ir ārsta apstiprināta diagnoze (piemēram, celiakija, cukura dia"
+        },
+        {
+          "phase": "selection",
+          "text": "kur V – iegūtais punktu skaits ar precizitāti līdz 2 (diviem) cipariem aiz komata; Vver – vērtējamā attiecīgās Iepirkuma daļas piedāvājuma BL, NPKS, LPIA produktu tabulas 8. kolonnas punktu kopsumma; Vmax – lielākā attiecīgās Iepirkuma daļas piedāvājuma BL, NPKS, LPIA produktu tabulas 8. kolonnas punkt"
+        }
+      ]
+    },
+    {
+      "name": "NPKS",
+      "category": "defined_scheme",
+      "green": false,
+      "count": 1304,
+      "phases": [
+        "specification",
+        "award",
+        "selection"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "s ēdināšanas pakalpojuma nodrošināšanai un kuri atbilst bioloģiskās lauksaimniecības (turpmāk – BL), nacionālās pārtikas kvalitātes shēmas (turpmāk – NPKS) vai lauksaimniecības produktu integrētās audzēšanas (LPIA) prasībām, kas noteiktas Ministru kabineta 2014. gada 12. augusta noteikumos Nr.461 „Prasī"
+        },
+        {
+          "phase": "specification",
+          "text": "s ēdināšanas pakalpojuma nodrošināšanai un kuri atbilst bioloģiskās lauksaimniecības (turpmāk – BL), nacionālās pārtikas kvalitātes shēmas (turpmāk – NPKS) vai lauksaimniecības produktu integrētās audzēšanas (LPIA) prasībām, kas noteiktas Ministru kabineta 2014. gada 12. augusta noteikumos Nr.461 „Prasī"
+        },
+        {
+          "phase": "specification",
+          "text": "s ēdināšanas pakalpojuma nodrošināšanai un kuri atbilst bioloģiskās lauksaimniecības (turpmāk – BL), nacionālās pārtikas kvalitātes shēmas (turpmāk – NPKS) vai lauksaimniecības produktu integrētās audzēšanas (LPIA) prasībām, kas noteiktas Ministru kabineta 2014. gada 12. augusta noteikumos Nr.461 „Prasī"
+        },
+        {
+          "phase": "specification",
+          "text": "s ēdināšanas pakalpojuma nodrošināšanai un kuri atbilst bioloģiskās lauksaimniecības (turpmāk – BL), nacionālās pārtikas kvalitātes shēmas (turpmāk – NPKS) vai lauksaimniecības produktu integrētās audzēšanas (LPIA) prasībām, kas noteiktas Ministru kabineta 2014. gada 12. augusta noteikumos Nr.461 „Prasī"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 1169/2011",
+      "category": "regulation",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "higiēnu; Eiropas Parlamenta un Padomes Regula (EK) Nr. 1333/2008 (2008.gada 16.decembris) par pārtikas piedevām; Eiropas Parlamenta un Padomes regula (EK) Nr.1169/2011 (2011.gada 25.oktobris) par pārtikas produktu informācijas sniegšanu patērētājiem Pārtikas aprites uzraudzības likums; Bērnu tiesību aizsardzības lik"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 1333/2008",
+      "category": "regulation",
+      "green": false,
+      "count": 2,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "pām: Eiropas Parlamenta un Padomes regula (EK) Nr.852/2004 (2004.gada 29.aprīlis) par pārtikas produktu higiēnu; Eiropas Parlamenta un Padomes Regula (EK) Nr. 1333/2008 (2008.gada 16.decembris) par pārtikas piedevām; Eiropas Parlamenta un Padomes regula (EK) Nr.1169/2011 (2011.gada 25.oktobris) par pārtikas produktu"
+        },
+        {
+          "phase": "specification",
+          "text": "”; Eiropas Parlamenta un Padomes Regula (EK) Nr. 852/2004 (2004.gada 29.aprīlis) par pārtikas produktu higiēnu; Eiropas Parlamenta un Padomes Regula (EK) Nr. 1333/2008 (2008.gada 16.decembris) par pārtikas piedevām; citi normatīvie akti, kuri stājas spēkā pakalpojuma sniegšanas laikā. Ja kāds no Tehniskās specifikā"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 1935/2004",
+      "category": "regulation",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "iem Nr.808 „Noteikumi par materiāliem un izstrādājumiem, kas paredzēti saskarei ar pārtiku”, kā arī Eiropas Parlamenta un Padomes 27.10.2004. Regulai (EK) Nr.1935/2004 par materiāliem un izstrādājumiem, kas paredzēti saskarei ar pārtikas produktiem; nodrošināt Paku komplektēšanai, iepakošanai un izsniegšanai nepieci"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 2016/679",
+      "category": "regulation",
+      "green": false,
+      "count": 5,
+      "phases": [
+        "selection",
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "selection",
+          "text": "lēgšanu un izpildi. Iegūto personu datu apstrāde un uzglabāšana tiks nodrošināta atbilstoši 2016.gada 27.aprīļa Eiropas Parlamenta un Padomes regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsa"
+        },
+        {
+          "phase": "specification",
+          "text": "Personas dati), Izpildītājs apstrādā saskaņā ar Latvijas Republikas normatīvajiem aktiem, Eiropas Parlamenta un Padomes 2016. gada 27. aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz Personas datu apstrādi un šādu datu brīvu apriti, ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsard"
+        },
+        {
+          "phase": "specification",
+          "text": "Personas dati), Izpildītājs apstrādā saskaņā ar Latvijas Republikas normatīvajiem aktiem, Eiropas Parlamenta un Padomes 2016. gada 27. aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz Personas datu apstrādi un šādu datu brīvu apriti, ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsard"
+        },
+        {
+          "phase": "specification",
+          "text": "Personas dati), Izpildītājs apstrādā saskaņā ar Latvijas Republikas normatīvajiem aktiem, Eiropas Parlamenta un Padomes 2016. gada 27. aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz Personas datu apstrādi un šādu datu brīvu apriti, ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsard"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 2016/7",
+      "category": "regulation",
+      "green": false,
+      "count": 2,
+      "phases": [
+        "selection"
+      ],
+      "evidence": [
+        {
+          "phase": "selection",
+          "text": "procedūras dokumentos noteiktajām Pretendentu atlases prasībām. Var iesniegt veidlapu atbilstoši Eiropas Komisijas 2016. gada 5. janvāra Īstenošanas regulai 2016/7, ar ko nosaka standarta veidlapu Eiropas vienotajam Iepirkuma procedūras dokumentam, kas pieejama http://espd.eis.gov.lv/. Veidlapa jāiesniedz par"
+        },
+        {
+          "phase": "selection",
+          "text": "procedūras dokumentos noteiktajām Pretendentu atlases prasībām. Var iesniegt veidlapu atbilstoši Eiropas Komisijas 2016. gada 5. janvāra Īstenošanas regulai 2016/7, ar ko nosaka standarta veidlapu Eiropas vienotajam Iepirkuma procedūras dokumentam, kas pieejama http://espd.eis.gov.lv/. Veidlapa jāiesniedz par"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 2092/91",
+      "category": "regulation",
+      "green": false,
+      "count": 2,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "atbilstoši BL metodēm saskaņā ar Padomes 28.06.2007. Regulu (EK) Nr. 834/2007 par bioloģisko ražošanu un bioloģisko produktu marķēšanu un par Regulas (EEK) Nr. 2092/91 atcelšanu Iepirkuma nolikuma 9.pielikuma (Produktu saraksta) minētajiem pārtikas produktiem: graudaugu pārstrādes produktiem: piemēram, auzu pārslām,"
+        },
+        {
+          "phase": "specification",
+          "text": "atbilstoši BL metodēm saskaņā ar Padomes 28.06.2007. Regulu (EK) Nr. 834/2007 par bioloģisko ražošanu un bioloģisko produktu marķēšanu un par Regulas (EEK) Nr. 2092/91 atcelšanu; Iepirkuma nolikuma 9. pielikuma (Produktu saraksta) minētajiem pārtikas produktiem: cūkgaļai, liellopu gaļai, vistas gaļai, olām, kurus pl"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 651/2014",
+      "category": "regulation",
+      "green": false,
+      "count": 9,
+      "phases": [
+        "award",
+        "selection"
+      ],
+      "evidence": [
+        {
+          "phase": "award",
+          "text": "ts, tālruņa numurs, e-pasta adrese) 9. 9. Uzņēmuma kategorija (norādīt uzņēmuma kategoriju atbilstoši Eiropas Komisijas 2014. gada 17. jūnija Regulas (ES) Nr. 651/2014 1. pielikuma 2. pantā noteiktajam) Uzņēmuma kategorija (norādīt uzņēmuma kategoriju atbilstoši Eiropas Komisijas 2014. gada 17. jūnija Regulas (ES) N"
+        },
+        {
+          "phase": "award",
+          "text": "1/2014 1. pielikuma 2. pantā noteiktajam) Uzņēmuma kategorija (norādīt uzņēmuma kategoriju atbilstoši Eiropas Komisijas 2014. gada 17. jūnija Regulas (ES) Nr. 651/2014 1. pielikuma 2. pantā noteiktajam) Uzņēmuma kategorija (norādīt uzņēmuma kategoriju atbilstoši Eiropas Komisijas 2014. gada 17. jūnija Regulas (ES) N"
+        },
+        {
+          "phase": "award",
+          "text": "1/2014 1. pielikuma 2. pantā noteiktajam) Uzņēmuma kategorija (norādīt uzņēmuma kategoriju atbilstoši Eiropas Komisijas 2014. gada 17. jūnija Regulas (ES) Nr. 651/2014 1. pielikuma 2. pantā noteiktajam) Uzņēmuma kategorija (norādīt uzņēmuma kategoriju atbilstoši Eiropas Komisijas 2014. gada 17. jūnija Regulas (ES) N"
+        },
+        {
+          "phase": "selection",
+          "text": "apliecināšanai (Jā / Nē) Apakšuzņēmēja uzņēmuma kategorija (norādīt uzņēmuma kategoriju atbilstoši Eiropas Komisijas 2014. gada 17. jūnija Regulas (ES) Nr. 651/2014 1. pielikuma 2. pantā noteiktajam) Apakšuzņēmēja uzņēmuma kategorija (norādīt uzņēmuma kategoriju atbilstoši Eiropas Komisijas 2014. gada 17. jūnija"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 66/2010",
+      "category": "regulation",
+      "green": true,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "saskaņā ar ES marķējumu; sniedzot ēdināšanas pakalpojumus, izmantos tīrīšanas līdzekļus, kuri atbilst saskaņā ar Eiropas Parlamenta un Padomes regulu (EK) Nr.66/2010 (2009.gada 25.novembris) par ES ekomarķējumu izveidotajiem ES ekomarķējuma kritērijiem tīrīšanas līdzekļiem; neveicam un līguma noslēgšanas gadījumā"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 834/2007",
+      "category": "regulation",
+      "green": true,
+      "count": 2,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "vismaz 50 (piecdesmit) procentu apmērā no visas produkta masas un vērtības jābūt ražotiem atbilstoši BL metodēm saskaņā ar Padomes 28.06.2007. Regulu (EK) Nr. 834/2007 par bioloģisko ražošanu un bioloģisko produktu marķēšanu un par Regulas (EEK) Nr. 2092/91 atcelšanu Iepirkuma nolikuma 9.pielikuma (Produktu saraksta"
+        },
+        {
+          "phase": "specification",
+          "text": "vismaz 20 (divdesmit) procentu apmērā no visas produkta masas un vērtības jābūt ražotiem atbilstoši BL metodēm saskaņā ar Padomes 28.06.2007. Regulu (EK) Nr. 834/2007 par bioloģisko ražošanu un bioloģisko produktu marķēšanu un par Regulas (EEK) Nr. 2092/91 atcelšanu; Iepirkuma nolikuma 9. pielikuma (Produktu saraks"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 852/2004",
+      "category": "regulation",
+      "green": false,
+      "count": 3,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "kumi jāievēro, sniedzot sabiedriskās ēdināšanas pakalpojumus, t.sk. sagatavojot ēdienkartes visām vecuma grupām: Eiropas Parlamenta un Padomes regula (EK) Nr.852/2004 (2004.gada 29.aprīlis) par pārtikas produktu higiēnu; Eiropas Parlamenta un Padomes Regula (EK) Nr. 1333/2008 (2008.gada 16.decembris) par pārtikas p"
+        },
+        {
+          "phase": "specification",
+          "text": ".2021. noteikumi Nr.704 “Prasības darbībām ar ozona slāni noārdošām vielām un fluorētām siltumnīcefekta gāzēm”; Eiropas Parlamenta un Padomes Regula (EK) Nr. 852/2004 (2004.gada 29.aprīlis) par pārtikas produktu higiēnu; Eiropas Parlamenta un Padomes Regula (EK) Nr. 1333/2008 (2008.gada 16.decembris) par pārtikas p"
+        },
+        {
+          "phase": "specification",
+          "text": "ietotie pārtikas produkti fasēti atbilstoši normatīvo aktu prasībām, kā arī transportēti atbilstoši Eiropas Parlamenta un Padomes 29.04.2004. Regulai (EK) Nr.852/2004 par pārtikas produktu higiēnu, tādējādi nodrošinot pilnīgu pārtikas preču drošību pret piesārņojumu; materiāli, kas nonāk saskarē ar pārtiku atbilst"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 95/46",
+      "category": "regulation",
+      "green": false,
+      "count": 5,
+      "phases": [
+        "selection",
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "selection",
+          "text": "Padomes regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsardzības regula) prasībām, citiem normatīvajiem aktiem un Iepirkuma līguma noteikumiem. Iepirkuma priekšmets Iepirkuma priekšmets"
+        },
+        {
+          "phase": "specification",
+          "text": "27. aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz Personas datu apstrādi un šādu datu brīvu apriti, ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsardzības regula - VDAR) prasībām un Pasūtītāja norādījumiem. Puses ir atbildīgas par otras Puses iesniegto personas datu aizsardz"
+        },
+        {
+          "phase": "specification",
+          "text": "27. aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz Personas datu apstrādi un šādu datu brīvu apriti, ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsardzības regula - VDAR) prasībām un Pasūtītāja norādījumiem. Puses ir atbildīgas par otras Puses iesniegto personas datu aizsardz"
+        },
+        {
+          "phase": "specification",
+          "text": "27. aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz Personas datu apstrādi un šādu datu brīvu apriti, ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsardzības regula - VDAR) prasībām un Pasūtītāja norādījumiem. Puses ir atbildīgas par otras Puses iesniegto personas datu aizsardz"
+        }
+      ]
+    },
+    {
+      "name": "Ministru kabineta noteikumi Nr. 173",
+      "category": "regulation",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "am); apliecinājums, ka pakalpojuma sniegšanā nodarbinātā persona apguvusi speciālās zināšanas bērnu tiesību aizsardzības jomā, atbilstoši 10.04.2014. Ministru kabineta noteikumiem Nr.173 „Noteikumi par kārtību, kādā apgūst specialās zināšanas bērnu tiesību aizsardzības jomā”; higiēnas, ugunsdrošības, elektrodrošības, darba aizsardzība"
+        }
+      ]
+    },
+    {
+      "name": "Ministru kabineta noteikumi Nr. 97",
+      "category": "regulation",
+      "green": false,
+      "count": 4,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "ikums). Par Izglītības iestādes virtuves iekārtu un telpu nomu Izpildītājs slēgs nomas līgumus ar Izglītības iestādi atbilstoši 2018.gada 20.februāra Ministru kabineta noteikumiem Nr.97 „Publiskas personas mantas iznomāšanas noteikumi” saskaņā ar Iepirkuma nolikuma noteikumiem. < Piezīme: Noteiktā summa par telpu un inventāra nomu ti"
+        },
+        {
+          "phase": "specification",
+          "text": "ikums). Par Izglītības iestādes virtuves iekārtu un telpu nomu Izpildītājs slēgs nomas līgumus ar Izglītības iestādi atbilstoši 2018.gada 20.februāra Ministru kabineta noteikumiem Nr.97 „Publiskas personas mantas iznomāšanas noteikumi” saskaņā ar Iepirkuma nolikuma noteikumiem. < Piezīme: Noteiktā summa par telpu un inventāra nomu ti"
+        },
+        {
+          "phase": "specification",
+          "text": "ikums). Par Izglītības iestādes virtuves iekārtu un telpu nomu Izpildītājs slēgs nomas līgumus ar Izglītības iestādi atbilstoši 2018.gada 20.februāra Ministru kabineta noteikumiem Nr.97 „Publiskas personas mantas iznomāšanas noteikumi” saskaņā ar Iepirkuma nolikuma noteikumiem. < Piezīme: Noteiktā summa par telpu un inventāra nomu ti"
+        },
+        {
+          "phase": "specification",
+          "text": "ikums). Par Izglītības iestādes virtuves iekārtu un telpu nomu Izpildītājs slēgs nomas līgumus ar Izglītības iestādi atbilstoši 2018.gada 20.februāra Ministru kabineta noteikumiem Nr.97 „Publiskas personas mantas iznomāšanas noteikumi” saskaņā ar Iepirkuma nolikuma noteikumiem. < Piezīme: Noteiktā summa par telpu un inventāra nomu ti"
+        }
+      ]
+    },
+    {
+      "name": "EU Ecolabel",
+      "category": "scheme",
+      "green": true,
+      "count": 2,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "pakalpojumus, izmantos tīrīšanas līdzekļus, kuri atbilst saskaņā ar Eiropas Parlamenta un Padomes regulu (EK) Nr.66/2010 (2009.gada 25.novembris) par ES ekomarķējumu izveidotajiem ES ekomarķējuma kritērijiem tīrīšanas līdzekļiem; neveicam un līguma noslēgšanas gadījumā līguma izpildē neveiksim darījumus (neiegādā"
+        },
+        {
+          "phase": "specification",
+          "text": "as līdzekļus, kuri atbilst saskaņā ar Eiropas Parlamenta un Padomes regulu (EK) Nr.66/2010 (2009.gada 25.novembris) par ES ekomarķējumu izveidotajiem ES ekomarķējuma kritērijiem tīrīšanas līdzekļiem; neveicam un līguma noslēgšanas gadījumā līguma izpildē neveiksim darījumus (neiegādāsimies preces vai pakalpojumus"
+        }
+      ]
+    },
+    {
+      "name": "EU energy label",
+      "category": "scheme",
+      "green": true,
+      "count": 4,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "t priekšroku videi draudzīgām virtuves iekārtām: ledusskapjiem un saldētavām, kuros nav ozona slāni noārdošās vielas (HCFC un HFC); aprīkojumam, kura energoefektivitātes marķējuma klase ir no A līdz C; aprīkojumam, kas ir efektīvs ūdens patēriņa ziņā. Dot priekšroku produktiem lielākā iepakojumā vai tādā iepakojumā, kas ir vid"
+        },
+        {
+          "phase": "specification",
+          "text": "t priekšroku videi draudzīgām virtuves iekārtām: ledusskapjiem un saldētavām, kuros nav ozona slāni noārdošās vielas (HCFC un HFC); aprīkojumam, kura energoefektivitātes marķējuma klase ir no A līdz C; aprīkojumam, kas ir efektīvs ūdens patēriņa ziņā. Dot priekšroku produktiem lielākā iepakojumā vai tādā iepakojumā, kas ir vid"
+        },
+        {
+          "phase": "specification",
+          "text": "t priekšroku videi draudzīgām virtuves iekārtām: ledusskapjiem un saldētavām, kuros nav ozona slāni noārdošās vielas (HCFC un HFC); aprīkojumam, kura energoefektivitātes marķējuma klase ir no A līdz C; aprīkojumam, kas ir efektīvs ūdens patēriņa ziņā. Dot priekšroku produktiem lielākā iepakojumā vai tādā iepakojumā, kas ir vid"
+        },
+        {
+          "phase": "specification",
+          "text": "t priekšroku videi draudzīgām virtuves iekārtām: ledusskapjiem un saldētavām, kuros nav ozona slāni noārdošās vielas (HCFC un HFC); aprīkojumam, kura energoefektivitātes marķējuma klase ir no A līdz C; aprīkojumam, kas ir efektīvs ūdens patēriņa ziņā. Dot priekšroku produktiem lielākā iepakojumā vai tādā iepakojumā, kas ir vid"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+standard,mistral-small,gemma4:e4b,qwen3.5:9b,agree
+BL,no,yes,yes,differs
+EU Ecolabel,yes,yes,yes,
+EU energy label,no,yes,yes,differs
+EU regulation 1169/2011,no,yes,no,differs
+EU regulation 1333/2008,no,yes,no,differs
+EU regulation 1935/2004,no,yes,yes,differs
+EU regulation 2016/679,no,no,no,
+EU regulation 2016/7,no,no,no,
+EU regulation 2092/91,no,no,no,
+EU regulation 651/2014,no,yes,yes,differs
+EU regulation 66/2010,no,yes,yes,differs
+EU regulation 834/2007,no,yes,yes,differs
+EU regulation 852/2004,no,yes,yes,differs
+EU regulation 95/46,no,no,no,
+LPIA,yes,yes,yes,
+Ministru kabineta noteikumi Nr. 173,no,yes,yes,differs
+Ministru kabineta noteikumi Nr. 97,no,yes,no,differs
+NPKS,yes,yes,yes,
+,,,,
+candidates,18,18,18,
+applies,3,14,11,
+paused,11,0,1,
+corrected,0,0,0,
+seconds each,20.9,26.7,44.8,
+seconds total,376.4,480.3,806.7,

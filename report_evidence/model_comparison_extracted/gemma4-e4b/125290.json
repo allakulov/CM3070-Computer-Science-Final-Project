@@ -1,0 +1,158 @@
+{
+  "eis_id": "125290",
+  "source_files": [
+    "2024-3-1.pielikums_Pieteikums dalîbai.docx",
+    "2024-3-10.pielikums_Vërtë╒anas kritëriji un kârtîba.docx",
+    "2024-3-2.pielikums-Tehniskâ specifikâcija-Tehniskais piedâvâjums.docx",
+    "2024-3-3.pielikums_Finan╒u piedâvâjums.xlsx",
+    "2024-3-4.pielikums_Apliecinâjums par neatkarîgi izstrâdâtu piedâvâjumu.docx",
+    "2024-3-5.pielikums_Informâcija par iepriek╒ëjo pieredzi.docx",
+    "2024-3-6.pielikums_Iepirkuma lîguma projekts_15.05.2024..docx",
+    "2024-3-9.pielikums_Piedâvâjuma nodro╒inâjuma noteikumi.docx",
+    "Nolikums_mikroautobuss_2024_3.docx",
+    "Termiņa pagarinājums_12.07.2024..docx",
+    "termiņa pagarinājums_25.07.2024..docx",
+    "2024-3-2.pielikums-Tehniskâ specifikâcija-Tehniskais piedâvâjums_06.08.2024..docx",
+    "2024-3-6.pielikums_Iepirkuma lîguma projekts_06.08.2024..docx",
+    "Grozîjumi_06.08.2024..docx",
+    "Nolikums_mikroautobuss_2024_3_ANM_06.08.2024..docx",
+    "125290_PD.ANY_1_4_1_20240807111349.pdf",
+    "2024-3-1.pielikums_Pieteikums dalībai.docx",
+    "2024-3-4.pielikums_Apliecinājums par neatkarīgi izstrādātu piedāvājumu.docx",
+    "2024-3-5.pielikums_Informācija par iepriekšējo pieredzi.docx",
+    "2024-3-3.pielikums_Finanšu piedāvājums.xlsx",
+    "2024-3-2.pielikums-Tehniskā specifikācija-Tehniskais piedāvājums_06.08.2024..docx"
+  ],
+  "candidates": [],
+  "attempts": 0,
+  "model_seconds": 57.8,
+  "extracted": {
+    "found": false,
+    "main_cpv": null,
+    "additional_cpv": [],
+    "reasoning": null
+  },
+  "critique": null,
+  "evaluation_criteria": {
+    "found": true,
+    "award_method": "most_economically_advantageous",
+    "criteria": [
+      {
+        "name": "Transportlīdzekļa cena (Vehicle price)",
+        "weight": null,
+        "description": "This criterion is calculated as P1 and contributes to the total score V = P1 + P2."
+      },
+      {
+        "name": "Transportlīdzekļa tehnisko apkopju izmaksas garantijas laikā (Cost of technical maintenance during the warranty period)",
+        "weight": null,
+        "description": "This criterion is calculated as P2 and contributes to the total score V = P1 + P2."
+      }
+    ]
+  },
+  "criteria_check": "ok",
+  "standards": [
+    {
+      "name": "EU regulation 2016/679",
+      "category": "regulation",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "ju EIS, pie iepirkuma dokumentiem, norādot arī uzdoto jautājumu. Datu aizsardzība Pamatojoties uz 2016. gada 27. aprīļa Eiropas Parlamenta un Padomes Regulu 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti, ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsard"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 2016/7",
+      "category": "regulation",
+      "green": false,
+      "count": 3,
+      "phases": [
+        "selection"
+      ],
+      "evidence": [
+        {
+          "phase": "selection",
+          "text": "Eiropas vienoto iepirkuma procedūras dokumentu (turpmāk – EVIPD) (EVIPD veidlapu paraugus nosaka Eiropas Komisijas 2016. gada 5. janvāra Īstenošanas regula 2016/7, ar ko nosaka standarta veidlapu Eiropas vienotajam iepirkuma procedūras dokumentam). Ja Pretendents izvēlējies iesniegt EVIPD, lai apliecinātu, ka t"
+        },
+        {
+          "phase": "selection",
+          "text": "Eiropas vienoto iepirkuma procedūras dokumentu (turpmāk – EVIPD) (EVIPD veidlapu paraugus nosaka Eiropas Komisijas 2016. gada 5. janvāra Īstenošanas regula 2016/7, ar ko nosaka standarta veidlapu Eiropas vienotajam iepirkuma procedūras dokumentam). Ja Pretendents izvēlējies iesniegt EVIPD, lai apliecinātu, ka t"
+        },
+        {
+          "phase": "selection",
+          "text": "Eiropas vienoto iepirkuma procedūras dokumentu (turpmāk – EVIPD) (EVIPD veidlapu paraugus nosaka Eiropas Komisijas 2016. gada 5. janvāra Īstenošanas regula 2016/7, ar ko nosaka standarta veidlapu Eiropas vienotajam iepirkuma procedūras dokumentam). Ja Pretendents izvēlējies iesniegt EVIPD, lai apliecinātu, ka t"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 95/46",
+      "category": "regulation",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "menta un Padomes Regulu 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti, ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsardzības regula), atklātam konkursam iesniegtajos dokumentos norādīto fizisko personu dati tiks apstrādāti, lai nodrošinātu konku"
+        }
+      ]
+    },
+    {
+      "name": "Ministru kabineta noteikumi Nr. 295",
+      "category": "regulation",
+      "green": false,
+      "count": 6,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "- nostiprināts, novietots, ražotāja paredzētajā vietā. Instrumentu komplekts, hidrauliskais pacēlājs. Brīdinājuma trijstūris (atbilstoši 30.05.2017. Ministru kabineta noteikumiem Nr.295 „Noteikumi par transportlīdzekļu valsts tehnisko apskati un tehnisko kontroli uz ceļiem”). Ugunsdzēsības aparāts (atbilstoši 30.05.2017. Ministru kab"
+        },
+        {
+          "phase": "specification",
+          "text": "umiem Nr.295 „Noteikumi par transportlīdzekļu valsts tehnisko apskati un tehnisko kontroli uz ceļiem”). Ugunsdzēsības aparāts (atbilstoši 30.05.2017. Ministru kabineta noteikumiem Nr.295 „Noteikumi par transportlīdzekļu valsts tehnisko apskati un tehnisko kontroli uz ceļiem”). Pirmās palīdzības aptieciņa (atbilstoši 03.08.2010. Minist"
+        },
+        {
+          "phase": "specification",
+          "text": "- nostiprināts, novietots, ražotāja paredzētajā vietā. Instrumentu komplekts, hidrauliskais pacēlājs. Brīdinājuma trijstūris (atbilstoši 30.05.2017. Ministru kabineta noteikumiem Nr.295 „Noteikumi par transportlīdzekļu valsts tehnisko apskati un tehnisko kontroli uz ceļiem”). Ugunsdzēsības aparāts (atbilstoši 30.05.2017. Ministru kab"
+        },
+        {
+          "phase": "specification",
+          "text": "umiem Nr.295 „Noteikumi par transportlīdzekļu valsts tehnisko apskati un tehnisko kontroli uz ceļiem”). Ugunsdzēsības aparāts (atbilstoši 30.05.2017. Ministru kabineta noteikumiem Nr.295 „Noteikumi par transportlīdzekļu valsts tehnisko apskati un tehnisko kontroli uz ceļiem”). Pirmās palīdzības aptieciņa (atbilstoši 03.08.2010. Minist"
+        }
+      ]
+    },
+    {
+      "name": "Ministru kabineta noteikumi Nr. 713",
+      "category": "regulation",
+      "green": false,
+      "count": 3,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "Nr.295 „Noteikumi par transportlīdzekļu valsts tehnisko apskati un tehnisko kontroli uz ceļiem”). Pirmās palīdzības aptieciņa (atbilstoši 03.08.2010. Ministru kabineta noteikumiem Nr.713 „Noteikumi par kārtību, kādā nodrošina apmācību pirmās palīdzības sniegšanā, un pirmās palīdzības aptieciņas medicīnisko materiālu minimumu”). Gaismu"
+        },
+        {
+          "phase": "specification",
+          "text": "Nr.295 „Noteikumi par transportlīdzekļu valsts tehnisko apskati un tehnisko kontroli uz ceļiem”). Pirmās palīdzības aptieciņa (atbilstoši 03.08.2010. Ministru kabineta noteikumiem Nr.713 „Noteikumi par kārtību, kādā nodrošina apmācību pirmās palīdzības sniegšanā, un pirmās palīdzības aptieciņas medicīnisko materiālu minimumu”). Gaismu"
+        },
+        {
+          "phase": "specification",
+          "text": "Nr.295 „Noteikumi par transportlīdzekļu valsts tehnisko apskati un tehnisko kontroli uz ceļiem”). Pirmās palīdzības aptieciņa (atbilstoši 03.08.2010. Ministru kabineta noteikumiem Nr.713 „Noteikumi par kārtību, kādā nodrošina apmācību pirmās palīdzības sniegšanā, un pirmās palīdzības aptieciņas medicīnisko materiālu minimumu”). Gaismu"
+        }
+      ]
+    }
+  ]
+}

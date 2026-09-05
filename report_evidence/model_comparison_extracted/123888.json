@@ -1,0 +1,1086 @@
+{
+  "eis_id": "123888",
+  "source_files": [
+    "Nolikums_ar_pielikumiem_fin_fin.docx",
+    "123888_PD.ANY_1_1_1_20240615171943.pdf",
+    "_meeting_openingprotocol_71259_OPNPRT_20240716140155.docx",
+    "Nosleguma_zinojums_fin.docx",
+    "Līgums_SantaMonicaNetworks_LVRTC_publ_EIS.pdf"
+  ],
+  "candidates": [
+    {
+      "code": "72261000-2",
+      "context": "etode – atklāts konkurss saskaņā ar Publisko iepirkumu likumu (turpmāk – PIL).\nPiedāvājuma izvēles kritērijs: saimnieciski visizdevīgākais piedāvājums ar viszemāko cenu.\nIepirkuma galvenais CPV kods: 72261000-2 (Programmatūras atbalsta pakalpojumi). \nCPV papildkods: 72253200-5 (Sistēmas un atbalsta pakalpojumi).\nIepriekšējais informatīvais paziņojums Eiropas Savienības oficiālajā vēstnesī publicēts 20.04.20",
+      "count": 1
+    },
+    {
+      "code": "72253200-5",
+      "context": "māk – PIL).\nPiedāvājuma izvēles kritērijs: saimnieciski visizdevīgākais piedāvājums ar viszemāko cenu.\nIepirkuma galvenais CPV kods: 72261000-2 (Programmatūras atbalsta pakalpojumi). \nCPV papildkods: 72253200-5 (Sistēmas un atbalsta pakalpojumi).\nIepriekšējais informatīvais paziņojums Eiropas Savienības oficiālajā vēstnesī publicēts 20.04.2024.\nPiegādātāju apspriede Iepirkumu uzraudzības biroja Publikāciju ",
+      "count": 1
+    }
+  ],
+  "attempts": 3,
+  "extracted": {
+    "found": true,
+    "main_cpv": "72261000-2",
+    "additional_cpv": [],
+    "reasoning": "The text explicitly states that 'Iepirkuma galvenais CPV kods: 72261000-2 (Programmatūras atbalsta pakalpojumi)'."
+  },
+  "evaluation_criteria": {
+    "found": true,
+    "award_method": "lowest_price",
+    "criteria": [
+      {
+        "name": "saimnieciski visizdevīgākais piedāvājums ar viszemāko cenu",
+        "weight": null,
+        "description": null
+      }
+    ]
+  },
+  "tables": [
+    {
+      "source": "Nolikums_ar_pielikumiem_fin_fin.docx",
+      "rows": [
+        [
+          "Nr. p.k.",
+          "Prasība",
+          "Iesniedzamie dokumenti"
+        ],
+        [
+          "3.5.1.",
+          "Pretendenta vispārīgās kvalifikācijas prasības",
+          "Pretendenta vispārīgās kvalifikācijas prasības"
+        ],
+        [
+          "3.5.1.1.",
+          "Pieteikums par piedalīšanos iepirkumā.\nJa Pretendents ir personu apvienība vai personālsabiedrība, tad Nolikuma 1. pielikumā „Pieteikums par piedalīšanos iepirkumā” norāda visus personu apvienības un personālsabiedrības dalībniekus, kā arī pieteikums jāparaksta katras personas, kas iekļauta personu apvienībā vai personālsabiedrībā, pārstāvim ar paraksta tiesībām vai tā pilnvarotai personai. \n\n\nJa Pretendents ir Latvijā reģistrēta filiāle un tā “mātes uzņēmums” ir ārvalstīs reģistrēta juridiskā persona, tad Nolikuma 1. pielikumā “Pieteikums par piedalīšanos iepirkumā” norāda  pretendenta “mātes uzņēmuma” , nosaukumu, reģistrācijas Nr., reģistrācijas valsti, kā arī Pretendents ir tiesīgs iesniegt kopā ar pieteikumu “mātes uzņēmuma” amatpersonu sarakstu, kā arī, ja attiecināms patiesā labuma guvēju un/vai  personas, kurām “mātes uzņēmumā” ir izšķirošā ietekme uz līdzdalības pamata normatīvo aktu par koncerniem izpratnē.",
+          "Pieteikums par piedalīšanos iepirkumā atbilstoši Nolikuma 1. pielikumā norādītajai formai.\nPieteikumu paraksta Pretendenta pārstāvis ar Latvijas Republikas Uzņēmumu reģistrā vai atbilstošā reģistrā ārvalstīs nostiprinātām pārstāvības tiesībām vai šīs personas pilnvarota persona."
+        ],
+        [
+          "3.5.1.2.",
+          "Ja piedāvājumu paraksta Pretendenta pilnvarota persona, piedāvājumam jāpievieno  pārstāvību apliecinošs dokuments, piemēram, pilnvara.",
+          "Dokuments, kas apliecina Pretendenta pārstāvja, kurš paraksta piedāvājumu, paraksta (pārstāvības) tiesības. \nJa Pretendents iesniedz pilnvaru, tad papildus tam jāiesniedz dokuments, kas apliecina, ka pilnvaras devējam ir Pretendenta paraksta (pārstāvības) tiesības, ja par tām nav iespējams pārliecināties Uzņēmumu reģistra Komercreģistrā. \nPretendenta pārstāvības tiesības, kas reģistrētas Komercreģistrā, Pasūtītājs pārbaudīs Latvijas Republikas Uzņēmumu reģistra datu bāzē."
+        ],
+        [
+          "3.5.1.3.",
+          "Ja Pretendents ir:\npersonu apvienība, tad piedāvājumam jāpievieno:\napvienības dalībnieku parakstīta vienošanās, kurā iekļauj informāciju par galveno dalībnieku, kurš pilnvarots parakstīt piedāvājumu (ja piesaistīts personu apvienības  dalībnieks, uz kuru saimnieciskajām un finansiālajām iespējām pretendents balstās, tad norāda konkrēto dalībnieku), līgumu un citus dokumentus, kā arī saņemt un izdot rīkojumus personu apvienības dalībnieku vārdā.\napliecinājums vai vienošanās, ka, ja Pasūtītājs pieņems lēmumu slēgt Iepirkuma līgumu ar konkrēto personu apvienību, tai līdz Iepirkuma līguma noslēgšanas dienai jābūt reģistrētai Komercreģistrā (vai līdzvērtīgā reģistrā ārvalstīs), izveidojot pilnsabiedrību, vai arī jānoslēdz sabiedrības līgums (attiecīgais variants jānorāda)\nVAI\nJa Pretendents ir:\n2) personālsabiedrība (komandītsabiedrība vai pilnsabiedrība), tad piedāvājumam jāpievieno personālsabiedrības līgums vai cits dokuments, kurā iekļauj informāciju par personālsabiedrības biedru kompetenču (pienākumu un atbildības) sadalījumu konkrētā iepirkuma līguma izpildē, personālsabiedrības biedru pilnvarojuma apjoms (ja attiecināms).",
+          "Ja Pretendents ir personu apvienība:\n1.1. Personu apvienības dalībnieku parakstīta vienošanās, kurā iekļauta informācija par:\n1.1.1. personu apvienības dalībnieku atbildības sadalījumu konkrētā iepirkuma līguma izpildē;\n1.1.2. kopīga apņemšanās izpildīt Iepirkuma līgumu;\n1.1.3. nosaukts galvenais dalībnieks, kas ir pilnvarots parakstīt piedāvājumu, līgumu un citus dokumentus, saņemt un iesniegt nepieciešamos apliecinājumus, saņemt un izdot rīkojumus personu apvienības dalībnieku vārdā;\n1.1.4. personu apvienības dalībnieks, uz kuru saimnieciskajām un finansiālajām iespējām pretendents balstās un kurš būs finansiāli atbildīgs par līguma izpildi.\n1.2. apliecinājums vai vienošanās, ka gadījumā, ja ar personu apvienību tiks slēgts iepirkuma līgums, tā līdz iepirkuma līguma noslēgšanas dienai reģistrēsies Komercreģistrā (vai līdzvērtīgā reģistrā ārvalstīs), izveidojot pilnsabiedrību vai noslēgs sabiedrības līgumu – norāda attiecīgo variantu (var tikt apvienota ar augstāk norādīto vienošanos).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJa Pretendents ir personālsabiedrība:\n\n2)  personālsabiedrības (komandītsabiedrība vai pilnsabiedrība) līgums vai cits dokuments, kurā iekļauta informācija par personālsabiedrības biedru kompetenču (pienākumu un atbildības) sadalījumu konkrētā iepirkuma līguma izpildē, personālsabiedrības biedru pilnvarojuma apjoms (ja attiecināms)"
+        ],
+        [
+          "3.5.1.4.",
+          "Pretendents ir reģistrēts Latvijas Republikas Uzņēmumu reģistra Komercreģistrā vai līdzvērtīgā reģistrā ārvalstīs atbilstoši attiecīgās valsts normatīvo aktu prasībām (ja Pretendents ir juridiska persona) vai patstāvīgās dzīvesvietas valsts normatīvo aktu prasībām (ja pretendents ir fiziska persona).",
+          "Komisija patstāvīgi pārbaudīs informāciju par Pretendentu, kas ir reģistrēts Latvijas Republikas  Komercreģistrā Uzņēmumu reģistra datu bāzē un/vai Valsts ieņēmumu dienesta informācijas sistēmā.\n\nPretendents, kas reģistrēts ārvalstīs – iesniedz komersanta reģistrācijas apliecības kopiju vai līdzvērtīgas iestādes izdotu dokumentu, kas ir atbilstošs attiecīgās valsts normatīvajiem aktiem. Ja tādas nav (reģistrācijas valsts normatīvais regulējums neparedz reģistrācijas apliecības izdošanu), tad iesniedz informāciju par Pretendenta reģistrācijas nr. un reģistrācijas laiku, kā arī norāda kompetento iestādi reģistrācijas valstī, kas nepieciešamības gadījumā var apliecināt reģistrācijas faktu).\nPapildus minētajiem dokumentiem Pretendents ir tiesīgs pievienot arī tā amatpersonu, biedru,  prokūristu, vai personu, kuri ir pilnvaroti pārstāvēt pretendentu darbības, kas saistītas ar filiāli un patieso labuma guvēju sarakstu.  \nMinētā informācija iesniedzama arī par personu apvienības, personālsabiedrības biedru un personu, uz kuru iespējām pretendents balstās savas kvalifikācijas apliecināšanai un apakšuzņēmēja amatpersonām"
+        ],
+        [
+          "3.5.1.5.",
+          "Apliecinājums par neatkarīgi izstrādātu piedāvājumu. Apliecinājumu (atsevišķi vai kopā ar piedāvājumu) paraksta Pretendenta pārstāvēttiesīgā persona vai pilnvarotā persona.\nJa Pretendents ir personu apvienība vai personālsabiedrība, tad apliecinājums jāparaksta katras personas, kas iekļauta personu apvienībā vai personālsabiedrībā, pārstāvim/dalībniekam ar paraksta tiesībām vai tā pilnvarotai personai.",
+          "Apliecinājums par neatkarīgi izstrādātu piedāvājumu  atbilstoši Nolikuma 2. pielikumā norādītajai formai."
+        ],
+        [
+          "3.5.1.6.",
+          "Ja Pretendents ir paredzējis apakšuzņēmējam (tai skaitā apakšuzņēmēja apakšuzņēmējam), kura sniedzamo pakalpojumu vērtība ir vismaz 10 000 EUR bez PVN nodot kādu Iepirkuma līguma daļu (izņemot piegādi), Pretendents piedāvājumā norāda visas tās iepirkuma līguma daļas, kuru izpilde tiks uzticēta apakšuzņēmējam (tai skaitā apakšuzņēmēja apakšuzņēmējam)  un attiecīgas nododamās Iepirkuma līguma daļas procentuālo apjomu.",
+          "Apakšuzņēmēju (tai skaitā apakšuzņēmēju apakšuzņēmēju),  kura  sniedzamo pakalpojumu vērtība ir vismaz  10 000  EUR bez PVN  saraksts atbilstoši Nolikuma 3. pielikumā norādītajai formai.\nSpēkā esoši dokumenti, kas apliecina apakšuzņēmēju sarakstā norādīto apakšuzņēmēju, kura  sniedzamo pakalpojumu vērtība ir vismaz  10 000 EUR  bez PVN, gatavību veikt tam izpildei nodotās Iepirkuma līguma daļas (apliecināta sadarbības līguma kopija vai oriģināls vai piekrišanas raksta (apliecinājuma) oriģināls vai apliecināta kopija), kuri jāparaksta apakšuzņēmēja pārstāvim ar pārstāvības tiesībām vai tā pilnvarotai personai.\nJa apakšuzņēmējs ir arī persona, uz kuru tehniskajām vai profesionālajām iespējām Pretendents balstās atbilstoši Nolikuma 3.5.1.7. punktam, piedāvājumam pievieno apakšuzņēmēju sarakstu un Nolikuma 3.5.1.7. punktā norādīto vienošanos."
+        ],
+        [
+          "3.5.1.7.",
+          "Ja Pretendents Nolikumā norādīto kvalifikācijas prasību izpildē balstās uz citu personu tehniskajām un profesionālajām iespējām, lai apliecinātu, ka tā kvalifikācija atbilst Nolikumā izvirzītajām prasībām Pretendents piedāvājumam pievieno dokumentu (-s), kas apliecina, ka minēto personu tehniskie un profesionālie resursi Iepirkuma līguma izpildē būs Pretendenta rīcībā (sadarbības līgums, piesaistītās personas apliecinājums vai cits dokuments). Minētajā (-os) dokumentā(-os) ir jānorāda:\n1. kuru iepirkuma priekšmeta prasību izpildei attiecīgā persona tiek piesaistīta;\n2. attiecīgās personas piekrišana piedalīties Iepirkuma līguma izpildē.\nN.B. Šajā gadījumā  persona, uz kuru spējām Pretendents balstās, jāpiesaista apakšuzņēmēja statusā, vai arī piedāvājums jāiesniedz kā personu apvienībai kopā ar personu, uz kuru iespējām Pretendents balstās.\n\nPretendents, lai apliecinātu profesionālo pieredzi vai pasūtītāja prasībām atbilstoša personāla pieejamību, var balstīties uz citu personu iespējām tikai tad, ja šīs personas sniegs pakalpojumus/būvdarbus, kuru izpildei attiecīgās spējas ir nepieciešamas.",
+          "Vienošanās par sadarbību konkrētā Iepirkuma līguma izpildē,  piesaistītās personas apliecinājums vai cits dokuments, kas apliecina, ka citas personas tehniskās un profesionālās iespējas, uz kurām pretendents balstās, lai izpildītu kvalifikācijas prasības, būs Pretendenta rīcībā. Dokumentā (-os) jānorāda:\n1. kuru iepirkuma kvalifikācijas izpildei attiecīgā persona tiek piesaistīta;\n2. attiecīgās personas piekrišana piedalīties Iepirkuma līguma izpildē un veikt tam izpildei nodotās Iepirkuma līguma daļas."
+        ],
+        [
+          "3.5.1.8.",
+          "Ja Pretendents balstās uz citu personu saimnieciskajām un finansiālajām spējām, Pretendenta piedāvājumam jāpievieno vienošanās  vai cits līdzvērtīgs dokuments par sadarbību konkrētā Iepirkuma līguma izpildē, kurā jāiekļauj nosacījums, ka piegādātājs un persona, uz kuras saimnieciskajām un finansiālajām spējām tas balstās, ir solidāri atbildīgi par Iepirkuma līguma izpildi.\nJa Pretendentam, kurš balstās uz citu personu saimnieciskajām un finansiālajām iespējām, tiks piešķirtas Iepirkuma līguma slēgšanas tiesības, līdz Iepirkuma līguma noslēgšanai tas reģistrēsies Komercreģistrā (vai līdzvērtīgā reģistrā ārvalstīs), izveidojot pilnsabiedrību, vai noslēgs sabiedrības līgumu ar personu, uz kuru saimnieciskajām un finansiālajām iespējām Pretendents balstās.",
+          "Vienošanās vai cits līdzvērtīgs dokuments par sadarbību konkrētā Iepirkuma līguma izpildē, ja Pretendents balstās uz citu personu saimnieciskajām un finansiālajām spējām, kurā jāiekļauj nosacījums, ka Pretendents un persona, uz kuras saimnieciskajām un finansiālajām spējām tas balstās, ir solidāri atbildīgi par Iepirkuma līguma izpildi un to, ka Pretendents  un persona, uz kuras saimnieciskajām un finansiālajām iespējām Pretendents balstās, reģistrēsies Komercreģistrā (vai līdzvērtīgā reģistrā ārvalstīs), izveidojot pilnsabiedrību, vai noslēgs sabiedrības līgumu ar personu, uz kuru saimnieciskajām un finansiālajām iespējām Pretendents balstās."
+        ],
+        [
+          "3.5.1.9.",
+          "Pretendentam ir tiesības veikt Scality ražotāja tehnisko atbalstu Latvijas Republikā.",
+          "Pretendents, kā  ražotāja autorizēts pārstāvis vai ražotāja autorizētās pārstāvniecības pārstāvis  iesniedz ražotāja vai ražotāja autorizētas pārstāvniecības pārstāvja ar pilnvarojuma tiesībām apliecinājumu vai citu dokumentu, kas apliecina, ka Pretendents ir  tiesīgs veikt ražotāja Scality tehnisko atbalstu Latvijas Republikā."
+        ],
+        [
+          "3.5.2.",
+          "Apliecinājums atbilstoši  Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014",
+          "Apliecinājums atbilstoši  Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014"
+        ],
+        [
+          "3.5.2.1.",
+          "Informācija  Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 5.k.panta 1.punktam.",
+          "Aizpildīts un parakstīts apliecinājums atbilstoši Nolikuma 4. pielikuma “Apliecinājums atbilstoši  Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 5.k. panta 1. punktam” formai."
+        ],
+        [
+          "3.5.3.",
+          "Prasības tehniskā piedāvājuma izstrādāšanai",
+          "Prasības tehniskā piedāvājuma izstrādāšanai"
+        ],
+        [
+          "3.5.3.1.",
+          "Pretendenta tehniskajam piedāvājumam jāatbilst Nolikuma 5. pielikumā norādītajai tehniskajai specifikācijai, ievērojot nolikuma 5. pielikumā pievienoto tehniskā piedāvājuma formu.",
+          "Aizpildīts tehniskais piedāvājums atbilstoši Nolikuma 5. pielikumā norādītajai formai."
+        ],
+        [
+          "3.5.4.",
+          "Prasības finanšu piedāvājuma izstrādāšanai",
+          "Prasības finanšu piedāvājuma izstrādāšanai"
+        ],
+        [
+          "3.5.4.1.",
+          "Finanšu piedāvājums",
+          "Aizpildīts finanšu piedāvājums atbilstoši Nolikuma 6. pielikuma “Finanšu piedāvājums” formai, cenas norādot bez pievienotās vērtības nodokļa.\nFinanšu piedāvājumā ietver visas ar iepirkuma priekšmetu saistītās izmaksas  un kvalitatīvu tehniskā atbalsta pakalpojuma sniegšanu, atlaides un piemaksas, kā arī visus nodokļus (izņemot pievienotās vērtības nodokli) un nodevas, ja tādas paredzētas, kā arī visus riskus, kas iespējami ar tirgus cenu svārstībām paredzētajā Iepirkuma līguma izpildes laikā."
+        ],
+        [
+          "3.5.5.",
+          "Prasības Eiropas vienotajam iepirkuma procedūras dokumentam",
+          "Prasības Eiropas vienotajam iepirkuma procedūras dokumentam"
+        ],
+        [
+          "",
+          "Pretendentam saskaņā ar PIL 49. pantu ir tiesības izvēlēties iesniegt Eiropas vienoto iepirkuma procedūras dokumentu (turpmāk – ESPD) kā sākotnējo pierādījumu atbilstībai nolikumā noteiktajām pretendentu atlases prasībām.",
+          "Ja Pretendents izvēlējies iesniegt ESPD, lai apliecinātu, ka tas atbilst paziņojumā par līgumu vai iepirkuma procedūras dokumentos noteiktajām pretendentu un kandidātu atlases prasībām, tas iesniedz ESPD arī par:\nkatru personu, uz kuras iespējām tas balstās, lai apliecinātu, ka tā kvalifikācija atbilst paziņojumā par līgumu vai iepirkuma procedūras dokumentos noteiktajām prasībām,\npar tā norādīto apakšuzņēmēju, kura veicamo būvdarbu vai sniedzamo pakalpojumu vērtība ir vismaz 10 000 EUR bez PVN. \nPiegādātāju apvienība iesniedz atsevišķu ESPD par katru tās dalībnieku.\nKatrā ESPD dokumentā par katru komersantu jābūt norādītai precīzai un detalizētai pieprasītai informāciju par kvalifikācijas atbilstību Nolikuma prasībām. Iesniedzot ESPD, nepieciešams aizpildīt visu attiecināmo informāciju. \n ESPD iespējams sagatavot iesniegšanai, izmantojot EIS ietverto rīku: http://espd.eis.gov.lv/.\nJa Pretendents iesniedz ESPD, tad vienlaicīgi ar piedāvājumu tas iesniedz Pieteikumu par piedalīšanos iepirkumā (Nolikuma 3.5.1.1. punkts un Nolikuma 1. pielikums)."
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_ar_pielikumiem_fin_fin.docx",
+      "rows": [
+        [
+          "Vienotais reģistrācijas numurs",
+          ""
+        ],
+        [
+          "Juridiskā adrese",
+          ""
+        ],
+        [
+          "Faktiskā adrese",
+          ""
+        ],
+        [
+          "Tālr. Nr., e-pasts",
+          ""
+        ],
+        [
+          "Kontaktpersonas vārds, uzvārds, amats, e-pasta adrese un tālr. Nr. saziņai šajā iepirkumā",
+          ""
+        ],
+        [
+          "Banka, kods, bankas konta numurs",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_ar_pielikumiem_fin_fin.docx",
+      "rows": [
+        [
+          "☐",
+          "4.1. ir iesniedzis piedāvājumu neatkarīgi no konkurentiem un bez konsultācijām, līgumiem vai vienošanām, vai cita veida saziņas ar konkurentiem;"
+        ],
+        [
+          "☐",
+          "4.2. tam ir bijušas konsultācijas, līgumi, vienošanās vai cita veida saziņa ar vienu vai vairākiem konkurentiem saistībā ar šo iepirkumu, un tādēļ Pretendents šī apliecinājuma Pielikumā atklāj izsmeļošu un patiesu informāciju par to, ieskaitot konkurentu nosaukumus un šādas saziņas mērķi, raksturu un saturu."
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_ar_pielikumiem_fin_fin.docx",
+      "rows": [
+        [
+          "Nr.",
+          "Konkurents, ar kuru ir bijusi saziņa",
+          "Saziņas veids, mērķis, raksturs un saturs"
+        ],
+        [
+          "",
+          "[Komersanta nosaukums, reģ. Nr.]",
+          ""
+        ],
+        [
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_ar_pielikumiem_fin_fin.docx",
+      "rows": [
+        [
+          "Nr. p.k.",
+          "Apakšuzņēmēja nosaukums, reģistrācijas numurs (vārds, uzvārds, personas kods – fiziskai personai)",
+          "Kontaktinformācija",
+          "Apakšuzņēmēja (tai skaitā apakšuzņēmēja apakšuzņēmēja) sniedzamo pakalpojumu/ /veicamo būvdarbu vērtība ir vismaz 10 000 EUR bez PVN\n(Jānorāda–Jā/Nē)",
+          "Apakšuzņēmēja nododamās iepirkuma līguma daļas apjoms",
+          "Apakšuzņēmējam paredzēto nododamo Līguma sadaļu (pienākumu) apraksts",
+          "Informācija par uzņēmuma statusu",
+          "Vai balstās uz apakšuzņēmēja iespējām (jā/nē)",
+          "Ja balstās uz apakšuzņēmēja iespējām, norāda kvalifikācijas prasības punktu, kura izpildei apakšuzņēmējs piesaistīts, lai apliecinātu prasības atbilstību"
+        ],
+        [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_ar_pielikumiem_fin_fin.docx",
+      "rows": [
+        [
+          "☐",
+          "3.1. Uz Pretendentu (tai skaitā uz Pretendenta apakšuzņēmējiem, “mātes uzņēmumu” (ja Pretendents ir Latvijā reģistrēta filiāle), personu apvienības dalībniekiem, personālsabiedrības biedriem un personām, uz kuru spējām Pretendents balstās) neattiecas Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 5.k. panta 1. punktā noteiktais;"
+        ],
+        [
+          "☐",
+          "3.2. Uz Pretendentu (tai skaitā uz Pretendenta apakšuzņēmējiem, “mātes uzņēmumu” (ja Pretendents ir Latvijā reģistrēta filiāle), personu apvienības dalībniekiem, personālsabiedrības biedriem un personām, uz kuru spējām Pretendents balstās) attiecas  Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 5.k. panta 1. punktā noteiktais."
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_ar_pielikumiem_fin_fin.docx",
+      "rows": [
+        [
+          "☐",
+          "4.1. Pretendents ir Krievijas valstspiederīgais, fiziska persona, kas uzturas Krievijā, vai juridiska persona, vienība vai struktūra, kura iedibināta Krievijā;"
+        ],
+        [
+          "☐",
+          "4.2. Pretendents ir juridiska persona, vienība vai struktūra, kuras īpašumtiesības vairāk nekā 50 % apmērā tieši vai netieši pieder 4.1. punktā minētajai vienībai;"
+        ],
+        [
+          "☐",
+          "4.3. Pretendents ir fiziska vai juridiska persona, vienība vai struktūra, kas darbojas kādas 4.1. vai 4.2. punktā minētās vienības vārdā vai saskaņā ar tās norādēm;"
+        ],
+        [
+          "☐",
+          "4.4. uz Pretendenta apakšuzņēmējiem, “mātes uzņēmumu” (ja Pretendents ir Latvijā reģistrēta filiāle), personu apvienības dalībniekiem, personālsabiedrības biedriem un personām, uz kuru spējām Pretendents balstās,  attiecināms šī apliecinājuma 4.1.- 4.3. punkta nosacījums."
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_ar_pielikumiem_fin_fin.docx",
+      "rows": [
+        [
+          "Nr. p.k.",
+          "Pakalpojuma un iekārtu apraksts (nolikuma minimālās prasības)",
+          "Pakalpojuma un iekārtu apraksts (nolikuma minimālās prasības)",
+          "Pakalpojuma un iekārtu apraksts (nolikuma minimālās prasības)",
+          "Piedāvājuma atbilstība [aizpilda pretendents, norādot Atbilst/Neatbilst]"
+        ],
+        [
+          "1.",
+          "Piegādātājs tiesīgs veikt  Scality  ražotāja  licences  piegādi un tehniskā atbalsta pakalpojumus līguma darbības laikā.",
+          "Piegādātājs tiesīgs veikt  Scality  ražotāja  licences  piegādi un tehniskā atbalsta pakalpojumus līguma darbības laikā.",
+          "Piegādātājs tiesīgs veikt  Scality  ražotāja  licences  piegādi un tehniskā atbalsta pakalpojumus līguma darbības laikā.",
+          ""
+        ],
+        [
+          "2.",
+          "Scality  ražotāja  licenču piegāde tai skaitā tehniskais atbalsts (programmatūras licences un atbalsts):",
+          "Scality  ražotāja  licenču piegāde tai skaitā tehniskais atbalsts (programmatūras licences un atbalsts):",
+          "Scality  ražotāja  licenču piegāde tai skaitā tehniskais atbalsts (programmatūras licences un atbalsts):",
+          ""
+        ],
+        [
+          "2.",
+          "Ražotāja kods",
+          "Produkta apraksts",
+          "Skaits",
+          ""
+        ],
+        [
+          "2.",
+          "SCALITY-RING-RGH",
+          "GEO; Hardware Lifetime License",
+          "1584 gab.",
+          ""
+        ],
+        [
+          "2.",
+          "SCALITY-SUPP-G-1YR",
+          "piedāvājumā jāiekļauj atbalsts līdz 31.08.2027",
+          "3084 gab.",
+          ""
+        ],
+        [
+          "2.",
+          "SCALITY-SUPP-1YR",
+          "piedāvājumā jāiekļauj atbalsts līdz 31.08.2027",
+          "600 gab.",
+          ""
+        ],
+        [
+          "2.",
+          "SCALITY-PS-DAY",
+          "Scality Engineer Prof Services (per day) - remote only",
+          "13 dienas*",
+          ""
+        ],
+        [
+          "2.",
+          "SCALITY-PS-CAP-EXP",
+          "Esošas infrastruktūras paplašināšanas instalācijas un konfigurācijas darbi",
+          "1 gab.",
+          ""
+        ],
+        [
+          "2.",
+          "SCALITY-PS-INSTALL",
+          "Jaunas infrastruktūras instalācijas un konfigurācijas darbi",
+          "1 gab.",
+          ""
+        ],
+        [
+          "3.",
+          "Atbalsta saistības – darba dienās darba laikā (atbilstoši 8x5xNBD) nodrošināt speciālistu, kas latviešu vai angļu valodā: \npēc pieprasījuma konsultēs Pasūtītāju par tehnoloģijām un principiem, kas tiek izmantoti Scality  funkciju nodrošināšanai; \nrisinās bojājumus un atteices, kas radušās Scality programmatūras kļūdu rezultātā.",
+          "Atbalsta saistības – darba dienās darba laikā (atbilstoši 8x5xNBD) nodrošināt speciālistu, kas latviešu vai angļu valodā: \npēc pieprasījuma konsultēs Pasūtītāju par tehnoloģijām un principiem, kas tiek izmantoti Scality  funkciju nodrošināšanai; \nrisinās bojājumus un atteices, kas radušās Scality programmatūras kļūdu rezultātā.",
+          "Atbalsta saistības – darba dienās darba laikā (atbilstoši 8x5xNBD) nodrošināt speciālistu, kas latviešu vai angļu valodā: \npēc pieprasījuma konsultēs Pasūtītāju par tehnoloģijām un principiem, kas tiek izmantoti Scality  funkciju nodrošināšanai; \nrisinās bojājumus un atteices, kas radušās Scality programmatūras kļūdu rezultātā.",
+          ""
+        ],
+        [
+          "4.",
+          "Piedāvātā atbalsta noteikumu apraksts, norādot pretendenta reakcijas laiku sniedzot tehnisko atbalstu, kas nedrīkst būt ilgāks par 4 (četrām) stundām (8x5xNBD servisa līmeņa ietvaros) pēc Pasūtītāja pieteikuma uz Pretendenta norādīto e–pasta adresi (norāda šajā punktā vai iesniedz atsevišķu aprakstu)",
+          "Piedāvātā atbalsta noteikumu apraksts, norādot pretendenta reakcijas laiku sniedzot tehnisko atbalstu, kas nedrīkst būt ilgāks par 4 (četrām) stundām (8x5xNBD servisa līmeņa ietvaros) pēc Pasūtītāja pieteikuma uz Pretendenta norādīto e–pasta adresi (norāda šajā punktā vai iesniedz atsevišķu aprakstu)",
+          "Piedāvātā atbalsta noteikumu apraksts, norādot pretendenta reakcijas laiku sniedzot tehnisko atbalstu, kas nedrīkst būt ilgāks par 4 (četrām) stundām (8x5xNBD servisa līmeņa ietvaros) pēc Pasūtītāja pieteikuma uz Pretendenta norādīto e–pasta adresi (norāda šajā punktā vai iesniedz atsevišķu aprakstu)",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_ar_pielikumiem_fin_fin.docx",
+      "rows": [
+        [
+          "Nr.",
+          "Iepirkuma priekšmets",
+          "Skaits",
+          "Cena par 1 vienību EUR bez PVN",
+          "Cena par visām vienībām kopā*\nEUR bez PVN"
+        ],
+        [
+          "1.",
+          "SCALITY-RING-RGH - GEO; Hardware Lifetime License",
+          "1584 gab.",
+          "",
+          ""
+        ],
+        [
+          "2.",
+          "SCALITY-SUPP-G-1YR - atbalsts līdz 31.08.2027.",
+          "3084 gab.",
+          "",
+          ""
+        ],
+        [
+          "3.",
+          "SCALITY-SUPP-1YR - atbalsts līdz 31.08.2027.",
+          "600 gab.",
+          "",
+          ""
+        ],
+        [
+          "4.",
+          "SCALITY-PS-DAY - Scality Engineer Prof Services (per day) - remote only**",
+          "13 dienas***",
+          "",
+          ""
+        ],
+        [
+          "5.",
+          "SCALITY-PS-CAP-EXP- Capacity Expansion Professional Services",
+          "1 gab.",
+          "",
+          ""
+        ],
+        [
+          "6.",
+          "SCALITY-PS-INSTALL - Ring Installation Package",
+          "1 gab.",
+          "",
+          ""
+        ],
+        [
+          "KOPĀ:",
+          "KOPĀ:",
+          "KOPĀ:",
+          "KOPĀ:",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_ar_pielikumiem_fin_fin.docx",
+      "rows": [
+        [
+          "Pasūtītājs:\n\nValsts akciju sabiedrība “Latvijas Valsts radio un televīzijas centrs” \nVienotais reģistrācijas Nr. LV40003011203\nJuridiskā adrese: Zemitāna iela 9 k-3, Rīga, LV-1012\nAS “Swedbank”; \nKonts: LV42HABA0551048637971 \nKods: HABALV22",
+          "Izpildītājs:\n________________________\nVienotais reģ. Nr. ____________\nJuridiskā adrese: ____________\n\n(Banka)\nKonts:_________\nKods:__________\n\n\nIzpildītāja Parakstītājs"
+        ]
+      ]
+    },
+    {
+      "source": "123888_PD.ANY_1_1_1_20240615171943.pdf",
+      "rows": [
+        [
+          "N.p.k.",
+          "Prasības",
+          "Ievadlauks",
+          "Dokumenti"
+        ],
+        [
+          "1.",
+          "Pieteikums par piedalīšanos iepirkumā\nNolikuma 3.5.1.1.punkts",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Viena datne, EDOC\ndatne"
+        ],
+        [
+          "2.",
+          "Pārstāvību apliecinošs dokuments\nNolikuma 3.5.1.2. punkts",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es atļauta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ],
+        [
+          "3.",
+          "Personu apvienības dokumenti\nNolikuma 3.5.1.3. punkts",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es atļauta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ],
+        [
+          "4.",
+          "Pretendenta reģistrācija UR vai līdzvērtīgā reģ.\nNolikuma 3.5.1.4. punkts",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es atļauta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ],
+        [
+          "5.",
+          "Apliecinājums par neatkarīgi izstrādātu piedāvājum\nNolikuma 3.5.1.5. punkts",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Viena datne, EDOC\ndatne"
+        ],
+        [
+          "6.",
+          "Apakšuzņēmēja saraksts (ja attiecināms)\nNolikuma 3.5.1.6. punkts",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es atļauta/-as.\nIerobežojumi: Viena datne, EDOC\ndatne"
+        ],
+        [
+          "7.",
+          "Balstīšanās uz tehn.un profes. (ja attiecināms)\nNolikuma 3.5.1.7. punkts",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es atļauta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ],
+        [
+          "8.",
+          "Balstīšanās uz saimn.un fin (ja attiecināms)\nNolikuma 3.5.1.8. punkts",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es atļauta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ],
+        [
+          "9.",
+          "Ražotāja pilnvarojuma tiesības\nNolikuma 3.5.1.9. punkts",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ],
+        [
+          "10.",
+          "Apliecinājums par padomes regulu\nNolikuma 3.5.2. punkts",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Viena datne, EDOC\ndatne"
+        ]
+      ]
+    },
+    {
+      "source": "123888_PD.ANY_1_1_1_20240615171943.pdf",
+      "rows": [
+        [
+          "N.p.k.",
+          "Prasības",
+          "Ievadlauks",
+          "Dokumenti"
+        ]
+      ]
+    },
+    {
+      "source": "123888_PD.ANY_1_1_1_20240615171943.pdf",
+      "rows": [
+        [
+          "1.",
+          "Tehn.specifikācija.-Tehn.piedāvājums",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Viena datne, EDOC\ndatne"
+        ]
+      ]
+    },
+    {
+      "source": "123888_PD.ANY_1_1_1_20240615171943.pdf",
+      "rows": [
+        [
+          "N.p.k.",
+          "Prasības",
+          "Ievadlauks",
+          "Dokumenti"
+        ],
+        [
+          "1.",
+          "Cena bez PVN",
+          "Valūta (obligāts, no 0.00 (neieskaitot) EUR)",
+          "Dokumenta ievade nav paredzēta."
+        ],
+        [
+          "2.",
+          "Finanšu piedāvājums\nNolikuma 3.5.4.1. punkts",
+          "Valūta (obligāts, no 0.00 EUR)",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Viena datne, EDOC\ndatne"
+        ]
+      ]
+    },
+    {
+      "source": "123888_PD.ANY_1_1_1_20240615171943.pdf",
+      "rows": [
+        [
+          "N.p.k.",
+          "Prasības",
+          "Ievadlauks",
+          "Dokumenti"
+        ],
+        [
+          "1.",
+          "Citi dokumenti\nCiti dokumenti, kurus pretendents vai kandidāts uzskata par nepieciešamu\npievienot piedāvājumam vai pieteikumam.",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es atļauta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ],
+        [
+          "2.",
+          "Eiropas vienotais prasību dokuments (ESPD)\nŠeit Piegādātājs pēc saviem ieskatiem var pievienot ESPD datni (PDF, docx vai\nxml formātā).\nPapildinformācija: http://espd.eis.gov.lv/",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es atļauta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ],
+        [
+          "3.",
+          "Dažādi dokumenti",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es atļauta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ]
+      ]
+    },
+    {
+      "source": "123888_PD.ANY_1_1_1_20240615171943.pdf",
+      "rows": [
+        [
+          "N.p.k.",
+          "Kritērijs",
+          "Vērtēšana",
+          "Attiecas uz prasībām"
+        ],
+        [
+          "1.",
+          "Cena bez PVN",
+          "",
+          "1. Cena bez PVN"
+        ]
+      ]
+    },
+    {
+      "source": "_meeting_openingprotocol_71259_OPNPRT_20240716140155.docx",
+      "rows": [
+        [
+          "Sanāksmes sākuma laiks:",
+          "16.07.2024 plkst. 14:00"
+        ],
+        [
+          "Vieta (adrese):",
+          "Tiešsaiste"
+        ]
+      ]
+    },
+    {
+      "source": "_meeting_openingprotocol_71259_OPNPRT_20240716140155.docx",
+      "rows": [
+        [
+          "N.p.k.",
+          "Pretendents",
+          "Piedāvājuma iesniegšanas veids",
+          "Piedāvājuma iesniegšanas datums un laiks"
+        ],
+        [
+          "1.",
+          "Santa Monica Networks SIA",
+          "Sistēmā",
+          "15.07.2024 plkst. 17:26"
+        ]
+      ]
+    },
+    {
+      "source": "_meeting_openingprotocol_71259_OPNPRT_20240716140155.docx",
+      "rows": [
+        [
+          "Komisijas locekļi:",
+          "",
+          ""
+        ],
+        [
+          "",
+          "Laura Kolneja",
+          "_______________"
+        ],
+        [
+          "",
+          "",
+          "(paraksts)"
+        ]
+      ]
+    },
+    {
+      "source": "_meeting_openingprotocol_71259_OPNPRT_20240716140155.docx",
+      "rows": [
+        [
+          "Pretendents",
+          "Iesniegšanas datums un laiks",
+          "Cena bez PVN (EIS dati)",
+          "Finanšu piedāvājums (EIS dati)"
+        ],
+        [
+          "Santa Monica Networks SIA",
+          "15.07.2024 plkst. 17:26",
+          "EUR 839983.14",
+          "EUR 839983.14"
+        ]
+      ]
+    },
+    {
+      "source": "_meeting_openingprotocol_71259_PROPFIS_20240716140142.docx",
+      "rows": [
+        [
+          "",
+          "Latvijas Valsts radio un televizijas centrs, VAS",
+          ""
+        ],
+        [
+          "",
+          "(reģ. Nr. 40003011203)",
+          ""
+        ],
+        [
+          "",
+          "Atklāts konkurss",
+          ""
+        ],
+        [
+          "",
+          "„LVDC1 datu glabātuves licences un atbalsts uz 3 gadiem”",
+          ""
+        ],
+        [
+          "",
+          "(Iepirkuma identifikācijas Nr. LVRTC 2024/17)",
+          ""
+        ],
+        [
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "PRETENDENTU IESNIEGTO FINANŠU PIEDĀVĀJUMU APKOPOJUMS",
+          ""
+        ],
+        [
+          "",
+          "(piedāvājumu atvēršana)",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "_meeting_openingprotocol_71259_PROPFIS_20240716140142.docx",
+      "rows": [
+        [
+          "",
+          "Daļai Nr. 1 - Iepirkums",
+          "Daļai Nr. 1 - Iepirkums",
+          "Daļai Nr. 1 - Iepirkums",
+          "Daļai Nr. 1 - Iepirkums",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "Pretendents",
+          "Iesniegšanas \ndatums un laiks",
+          "Cena bez PVN",
+          "Finanšu piedāvājums",
+          "",
+          ""
+        ],
+        [
+          "",
+          "Santa Monica Networks SIA",
+          "15.07.2024 plkst. 17:26",
+          "EUR 839983.14",
+          "EUR 839983.14",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "_meeting_openingprotocol_71259_PROPFIS_20240716140142.docx",
+      "rows": [
+        [
+          "",
+          "Elektronisko iepirkumu sistēmas e-konkursu apakšsistēmas ģenerēts apkopojums",
+          ""
+        ],
+        [
+          "",
+          "Apkopojuma sagatavošanas laiks: 16.07.2024; 14:01",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "Nosleguma_zinojums_fin.docx",
+      "rows": [
+        [
+          "Pasūtītāja nosaukums, reģistrācijas numurs:",
+          "Valsts akciju sabiedrība “Latvijas Valsts radio un televīzijas centrs”, vienotais reģistrācijas Nr. 40003011203."
+        ],
+        [
+          "Adrese:",
+          "Zemitāna iela 9, k-3, Rīga, LV – 1012."
+        ],
+        [
+          "Pamatojums iepirkuma līguma slēgšanas tiesību piešķiršanai, nedalot iepirkumu daļās [ja attiecināms]:",
+          "Iepirkumu nav iespējams dalīt daļās, jo tas ir viens pakalpojums un ir piegādājams tikai ar viena un tā paša piegādātāja palīdzību."
+        ],
+        [
+          "Iepirkuma identifikācijas Nr.",
+          "LVRTC 2024/17"
+        ],
+        [
+          "Iepirkumu procedūras veids:",
+          "Atklāts konkurss"
+        ],
+        [
+          "Līguma vai vispārīgās vienošanās priekšmets:",
+          "LVDC1 datu glabātuves licences un atbalsts uz 3 gadiem"
+        ],
+        [
+          "Datums, kad iepriekšējais informatīvais paziņojums publicēts Eiropas Savienības Oficiālajā Vēstnesī [ja attiecināms]",
+          "20.04.2024."
+        ],
+        [
+          "Datums, kad paziņojums par līgumu publicēts Eiropas Savienības Oficiālajā Vēstnesī [ja attiecināms]",
+          "15.06.2024."
+        ],
+        [
+          "Atsauce uz ES projektiem un/vai programmām [ja attiecināms]:",
+          "Nav attiecināms"
+        ],
+        [
+          "Iepirkuma komisijas sastāvs un tās izveidošanas pamatojums:",
+          "Iepirkuma komisijas sastāvs un tās izveidošanas pamatojums:"
+        ],
+        [
+          "Pamatojoties uz LVRTC valdes locekles 2024. gada 17. aprīļa rīkojums Nr. 01-05-01/2024/43.\nIepirkuma komisijas sastāvs:\nIepirkuma komisijas priekšsēdētājs – Dāvis Ērmanis \nKomisijas priekšsēdētājas vietnieks – Aļona Rastihina\nIepirkuma komisijas locekļi: Maruta Kaņepe, Inese Ribikauska, Laura Kolneja",
+          "Pamatojoties uz LVRTC valdes locekles 2024. gada 17. aprīļa rīkojums Nr. 01-05-01/2024/43.\nIepirkuma komisijas sastāvs:\nIepirkuma komisijas priekšsēdētājs – Dāvis Ērmanis \nKomisijas priekšsēdētājas vietnieks – Aļona Rastihina\nIepirkuma komisijas locekļi: Maruta Kaņepe, Inese Ribikauska, Laura Kolneja"
+        ],
+        [
+          "Ekspertu saraksts [ja attiecināms]",
+          "Māris Zvejnieks, Evija Dišlere"
+        ],
+        [
+          "Sekretārs [ja attiecināms]:",
+          "Nav attiecināms"
+        ],
+        [
+          "Iepirkuma dokumentācijas sagatavotāju saraksts:",
+          "Dāvis Ērmanis"
+        ],
+        [
+          "Piedāvājumu iesniegšanas termiņi (arī pamatojums piedāvājumu/pieteikumu iesniegšanas termiņa samazinājumam (t.sk. steidzamībai), ja tāds veikts):",
+          "16.07.2024., plkst. 10.00"
+        ],
+        [
+          "Pretendentu nosaukumi, kas iesnieguši piedāvājumus un to piedāvātās cenas:",
+          "Pretendentu nosaukumi, kas iesnieguši piedāvājumus un to piedāvātās cenas:"
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "Piedāvājumu atvēršanas vieta, datums un laiks:",
+          "16.07.2024. EIS, 14:00"
+        ],
+        [
+          "Pretendenta/-u, kuram/-iem piešķirtas līguma slēgšanas tiesības, izvēles pamatojums, līgumcena un piedāvājumu izvērtēšanas kopsavilkums:",
+          "Pretendenta/-u, kuram/-iem piešķirtas līguma slēgšanas tiesības, izvēles pamatojums, līgumcena un piedāvājumu izvērtēšanas kopsavilkums:"
+        ],
+        [
+          "Pamatojoties uz PIL 51. panta pirmo daļu un Atklāta konkursa nolikuma 5.1. punktu, Komisija 2024. gada 3. septembrī nolēma Līguma slēgšanas tiesības, piešķirt vienīgajam pretendentam SIA “Santa Monica Networks”, reģistrācijas Nr. 40203054012 ar iesniegto finanšu piedāvājuma summu EUR 839 983,14 (astoņi simti trīsdesmit deviņi tūkstoši deviņi simti astoņdesmit trīs euro, 14 centi) bez PVN un, kura piedāvājums atbilst visām Iepirkuma nolikuma prasībām, saskaņā ar piedāvājuma izvēles kritēriju saimnieciski visizdevīgākos piedāvājumu ar viszemāko cenu.\nSaskaņā ar Iepirkuma nolikuma 1.5.3. punktu, Iepirkuma līgumcena ir pretendenta iesniegtā finanšu piedāvājuma summa EUR bez pievienotā vērtības nodokļa (turpmāk – PVN), ievērojot PIL noteiktās līgumcenu robežvērtības.",
+          "Pamatojoties uz PIL 51. panta pirmo daļu un Atklāta konkursa nolikuma 5.1. punktu, Komisija 2024. gada 3. septembrī nolēma Līguma slēgšanas tiesības, piešķirt vienīgajam pretendentam SIA “Santa Monica Networks”, reģistrācijas Nr. 40203054012 ar iesniegto finanšu piedāvājuma summu EUR 839 983,14 (astoņi simti trīsdesmit deviņi tūkstoši deviņi simti astoņdesmit trīs euro, 14 centi) bez PVN un, kura piedāvājums atbilst visām Iepirkuma nolikuma prasībām, saskaņā ar piedāvājuma izvēles kritēriju saimnieciski visizdevīgākos piedāvājumu ar viszemāko cenu.\nSaskaņā ar Iepirkuma nolikuma 1.5.3. punktu, Iepirkuma līgumcena ir pretendenta iesniegtā finanšu piedāvājuma summa EUR bez pievienotā vērtības nodokļa (turpmāk – PVN), ievērojot PIL noteiktās līgumcenu robežvērtības."
+        ],
+        [
+          "Informācija par to iepirkuma līguma vai vispārīgās vienošanās daļu, kuru izraudzītais pretendents plānojis nodot apakšuzņēmējiem, kā arī apakšuzņēmēju nosaukumi:",
+          "nav"
+        ],
+        [
+          "Pamatojums lēmumam par katru noraidīto pretendentu, kā arī par iepirkuma procedūras dokumentiem neatbilstošiem piedāvājumiem:",
+          "nav"
+        ],
+        [
+          "Piedāvājuma noraidīšanas pamatojums, ja iepirkuma komisija atzinusi piedāvājumu par nepamatoti lētu:",
+          "nav"
+        ],
+        [
+          "Lēmuma pamatojums, ja iepirkuma komisija pieņēmusi lēmumu pārtraukt vai izbeigt iepirkuma procedūru:",
+          "nav"
+        ],
+        [
+          "Pamatojums tam, kādas sabiedrības drošības un veselības aizsardzības intereses tiktu apdraudētas, rīkojot atkārtotu iepirkumu, ja pasūtītājs saskaņā ar Publisko iepirkumu likuma 41. panta divpadsmitās daļas 2. punktu nepārtrauc iepirkuma procedūru, jo iepirkuma procedūras pārtraukšana apdraudētu sabiedrības drošības vai veselības aizsardzības intereses (ja attiecināms):",
+          "nav"
+        ],
+        [
+          "Iemesli, kuru dēļ netiek paredzēta elektroniska pieteikumu un piedāvājumu iesniegšana, ja pasūtītājam ir pienākums izmantot pieteikumu un piedāvājumu saņemšanai elektroniskās informācijas sistēmas",
+          "nav"
+        ],
+        [
+          "Konstatētie interešu konflikti un pasākumi, kas veikti to novēršanai:",
+          "nav"
+        ],
+        [
+          "Cita informācija: [ja nepieciešams].",
+          "Publisko iepirkumu likuma 41.panta divpadsmitās daļas 1.punkts nosaka, ka pasūtītājs pieņem lēmumu pārtraukt iepirkuma procedūru, ja atklātā konkursā piedāvājumu ir iesniedzis tikai viens pretendents, izņemot gadījumus, kad pasūtītājs pirms iepirkuma procedūras izsludināšanas ir rīkojis Publisko iepirkumu likuma 18. panta 2.1 daļas prasībām atbilstošu apspriedi ar piegādātājiem.\n2024. gada 18. aprīlī Iepirkumu uzraudzības biroja publikāciju vadības sistēmā ir publicēts paziņojums par apspriedi, un, sākot ar dienu, kad publicēts paziņojums par apspriedi, pasūtītājs savā pircēja profilā nodrošināja brīvu un tiešu elektronisku piekļuvi iepirkuma dokumentācijai, kuru piegādātāji bija tiesīgi elektroniski komentēt vismaz 10 darba dienas pēc minētā paziņojuma un dokumentu publicēšanas un pasūtītājs ir sagatavojis  apspriedes ziņojumu. Ņemot vērā minēto, piemērojams Publisko iepirkumu likuma 41. panta divpadsmitās daļas 1. punkts un iepirkuma procedūra netika pārtraukta."
+        ]
+      ]
+    },
+    {
+      "source": "Līgums_SantaMonicaNetworks_LVRTC_publ_EIS.pdf",
+      "rows": [
+        [
+          "SCALITY-PS-CAP-EXP -",
+          ""
+        ],
+        [
+          "",
+          "SCALITY-"
+        ]
+      ]
+    },
+    {
+      "source": "Līgums_SantaMonicaNetworks_LVRTC_publ_EIS.pdf",
+      "rows": [
+        [
+          "Iepirkuma Tehniskā specifikācija - tehniskais piedāvājums"
+        ],
+        [
+          "Iepirkuma finanšu piedāvājums"
+        ],
+        [
+          "Izpildītāja atbildes vēstule par tehnisko specifikāciju - tehnisko piedāvājumu"
+        ]
+      ]
+    }
+  ],
+  "standards": [
+    {
+      "name": "EU regulation 2016/679",
+      "category": "regulation",
+      "green": false,
+      "count": 3,
+      "phases": [
+        "specification",
+        "award"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "gtajā datu nesējā esošas ļaunatūras dēļ; apliecina, ka kā patstāvīgs datu pārzinis ievēro Eiropas Parlamenta un Padomes 2016. gada 27. aprīļa regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ direktīvu 95/46/EK (Vispārīgā datu aizsa"
+        },
+        {
+          "phase": "award",
+          "text": "tīvajos aktos noteiktās prasības šādu datu apstrādei un aizsardzībai, tajā skaitā ievērojot Eiropas Parlamenta un Padomes 2016.gada 27.aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsa"
+        },
+        {
+          "phase": "award",
+          "text": "tīvajos aktos noteiktās prasības šādu datu apstrādei un aizsardzībai, tajā skaitā ievērojot Eiropas Parlamenta un Padomes 2016.gada 27.aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsa"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 2022/576",
+      "category": "regulation",
+      "green": false,
+      "count": 10,
+      "phases": [
+        "award",
+        "specification",
+        "selection"
+      ],
+      "evidence": [
+        {
+          "phase": "award",
+          "text": "dātu piedāvājumu” (forma); 3. pielikums “Apakšuzņēmēju saraksts” (forma); 4. pielikums “Apliecinājums atbilstoši Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 5.k. panta 1. punktam” (forma); 5. pielikums “Tehniskā specifikācija - Tehniskais piedāvājums” (forma"
+        },
+        {
+          "phase": "specification",
+          "text": "), kuras kavē vai padara neiespējamu Līguma izpildi; Ja attiecībā uz Izpildītāju Līguma izpildes laikā iestājas 2022. gada 8. aprīļa Padomes regulas (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 par ierobežojošiem pasākumiem saistībā ar Krievijas darbībām, kas destabilizē situāciju Ukrainā 5.k p"
+        },
+        {
+          "phase": "selection",
+          "text": "ndents ir tiesīgs veikt ražotāja Scality tehnisko atbalstu Latvijas Republikā. 3.5.2. Apliecinājums atbilstoši Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 Apliecinājums atbilstoši Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes r"
+        },
+        {
+          "phase": "selection",
+          "text": "2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 3.5.2.1. Informācija Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 5.k.panta 1.punktam. Aizpildīts un parakstīts apliecinājums atbilstoši Nolikuma 4. pielikuma “Aplieci"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 833/2014",
+      "category": "regulation",
+      "green": false,
+      "count": 10,
+      "phases": [
+        "award",
+        "specification",
+        "selection"
+      ],
+      "evidence": [
+        {
+          "phase": "award",
+          "text": "kšuzņēmēju saraksts” (forma); 4. pielikums “Apliecinājums atbilstoši Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 5.k. panta 1. punktam” (forma); 5. pielikums “Tehniskā specifikācija - Tehniskais piedāvājums” (forma); 6. pielikums “Finanšu piedāvājums” (forma); 7"
+        },
+        {
+          "phase": "specification",
+          "text": "izpildi; Ja attiecībā uz Izpildītāju Līguma izpildes laikā iestājas 2022. gada 8. aprīļa Padomes regulas (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 par ierobežojošiem pasākumiem saistībā ar Krievijas darbībām, kas destabilizē situāciju Ukrainā 5.k panta 1. punktā ietvertais aizliegums; Ja Līguma"
+        },
+        {
+          "phase": "selection",
+          "text": "hnisko atbalstu Latvijas Republikā. 3.5.2. Apliecinājums atbilstoši Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 Apliecinājums atbilstoši Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 3.5.2.1. Informācija Pa"
+        },
+        {
+          "phase": "selection",
+          "text": "ar kuru groza Padomes regulu (ES) Nr. 833/2014 3.5.2.1. Informācija Padomes 2022. gada 8. aprīļa regulai (ES) 2022/576, ar kuru groza Padomes regulu (ES) Nr. 833/2014 5.k.panta 1.punktam. Aizpildīts un parakstīts apliecinājums atbilstoši Nolikuma 4. pielikuma “Apliecinājums atbilstoši Padomes 2022. gada 8. aprīļa"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 95/46",
+      "category": "regulation",
+      "green": false,
+      "count": 3,
+      "phases": [
+        "specification",
+        "award"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": ". aprīļa regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ direktīvu 95/46/EK (Vispārīgā datu aizsardzības regula) prasības un ir nodrošinājis tiesisko pamatu Piedāvājumā norādīto personas datu apstrādei un nodošanai Pasūtītāja"
+        },
+        {
+          "phase": "award",
+          "text": "7.aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsardzības regula) prasības. Puse, kura Līguma izpildes ietvaros nodod otrai Pusei fizisko personu datus, atbild par tiesiskā pamat"
+        },
+        {
+          "phase": "award",
+          "text": "7.aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsardzības regula) prasības. 7.2. Puse, kura Līguma izpildes ietvaros nodod otrai Pusei fizisko personu datus, atbild par tiesiskā"
+        }
+      ]
+    },
+    {
+      "name": "EN ISO 50001:2018",
+      "category": "standard",
+      "green": true,
+      "count": 2,
+      "phases": [
+        "award"
+      ],
+      "evidence": [
+        {
+          "phase": "award",
+          "text": "iem lūgums balstīts, kā arī nepieciešamo Pakalpojuma izpildes pagarinājuma termiņu. Izpildītājs ir informēts, ka Pasūtītājs ir sertificēts atbilstoši EN ISO 50001:2018 standartam “Energopārvaldības sistēmas. Prasības un lietošanas norādījumi”. Izpildītājs, parakstot Līgumu, apliecina, ka ir iepazinies ar Pasūtītāja"
+        },
+        {
+          "phase": "award",
+          "text": "gums balstīts, kā arī nepieciešamo Pakalpojuma izpildes pagarinājuma termiņu. 4.16. Izpildītājs ir informēts, ka Pasūtītājs ir sertificēts atbilstoši EN ISO 50001:2018 standartam “Energopārvaldības sistēmas. Prasības un lietošanas norādījumi”. 4.17. Izpildītājs, parakstot Līgumu, apliecina, ka ir iepazinies ar Pasūt"
+        }
+      ]
+    },
+    {
+      "name": "ISO9001:2015",
+      "category": "standard",
+      "green": false,
+      "count": 2,
+      "phases": [
+        "award"
+      ],
+      "evidence": [
+        {
+          "phase": "award",
+          "text": "as izmaiņām. Izpildītājs apliecina, ka ir informēts, ka Pasūtītājam ir ieviesta un tiek uzturēta kvalitātes pārvaldības sistēma saskaņā ar standarta ISO9001:2015 prasībām. Izpildītājs, parakstot Līgumu, apliecina, ka ir iepazinies ar Pasūtītāja mājas lapā https://www.lvrtc.lv/par-lvrtc/par-mums/ publicēto Pasū"
+        },
+        {
+          "phase": "award",
+          "text": "maiņām. 4.18. Izpildītājs apliecina, ka ir informēts, ka Pasūtītājam ir ieviesta un tiek uzturēta kvalitātes pārvaldības sistēma saskaņā ar standarta ISO9001:2015 prasībām. 4.19. Izpildītājs, parakstot Līgumu, apliecina, ka ir iepazinies ar Pasūtītāja mājas lapā https://www.lvrtc.lv/par-lvrtc/par-mums/ publicēt"
+        }
+      ]
+    }
+  ]
+}

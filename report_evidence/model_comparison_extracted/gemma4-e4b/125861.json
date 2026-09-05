@@ -1,0 +1,60 @@
+{
+  "eis_id": "125861",
+  "source_files": [
+    "1.pielikums_1.docx",
+    "2.pielikums_1.docx",
+    "3.pielikums_1.docx",
+    "4.pielikums_1.docx",
+    "5.pielikums_1.docx",
+    "6.pielikums_1.docx",
+    "7.pielikums.docx",
+    "Nolikums_2024_6_degviela.docx",
+    "125861_PD.ANY_1_1_1_20240615203854.pdf",
+    "zinojums_2024_6_.pdf"
+  ],
+  "candidates": [
+    {
+      "code": "09100000-0",
+      "context": "porta un samazināta ceļa infrastruktūras slodze, saskaņā ar nolikuma 4.1.4.3.apakšpunktu. Piedāvājuma izvēles kritērijs ir saimnieciski visizdevīgākais piedāvājums.\nIepirkuma nomenklatūra (CPV kods): 09100000-0 - (degvielas).\nIepirkuma līguma noteikumi.\nIepirkuma līguma noteikumi noteikti saskaņā ar Atklāta konkursa nolikumam pievienoto iepirkuma līguma projektu (7. pielikums).\nLīgums stājas spēkā ar tā par",
+      "count": 1
+    }
+  ],
+  "attempts": 1,
+  "model_seconds": 102.3,
+  "extracted": {
+    "found": true,
+    "main_cpv": "09100000-0",
+    "additional_cpv": [],
+    "reasoning": "Only one CPV code was provided in the input text, making it the main code."
+  },
+  "critique": {
+    "verdict": "accept",
+    "problem": null
+  },
+  "evaluation_criteria": {
+    "found": true,
+    "award_method": "most_economically_advantageous",
+    "criteria": [
+      {
+        "name": "Kopējā degvielas cena (EUR), bez PVN, saskaņā ar piedāvājumu",
+        "weight": 30.0,
+        "description": null
+      },
+      {
+        "name": "Atlaides apmērs procentos (%)",
+        "weight": 30.0,
+        "description": null
+      },
+      {
+        "name": "Attālums (km) līdz tuvākajai DUS",
+        "weight": 40.0,
+        "description": null
+      }
+    ],
+    "weights_reconcile": true,
+    "weights_total": 100.0,
+    "expected_total": 100.0
+  },
+  "criteria_check": "ok",
+  "standards": []
+}

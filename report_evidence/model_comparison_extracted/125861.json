@@ -1,0 +1,921 @@
+{
+  "eis_id": "125861",
+  "source_files": [
+    "1.pielikums_1.docx",
+    "2.pielikums_1.docx",
+    "3.pielikums_1.docx",
+    "4.pielikums_1.docx",
+    "5.pielikums_1.docx",
+    "6.pielikums_1.docx",
+    "7.pielikums.docx",
+    "Nolikums_2024_6_degviela.docx",
+    "125861_PD.ANY_1_1_1_20240615203854.pdf",
+    "zinojums_2024_6_.pdf"
+  ],
+  "candidates": [
+    {
+      "code": "09100000-0",
+      "context": "porta un samazināta ceļa infrastruktūras slodze, saskaņā ar nolikuma 4.1.4.3.apakšpunktu. Piedāvājuma izvēles kritērijs ir saimnieciski visizdevīgākais piedāvājums.\nIepirkuma nomenklatūra (CPV kods): 09100000-0 - (degvielas).\nIepirkuma līguma noteikumi.\nIepirkuma līguma noteikumi noteikti saskaņā ar Atklāta konkursa nolikumam pievienoto iepirkuma līguma projektu (7. pielikums).\nLīgums stājas spēkā ar tā par",
+      "count": 1
+    }
+  ],
+  "attempts": 1,
+  "extracted": {
+    "found": true,
+    "main_cpv": "09100000-0",
+    "additional_cpv": [],
+    "reasoning": "The text explicitly states that the CPV code for the procurement is 09100000-0, making it the main code."
+  },
+  "evaluation_criteria": {
+    "found": true,
+    "award_method": "most_economically_advantageous",
+    "criteria": [
+      {
+        "name": "Kopējā degvielas cena (EUR), bez PVN, saskaņā ar piedāvājumu",
+        "weight": 30.0,
+        "description": null
+      },
+      {
+        "name": "Atlaides apmērs procentos (%), līdz divām zīmēm aiz komata",
+        "weight": 30.0,
+        "description": null
+      },
+      {
+        "name": "Attālums (km) līdz tuvākajai DUS",
+        "weight": 40.0,
+        "description": null
+      }
+    ],
+    "weights_reconcile": true,
+    "weights_total": 100.0,
+    "expected_total": 100.0
+  },
+  "tables": [
+    {
+      "source": "1.pielikums_1.docx",
+      "rows": [
+        [
+          "Pretendents",
+          ""
+        ],
+        [
+          "Vienotās reģistrācijas Nr.",
+          ""
+        ],
+        [
+          "Juridiskā adrese",
+          ""
+        ],
+        [
+          "Faktiskā adrese",
+          ""
+        ],
+        [
+          "Tālruņa numurs, e-pasta adrese:",
+          ""
+        ],
+        [
+          "Kontaktpersona\n(vārds, uzvārds, amats, telefona numurs)",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "1.pielikums_1.docx",
+      "rows": [
+        [
+          "Pretendents atbilst",
+          "",
+          "neatbilst",
+          "",
+          "mazā vai vidējā uzņēmuma statusam**"
+        ]
+      ]
+    },
+    {
+      "source": "2.pielikums_1.docx",
+      "rows": [
+        [
+          "Nr.p.k.",
+          "Pasūtītājs (nosaukums, reģistrācijas numurs, adrese un kontaktpersona, telefons)",
+          "Pārdotās degvielas apjoms gadā vai līguma darbības laikā, litros",
+          "Degvielas piegādes gads"
+        ],
+        [
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "3.pielikums_1.docx",
+      "rows": [
+        [
+          "A",
+          "B",
+          "C",
+          "D= B x C"
+        ],
+        [
+          "Degvielas veids",
+          "Vidējā1 degvielas cena EUR, bez PVN",
+          "Prognozētais iepirkuma daudzums litros\n18 mēnešos",
+          "Summa EUR, bez PVN"
+        ],
+        [
+          "Benzīns 95",
+          "",
+          "5 000",
+          ""
+        ],
+        [
+          "Dīzeļdegviela",
+          "",
+          "100 000",
+          ""
+        ],
+        [
+          "",
+          "",
+          "Kopējā piedāvājuma cena:",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "4.pielikums_1.docx",
+      "rows": [
+        [
+          "2024.gada maija datums:",
+          "Bezsvina benzīna 95 cena litrā \nEUR, bez PVN",
+          "Dīzeļdegvielas cena litrā \nEUR, bez PVN"
+        ],
+        [
+          "1.",
+          "",
+          ""
+        ],
+        [
+          "2.",
+          "",
+          ""
+        ],
+        [
+          "3.",
+          "",
+          ""
+        ],
+        [
+          "4.",
+          "",
+          ""
+        ],
+        [
+          "5.",
+          "",
+          ""
+        ],
+        [
+          "6.",
+          "",
+          ""
+        ],
+        [
+          "7.",
+          "",
+          ""
+        ],
+        [
+          "8.",
+          "",
+          ""
+        ],
+        [
+          "9.",
+          "",
+          ""
+        ],
+        [
+          "10.",
+          "",
+          ""
+        ],
+        [
+          "11.",
+          "",
+          ""
+        ],
+        [
+          "12.",
+          "",
+          ""
+        ],
+        [
+          "13.",
+          "",
+          ""
+        ],
+        [
+          "14.",
+          "",
+          ""
+        ],
+        [
+          "15.",
+          "",
+          ""
+        ],
+        [
+          "16.",
+          "",
+          ""
+        ],
+        [
+          "17.",
+          "",
+          ""
+        ],
+        [
+          "18.",
+          "",
+          ""
+        ],
+        [
+          "19.",
+          "",
+          ""
+        ],
+        [
+          "20.",
+          "",
+          ""
+        ],
+        [
+          "21.",
+          "",
+          ""
+        ],
+        [
+          "22.",
+          "",
+          ""
+        ],
+        [
+          "23.",
+          "",
+          ""
+        ],
+        [
+          "24.",
+          "",
+          ""
+        ],
+        [
+          "25.",
+          "",
+          ""
+        ],
+        [
+          "26.",
+          "",
+          ""
+        ],
+        [
+          "27.",
+          "",
+          ""
+        ],
+        [
+          "28.",
+          "",
+          ""
+        ],
+        [
+          "29.",
+          "",
+          ""
+        ],
+        [
+          "30.",
+          "",
+          ""
+        ],
+        [
+          "31.",
+          "",
+          ""
+        ],
+        [
+          "Vidējā degvielas mazumtirdzniecības cena EUR/ l\nbez PVN 1",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "6.pielikums_1.docx",
+      "rows": [
+        [
+          "N.p.k.",
+          "Pasūtītāja prasības",
+          "Pretendenta piedāvājums\n(aizpilda Pretendents)"
+        ],
+        [
+          "1.",
+          "Degvielas – benzīna 95 un dīzeļdegvielas iegāde atbilstoši spēkā esošo normatīvo aktu prasībām katru dienu 24 stundas diennaktī",
+          "Jānorāda DUS darba laiku un pārdošanā esošo degvielu veidus"
+        ],
+        [
+          "2.",
+          "Pretendents nodrošina bezskaidras naudas norēķinu kārtību ar degvielas kredītkaršu palīdzību visās Pretendenta DUS, kas atrodas Latvijas Republikā",
+          "Jā vai nē"
+        ],
+        [
+          "3.",
+          "Tuvākās degvielas uzpildes stacijas maksimālais attālums no SIA “Ķekavas sadzīves servisa centrs” (Ausekļu iela 10, Ķekava, Ķekavas novads, LV-2123) līdz DUS – 10 km, braucot pa koplietošanas ceļiem un ievērojot ceļu satiksmes noteikumus.",
+          "Pretendents norāda SIA “Ķekavas sadzīves servisa centrs” (Ausekļu iela 10, Ķekava, Ķekavas novads, LV-2123) tuvāko degvielas uzpildes staciju - tās adresi un attālumu kilometros no SIA “Ķekavas sadzīves servisa centrs” līdz tai, braucot pa koplietošanas ceļiem un ievērojot ceļu satiksmes noteikumus."
+        ],
+        [
+          "4.",
+          "Pretendents nodrošina iespēju uzpildīt degvielu tehniskā specifikācijā norādītajās DUS",
+          "Pretendentam ir jāiesniedz degvielas uzpildes staciju saraksts ar adresēm Latvijas Republikā"
+        ],
+        [
+          "5.",
+          "Tuvākajā degvielas uzpildes stacijā (no SIA “Ķekavas sadzīves servisa centrs” līdz DUS) dīzeļdegvielas iegādes gadījumā ir jābūt iespējai iebraukt industriālai kravas tehnikai (traktortehnika ar piekabi līdz 20.0 m, kravas automašīnas), kā arī autogreideriem Catepillar 120 H , Volvo G930B (bāzes garums – līdz 24.5 m)",
+          "Ir iespējams/ nav iespējams"
+        ],
+        [
+          "6.",
+          "Pretendentam ir jānodrošina, lai degvielas kredītkartēm būtu iespējams noteikt limitus (diennakts, mēneša, vienreizējas uzpildes limiti), atsevišķus degvielas veidus un ierobežojumus iegādāties preces un saņemt pakalpojumus",
+          "Ja, jā, jānorāda atbilstoša informācija"
+        ],
+        [
+          "7.",
+          "Iespēja pasūtītāja pārstāvim iepazīties ar degvielas atbilstības sertifikātiem degvielas uzpildes stacijā",
+          "Jā vai nē"
+        ],
+        [
+          "8.",
+          "Degvielas kredītkaršu izmatošanas nosacījumi",
+          ""
+        ],
+        [
+          "9.",
+          "Degvielas kredītkaršu drošības apraksts",
+          ""
+        ],
+        [
+          "10.",
+          "Degvielas kredītkaršu saņemšanas kartība un termiņi (max.5 darba dienas)",
+          ""
+        ],
+        [
+          "11.",
+          "Ikmēneša atskaites par degvielas kredītkaršu izmantošanu",
+          "Jā vai nē, kādā veidā"
+        ],
+        [
+          "12.",
+          "Degvielas kredītkartes derīguma termiņš",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "7.pielikums.docx",
+      "rows": [
+        [
+          "PIRCĒJS:",
+          "PĀRDEVĒJS:"
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "SIA “Ķekavas sadzīves servisa centrs”",
+          ""
+        ],
+        [
+          "Vienotās reģistrācijas Nr.: 40003525725",
+          ""
+        ],
+        [
+          "Adrese: Ausekļu iela 10, Ķekava, Ķekavas novads, LV-2123",
+          ""
+        ],
+        [
+          "AS SEB banka, kods UNLALV2X",
+          ""
+        ],
+        [
+          "Konta Nr.: LV92UNLA0003001609441",
+          ""
+        ],
+        [
+          "Tālruņa Nr.: 67937363",
+          ""
+        ],
+        [
+          "e-pasts: kssc@kekava.lv",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_2024_6_degviela.docx",
+      "rows": [
+        [
+          "Pasūtītāja nosaukums:",
+          "SIA “Ķekavas sadzīves servisa centrs”"
+        ],
+        [
+          "Juridiskā adrese:",
+          "Ausekļu iela 10, Ķekava, Ķekavas pagasts,\nĶekavas novads, LV-2123"
+        ],
+        [
+          "Vienotais reģistrācijas numurs",
+          "40003525725"
+        ],
+        [
+          "Tālruņa Nr.:",
+          "(+371) 20355056"
+        ],
+        [
+          "E-pasta adrese:",
+          "kssc@kekava.lv"
+        ],
+        [
+          "Pasūtītāja profils",
+          "https://www.eis.gov.lv/EKEIS/Supplier/Organizer/5353"
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_2024_6_degviela.docx",
+      "rows": [
+        [
+          "Prasība",
+          "Iesniedzamais dokuments"
+        ],
+        [
+          "Pretendents ir reģistrēts atbilstoši attiecīgās valsts normatīvo aktu prasībām. Pretendents normatīvajos aktos noteiktajā kārtībā ir reģistrēts LV Komercreģistrā vai līdzvērtīgā reģistrā ārvalstīs.",
+          "Informāciju par pretendentu, kurš ir reģistrēts LV Komercreģistrā, Pasūtītājs pārbauda Uzņēmumu reģistra mājaslapā (skat. www.ur.gov.lv/?a=936&z=631&v=lv). Ja nav izveidota personālsabiedrība, tad personu grupa 10 (desmit) darba dienu laikā iesniedz visu personu grupas dalībnieku parakstītu saistību raksta (protokolu, vienošanos, citu dokumentu) kopiju, kas apliecina, ka noteiktajā termiņā izveidos personālsabiedrību pasūtījuma izpildei.\nPretendents, kurš nav reģistrēts LV  Komercreģistrā iesniedz komercdarbību reģistrējošas iestādes ārvalstīs izdotu reģistrācijas apliecības kopiju."
+        ],
+        [
+          "Pretendentam ir spēkā esoša Valsts ieņēmumu dienesta vai attiecīgās ārvalsts kompetentās institūcijas izsniegta speciālā atļauja (licence) naftas produktu mazumtirdzniecībai.",
+          "Informāciju par Latvijā reģistrēta Pretendenta atļaujas (licences) spēkā esību Pasūtītājs iegūs Valsts ieņēmumu dienesta publiskajā datubāzē https://www6.vid.gov.lv/VID_PDB/AP/List.\nĀrvalstīs reģistrēti Pretendenti pievieno attiecīgi apliecinātu speciālās atļaujas (licences) naftas produktu mazumtirdzniecībai kopiju."
+        ],
+        [
+          "Pretendenta tirgū piedāvātā degviela atbilst Ministru kabineta 2000.gada 26.septembra noteikumu Nr.332 „Noteikumi par benzīna un dīzeļdegvielas atbilstības novērtēšanu” prasībām.",
+          "Pretendents pievieno benzīna un dīzeļdegvielas atbilstības sertifikātu apliecinātas kopijas, kas apstiprina tirgū piedāvātā benzīna un dīzeļdegvielas atbilstību Ministru kabineta 2000.gada 26.septembra noteikumu Nr.332 „Noteikumi par benzīna un dīzeļdegvielas atbilstības novērtēšanu” prasībām."
+        ],
+        [
+          "Pretendentam iepriekšējo 3 (trīs) gadu laikā ir pieredze degvielas mazumtirdzniecībā Latvijas Republikas teritorijā vismaz 2 (diviem) pasūtītājiem un katra līguma apjoms ir vismaz 100 000 (viens simts tūkstoši) litri degvielas, par kuriem ir saņemtas pozitīvas iepriekšējo pasūtītāju atsauksmes.",
+          "Pretendents iesniedz sarakstu ar sniegtajiem pakalpojumiem iepriekšējo trīs gadu laikā, norādot pasūtītāju, pārdotās degvielas apjomu gadā vai līguma darbības laikā, degvielas piegādes laiku un vismaz vienu pozitīvu atsauksmi no Pasūtītāja, kurš iekļauts pieredzes sarakstā atbilstoši Nolikuma pievienotajai formai (2.pielikums)."
+        ],
+        [
+          "Pretendenta vidējam finanšu apgrozījumam degvielas mazumtirdzniecības jomā pēdējos 3 (trīs) gados jābūt vismaz divas reizes lielākam par tā piedāvāto līgumcenu. Pretendentu, kas dibināti vēlāk, gada vidējais finanšu apgrozījums par nostrādāto laika periodu ir vismaz trīs reizes lielāks par pretendenta piedāvāto līgumcenu.",
+          "Pretendents iesniedz apliecinājumu (brīvā formā) par Pretendenta vidējo finanšu apgrozījumu bez PVN, tajā komercdarbības daļā, kas attiecas uz degvielas mazumtirdzniecības jomu pēdējos 3 (trīs) gados, norādot apgrozījumu attiecīgajā jomā katrā gadā. Pretendenti, kuri dibināti vēlāk – apliecinājumu par vidējo finanšu apgrozījumu iepriekš minētajā jomā par nostrādāto laika periodu."
+        ],
+        [
+          "Pretendentam ir jābūt vismaz vienai degvielas uzpildes stacijai, kas atrodas ne tālāk kā 10 km no SIA “Ķekavas sadzīves servisa centrs” faktiskās adreses (Ausekļu iela 10, Ķekava, Ķekavas novads, LV-2123), braucot pa koplietošanas ceļiem un ievērojot ceļu satiksmes noteikumus, kā arī uzpildes stacijas Rīgā un Latvijas teritorijā, kur iespējams iegādāties benzīnu un dīzeļdegvielu.",
+          "Degvielas uzpildes staciju saraksts ar adresēm, kur ir iespējams iegādāties benzīnu un dīzeļdegvielu (brīvā formā).\nApliecinājums (apliecinājums iekļauts 3.pielikumā) ar informāciju par degvielas uzpildes stacijas atrašanās vietu Ķekavas novadā, norādot arī precīzu attālumu (km) no SIA “Ķekavas sadzīves servisa centrs” faktiskai adresei (Ausekļu iela 10, Ķekava, Ķekavas novads, LV-2123) līdz degvielas uzpildes stacijai, braucot pa koplietošanas ceļiem un ievērojot ceļu satiksmes noteikumus. (Pasūtītājs informāciju par degvielas uzpildes stacijas atrašanās vietu ir tiesīgs pārbaudīt tīmekļa vietnē Google Maps.)"
+        ]
+      ]
+    },
+    {
+      "source": "Nolikums_2024_6_degviela.docx",
+      "rows": [
+        [
+          "Nr. p.k.",
+          "Kritēriji",
+          "Kritērija\n skaitliskā vērtība\n(punktu skaits)"
+        ],
+        [
+          "A",
+          "Kopējā degvielas cena (EUR), bez PVN, saskaņā ar piedāvājumu",
+          "30"
+        ],
+        [
+          "B",
+          "Atlaides apmērs procentos (%), līdz divām zīmēm aiz komata",
+          "30"
+        ],
+        [
+          "C",
+          "Attālums (km) līdz tuvākajai DUS",
+          "40"
+        ],
+        [
+          "P",
+          "Maksimālais iespējamais kopējais punktu skaits:",
+          "100"
+        ]
+      ]
+    },
+    {
+      "source": "125861_PD.ANY_1_1_1_20240615203854.pdf",
+      "rows": [
+        [
+          "N.p.k.",
+          "Prasības",
+          "Ievadlauks",
+          "Dokumenti"
+        ],
+        [
+          "1.",
+          "Izslēgšanas nosacījumi un atlases prasības\nIzslēgšanas nosacījumi un atlases prasības saskaņā ar atklāta konkursa nolikuma\n3.3.punktu",
+          "Teksts (neobligāts)",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ],
+        [
+          "2.",
+          "Pieteikums\nPieteikums dalībai atklātā konkursā saskaņā ar nolikuma 1.pielikumu",
+          "Teksts (neobligāts)",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ]
+      ]
+    },
+    {
+      "source": "125861_PD.ANY_1_1_1_20240615203854.pdf",
+      "rows": [
+        [
+          "N.p.k.",
+          "Prasības",
+          "Ievadlauks",
+          "Dokumenti"
+        ],
+        [
+          "1.",
+          "Tehniskais piedāvājums\nTehniskais piedāvājums (atbilstoši atklāta konkursa nolikuma 5. un 6.pielikumam)",
+          "Teksts (neobligāts)",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ]
+      ]
+    },
+    {
+      "source": "125861_PD.ANY_1_1_1_20240615203854.pdf",
+      "rows": [
+        [
+          "N.p.k.",
+          "Prasības",
+          "Ievadlauks",
+          "Dokumenti"
+        ],
+        [
+          "1.",
+          "Finanšu piedāvājums\nFinanšu piedāvājums (atbilstoši atklāta konkursa nolikuma 3. un 4.pielikumam).\nIevadlaukā \"Valūta/EIRO\" norāda kopējo piedāvājuma cenu (EUR), bez PVN.",
+          "Valūta (obligāts, no 0.00 (neieskaitot) EUR)",
+          "Datne/-es obligāta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ]
+      ]
+    },
+    {
+      "source": "125861_PD.ANY_1_1_1_20240615203854.pdf",
+      "rows": [
+        [
+          "N.p.k.",
+          "Prasības",
+          "Ievadlauks",
+          "Dokumenti"
+        ]
+      ]
+    },
+    {
+      "source": "125861_PD.ANY_1_1_1_20240615203854.pdf",
+      "rows": [
+        [
+          "1.",
+          "Citi dokumenti\nCiti dokumenti, kurus pretendents vai kandidāts uzskata par nepieciešamu\npievienot piedāvājumam vai pieteikumam.",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es atļauta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ],
+        [
+          "2.",
+          "Eiropas vienotais prasību dokuments (ESPD)\nŠeit Piegādātājs pēc saviem ieskatiem var pievienot ESPD datni (PDF, docx vai\nxml formātā).\nPapildinformācija: http://espd.eis.gov.lv/",
+          "Piedāvājuma vērtības ievade nav paredzēta.",
+          "Datne/-es atļauta/-as.\nIerobežojumi: Vairākas datnes,\nJebkura datne"
+        ]
+      ]
+    },
+    {
+      "source": "125861_PD.ANY_1_1_1_20240615203854.pdf",
+      "rows": [
+        [
+          "N.p.k.",
+          "Kritērijs",
+          "Vērtēšana",
+          "Attiecas uz prasībām"
+        ],
+        [
+          "1.",
+          "Atlaides apmērs\nPunktu piešķiršanas nosacījumi: Saskaņā ar atklāta konkursa\nnolikuma 4.1.4.2.apakšpunktu",
+          "Maksimālais punktu skaits (iesk.): 30.00\nAprēķina veids: Proporcija",
+          ""
+        ],
+        [
+          "2.",
+          "Attālums (km) līdz tuvākajai DUS\nPunktu piešķiršanas nosacījumi: Saskaņā ar atklāta konkursa\nnolikuma 4.1.4.3.apakšpunktu",
+          "Maksimālais punktu skaits (iesk.): 40.00\nAprēķina veids: Apgriezta proporcija",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "125861_PD.ANY_1_1_1_20240615203854.pdf",
+      "rows": [
+        [
+          "N.p.k.",
+          "Kritērijs",
+          "Vērtēšana",
+          "Attiecas uz prasībām"
+        ],
+        [
+          "1.",
+          "Kopējā degvielas cena\nPunktu piešķiršanas nosacījumi: Saskaņā ar atklāta konkursa\nnolikuma 4.1.4.1.apakšpunktu",
+          "Maksimālais punktu skaits (iesk.): 30.00\nAprēķina veids: Apgriezta proporcija",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "_meeting_openingprotocol_70679_PROPFIS_20240701144052.docx",
+      "rows": [
+        [
+          "",
+          "\"Ķekavas sadzīves servisa centrs\" SIA",
+          ""
+        ],
+        [
+          "",
+          "(reģ. Nr. 40003525725)",
+          ""
+        ],
+        [
+          "",
+          "Atklāts konkurss",
+          ""
+        ],
+        [
+          "",
+          "„Degvielas iegāde”",
+          ""
+        ],
+        [
+          "",
+          "(Iepirkuma identifikācijas Nr. ĶSSC 2024/6)",
+          ""
+        ],
+        [
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "PRETENDENTU IESNIEGTO FINANŠU PIEDĀVĀJUMU APKOPOJUMS",
+          ""
+        ],
+        [
+          "",
+          "(piedāvājumu atvēršana)",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "_meeting_openingprotocol_70679_PROPFIS_20240701144052.docx",
+      "rows": [
+        [
+          "",
+          "Daļai Nr. 1 - Iepirkums",
+          "Daļai Nr. 1 - Iepirkums",
+          "Daļai Nr. 1 - Iepirkums",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "Pretendents",
+          "Iesniegšanas \ndatums un laiks",
+          "Finanšu piedāvājums",
+          ""
+        ],
+        [
+          "",
+          "\"Circle K Latvia\" SIA",
+          "26.06.2024 plkst. 11:57",
+          "EUR 43217.4",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "_meeting_openingprotocol_70679_PROPFIS_20240701144052.docx",
+      "rows": [
+        [
+          "",
+          "Elektronisko iepirkumu sistēmas e-konkursu apakšsistēmas ģenerēts apkopojums",
+          ""
+        ],
+        [
+          "",
+          "Apkopojuma sagatavošanas laiks: 01.07.2024; 14:40",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "zinojums_2024_6_.pdf",
+      "rows": [
+        [
+          "1.",
+          "Pasūtītāja nosaukums",
+          "SIA “Ķekavas sadzīves servisa centrs”"
+        ],
+        [
+          "2.",
+          "Juridiskā adrese",
+          "Ausekļu iela 10, Ķekava, Ķekavas novads, LV-2123"
+        ],
+        [
+          "3.",
+          "Iepirkuma identifikācijas Nr.",
+          "ĶSSC 2024/6"
+        ],
+        [
+          "4.",
+          "Iepirkuma procedūras veids",
+          "Atklāts konkurss"
+        ],
+        [
+          "5.",
+          "Iepirkuma līguma vai vispārīgās\nvienošanās priekšmets",
+          "Degvielas iegāde"
+        ],
+        [
+          "6.",
+          "Datums, kad paziņojums par līgumu\nun iepriekšējais informatīvais\npaziņojums, ja tāds ir izmantots,\npublicēts Eiropas Savienības\nOficiālajā Vēstnesī (ja attiecināms)\nun Iepirkumu uzraudzības biroja\ntīmekļvietnē",
+          "IUB – 2024.gada 15.jūnijs"
+        ],
+        [
+          "7.",
+          "Iepirkuma komisijas sastāvs",
+          "Iepirkuma komisijas priekšsēdētājs: R.Šulcs\nKomisijas locekļi: A.Auziņš, J.Meijers"
+        ],
+        [
+          "8.",
+          "Iepirkumu komisijas izveidošanas\npamatojums",
+          "SIA “Ķekavas sadzīves servisa centrs” 2024.gada\n12.jūnija valdes sēdes protokols Nr.4/2024"
+        ],
+        [
+          "9.",
+          "Iepirkuma procedūras dokumentu\nsagatavotāji un pieaicinātie eksperti",
+          "A.Auziņš"
+        ],
+        [
+          "10.",
+          "Piedāvājumu iesniegšanas termiņš,\nkā arī pamatojums termiņa\nsaīsinājumam), ja tāds veikts",
+          "Līdz 2024.gada 1.jūlijam, plkst.9:00 (13:00)"
+        ],
+        [
+          "11.",
+          "Piegādātāju nosaukumi, kuri ir\niesnieguši piedāvājumus, kā arī\npiedāvātās cenas",
+          "Finanšu\nPretendents piedāvājums EUR\nbez PVN\nSIA “Circle K Latvia” 43 217,40"
+        ],
+        [
+          "12.",
+          "Piedāvājumu atvēršanas vieta,\ndatums un laiks",
+          "EIS e-konkursu apakšsistēma, 2024.gada 1.jūlijs,\nplkst. 14:40"
+        ],
+        [
+          "13.",
+          "Pretendenta nosaukums, kuram\npiešķirtas iepirkuma līguma\nslēgšanas tiesības, piedāvātā\nlīgumcena, kā arī piedāvājumu\nizvērtēšanas kopsavilkums un\npiedāvājuma izvēles pamatojums",
+          "-"
+        ],
+        [
+          "14.",
+          "Informācija (ja tā ir zināma) par to\niepirkuma līguma vai vispārīgās\nvienošanās daļu, kuru izraudzītais\npiegādātājs plānojis nodot\napakšuzņēmējiem, kā arī\napakšuzņēmēju nosaukumi",
+          "-"
+        ],
+        [
+          "15.",
+          "Pamatojums lēmumam par katru\nnoraidīto kandidātu un pretendentu,\nkā arī par katru iepirkuma procedūras\ndokumentiem neatbilstošu\npieteikumu un piedāvājumu",
+          "-"
+        ]
+      ]
+    },
+    {
+      "source": "zinojums_2024_6_.pdf",
+      "rows": [
+        [
+          "Pretendents",
+          "",
+          "Finanšu",
+          ""
+        ],
+        [
+          "",
+          "",
+          "piedāvājums EUR",
+          ""
+        ],
+        [
+          "",
+          "",
+          "bez PVN",
+          ""
+        ],
+        [
+          "SIA “Circle K Latvia”",
+          "43 217,40",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "source": "zinojums_2024_6_.pdf",
+      "rows": [
+        [
+          "16.",
+          "Ja piedāvājumu iesniedzis tikai viens\npiegādātājs, – pamatojums iepirkuma\nprocedūras nepārtraukšanai",
+          "-"
+        ],
+        [
+          "17.",
+          "Lēmuma pamatojums, ja iepirkuma\nkomisija pieņēmusi lēmumu\npārtraukt vai izbeigt iepirkuma\nprocedūru",
+          "Atklāts konkurss pārtraukts pamatojoties uz to, ka\npiedāvājumu iesniedzis viens pretendents."
+        ],
+        [
+          "18.",
+          "Piedāvājuma noraidīšanas\npamatojums, ja iepirkuma komisija\natzinusi piedāvājumu par nepamatoti\nlētu",
+          "-"
+        ],
+        [
+          "19.",
+          "Iemesli, kuru dēļ netiek paredzēta\nelektroniska piedāvājumu\niesniegšana, ja pasūtītājam ir\npienākums izmantot piedāvājumu\nsaņemšanai elektroniskās\ninformācijas sistēmas",
+          "-"
+        ],
+        [
+          "20.",
+          "Konstatētie interešu konflikti un\npasākumi, kas veikti to novēršanai",
+          "-"
+        ]
+      ]
+    }
+  ]
+}

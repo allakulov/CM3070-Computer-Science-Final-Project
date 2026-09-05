@@ -1,0 +1,553 @@
+{
+  "eis_id": "121448",
+  "source_files": [
+    "1_7_parskats-par-ekas-energosertifikata-aprekinos-izmantotajam-ievaddatu-vertibam_Lauciene.pdf",
+    "bis-eed-1-2023-571.pdf",
+    "Fotofiksacija_energosertifikats_Pansionats_Lauciene.pdf",
+    "N222_P1_Pansionats_Lauciene.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-1-A PAGRABSTáVA PLáNS/PL-23_BP_AR_111-010-A.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-10-1 SIENU TIPU SPECIFIKáCIJA/Sienu tipi.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-11-1 MEZGLS 1/Cokols.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-12-1 MEZGLS 2/Logaile.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-13-A MEZGLS 3/PL-23_BP_AR_333-003-A.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-14-A MEZGLS 4/PL-23_BP_AR_333-004-A.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-15-A MEZGLS 5/PL-23_BP_AR_333-005-A.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-16-1 MEZGLS 6/Ieejas jumtini.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-17-1 DURVJU SPECIFIKáCIJA/Durvis.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-18-0 LOGU SPECIFIKáCIJA/Logi.pdf.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-19-A L╟KU SPECIFIKáCIJA/PL-23_BP_AR_431-001-A.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-2-A PIRMá STáVA PLáNS/PL-23_BP_AR_111-100-A.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-20-1 MARGU SPECIFIKáCIJA/Margas.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-3-A OTRá STáVA PLáNS/PL-23_BP_AR_111-200-A.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-4-A TRE╛á STáVA PLáNS/PL-23_BP_AR_111-300-A.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-5-A BφNIεU PLáNS/PL-23_BP_AR_111-400-A.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-6-1 JUMTA PLáNS/Jumts.pdf",
+    "BIS-BL-712011-9504/Arhitektūras risinājumi/AR-7-1 FASĀDE ASĪS 7‑1 UN FASĀDE ASĪS G‑A/Fasades 1.pdf",
+    "BIS-BL-712011-9504/Arhitektūras risinājumi/AR-8-1 FASĀDE ASĪS 1‑7 UN FASĀDE ASĪS A‑G/Fasades 2.pdf",
+    "BIS-BL-712011-9504/Arhitekt╫ras risinâjumi/AR-9-1 PáRSEGUMA UN JUMTA TIPU SPECIFIKáCIJA/Parseguma tipi.pdf",
+    "BIS-BL-712011-9504/BP Elektroapgâde (iek╒ëjâ)/EL-1-- EL daδas vispârîgo râdîtâju lapa/PL-23_BP_EL_100-001.pdf",
+    "BIS-BL-712011-9504/BP Elektroapgâde (iek╒ëjâ)/EL-2-1 Jumta plâns ar zibensaizsardzîbas tîkliem/Zibens.pdf",
+    "BIS-BL-712011-9504/BP Elektroapgâde (iek╒ëjâ)/EL-3-- Specifikâcija/PL-23_BP_EL_BA.pdf",
+    "BIS-BL-712011-9504/Darbu organizë╒anas projekts/DOP-1-A B╟VDARBU òENERáLPLáNS/PL-23_BP_DOP_121-001-A.pdf",
+    "BIS-BL-712011-9504/Darbu organizë╒anas projekts/DOP-2-1 SKAIDROJO╛AIS APRAKSTS/DOP SA.pdf",
+    "BIS-BL-712011-9504/document-9.pdf",
+    "BIS-BL-712011-9504/Ugunsdro╒îbas pasâkumu pârskats/UPP-1-A PAGRABSTáVA PLáNS/PL-23_BP_UPP_111-010-A.pdf",
+    "BIS-BL-712011-9504/Ugunsdro╒îbas pasâkumu pârskats/UPP-2-A PIRMá STáVA PLáNS/PL-23_BP_UPP_111-100-A.pdf",
+    "BIS-BL-712011-9504/Ugunsdro╒îbas pasâkumu pârskats/UPP-3-A OTRá STáVA PLáNS/PL-23_BP_UPP_111-200-A.pdf",
+    "BIS-BL-712011-9504/Ugunsdro╒îbas pasâkumu pârskats/UPP-4-1 SKAIDROJO╛AIS APRAKSTS/UPP.pdf",
+    "BIS-BL-712011-9504/Ugunsdro╒îbas pasâkumu pârskats/UPP-5-A TRE╛á STáVA PLáNS/PL-23_BP_UPP_111-300-A.pdf",
+    "BIS-BL-712011-9504/VISPARIGA DALA/VD-1-- Inventarizâcijas lieta/PL-23_Inventerizacija_1.pdf",
+    "BIS-BL-712011-9504/VISPARIGA DALA/VD-1-- Inventarizâcijas lieta/PL-23_Inventerizacija_1_korpuss.pdf",
+    "BIS-BL-712011-9504/VISPARIGA DALA/VD-1-- Inventarizâcijas lieta/PL-23_Inventerizacija_2.pdf",
+    "BIS-BL-712011-9504/VISPARIGA DALA/VD-1-- Inventarizâcijas lieta/PL-23_Inventerizacija_2_korpuss.pdf",
+    "BIS-BL-712011-9504/VISPARIGA DALA/VD-1-- Inventarizâcijas lieta/PL-23_Inventerizacija_3.pdf",
+    "BIS-BL-712011-9504/VISPARIGA DALA/VD-1-- Inventarizâcijas lieta/PL-23_Inventerizacija_3_korpuss.pdf",
+    "BIS-BL-712011-9504/VISPARIGA DALA/VD-2-- Projektë╒anas uzdevums/PL-23_PU.pdf",
+    "BIS-BL-712011-9504/VISPARIGA DALA/VD-3-- Zemes robe╪u plâns/PL-23_Zemes_robezu_plans.pdf",
+    "BIS-BL-712011-9504/VISPARIGA DALA/VD-4-- Zemesgrâmatas nodalîjuma norakst/PL-23_Zemesgramata.pdf",
+    "TNP_E_Dokuments_Nr_12_36e_553.docx",
+    "BIS-BL-712011-9504/VISPARIGA DALA/VD-6-0 Apdro╒inâ╒anas polise/Profesionalas cta polise Sensibil.pdf",
+    "BIS-BL-712011-9504/VISPARIGA DALA/VD-7-0 Izmai∞u skaidrojums/Izmai∞u skaidrojums.docx",
+    "Paziņojums 03.05.2024.docx",
+    "Paziņojums 13.05.2024..docx",
+    "Nolikums un tā pielikumi ar grozījumiem.docx",
+    "Darbu apjomu tāme ar grozījumiem_1.xlsx",
+    "11.pielikums - Līguma projekts ar grozījumiem.docx",
+    "31.05.2024. Jautājumi un atbildes-1.docx",
+    "PL-23_14(i) (1).pdf",
+    "PL-23_3(i) (4).pdf",
+    "PL-23_4(i) (3).pdf",
+    "PL-23_5(i) (1).pdf",
+    "PL-23_6(i) (2).pdf",
+    "PL-23_7(i) (3).pdf",
+    "11.06.2024. Jautājumu un atbilžu apkopojums.docx",
+    "Paziņojums 13.06.2024..docx",
+    "Paziņojums 08.07.2024..docx",
+    "Paziņojums 30.07.2024..docx",
+    "121448_PD.ANY_1_6_1_20240730164548.pdf",
+    "1.pielikums - Pretendenta pieteikums.docx",
+    "2.pielikums - Piedāvājuma nodrošinājuma noteikumi.docx",
+    "6.pielikums - Pretendenta pieredzes saraksts.docx",
+    "7.pielikums - Pretendenta speciālistu saraksts.docx",
+    "8.pielikums - Apakšuzņēmēju un to apakšuzņēmēju saraksts.docx",
+    "9.pielikums - Apakšuzņēmēja apliecinājums.docx",
+    "10.pielikums - Apliecinājums par objekta apsekošanu.docx",
+    "5.pielikums - Finanšu piedāvājums.docx",
+    "Darbu apjomu tāme ar grozījumiem.xlsx"
+  ],
+  "candidates": [
+    {
+      "code": "45000000-7",
+      "context": " ietvaros.\nPamatojums iepirkuma līguma slēgšanas tiesību piešķiršanai, nedalot iepirkumu daļās: viens pretendentu loks, vienots iepirkuma priekšmets, viens būvprojekts un viena būvatļauja. \nCPV kods: 45000000-7 (Celtniecības darbi);\nZaļais publiskais iepirkums (turpmāk – ZPI). Līguma izpildei tiek piemērotas ZPI prasības, kuras nosaka, ka būvuzņēmējam būvdarbu laikā izpildē ir jānodrošina Ministru kabineta ",
+      "count": 1
+    }
+  ],
+  "attempts": 1,
+  "model_seconds": 126.9,
+  "extracted": {
+    "found": true,
+    "main_cpv": "45000000-7",
+    "additional_cpv": [],
+    "reasoning": "Only one CPV code is present in the provided text, making it both the main and only listed code."
+  },
+  "critique": {
+    "verdict": "accept",
+    "problem": null
+  },
+  "evaluation_criteria": {
+    "found": true,
+    "award_method": "most_economically_advantageous",
+    "criteria": [
+      {
+        "name": "Lowest Price / Cena bez PVN (Price without VAT)",
+        "weight": 100.0,
+        "description": "The evaluation is based on the most economically advantageous bid. The text explicitly states that the sole evaluation criterion is the lowest price ('zemākā cena')."
+      }
+    ],
+    "weights_reconcile": true,
+    "weights_total": 100.0,
+    "expected_total": 100.0
+  },
+  "criteria_check": "ok",
+  "standards": [
+    {
+      "name": "EU regulation 2016/679",
+      "category": "regulation",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "selection"
+      ],
+      "evidence": [
+        {
+          "phase": "selection",
+          "text": "s prasības šādu datu apstrādei un aizsardzībai, tajā skaitā no 2018.gada 25.maija ievērojot Eiropas Parlamenta un Padomes 2016.gada 27.aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsa"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 95/46",
+      "category": "regulation",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "selection"
+      ],
+      "evidence": [
+        {
+          "phase": "selection",
+          "text": "7.aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz personas datu apstrādi un šādu datu brīvu apriti un ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsardzības regula) prasības. Līdzējs, kura nodod otram Līdzējam fizisko personu datus apstrādei, atbild par attiecīgo datu subjekt"
+        }
+      ]
+    },
+    {
+      "name": "Ministru kabineta noteikumi Nr. 238",
+      "category": "regulation",
+      "green": false,
+      "count": 7,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "ievērošanu būvobjektā un būvdarbu izpildes gaitu atbild būvdarbu veicējs (būvētājs vai būvuzņēmējs). Ugunsdrošības prasības, veicot būvdarbus, nosaka Ministru kabineta noteikumu Nr.238. Būvniecības ieceres dokumentācijas izstrāde ēku energoefektivitātes paaugstināšanai pansionātam “Lauciene” un autoruzraudzība Adrese: \"Pansionāts\","
+        },
+        {
+          "phase": "specification",
+          "text": "sistēma. Telpu nodrošināšana ar ugunsdzēsības aparātiem Būves telpas paredzēts ar ugunsdzēsības aparātiem saskaņā ar saskaņā ar 2016. gada 19.aprīļa Ministru kabineta noteikumu Nr. 238 Ugunsdrošības noteikumi\" prasībām, lai nodrošinātu ugunsgrēku dzēšanu sākumstadijā. Serveru telpas, elektrosadalnes un citas tehniskās telpas, kas pa"
+        },
+        {
+          "phase": "specification",
+          "text": "būtu 2gb. Citi ugunsdzēsības līdzekļi Objektā nav paredzēts izvietot citus ugunsdzēsības līdzekļus. Ugunsdzēsības zīmes un signālkrāsojums Atbilstoši Ministru kabineta noteikumu Nr. 238 7.daļai “Ugunsdrošībai lietojamās zīmes un signālkrāsojums\", 195.p. - Saimnieciskās darbības objektu un teritoriju nodrošina ar ugunsdrošības zīmēm,"
+        },
+        {
+          "phase": "specification",
+          "text": "aismojumam un krāsojumam jāatbilst šī normatīva daļas noteiktajām prasībām. Lietojamās zīmes skatīt ugunsdrošības pasākumu pārskata pielikumā, kā arī ministru kabineta noteikumu Nr.238 1.pilikumā. Objektā paredzēts evakuācijas apgaismojums ar izgaismotām evakuācijas ceļa zīmēm atbilstoši ministru kabineta Nr, 238 normatīviem. Evakuā"
+        }
+      ]
+    },
+    {
+      "name": "Ministru kabineta noteikumi Nr. 328",
+      "category": "regulation",
+      "green": false,
+      "count": 2,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "ikā MK 238 \"Ugunsdrošības noteikumi\" nepieļaut apkārtējās vides piesārņošanu ar atkritumiem. Būvniecības lakā radušos atkritumus, tai skaitā bīstamos Ministru kabineta noteikumi Nr.328 LBN 262-15 \"Elektronisko sakaru tīkli\" atkritumus. ja tādi radušies, apsaimniekot atbilstoši pastāvošajiem normatīvajiem aktiem un nodrošināt nodošan"
+        },
+        {
+          "phase": "specification",
+          "text": "ikā MK 238 \"Ugunsdrošības noteikumi\" nepieļaut apkārtējās vides piesārņošanu ar atkritumiem. Būvniecības lakā radušos atkritumus, tai skaitā bīstamos Ministru kabineta noteikumi Nr.328 LBN 262-15 \"Elektronisko sakaru tīkli\" atkritumus. ja tādi radušies, apsaimniekot atbilstoši pastāvošajiem normatīvajiem aktiem un nodrošināt nodošan"
+        }
+      ]
+    },
+    {
+      "name": "Ministru kabineta noteikumi Nr. 372",
+      "category": "regulation",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "bu vadītājs kontrolē IAL (individuālo aizsardzības līdzekļu) pielietošanu atbilstoši darba aizsardzības instrukcijai, būvobjekta iekšējās kārtības un Ministru kabineta noteikumu Nr. 372 \"Darba aizsardzības prasības, lietojot individuālos aizsardzības līdzekļus\" prasībām. Būvobjekta izmantotajam darba aprīkojumam ir jābūt ar EC marķēj"
+        }
+      ]
+    },
+    {
+      "name": "Ministru kabineta noteikumi Nr. 384",
+      "category": "regulation",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "marķējumu un ar atbilstošām lietošanas instrukcijām. Būvobjektā izmantotajam darba aprīkojumam, kurš ir iekļauts bīstamo iekārtu sarakstā, saskaņā ar Ministru kabineta noteikumiem Nr.384 \"Noteikumi par bīstamajām iekārtām\", ir jāveic uzraudzība saskaņā ar Latvijas Republikā izdoto likumu \"Par bīstamo iekārtu tehnisko uzraudzību\". Šo i"
+        }
+      ]
+    },
+    {
+      "name": "Ministru kabineta noteikumi Nr. 545",
+      "category": "regulation",
+      "green": false,
+      "count": 2,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "BN 262-15 \"Elektronisko sakaru tīkli\" atkritumus. ja tādi radušies, apsaimniekot atbilstoši pastāvošajiem normatīvajiem aktiem un nodrošināt nodošanu Ministru kabineta noteikumi Nr.545 LBN 202-18 \"Būvniecības ieceres dokumentācijas attiecīgā atkrituma veida apsaimniekotājam. Darbu veikšanas gaitā konstatējot piesārņotu grunti, nepie"
+        },
+        {
+          "phase": "specification",
+          "text": "BN 262-15 \"Elektronisko sakaru tīkli\" atkritumus. ja tādi radušies, apsaimniekot atbilstoši pastāvošajiem normatīvajiem aktiem un nodrošināt nodošanu Ministru kabineta noteikumi Nr.545 LBN 202-18 \"Būvniecības ieceres dokumentācijas attiecīgā atkrituma veida apsaimniekotājam. Darbu veikšanas gaitā konstatējot piesārņotu grunti, nepie"
+        }
+      ]
+    },
+    {
+      "name": "Ministru kabineta noteikumi Nr. 574",
+      "category": "regulation",
+      "green": false,
+      "count": 2,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "itā konstatējot piesārņotu grunti, nepieciešams veikt noformēšana\" tās sanāciju, sanācijas veidu un vietu iepriekš saskanot ar Valsts vides dienestu. Ministru kabineta noteikumi Nr.574 LBN 008-14 \"Inženiertīklu izvietojums\" un citi spēkā esošie normatīvie dokumenti. STADIJA Būvprojekts OBJEKTS Būvniecības ieceres dokumentācijas izst"
+        },
+        {
+          "phase": "specification",
+          "text": "itā konstatējot piesārņotu grunti, nepieciešams veikt noformēšana\" tās sanāciju, sanācijas veidu un vietu iepriekš saskanot ar Valsts vides dienestu. Ministru kabineta noteikumi Nr.574 LBN 008-14 \"Inženiertīklu izvietojums\" un citi spēkā esošie normatīvie dokumenti. STADIJA Būvprojekts OBJEKTS Būvniecības ieceres dokumentācijas izst"
+        }
+      ]
+    },
+    {
+      "name": "Ministru kabineta noteikumi Nr. 92",
+      "category": "regulation",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "os darba instruktāžas žurnālos. Pirms būvdarbu uzsākšanas nozīmētais darba drošības koordinators sastāda objekta darba aizsardzības plānu, saskaņā ar Ministru kabineta noteikumu Nr. 92 IV nodaļu, kā arī nosūta Valsts darba inspekcijai iepriekšēju paziņojumu par būvdarbu veikšanu. Sastādīto darba aizsardzības plānu un iepriekšējā paz"
+        }
+      ]
+    },
+    {
+      "name": "EN 14351",
+      "category": "standard",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "Iesniegt logu ražošanas procesa kontroles sertifikātu vai logu ražošanas procesa kontroles apraksta kopiju, ko pieprasa standarts LVS VADĪTĀJS DATUMS EN 14351 IZSTRĀDĀTĀJS UĢIS ŠĒNBERGS * 19. Logu bloku nomaiņu veikt atbilstoši ražotāja instrukcijai. RASĒJUMS 1470 PVC profils logs ar 3 stikla paketi . 20. P"
+        }
+      ]
+    },
+    {
+      "name": "EN 14351-1",
+      "category": "standard",
+      "green": false,
+      "count": 6,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "as logu izgatavotājiem: -Logu rāmjos iestrādāt pastāvīgās dabīgās gaisa pieplūdes iekārtas (piemēram Airbox vai ekvivalents) 1. Vēja slodzes noturība EN 14351-1 C5/B5, gaisa caurlaidības EN 14351-1 Klase 3, izturība pret stipru lietu EN 14351-1 Klase 9A dabīgās ventilācijas nodrošināšanai. 2. Loga siltumcaurl"
+        },
+        {
+          "phase": "specification",
+          "text": "iestrādāt pastāvīgās dabīgās gaisa pieplūdes iekārtas (piemēram Airbox vai ekvivalents) 1. Vēja slodzes noturība EN 14351-1 C5/B5, gaisa caurlaidības EN 14351-1 Klase 3, izturība pret stipru lietu EN 14351-1 Klase 9A dabīgās ventilācijas nodrošināšanai. 2. Loga siltumcaurlaidības koeficenta mērvienība Uw<=0.9"
+        },
+        {
+          "phase": "specification",
+          "text": "kārtas (piemēram Airbox vai ekvivalents) 1. Vēja slodzes noturība EN 14351-1 C5/B5, gaisa caurlaidības EN 14351-1 Klase 3, izturība pret stipru lietu EN 14351-1 Klase 9A dabīgās ventilācijas nodrošināšanai. 2. Loga siltumcaurlaidības koeficenta mērvienība Uw<=0.9 W/(m2K). 3. PVC profila siltumcaurlaidības koe"
+        },
+        {
+          "phase": "specification",
+          "text": "avotājiem: -Logu rāmjos iestrādāt pastāvīgās dabīgās gaisa 2400 OBJEKTS pieplūdes iekārtas (piemēram Airbox vai ekvivalents) 1. Vēja slodzes noturība EN 14351-1 C5/B5, gaisa caurlaidības EN 14351-1 Klase 3, izturība pret stipru lietu EN 14351-1 Klase 9A dabīgās ventilācijas nodrošināšanai. 2. Loga siltumcaurl"
+        }
+      ]
+    },
+    {
+      "name": "ISO 52016",
+      "category": "standard",
+      "green": false,
+      "count": 2,
+      "phases": [
+        "unknown"
+      ],
+      "evidence": [
+        {
+          "phase": "unknown",
+          "text": "viņš) no aprēķina programmas (Ziņojums par ēkas energoprasības novērtējumu apkurei pa mēnešiem aprēķina periodā atbilstoši LVS ISO 52000-1 p.12.1. un ISO 52016 p.7.1.2.2.2.) 6. Energoefektivitātes paaugstināšanas priekšlikumi 6.1. Ēkas ārējās norobežojošās konstrukcijas Piegādātās enerģijas Primārās neatjaun"
+        },
+        {
+          "phase": "unknown",
+          "text": "iņš) no aprēķina programmas (Ziņojums par ēkas energoprasības novērtējumu apkurei pa mēnešiem aprēķina periodā atbilstoši LVS ISO 52000- 1 p.12.1. un ISO 52016 p.7.1.2.2.2.) 10. Energoefektivitātes rādītāja korekcija apkurei (ja ēkas vidējais telpu augstums lielāks par 3,5 m) Ēkas vidējais apkurināmo telpu P"
+        }
+      ]
+    },
+    {
+      "name": "LVS 446",
+      "category": "standard",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "oruzraudzība Adrese: \"Pansionāts\", Lauciene, Laucienes pag., Talsu no. Būvobjektu jānodrošina ar ugunsdrošībai lietojamajām drošības zīmēm atbilstoši LVS 446 prasībām. Aizliegts izmantot atklātu uguni tuvāk par 10 metriem no vietām, kur notiek vielu vai ma aznn an van n ds vn vn vam. Objektā izvietojami pu"
+        }
+      ]
+    },
+    {
+      "name": "LVS 446:2003",
+      "category": "standard",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "ikumiem Nr.660 Darba vides iekšējās uzraudzības veikšanas kārtība\"; Latvijas Valsts standartu VS 23407-78 (VS 12.4.059-89); Latvijas Valsts standartu LVS 446:2003; Būvuzņēmēja darba aizsardzības un ugunsdrošības plānu. Darba aizsardzības pasākumi veicami atbilstoši šī būvobjekta darba aizsardzības un ugunsdrošī"
+        }
+      ]
+    },
+    {
+      "name": "LVS EN 12464-1",
+      "category": "standard",
+      "green": false,
+      "count": 2,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "ītām LVS HD 60364-5-54. „Elektroiekārtu izvēle un uzstādīšana. Zemētājierīces un montāžas organizācijām. aizsargvadi, arī potenciālu izlīdzināšanai\"; LVS EN 12464-1 „Gaisma un apgaismojums. Darbvietu apgaismojums. Darbvietas telpās\"; Vides aizsardzība LVS EN 50172 „Evakuācijas apgaismes sistēmas\" EL daļas izbūves"
+        },
+        {
+          "phase": "specification",
+          "text": "ītām LVS HD 60364-5-54. „Elektroiekārtu izvēle un uzstādīšana. Zemētājierīces un montāžas organizācijām. aizsargvadi, arī potenciālu izlīdzināšanai\"; LVS EN 12464-1 „Gaisma un apgaismojums. Darbvietu apgaismojums. Darbvietas telpās\"; Vides aizsardzība LVS EN 50172 „Evakuācijas apgaismes sistēmas\" EL daļas izbūves"
+        }
+      ]
+    },
+    {
+      "name": "LVS EN 14351",
+      "category": "standard",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "vajām prasībām. 18. Iesniegt logu ražošanas procesa kontroles sertifikātu vai logu ražošanas procesa kontroles apraksta kopiju, ko pieprasa standarts LVS EN 14351 19. Logu bloku nomaiņu veikt atbilstoši ražotāja instrukcijai. PVC profils logs ar 3 stikla paketi . 20. Pēc montāžas darbu pabeigšanas sakārtot darb"
+        }
+      ]
+    },
+    {
+      "name": "LVS EN 50172",
+      "category": "standard",
+      "green": false,
+      "count": 2,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "m. aizsargvadi, arī potenciālu izlīdzināšanai\"; LVS EN 12464-1 „Gaisma un apgaismojums. Darbvietu apgaismojums. Darbvietas telpās\"; Vides aizsardzība LVS EN 50172 „Evakuācijas apgaismes sistēmas\" EL daļas izbūves projektētie pasākumi nekādus zaudējumus nerada dabai un neatstāj kaitīgu ietekmi uz apkārtējo LVS E"
+        },
+        {
+          "phase": "specification",
+          "text": "m. aizsargvadi, arī potenciālu izlīdzināšanai\"; LVS EN 12464-1 „Gaisma un apgaismojums. Darbvietu apgaismojums. Darbvietas telpās\"; Vides aizsardzība LVS EN 50172 „Evakuācijas apgaismes sistēmas\" EL daļas izbūves projektētie pasākumi nekādus zaudējumus nerada dabai un neatstāj kaitīgu ietekmi uz apkārtējo LVS E"
+        }
+      ]
+    },
+    {
+      "name": "LVS EN 60598-2",
+      "category": "standard",
+      "green": false,
+      "count": 2,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "50172 „Evakuācijas apgaismes sistēmas\" EL daļas izbūves projektētie pasākumi nekādus zaudējumus nerada dabai un neatstāj kaitīgu ietekmi uz apkārtējo LVS EN 60598-2-22 „Gaismekļi avārijas apgaismojumam\" vidi. Aizliegts izmantot tehniku ar degvielas un/vai smērvielu noplūdēm. Nodrošināt absorbenta materiāla LVS EN"
+        },
+        {
+          "phase": "specification",
+          "text": "50172 „Evakuācijas apgaismes sistēmas\" EL daļas izbūves projektētie pasākumi nekādus zaudējumus nerada dabai un neatstāj kaitīgu ietekmi uz apkārtējo LVS EN 60598-2-22 „Gaismekļi avārijas apgaismojumam\" vidi. Aizliegts izmantot tehniku ar degvielas un/vai smērvielu noplūdēm. Nodrošināt absorbenta materiāla LVS EN"
+        }
+      ]
+    },
+    {
+      "name": "LVS EN 62305",
+      "category": "standard",
+      "green": false,
+      "count": 2,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "0598-2-22 „Gaismekļi avārijas apgaismojumam\" vidi. Aizliegts izmantot tehniku ar degvielas un/vai smērvielu noplūdēm. Nodrošināt absorbenta materiāla LVS EN 62305 \"Zibensaizsardzība\" pielietošanu, lai iespējamā piesārņojuma gadījumā ierobežotu izplūdušos naftas produktus. Projekta realizācijas laikā MK 238 \"Ugu"
+        },
+        {
+          "phase": "specification",
+          "text": "0598-2-22 „Gaismekļi avārijas apgaismojumam\" vidi. Aizliegts izmantot tehniku ar degvielas un/vai smērvielu noplūdēm. Nodrošināt absorbenta materiāla LVS EN 62305 \"Zibensaizsardzība\" pielietošanu, lai iespējamā piesārņojuma gadījumā ierobežotu izplūdušos naftas produktus. Projekta realizācijas laikā MK 238 \"Ugu"
+        }
+      ]
+    },
+    {
+      "name": "LVS EN ISO 52000-1",
+      "category": "standard",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "unknown"
+      ],
+      "evidence": [
+        {
+          "phase": "unknown",
+          "text": "zemākās siltumspējas Patēriņš uzskaitītajās mērvienībās (piem., kg, m3, l) Gads janv febr mart apr maij jūn jūl aug sept okt nov dec Kopā Piezīme. * LVS EN ISO 52000-1, NA13b.tabula Vidēji: Konversijas koeficients no uz 5.1.2. Kurināmais, pārrēķināts uz MWh Gads janv febr mart apr maij jūn jūl aug sept okt nov dec K"
+        }
+      ]
+    },
+    {
+      "name": "LVS ISO 16798-1",
+      "category": "standard",
+      "green": false,
+      "count": 2,
+      "phases": [
+        "unknown"
+      ],
+      "evidence": [
+        {
+          "phase": "unknown",
+          "text": "guvumi apkurei, kWh gadā 162251 izmantošanas faktors Cita informācija Piezīme. * Kopējie aprēķinātie siltuma ieguvumi aprēķina periodā. ** Atbilstoši LVS ISO 16798-1, C. pielikums vai pievieno detalizētu atskaiti par iekārtu raksturlielumiem un darbības ilgumu, cilvēku skaitu un uzturēšanās ilgumu, apgaismojuma ra"
+        },
+        {
+          "phase": "unknown",
+          "text": "e siltuma ieguvumi apkurei, kWh gadā 128708 128708 0 Cita informācija Piezīme. * Kopējie aprēķinātie siltuma ieguvumi aprēķina periodā. ** Atbilstoši LVS ISO 16798-1, C. pielikums vai pievieno detalizētu atskaiti par iekārtu raksturlielumiem un darbības ilgumu, cilvēku skaitu un uzturēšanās ilgumu, apgaismojuma ra"
+        }
+      ]
+    },
+    {
+      "name": "LVS ISO 52000",
+      "category": "standard",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "unknown"
+      ],
+      "evidence": [
+        {
+          "phase": "unknown",
+          "text": "šlikumiem. Izdruka (ekrānšāviņš) no aprēķina programmas (Ziņojums par ēkas energoprasības novērtējumu apkurei pa mēnešiem aprēķina periodā atbilstoši LVS ISO 52000- 1 p.12.1. un ISO 52016 p.7.1.2.2.2.) 10. Energoefektivitātes rādītāja korekcija apkurei (ja ēkas vidējais telpu augstums lielāks par 3,5 m) Ēkas vid"
+        }
+      ]
+    },
+    {
+      "name": "LVS ISO 52000-1",
+      "category": "standard",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "unknown"
+      ],
+      "evidence": [
+        {
+          "phase": "unknown",
+          "text": "/m 2 gadā. Izdruka (ekrānšāviņš) no aprēķina programmas (Ziņojums par ēkas energoprasības novērtējumu apkurei pa mēnešiem aprēķina periodā atbilstoši LVS ISO 52000-1 p.12.1. un ISO 52016 p.7.1.2.2.2.) 6. Energoefektivitātes paaugstināšanas priekšlikumi 6.1. Ēkas ārējās norobežojošās konstrukcijas Piegādātās enerģi"
+        }
+      ]
+    },
+    {
+      "name": "LVS ISO 52000-1:2017",
+      "category": "standard",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "unknown"
+      ],
+      "evidence": [
+        {
+          "phase": "unknown",
+          "text": "rts ēku energoefektivitātes jomā KATRĪNA BĒRZIŅA Sertifikāts Nr. EA2-0137 VĀRDS UZVĀRDS Paraksts Datums Ziņojums par kopējo ēkas energoefektivitāti ( LVS ISO 52000-1:2017) Primārās KOPĒJĀS enerģijas gada patēriņa samazinājums: 358315,39kWh gadā Siltumnīcefekta (ogļskābo) gāzu samazinājums: 13,78t CO2 ekviv.gadā P.1. Es"
+        }
+      ]
+    },
+    {
+      "name": "LVS ISO 52016-1",
+      "category": "standard",
+      "green": false,
+      "count": 2,
+      "phases": [
+        "unknown"
+      ],
+      "evidence": [
+        {
+          "phase": "unknown",
+          "text": "ažādos temperatūras un ventilācijas režīmos, norāda katru režīmu atsevišķi, uzrādot režīma parametrus. **Gaisa tilpuma siltumietilpība 0,336 W/(m3K), LVS ISO 52016-1 p.6.3.6. 4.1.2. Gaisa kondicionēšanas un ventilācijas sistēmas – dati par dzesēšanas sistēmu elementiem Patērētais Iekārtas Vidējā svērtā Nr. Darbība"
+        },
+        {
+          "phase": "unknown",
+          "text": "em (LBN 231-15 \"Dzīvojamo un publisko ēku apkure un ventilācija\") un pasūtītāja definētajām prasībām. ** Gaisa tilpuma siltumietilpība 0,336 W/(m3K), LVS ISO 52016-1 p.6.3.6. 7.2.2. Gaisa kondicionēšanas un ventilācijas sistēmas – dati par uzstādītajām iekārtām nav plānots Siltuma atgūšanas Plānotais patērētās ene"
+        }
+      ]
+    }
+  ]
+}

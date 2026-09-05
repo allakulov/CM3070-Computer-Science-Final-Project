@@ -1,0 +1,280 @@
+{
+  "eis_id": "124345",
+  "source_files": [
+    "VISI PIELIKUMI_BNP_2024_45.docx",
+    "DIsētaPU.pdf",
+    "vkpai_8643_57081_arhitektoniskā_izpēte.pdf",
+    "ATZINUMS PLUDONA 26 lab.pdf",
+    "Drengeru iebraucama seta slēdziens.pdf",
+    "NOLIKUMS_BNP_2024_45_ar grozījumiem.pdf",
+    "124345_PD.ANY_1_2_1_20240613182216.pdf",
+    "Pielikums_Nr.2_BNP_2024_45.docx",
+    "Pielikums_Nr.3_BNP_2024_45.docx",
+    "Pielikums_Nr.4_BNP_2024_45.docx",
+    "Pielikums_Nr.5_BNP_2024_45.docx",
+    "Pielikums_Nr.6_BNP_2024_45.docx",
+    "Pielikums_Nr.7_BNP_2024_45.docx",
+    "Pielikums_Nr.8_BNP_2024_45.docx",
+    "Pielikums_Nr.9_BNP_2024_45.docx",
+    "Pielikums_Nr.10_BNP_2024_45.docx",
+    "Protokols_Nr.4_BNP_2024_45.pdf",
+    "ZINOJUMS_BNP_2024_45_Public._1.pdf"
+  ],
+  "candidates": [
+    {
+      "code": "71220000-6",
+      "context": "ru iebraucamās sētas pārbūve un restaurācija Plūdoņa ielā\n26A, Bauskā” izstrāde un autoruzraudzība, saskaņā ar Projektēšanas uzdevumu\n(1. pielikums) un Līguma projektu (11. pielikums).\n2.2. CPV kods: 71220000-6 (Arhitektūras projektēšanas pakalpojumi); 71248000-8 (Projekta\nun dokumentācijas uzraudzība).\n2.3. Līguma darbības termiņš: ir no Līguma parakstīšanas dienas līdz Pušu saistību izpildei.\n(ar grozījum",
+      "count": 2
+    },
+    {
+      "code": "71248000-8",
+      "context": "ielā\n26A, Bauskā” izstrāde un autoruzraudzība, saskaņā ar Projektēšanas uzdevumu\n(1. pielikums) un Līguma projektu (11. pielikums).\n2.2. CPV kods: 71220000-6 (Arhitektūras projektēšanas pakalpojumi); 71248000-8 (Projekta\nun dokumentācijas uzraudzība).\n2.3. Līguma darbības termiņš: ir no Līguma parakstīšanas dienas līdz Pušu saistību izpildei.\n(ar grozījumiem, kas veikti saskaņā ar Bauskas novada pašvaldības",
+      "count": 2
+    }
+  ],
+  "attempts": 1,
+  "model_seconds": 179.6,
+  "extracted": {
+    "found": true,
+    "main_cpv": "71220000-6",
+    "additional_cpv": [
+      "71248000-8"
+    ],
+    "reasoning": "The main CPV code should be the one that most accurately describes the primary service being procured. In this case, the text mentions 'Arhitektūras projektēšanas pakalpojumi' (Architectural design services) which is directly related to 71220000-6."
+  },
+  "critique": {
+    "verdict": "accept",
+    "problem": null
+  },
+  "evaluation_criteria": {
+    "found": true,
+    "award_method": "most_economically_advantageous",
+    "criteria": [
+      {
+        "name": "Piedāvātā cena, EUR bez PVN",
+        "weight": 50.0,
+        "description": null
+      },
+      {
+        "name": "Būvprojekta vadītāja/atbildīgā autoruzrauga pieredze (arhitekts vai ēku konstrukciju projektētājs)",
+        "weight": 20.0,
+        "description": null
+      },
+      {
+        "name": "Ainavu arhitekta pieredze",
+        "weight": 20.0,
+        "description": null
+      },
+      {
+        "name": "Atbildīgā personāla komandas sadarbība",
+        "weight": 10.0,
+        "description": null
+      }
+    ],
+    "weights_reconcile": true,
+    "weights_total": 100.0,
+    "expected_total": 100.0
+  },
+  "criteria_check": "ok",
+  "standards": [
+    {
+      "name": "EU regulation 2016/679",
+      "category": "regulation",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "Personas dati), Izpildītājs apstrādā saskaņā ar Latvijas Republikas normatīvajiem aktiem, Eiropas Parlamenta un Padomes 2016. gada 27. aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz Personas datu apstrādi un šādu datu brīvu apriti, ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsard"
+        }
+      ]
+    },
+    {
+      "name": "EU regulation 95/46",
+      "category": "regulation",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "27. aprīļa Regulas (ES) 2016/679 par fizisku personu aizsardzību attiecībā uz Personas datu apstrādi un šādu datu brīvu apriti, ar ko atceļ Direktīvu 95/46/EK (Vispārīgā datu aizsardzības regula), prasībām un Pasūtītāja norādījumiem. 11.3. Gadījumos, kad kāda no Pusēm ir iesniegusi prasību tiesā, tad tas na"
+        }
+      ]
+    },
+    {
+      "name": "Ministru kabineta noteikumi Nr. 107",
+      "category": "regulation",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "award"
+      ],
+      "evidence": [
+        {
+          "phase": "award",
+          "text": "PAR – 6 (A. Sietiņš, M. Veinbergs, G. Kalniņš, J. Siugalis, I. Latviete, E. Poļakova), PRET - nav, nolemj: 17.1.1. Saskaņā ar 2017. gada 28. februāra Ministru kabineta noteikumu Nr. 107 “Iepirkumu procedūru un metu konkursu norises kārtība” 229.2. apakšpunktu, izbeigt atklātu konkursu “Būvprojekta “Dreņģeru iebraucamās sētas pārbūve"
+        }
+      ]
+    },
+    {
+      "name": "Ministru kabineta noteikumi Nr. 693",
+      "category": "regulation",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "ūt sensora pogas, pogām jābūt spiežamām ar kontrastējošu ciparu, ciparam jābūt taktīlam vai uzrakstītam Braila rakstā. Ievērot 2021. gada 19. oktobra Ministru kabineta noteikumos Nr. 693 \"Būvju vispārīgo prasību būvnormatīvs LBN 200-21\" 7. daļā noteikto. Izvietojuma un dizaina risinājumu saskaņot ar Pasūtītāju. 60 Būvprojekta vadība B"
+        }
+      ]
+    },
+    {
+      "name": "EN 12210",
+      "category": "standard",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "tādāmajiem logiem un durvīm. Visiem logiem uzstādīt kontrolēta svaigā gaisa pieplūdes risinājumus ar dabisko ventilāciju. Vēja slodžu izturības klase EN 12210, EN 12211, logiem un balkonu durvīm ne zemāka par B3 (1/200, 1200Pa). Vēja slodžu izturībà ne mazāk kā 0,5 kN/m2 ar frontālo izlieci ne lielāku kā 1/"
+        }
+      ]
+    },
+    {
+      "name": "EN 12211",
+      "category": "standard",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "logiem un durvīm. Visiem logiem uzstādīt kontrolēta svaigā gaisa pieplūdes risinājumus ar dabisko ventilāciju. Vēja slodžu izturības klase EN 12210, EN 12211, logiem un balkonu durvīm ne zemāka par B3 (1/200, 1200Pa). Vēja slodžu izturībà ne mazāk kā 0,5 kN/m2 ar frontālo izlieci ne lielāku kā 1/200, atbil"
+        }
+      ]
+    },
+    {
+      "name": "EN 14351-1",
+      "category": "standard",
+      "green": false,
+      "count": 2,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "ība UF/Ug ≤ 2,2. Ārdurvju siltuma caurlaidības koeficientu vērtības ne augstākas par UD ≤1,4 W/m2K. Akustiskās īpašības (skaņas izolācija) saskaņā ar EN 14351-1 punkts 4.11. logiem, balkona durvīm un ārdurvīm atbilstoši LBN 016-15 “Būvakustika\". Údens necaurlaidība saskaņā ar EN 14351-1 punkts 4.11, logu un b"
+        },
+        {
+          "phase": "specification",
+          "text": "izolācija) saskaņā ar EN 14351-1 punkts 4.11. logiem, balkona durvīm un ārdurvīm atbilstoši LBN 016-15 “Būvakustika\". Údens necaurlaidība saskaņā ar EN 14351-1 punkts 4.11, logu un balkona durvju ūdens necaurlaidības klase ne zemāka par – 9A. Ārdurvju klase novietojumam A (tieši pakļautas lietus iedarbībai)"
+        }
+      ]
+    },
+    {
+      "name": "EN ISO12541",
+      "category": "standard",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "u Gigabitīgajiem RJ45 pieslēgvietām; 24-portu vadāmu (Managed L3) Mikrotik tīkla maršrutizētāju kas atbalsta cvo 12 13 Drošības stiklojumi saskaņā ar EN ISO12541 vai EN ISO14321-2. 14 organizēt tikšanās ar Pasūtītāju būvprojekta izstrādes starpposmos, lai nodrošinātu savlaicīgu Pasūtītāja prasību iekļaušanu bū"
+        }
+      ]
+    },
+    {
+      "name": "EN ISO14321-2",
+      "category": "standard",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "RJ45 pieslēgvietām; 24-portu vadāmu (Managed L3) Mikrotik tīkla maršrutizētāju kas atbalsta cvo 12 13 Drošības stiklojumi saskaņā ar EN ISO12541 vai EN ISO14321-2. 14 organizēt tikšanās ar Pasūtītāju būvprojekta izstrādes starpposmos, lai nodrošinātu savlaicīgu Pasūtītāja prasību iekļaušanu būvprojektā un nepie"
+        }
+      ]
+    },
+    {
+      "name": "EN14351-1",
+      "category": "standard",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "-4 Eirokodekss — iedarbes uz konstrukcijām -1-4.daļa: Vispārīgās iedarbes - Vēja iedarbes. Siltumcaurlaidības koeficients: siltumizolācija saskaņā ar EN14351-1 punkt 4.12. Logu siltuma caurlaidības koeficientu vērtība ne augstāka par: UW ≤1,2 W/m2K, aplodas/stiklojuma siltumcaurlaidības attiecība UF/Ug ≤ 2,2"
+        }
+      ]
+    },
+    {
+      "name": "LVS EN 1991-1",
+      "category": "standard",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "em un balkonu durvīm ne zemāka par B3 (1/200, 1200Pa). Vēja slodžu izturībà ne mazāk kā 0,5 kN/m2 ar frontālo izlieci ne lielāku kā 1/200, atbilstoši LVS EN 1991-1-4 Eirokodekss — iedarbes uz konstrukcijām -1-4.daļa: Vispārīgās iedarbes - Vēja iedarbes. Siltumcaurlaidības koeficients: siltumizolācija saskaņā ar"
+        }
+      ]
+    },
+    {
+      "name": "LVS EN ISO10211",
+      "category": "standard",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "as risinājumus un materiālus, kas samazina virsmas siltuma zudumus, lai izvairītos no termisko tiltu veidošanās iespējas. Termisko tiltu aprēķini pēc LVS EN ISO10211 «Termiskie tilti būvkonstrukcijās. Siltuma plūsmas un virsmas temperatūras. Detalizēti aprēķini.» un LVS ISO14683 «Termiskie tilti būvkonstrukcijās."
+        }
+      ]
+    },
+    {
+      "name": "LVS ISO14683",
+      "category": "standard",
+      "green": false,
+      "count": 1,
+      "phases": [
+        "specification"
+      ],
+      "evidence": [
+        {
+          "phase": "specification",
+          "text": "jas. Termisko tiltu aprēķini pēc LVS EN ISO10211 «Termiskie tilti būvkonstrukcijās. Siltuma plūsmas un virsmas temperatūras. Detalizēti aprēķini.» un LVS ISO14683 «Termiskie tilti būvkonstrukcijās. Lineārās siltumapmaiņas koeficients. Vienkāršota aprēkināšanas metodika un standartvērtības.» Aprēķina rezultātus"
+        }
+      ]
+    }
+  ]
+}

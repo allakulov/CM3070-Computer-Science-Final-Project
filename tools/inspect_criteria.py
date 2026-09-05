@@ -12,7 +12,7 @@ Run:  python inspect_criteria.py 124345 125861 130001 ...
 import argparse
 from pathlib import Path
 
-from readers import iter_container_files, read_text, extract_tables
+from readers import iter_container_files, read_file
 
 
 # CONFIGURATION
@@ -42,10 +42,10 @@ def load_documents(eis_id):
     # archives nested inside them and yields the real files within.
     for zip_path in sorted((DOWNLOADS_DIR / eis_id).glob("*.zip")):
         for name, data in iter_container_files(zip_path.read_bytes(), zip_path.name):
-            text = read_text(data, name)
+            text, file_tables = read_file(data, name)   # one parse per file
             if text:
                 prose.append(text)
-            tables.extend(extract_tables(data, name))   # [] when the file has no tables
+            tables.extend(file_tables)                  # [] when the file has no tables
     return "\n".join(prose), tables
 
 
