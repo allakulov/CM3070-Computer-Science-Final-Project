@@ -278,6 +278,7 @@ TABLES:
 
 class State(TypedDict):
     eis_id: str
+    downloads_dir: Path             # current procuremnt's folder 
     source_files: list[str]
     documents_text: str
     tables: list[dict]              # tables found across all documents (not used for CPV)
@@ -432,7 +433,8 @@ def find_total_points(state, default=CRITERIA_TOTAL_DEFAULT):
 
 def load_documents(state):
     """Read every leaf file into text, and collect any tables found."""
-    folder = DOWNLOADS_DIR / state["eis_id"]
+    # folder = DOWNLOADS_DIR / state["eis_id"]
+    folder = state["downloads_dir"] / state["eis_id"]
     texts = []
     file_names = []
     tables = []
@@ -774,10 +776,11 @@ def save_graph_image(graph, path="graph.png"):
 
 # RUNNER
 
-def initial_state(eis_id):
+def initial_state(eis_id, downloads_dir=DOWNLOADS_DIR):
     """Return a fresh state for one procurement."""
     return {
         "eis_id": eis_id,
+        "downloads_dir": downloads_dir,
         "source_files": [],
         "documents_text": "",
         "tables": [],

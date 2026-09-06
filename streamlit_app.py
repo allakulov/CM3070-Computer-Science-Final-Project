@@ -162,7 +162,7 @@ def unified_rows(record):
     return rows
 
 
-def run_stream(graph, eis_id, log):
+def run_stream(graph, eis_id, log, downloads_dir):
     """Run one procurement, drawing every step into a visible placeholder as it happens.
 
     stream_mode=["updates", "debug"] gives reliable state (updates) plus a task event
@@ -179,7 +179,7 @@ def run_stream(graph, eis_id, log):
     render()
     run_start = time.perf_counter()
     with redirect_stdout(log):
-        for mode, data in graph.stream(initial_state(eis_id), stream_mode=["updates", "debug"]):
+        for mode, data in graph.stream(initial_state(eis_id, downloads_dir), stream_mode=["updates", "debug"]):
             if mode == "updates":
                 for _node, writes in (data or {}).items():
                     state.update(writes or {})
@@ -400,8 +400,8 @@ with settings:
     if not folder.is_dir():                          # invalid path: fall back to the default
         st.caption(f"{folder} is not a folder; using {default_folder}")
         folder = default_folder
-    if group == "extract":
-        pipeline.DOWNLOADS_DIR = folder            # the graph reads its documents from here
+    # if group == "extract":
+    #     pipeline.DOWNLOADS_DIR = folder            # the graph reads its documents from here
 
 if action == REVIEW:
     ids = sorted(p.stem for p in folder.glob("*.json")) if folder.is_dir() else []
@@ -454,7 +454,7 @@ if run and selected:
         eis_id = selected[0]
         log = io.StringIO()
         try:
-            state, times, wall = run_stream(get_graph(), eis_id, log)
+            state, times, wall = run_stream(get_graph(), eis_id, log, folder)
         except Exception as error:
             st.error(f"Pipeline failed: {error}")
             st.stop()
@@ -477,7 +477,7 @@ if run and selected:
             for i, eid in enumerate(selected):
                 progress.progress(i / len(selected), text=f"Running {eid} ({i + 1}/{len(selected)})")
                 try:
-                    eid_state = graph.invoke(initial_state(eid))
+                    eid_state = graph.invoke(initial_state(eid, folder))
                     # eid_record = record_from_state(eid, eid_state)
                     # save_extraction(eid, eid_record, eid_state)
                     eid_record = pipeline.build_record(eid, eid_state)
