@@ -259,13 +259,13 @@ def last_tool_call(result):
 
 # RUNNER
 
-def load_extraction(eis_id):
+def load_extraction(eis_id, extracted_dir=EXTRACTED_DIR):
     """Read one extracted result and its candidate standards.
 
     Returns:
         tuple: (path, record, findings list).
     """
-    path = EXTRACTED_DIR / f"{eis_id}.json"
+    path = extracted_dir / f"{eis_id}.json"
     if not path.is_file():
         raise SystemExit(f"no extraction at {path}; run extract_graph.py first")
     record = json.loads(path.read_text(encoding="utf-8"))

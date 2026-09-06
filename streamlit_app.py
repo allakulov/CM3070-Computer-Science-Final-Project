@@ -38,7 +38,7 @@ import extract_graph as pipeline
 from extract_graph import DOWNLOADS_DIR, EXTRACTION_MODEL, build_graph, initial_state
 
 try:
-    import review_standards as reviewer
+    # import review_standards as reviewer
     from review_standards import (REVIEW_PROMPT, format_evidence, last_tool_call,
                                   load_extraction, build_reviewer, REVIEW_MODEL,
                                   EXTRACTED_DIR, RUNS_PATH, OLLAMA_NUM_CTX)
@@ -429,9 +429,9 @@ def ensure_model():
         st.session_state["model"] = model
 
 
-def load_review_id(eis_id):
+def load_review_id(eis_id, extracted_dir):
     """Load one procurement's candidates for review, discarding any prior verdicts."""
-    path, record, findings = load_extraction(eis_id)
+    path, record, findings = load_extraction(eis_id, extracted_dir)
     for finding in findings:
         finding.pop("review", None)
     st.session_state.update(rv_path=str(path), rv_record=record, rv_findings=findings,
@@ -490,7 +490,7 @@ if run and selected:
         st.session_state["batch"] = records
 
 if start_review and selected:
-    reviewer.EXTRACTED_DIR = folder
+    # reviewer.EXTRACTED_DIR = folder
     if model != st.session_state.get("review_model"):
         with st.spinner(f"Loading model {model}..."):
             st.session_state.review_agent = build_reviewer(
@@ -500,14 +500,14 @@ if start_review and selected:
         st.session_state.pop(k, None)
     st.session_state.update(rv_active=True, rv_queue=list(selected), rv_qpos=0,
                             rv_model=model, rv_agent=st.session_state.review_agent, rv_done=[])
-    load_review_id(selected[0])
+    load_review_id(selected[0], folder)
     st.rerun()
 
 
 # DISPLAY
 
 if action == REVIEW:
-    reviewer.EXTRACTED_DIR = folder
+    # reviewer.EXTRACTED_DIR = folder
     if not st.session_state.get("rv_active"):
         st.info("Pick ids to review (leave empty for all) and click Start review. This re-reviews the "
                 "selected procurements and overwrites their verdicts.")
@@ -544,7 +544,7 @@ if action == REVIEW:
             st.session_state.rv_done.append({"id": current_id, "candidates": len(findings), "kept": kept})
             st.session_state.rv_qpos += 1
             if not last:
-                load_review_id(queue[st.session_state.rv_qpos])
+                load_review_id(queue[st.session_state.rv_qpos], folder)
             st.rerun()
         st.stop()
 
