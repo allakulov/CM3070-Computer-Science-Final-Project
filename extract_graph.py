@@ -23,7 +23,7 @@ Install:
 
 Run:
     python extract_graph.py                  # every procurement in downloads/
-    python extract_graph.py --eis-id 123450  # just one
+    python extract_graph.py -id 123450  # just one
 """
 
 from __future__ import annotations
@@ -459,10 +459,12 @@ def load_documents(state):
                 file_names.append(name)
                 by_reader.setdefault(info["reader"], []).append(name)
                 if info["reader"] == "ocr":
-                    preview = " ".join(text.split())[:120]
-                    ocr_files.append((name, len(text), preview))
-                    ocr_records.append({"name": name, "chars": len(text),
-                                        "seconds": info["ocr_seconds"], "text": text})
+                    # A mixed PDF contains digital text too; save only its OCR here.
+                    ocr_text = info.get("ocr_text", text)
+                    preview = " ".join(ocr_text.split())[:120]
+                    ocr_files.append((name, len(ocr_text), preview))
+                    ocr_records.append({"name": name, "chars": len(ocr_text),
+                                        "seconds": info["ocr_seconds"], "text": ocr_text})
             else:
                 no_text.append((name, info.get("reason") or "unknown", len(file_tables)))
             if file_tables:

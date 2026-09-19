@@ -4,29 +4,21 @@ This module owns everything about getting content out of files, kept separate
 from the graph logic in extract_graph.py. It handles nested archives, several
 file formats, an OCR fallback for scanned PDFs, and table extraction.
 
-Two outputs per file:
-  * text   - via read_text(), a sequence of attempts (TEXT_READERS): read_plain
-             first, then read_ocr for scanned PDFs. The CPV pipeline uses this.
-  * tables - via extract_tables(), one entry per table found. DOCX, XLSX, and
-             digital PDFs use cheap library calls; scanned tables are recognised
-             with RapidTable behind the ENABLE_TABLE_TRANSFORMER flag.
-
-read_file() returns both of the above from one parse; read_text() and
-extract_tables() remain for callers that want only one side.
+read_file() returns text and tables together. PDFs are checked page by page,
+so image-only pages inside a digital PDF also receive OCR. Short readable text
+is kept. read_text() and extract_tables() remain for callers needing one side.
 
 The base readers (pdfplumber, python-docx, openpyxl) are imported at the top.
-The optional OCR and Table Transformer paths pull in torch, which is slow to
-import and large to install, so those libraries are imported inside the
-functions that use them; when they are missing, OCR and table extraction report
-it with an install hint and return nothing.
+OCR and table models load only when needed. A table-model failure is reported
+but does not prevent page OCR or discard previously recovered content.
 """
 
 from __future__ import annotations
 
 import io
-import re
 import time
 import zipfile
+from html.parser import HTMLParser
 
 # Base readers, used on every run, are imported here as usual. The optional OCR
 # (rapidocr, onnxruntime) and Table Transformer (transformers, torch) paths are
@@ -41,7 +33,7 @@ import pdfplumber
 
 CONTAINER_EXTS = (".zip", ".edoc")       # archive types to open instead of read as text
 MAX_CONTAINER_DEPTH = 5                  # stop runaway recursion on nested archives
-MIN_USEFUL_CHARS = 50                    # ignore files that yield almost no text
+MIN_USEFUL_CHARS = 50                    # OCR sparse PDF pages that also contain images
 
 OCR_DPI = 200                            # resolution for rasterising scanned PDF pages
 
@@ -57,9 +49,8 @@ RAPIDOCR_MODEL_TYPE = "small"            # PP-OCRv6 tier for the page OCR ('smal
 def iter_container_files(data, container_name, depth=0):
     """Yield (filename, bytes) for every leaf file inside a ZIP or .edoc archive.
 
-    Nested archives are opened recursively, so a ZIP inside a ZIP (or a document
-    inside an .edoc) is unpacked until only real files remain. Bytes that are not
-    a valid archive are yielded unchanged as a single leaf file.
+    Names retain the archive chain. Signature metadata inside .edoc containers
+    is skipped. Invalid archive bytes are yielded unchanged as one leaf file.
     """
     if depth >= MAX_CONTAINER_DEPTH:
         return
@@ -69,20 +60,24 @@ def iter_container_files(data, container_name, depth=0):
                 if info.is_dir():
                     continue
                 name = info.filename
+                relative = name.replace("\\", "/").lstrip("./").lower()
+                if container_name.lower().endswith(".edoc") and (
+                        relative == "mimetype" or relative.startswith("meta-inf/")):
+                    continue
+                source = f"{container_name} > {name}"
                 payload = archive.read(info)
                 if name.lower().endswith(CONTAINER_EXTS):
-                    yield from iter_container_files(payload, name, depth + 1)
+                    yield from iter_container_files(payload, source, depth + 1)
                 else:
-                    yield name, payload
+                    yield source, payload
     except zipfile.BadZipFile:
         yield container_name, data
 
 
 # TEXT READERS
 #
-# Each reader takes (bytes, filename) and returns text, or "" if it cannot read
-# the file. read_text tries them in order, so read_ocr only runs when read_plain
-# came back empty (i.e. a scanned PDF).
+# read_plain is the digital-only reader used by the comparison tools.
+# read_text also handles scanned PDF pages through the combined reading path.
 
 def read_plain(data, name):
     """Extract text from PDF, DOCX, XLSX, or TXT bytes by file extension."""
@@ -109,13 +104,15 @@ def read_plain(data, name):
     return ""
 
 
-def _pdf_page_images(data):
-    """Render each PDF page to a PIL image, for OCR or table detection."""
+def _pdf_page_images(data, page_numbers=None):
+    """Render selected zero-based PDF pages, or all pages when omitted."""
     import fitz  # PyMuPDF
     from PIL import Image
     images = []
     with fitz.open(stream=data, filetype="pdf") as doc:
-        for page in doc:
+        indexes = range(len(doc)) if page_numbers is None else page_numbers
+        for index in indexes:
+            page = doc[index]
             pix = page.get_pixmap(dpi=OCR_DPI)
             images.append(Image.frombytes("RGB", (pix.width, pix.height), pix.samples))
     return images
@@ -184,10 +181,12 @@ TEXT_READERS = [read_plain, read_ocr]
 
 
 def read_text(data, name):
-    """Return text from the first reader that yields a usable amount."""
+    """Keep readable text, using page-level OCR for PDFs without table models."""
+    if name.lower().endswith(".pdf"):
+        return read_file(data, name, include_tables=False)[0]
     for reader in TEXT_READERS:
         text = reader(data, name)
-        if text and len(text.strip()) >= MIN_USEFUL_CHARS:
+        if text and text.strip():
             return text
     return ""
 
@@ -224,24 +223,8 @@ def _tables_from_xlsx(data):
 
 
 def _tables_from_pdf(data, name):
-    """Digital PDFs: pdfplumber finds tables in the text/line layer (no ML).
-
-    A PDF with no text layer is scanned; fall back to the Table Transformer
-    models, but only when ENABLE_TABLE_TRANSFORMER is on.
-    """
-    tables = []
-    has_text = False
-    with pdfplumber.open(io.BytesIO(data)) as pdf:
-        for page in pdf.pages:
-            if (page.extract_text() or "").strip():
-                has_text = True
-            for table in page.extract_tables():
-                rows = [["" if c is None else str(c) for c in row] for row in table]
-                if rows:
-                    tables.append(rows)
-    if not has_text and ENABLE_TABLE_TRANSFORMER:
-        tables.extend(_tables_from_scanned_pdf(data))
-    return tables
+    """Read tables from digital and scanned pages without full-page OCR."""
+    return _read_pdf(data, name, {}, include_text=False)[1]
 
 
 def extract_tables(data, name):
@@ -273,13 +256,15 @@ _tatr_detection = None
 _tatr_structure = None
 
 
-def _load_tatr():
-    """Lazily load and cache the detection and structure models plus processor."""
+def _load_tatr(include_structure=True):
+    """Load detection, plus structure when requested by comparison tools."""
     global _tatr_processor, _tatr_detection, _tatr_structure
     if _tatr_detection is None:
         from transformers import AutoImageProcessor, TableTransformerForObjectDetection
         _tatr_processor = AutoImageProcessor.from_pretrained(TATR_DETECTION_MODEL)
         _tatr_detection = TableTransformerForObjectDetection.from_pretrained(TATR_DETECTION_MODEL)
+    if include_structure and _tatr_structure is None:
+        from transformers import TableTransformerForObjectDetection
         _tatr_structure = TableTransformerForObjectDetection.from_pretrained(TATR_STRUCTURE_MODEL)
     return _tatr_processor, _tatr_detection, _tatr_structure
 
@@ -339,15 +324,74 @@ def _get_rapidtable_engine():
     return _rapidtable_engine
 
 
+class _TableParser(HTMLParser):
+    """Collect HTML cells with decoded text and their row/column spans."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.rows = []
+        self.row = None
+        self.cell = None
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "tr":
+            self.row = []
+            self.rows.append(self.row)
+        elif tag in ("td", "th") and self.row is not None:
+            attrs = dict(attrs)
+            spans = []
+            for key in ("rowspan", "colspan"):
+                try:
+                    value = int(attrs.get(key, "1"))
+                except (ValueError, TypeError):
+                    value = 1
+                spans.append(value if value >= 1 or (key == "rowspan" and value == 0) else 1)
+            self.cell = {"text": [], "rowspan": spans[0], "colspan": spans[1]}
+            self.row.append(self.cell)
+        elif tag in ("br", "p", "div") and self.cell is not None:
+            self.cell["text"].append(" ")
+
+    def handle_endtag(self, tag):
+        if tag in ("td", "th"):
+            self.cell = None
+        elif tag == "tr":
+            self.cell = None
+            self.row = None
+        elif tag in ("p", "div") and self.cell is not None:
+            self.cell["text"].append(" ")
+
+    def handle_data(self, data):
+        if self.cell is not None:
+            self.cell["text"].append(data)
+
+
 def _html_to_rows(html_text):
-    """Parse a RapidTable HTML table into a list of rows of cell text."""
-    rows = []
-    for tr in re.findall(r"<tr[^>]*>(.*?)</tr>", html_text, re.S):
-        cells = [re.sub(r"<[^>]+>", "", cell).strip()
-                 for cell in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", tr, re.S)]
-        if any(cells):
-            rows.append(cells)
-    return rows
+    """Expand merged cells to a rectangular grid using empty covered cells.
+
+    Text stays in the top-left cell of a span, so it is not counted repeatedly
+    downstream. Empty placeholders keep subsequent values in their columns.
+    """
+    parser = _TableParser()
+    parser.feed(html_text)
+    parser.close()
+    grid = {}
+    width = 0
+    for row_index, cells in enumerate(parser.rows):
+        column = 0
+        for cell in cells:
+            colspan = cell["colspan"]
+            while any((row_index, column + offset) in grid for offset in range(colspan)):
+                column += 1
+            # rowspan=0 means through the remaining rows of this table.
+            rowspan = cell["rowspan"] or len(parser.rows) - row_index
+            for row in range(row_index, min(row_index + rowspan, len(parser.rows))):
+                for col in range(column, column + colspan):
+                    grid[row, col] = ""
+            grid[row_index, column] = " ".join("".join(cell["text"]).split())
+            column += colspan
+            width = max(width, column)
+    return [[grid.get((row, col), "") for col in range(width)]
+            for row in range(len(parser.rows))] if width else []
 
 
 def _mask_regions(images, boxes_per_page):
@@ -373,7 +417,7 @@ def _tables_from_images(images):
       a failed region is left for the OCR.
     """
     import numpy as np
-    processor, detection, _ = _load_tatr()            # detection only
+    processor, detection, _ = _load_tatr(include_structure=False)
     engine = _get_rapidtable_engine()
     tables, boxes_per_page = [], []
     for image in images:
@@ -403,21 +447,75 @@ def _tables_from_scanned_pdf(data):
 
 # COMBINED READER
 
-def _pdf_text_and_tables(data):
-    """Read a digital PDF's text and pdfplumber tables; return (text, tables, has_text)."""
+def _pdf_text_and_tables(data, include_tables=True, warnings=None):
+    """Return per-page text, digital tables and zero-based pages needing OCR.
+
+    Image-only pages need OCR. A page with sparse text and an image also needs
+    it, since its text may be only a header above a scan. Short digital text is
+    kept even when no OCR is needed. Table errors do not discard page text.
+    """
     text_parts, rows_list = [], []
-    has_text = False
+    scan_pages = []
+    warnings = warnings if warnings is not None else []
     with pdfplumber.open(io.BytesIO(data)) as pdf:
-        for page in pdf.pages:
-            page_text = page.extract_text() or ""
-            if page_text.strip():
-                has_text = True
+        for index, page in enumerate(pdf.pages):
+            try:
+                page_text = page.extract_text() or ""
+            except Exception as error:
+                warnings.append(f"page {index + 1} text: {error}")
+                page_text = ""
             text_parts.append(page_text)
-            for table in page.extract_tables():
-                rows = [["" if c is None else str(c) for c in row] for row in table]
-                if rows:
-                    rows_list.append(rows)
-    return "\n".join(text_parts), rows_list, has_text
+            if not page_text.strip() or (len(page_text.strip()) < MIN_USEFUL_CHARS and page.images):
+                scan_pages.append(index)
+            if include_tables:
+                try:
+                    for table in page.extract_tables():
+                        rows = [["" if c is None else str(c) for c in row] for row in table]
+                        if rows:
+                            rows_list.append(rows)
+                except Exception as error:
+                    warnings.append(f"page {index + 1} tables: {error}")
+    return text_parts, rows_list, scan_pages
+
+
+def _read_pdf(data, name, info, include_text=True, include_tables=True):
+    """Read each PDF page, reusing its rendered image for tables and OCR."""
+    warnings = info.setdefault("warnings", [])
+    page_texts, tables, scan_pages = _pdf_text_and_tables(data, include_tables, warnings)
+    info["ocr_seconds"] = 0.0
+    info["ocr_text"] = ""
+    info["ocr_page_numbers"] = []
+    ocr_parts = []
+    if scan_pages and (include_text or (include_tables and ENABLE_TABLE_TRANSFORMER)):
+        try:
+            images = _pdf_page_images(data, scan_pages)
+        except Exception as error:
+            warnings.append(f"page rendering: {error}")
+            images = []
+        for index, image in zip(scan_pages, images):
+            ocr_images = [image]
+            if include_tables and ENABLE_TABLE_TRANSFORMER:
+                try:
+                    captured, boxes = _tables_from_images([image])
+                    tables.extend(captured)
+                    ocr_images = _mask_regions([image], boxes)
+                except Exception as error:
+                    warnings.append(f"page {index + 1} scanned tables: {error}")
+                    # Keep the unmasked image available to OCR.
+            if include_text:
+                started = time.perf_counter()
+                ocr = read_ocr(data, name, ocr_images)
+                info["ocr_seconds"] += time.perf_counter() - started
+                if ocr.strip():
+                    ocr_parts.append(ocr)
+                    info["ocr_page_numbers"].append(index + 1)
+                    page_texts[index] = "\n".join(part for part in (page_texts[index], ocr) if part)
+                else:
+                    warnings.append(f"page {index + 1}: OCR returned no text")
+    info["ocr_text"] = "\n".join(ocr_parts)
+    for warning in warnings:
+        print(f"    {name}: {warning}")
+    return "\n".join(page_texts) if include_text else "", tables
 
 
 def _docx_text_and_tables(data):
@@ -450,20 +548,21 @@ def _xlsx_text_and_tables(data):
     return "\n".join(text_lines), rows_list
 
 
-def read_file(data, name, info=None):
-    """Read one file, returning its text and tables from a single parse.
+def read_file(data, name, info=None, *, include_tables=True):
+    """Read a file into text and tables, checking PDF pages individually.
 
     Args:
       data: The file's raw bytes.
       name: File name; its extension selects the reader.
       info: Optional dict, filled in for the caller to report on the read, with keys
         reader ("pdf"/"docx"/"xlsx"/"text"/"ocr", or None if unread), reason,
-        parse_seconds and ocr_seconds.
+        parse_seconds, ocr_seconds, ocr_text, ocr_page_numbers and warnings.
+      include_tables: False for the text-only entry point.
 
     Returns:
-      (text, tables). text is the plain reader's output once it clears MIN_USEFUL_CHARS,
-      the OCR fallback for a scanned PDF, or "". tables holds one {"source", "rows"}
-      entry per table.
+      (text, tables). Short text is preserved. PDF text combines the digital
+      content with recovered OCR in page order. info["ocr_text"] keeps only
+      OCR content for the separate artifact. Table spans use empty placeholders.
     """
     if info is None:
         info = {}                 # local scratch when the caller passed none
@@ -471,22 +570,16 @@ def read_file(data, name, info=None):
     info["reason"] = ""
     info["parse_seconds"] = 0.0
     info["ocr_seconds"] = 0.0
+    info["ocr_text"] = ""
+    info["ocr_page_numbers"] = []
+    info["warnings"] = []
 
     lower = name.lower()
     started = time.perf_counter()
-    ocr_images = None             # scanned pages for the full-page OCR (table areas blanked)
     try:
         if lower.endswith(".pdf"):
-            plain, rows_list, has_text = _pdf_text_and_tables(data)
+            plain, rows_list = _read_pdf(data, name, info, include_tables=include_tables)
             fmt = "pdf"
-            if not has_text:
-                page_images = _pdf_page_images(data)
-                ocr_images = page_images
-                if ENABLE_TABLE_TRANSFORMER:
-                    file_tables, table_boxes = _tables_from_images(page_images)
-                    rows_list.extend(file_tables)
-                    # blank captured tables so the full-page OCR does not read them twice
-                    ocr_images = _mask_regions(page_images, table_boxes)
         elif lower.endswith(".docx"):
             plain, rows_list = _docx_text_and_tables(data)
             fmt = "docx"
@@ -505,25 +598,12 @@ def read_file(data, name, info=None):
         print(f"    could not read {name}: {error}")
         return "", []
     finally:
-        info["parse_seconds"] = round(time.perf_counter() - started, 2)
+        info["parse_seconds"] = round(max(0.0, time.perf_counter() - started - info["ocr_seconds"]), 2)
+        info["ocr_seconds"] = round(info["ocr_seconds"], 2)
 
-    # Same threshold and OCR fallback as read_text: keep the plain text when it is
-    # substantial, else try OCR (a no-op for non-PDFs), else treat the file as unread.
-    # page_images is reused when present, so the scan is not rasterised a second time.
-    if len(plain.strip()) >= MIN_USEFUL_CHARS:
-        info["reader"] = fmt
-        text = plain
+    if plain.strip():
+        info["reader"] = "ocr" if info["ocr_text"] else fmt
     else:
-        started = time.perf_counter()
-        ocr = read_ocr(data, name, ocr_images)
-        info["ocr_seconds"] = round(time.perf_counter() - started, 2)
-        if len(ocr.strip()) >= MIN_USEFUL_CHARS:
-            info["reader"] = "ocr"
-            text = ocr
-        else:
-            info["reason"] = ("no usable text (after OCR attempt)" if fmt == "pdf"
-                              else f"under {MIN_USEFUL_CHARS}-char threshold")
-            text = ""
-
-    tables = [{"source": name, "rows": rows} for rows in rows_list]
-    return text, tables
+        info["reason"] = "no text recovered"
+    tables = [{"source": name, "rows": rows} for rows in rows_list] if include_tables else []
+    return plain, tables
