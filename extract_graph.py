@@ -7,7 +7,7 @@ additional. A reflection step lets the model critique its own answer and retry.
 
 The reading layer also extracts any tables it finds. A separate node uses both the
 located prose and those tables to extract the procurement's evaluation criteria.
-The CPV task itself does not use the tables (CPV codes live in prose).
+The CPV task searches prose and captured tables, retaining repeated evidence.
 
 Why a regex first, then an LLM: the regex catches every code and gives the
 evidence text for free, so the LLM only judges a short candidate list rather
@@ -23,7 +23,7 @@ Install:
 
 Run:
     python extract_graph.py                  # every procurement in downloads/
-    python extract_graph.py -id 123450  # just one
+    python extract_graph.py --eis-id 123450  # just one
 """
 
 from __future__ import annotations
@@ -45,7 +45,7 @@ import sys
 
 # CONFIGURATION
 
-DOWNLOADS_DIR = Path("downloads")        # input: downloads/{eis_id}/*.zip
+DOWNLOADS_DIR = Path("downloads")        # input: downloads/{eis_id}/ documents and archives
 OUTPUT_DIR = Path("extracted")           # output: extracted/{model}/{eis_id}.json (per model)
 TABLES_DIR = Path("tables")              # output: tables/{eis_id}.json    (captured tables, per file)
 OCR_DIR = Path("ocr")                    # output: ocr/{eis_id}.json       (OCR text, per file)
@@ -54,6 +54,9 @@ EXTRACTION_MODEL = "gemma4:e4b"          # default model after evals
 OLLAMA_NUM_CTX = 4096                    # Ollama's default of 2048 is too small
 
 CONTEXT_CHARS = 200                      # characters of context kept on each side of a code
+CANDIDATES_MAX_CHARS = 2048             # shared evidence budget, not a token count
+FEEDBACK_MAX_CHARS = 400                # both extraction retry loops
+CPV_REASONING_MAX_CHARS = 400
 MAX_CLASSIFY_ATTEMPTS = 3                # cap on the reflection loop
 
 # Evaluation-criteria extraction. Its input (a prose section plus tables) is larger
@@ -281,7 +284,7 @@ class State(TypedDict):
     downloads_dir: Path             # current procuremnt's folder 
     source_files: list[str]
     documents_text: str
-    tables: list[dict]              # tables found across all documents (not used for CPV)
+    tables: list[dict]              # tables found across all documents, including CPV evidence
     ocr_records: list[dict]         # per-file OCR output, saved for evaluating the OCR model
     table_records: list[dict]       # per-file captured tables, saved for evaluating extraction
     standards: Optional[dict]       # standards and certificates found in the documents
@@ -302,12 +305,58 @@ class State(TypedDict):
 # HELPERS
 
 def format_candidates(candidates):
-    """Format the candidate codes and their context for a prompt."""
-    lines = []
-    for c in candidates:
-        context = " ".join(c["context"].split())[:300]    # collapse whitespace, trim
-        lines.append(f'- {c["code"]} (seen {c["count"]}x): {context}')
+    """Keep all codes, then add whole windows while the shared budget permits.
+
+    Prefer explicit main-code wording, independent of raw occurrence counts.
+    None signals that even code-only lines cannot fit; callers must abstain.
+    Character limits control growth but do not certify model token usage.
+    """
+    lines = [f'- {candidate["code"]}' for candidate in candidates]
+    remaining = CANDIDATES_MAX_CHARS - len("\n".join(lines))
+    if remaining < 0:
+        return None
+    # With no role cue, spread evidence across candidate positions instead of
+    # always favouring the first codes. This is coverage, not prominence.
+    spread = [0] if candidates else []
+    unselected = set(range(1, len(candidates)))
+    while unselected:
+        index = max(sorted(unselected),
+                    key=lambda i: min(abs(i - selected) for selected in spread))
+        spread.append(index)
+        unselected.remove(index)
+    priority = {index: rank for rank, index in enumerate(spread)}
+    evidence = []
+    for index, candidate in enumerate(candidates):
+        passages = candidate.get("contexts") or [candidate.get("context", "")]
+        passages = list(dict.fromkeys(" ".join(p.split()) for p in passages if p.strip()))
+        def is_main(passage):
+            return bool(re.search(r"galven\w*\s+cpv|main\s+(?:cpv|code)", passage, re.I))
+        # Prefer explicit role evidence even when it occurs between endpoints.
+        ordered = sorted(enumerate(passages), key=lambda item: (
+            not is_main(item[1]), item[0] not in (0, len(passages)-1), item[0]))
+        for rank, (_, passage) in enumerate(ordered[:2]):
+            evidence.append((not is_main(passage), rank, priority[index], index, passage))
+    attached = set()
+    for _, _, _, index, passage in sorted(evidence):
+        separator = " || " if index in attached else ": "
+        cost = len(separator) + len(passage)
+        if cost <= remaining:
+            lines[index] += separator + passage
+            attached.add(index)
+            remaining -= cost
     return "\n".join(lines)
+
+
+def _cpv_budget_abstention(state, attempt):
+    """Keep an oversized-input outcome visible in the existing saved record."""
+    reason = (f"CPV classification not attempted: {len(state['candidates'])} candidate "
+              f"codes exceed the {CANDIDATES_MAX_CHARS}-character code-list budget. "
+              "Split this procurement by lot or document group and review it.")
+    print(f"  classify: {reason}")
+    return {"classification": {"main_cpv": None, "additional_cpv": [],
+                                "reasoning": reason, "status": "input_budget_exceeded"},
+            "attempts": attempt, "feedback": reason,
+            "cpv_seconds": state.get("cpv_seconds", 0.0)}
 
 
 def locate_sections(text, keywords, window=CRITERIA_WINDOW, max_total=CRITERIA_PROSE_MAX):
@@ -411,10 +460,11 @@ def tables_to_markdown(tables, max_chars=CRITERIA_TABLES_MAX):
         for row in rows[1:]:
             lines.append("| " + " | ".join(_cell(c) for c in row) + " |")
         block = "\n".join(lines)
-        if total + len(block) > max_chars:
-            break
+        separator = 2 if blocks else 0
+        if total + separator + len(block) > max_chars:
+            continue            # a later, smaller table may still fit
         blocks.append(block)
-        total += len(block)
+        total += separator + len(block)
     return "\n\n".join(blocks)
 
 
@@ -444,19 +494,25 @@ def load_documents(state):
     ocr_records = []     # {name, chars, seconds, text} per OCR'd file, saved for evaluation
     table_records = []   # {name, seconds, tables} per file that produced tables
 
-    for zip_path in sorted(folder.glob("*.zip")):
-        try:
-            zip_bytes = zip_path.read_bytes()
-        except OSError as error:
-            print(f"    cannot read {zip_path.name}: {error}")
+    supported = {".zip", ".edoc", ".pdf", ".docx", ".xlsx", ".xlsm", ".txt", ".csv"}
+    for path in sorted(folder.glob("*")):
+        if not path.is_file() or path.suffix.lower() not in supported:
             continue
-
-        for name, data in iter_container_files(zip_bytes, zip_path.name):
+        try:
+            payload = path.read_bytes()
+        except OSError as error:
+            print(f"    cannot read {path.name}: {error}")
+            continue
+        leaves = (iter_container_files(payload, path.name)
+                  if path.suffix.lower() in {".zip", ".edoc"}
+                  else [(path.name, payload)])
+        for name, data in leaves:
             info = {}
             text, file_tables = read_file(data, name, info)    # one parse per file
+            if text or file_tables:
+                file_names.append(name)
             if text:
                 texts.append(f"Source file: {name}\n{text}")
-                file_names.append(name)
                 by_reader.setdefault(info["reader"], []).append(name)
                 if info["reader"] == "ocr":
                     # A mixed PDF contains digital text too; save only its OCR here.
@@ -518,7 +574,7 @@ def extract_criteria(state):
     tables = tables_to_markdown(select_criteria_tables(state["tables"]))
     attempt = state.get("criteria_attempts", 0) + 1
     feedback = state.get("criteria_feedback")
-    note = f"\nNote on your previous attempt: {feedback}" if feedback else ""
+    note = f"\nNote on your previous attempt: {str(feedback)[:FEEDBACK_MAX_CHARS]}" if feedback else ""
 
     if not prose and not tables:
         print("  extract_criteria: no criteria section or tables found")
@@ -605,18 +661,27 @@ def route_after_criteria_check(state):
 
 
 def find_candidates(state):
-    """Find every CPV code in the text and keep the context around it."""
-    text = state["documents_text"]
-    found = {}
-    for match in CPV_PATTERN.finditer(text):
-        code = match.group()
-        if code in found:
-            found[code]["count"] += 1
-            continue
-        start = max(0, match.start() - CONTEXT_CHARS)
-        end = min(len(text), match.end() + CONTEXT_CHARS)
-        found[code] = {"code": code, "context": text[start:end], "count": 1}
+    """Search prose and each table separately, keeping every occurrence window.
 
+    Count is the number of matches across these representations; digital text
+    and captured tables can overlap, so it is not a unique source count.
+    """
+    passages = [state.get("documents_text", "")]
+    for table in state.get("tables", []):
+        # Search cell content, not source filenames, for candidate codes.
+        passages.append("\n".join(" | ".join(str(cell) for cell in row)
+                                   for row in table.get("rows", [])))
+    found = {}
+    for text in passages:
+        for match in CPV_PATTERN.finditer(text):
+            code = match.group()
+            start = max(0, match.start() - CONTEXT_CHARS)
+            end = min(len(text), match.end() + CONTEXT_CHARS)
+            context = text[start:end]
+            candidate = found.setdefault(code, {"code": code, "context": context,
+                                                "contexts": [], "count": 0})
+            candidate["count"] += 1
+            candidate["contexts"].append(context)
     candidates = list(found.values())
     print(f"  find_candidates: {len(candidates)} unique CPV codes")
     return {"candidates": candidates}
@@ -626,8 +691,11 @@ def classify(state):
     """Ask the LLM to pick the main CPV code and list the additional ones."""
     attempt = state["attempts"] + 1
     feedback = state.get("feedback")
-    note = f"\nNote on your previous attempt: {feedback}" if feedback else ""
-    prompt = CLASSIFY_PROMPT.format(candidates=format_candidates(state["candidates"]), feedback=note)
+    note = f"\nNote on your previous attempt: {str(feedback)[:FEEDBACK_MAX_CHARS]}" if feedback else ""
+    candidate_text = format_candidates(state["candidates"])
+    if candidate_text is None:
+        return _cpv_budget_abstention(state, attempt)
+    prompt = CLASSIFY_PROMPT.format(candidates=candidate_text, feedback=note)
 
     started = time.perf_counter()
     try:
@@ -657,11 +725,16 @@ def critique(state):
         # classify failed to produce valid output; ask for another attempt.
         return {"critique": {"verdict": "revise", "problem": "no valid classification produced"}}
 
+    candidate_text = format_candidates(state["candidates"])
+    if classification.get("status") == "input_budget_exceeded" or candidate_text is None:
+        update = _cpv_budget_abstention(state, state.get("attempts", 0))
+        update["critique"] = {"verdict": "revise", "problem": update["feedback"]}
+        return update
     prompt = CRITIQUE_PROMPT.format(
-        candidates=format_candidates(state["candidates"]),
+        candidates=candidate_text,
         main=classification.get("main_cpv"),
         additional=classification.get("additional_cpv"),
-        reasoning=classification.get("reasoning"),
+        reasoning=str(classification.get("reasoning") or "")[:CPV_REASONING_MAX_CHARS],
     )
     started = time.perf_counter()
     result = critic.invoke(prompt)
@@ -677,6 +750,8 @@ def critique(state):
 
 def route_after_critique(state):
     """Loop back to classify if the critique asked to revise and attempts remain."""
+    if (state.get("classification") or {}).get("status") == "input_budget_exceeded":
+        return "finalize"
     if state["critique"]["verdict"] == "revise" and state["attempts"] < MAX_CLASSIFY_ATTEMPTS:
         return "classify"
     return "finalize"

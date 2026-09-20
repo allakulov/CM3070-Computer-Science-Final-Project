@@ -126,8 +126,15 @@ def sample_evidence(occurrences):
     and late mentions alike, which matters because the wording that decides whether a
     standard applies often comes well after the first passing mention.
     """
+    if MAX_EVIDENCE <= 0:
+        return []
     if len(occurrences) > MAX_EVIDENCE:
-        occurrences = occurrences[::len(occurrences) // MAX_EVIDENCE][:MAX_EVIDENCE]
+        if MAX_EVIDENCE == 1:
+            occurrences = occurrences[:1]  # one slot cannot retain both endpoints
+        else:
+            last = len(occurrences) - 1
+            occurrences = [occurrences[i * last // (MAX_EVIDENCE - 1)]
+                           for i in range(MAX_EVIDENCE)]
     return [{"phase": phase, "text": text} for phase, text in occurrences]
 
 
