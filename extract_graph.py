@@ -30,6 +30,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
 import time
 from pathlib import Path
@@ -294,6 +295,7 @@ class State(TypedDict):
     criteria_check: Optional[str]   # "ok" or "revise" from the weight-sum check
     candidates: list[dict]          # [{code, context, count}]
     classification: Optional[dict]
+    cpv_error: Optional[dict]       # latest classification or critique failure
     critique: Optional[dict]
     feedback: Optional[str]         # note carried into the next classify attempt
     attempts: int
@@ -469,14 +471,26 @@ def tables_to_markdown(tables, max_chars=CRITERIA_TABLES_MAX):
 
 
 def find_total_points(state, default=CRITERIA_TOTAL_DEFAULT):
-    """Find the stated maximum total points, else fall back to the default.
+    """Find the first explicit total in prose, then table rows; preserve decimals.
 
-    Targets the total line ("Maksimālais iespējamais punktu skaits: 100"); the
-    word "iespējam" distinguishes it from the per-criterion maxima.
+    The Latvian total cue distinguishes this from individual criterion maxima.
+    Permit short same-line wording between the cue and value. Positive totals
+    may have any digit length; conflicting/lot-specific totals need a policy.
     """
-    text = state.get("documents_text", "").lower()
-    match = re.search(r"iespējam\w*\s+punktu\s+skait\w*\D{0,12}(\d{2,3})", text)
-    return float(match.group(1)) if match else float(default)
+    passages = [state.get("documents_text", "")]
+    passages.extend(" | ".join(str(cell or "") for cell in row)
+                    for table in state.get("tables", []) for row in table.get("rows", []))
+    pattern = r"iespējam\w*[^\S\r\n]+punktu[^\S\r\n]+skait\w*([^\d\r\n]{0,20}?)(\d+(?:[.,]\d+)?)(?!\d|[.,]\d)"
+    for passage in passages:
+        for match in re.finditer(pattern, passage, re.I):
+            # A spaced dash is punctuation; an adjacent minus is a sign.
+            # Do not turn "-60" into a positive total while accepting "- 60".
+            if match.group(1).endswith(("-", "−", "–")):
+                continue
+            value = float(match.group(2).replace(",", "."))
+            if math.isfinite(value) and value > 0:
+                return value
+    return float(default)
 
 
 # GRAPH NODES
@@ -578,7 +592,7 @@ def extract_criteria(state):
 
     if not prose and not tables:
         print("  extract_criteria: no criteria section or tables found")
-        return {"criteria": {"found": False, "criteria": []},
+        return {"criteria": {"found": False, "criteria": [], "extraction_status": "no_input"},
                 "criteria_attempts": attempt}
 
     prompt = CRITERIA_PROMPT.format(prose=prose or "(none found)",
@@ -590,18 +604,23 @@ def extract_criteria(state):
     except Exception as error:
         secs = round(state.get("criteria_seconds", 0.0) + time.perf_counter() - started, 1)
         print(f"  extract_criteria: extraction failed: {error}")
-        return {"criteria": {"found": False, "criteria": []},
+        return {"criteria": {"found": False, "criteria": [], "extraction_status": "error",
+                             "error": f"{type(error).__name__}: {error}"},
                 "criteria_attempts": attempt, "criteria_seconds": secs}
     secs = round(state.get("criteria_seconds", 0.0) + time.perf_counter() - started, 1)
 
+    criteria["extraction_status"] = "completed"
     print(f"  extract_criteria (attempt {attempt}): {len(criteria['criteria'])} criteria")
     return {"criteria": criteria, "criteria_attempts": attempt, "criteria_seconds": secs}
 
 
 def _normalize_name(name):
-    """Lower-case a criterion name and drop the parenthetical English gloss."""
-    name = re.sub(r"\([^)]*\)", "", name.lower())     # remove "(Vehicle Price)" etc.
-    return " ".join(re.sub(r"[^\w ]", " ", name).split())
+    """Normalize case and punctuation without discarding role qualifiers.
+
+    Parentheses may contain roles, not translations. Translation equivalence
+    needs explicit evidence and is not inferred by deleting text.
+    """
+    return " ".join(re.sub(r"[^\w ]", " ", name.lower()).split())
 
 
 def dedup_criteria(items):
@@ -615,44 +634,59 @@ def dedup_criteria(items):
 
 
 def check_criteria(state):
-    """Reconcile the extracted criteria deterministically, the reflexion tool step.
+    """Separate routing from validation, preserving explicit weights and errors.
 
-    This does the work rather than trusting the model: it de-duplicates criteria by
-    name, then checks the weights against the stated maximum. If they do not add up
-    it asks for one more extraction with specific guidance; if they still do not add
-    up after the retry budget, it records the mismatch instead of pretending success.
+    A sole criterion with no stated weight defaults to 100. Explicit weights
+    are preserved; earlier versions overwrote any sole weight.
+    Reconciliation checks numeric completeness and totals, not factual accuracy.
     """
-    criteria = state.get("criteria") or {}
-    items = dedup_criteria(criteria.get("criteria") or [])
-    if len(items) == 1:
-        items[0]["weight"] = 100        # if only criterion is returned, assign full weight
-    criteria = {**criteria, "criteria": items}
+    original = state.get("criteria") or {}
+    items = [dict(item) for item in dedup_criteria(original.get("criteria") or [])]
+    criteria = {**original, "criteria": items, "weights_reconcile": None,
+                "weights_total": None, "expected_total": find_total_points(state)}
     attempt = state.get("criteria_attempts", 0)
+    if criteria.get("extraction_status") == "error":
+        criteria["validation_status"] = "extraction_error"
+        return {"criteria": criteria, "criteria_check": "ok", "criteria_feedback": None}
+    if not items:
+        criteria["validation_status"] = "no_criteria"
+        return {"criteria": criteria, "criteria_check": "ok", "criteria_feedback": None}
+    if len(items) == 1 and items[0].get("weight") is None:
+        items[0]["weight"] = 100
+        items[0]["weight_origin"] = "sole_criterion_default"
+    supplied = [item.get("weight") for item in items]
+    missing = sum(weight is None for weight in supplied)
+    invalid = any(weight is not None and (
+        isinstance(weight, bool) or not isinstance(weight, (int, float))
+        or not math.isfinite(weight) or weight < 0) for weight in supplied)
+    weights = [weight for weight in supplied if weight is not None]
+    total = sum(weights) if weights and not invalid else None
+    target = criteria["expected_total"]
+    criteria["weights_total"] = total
+    if invalid:
+        status = "invalid_weights"
+    elif missing:
+        status = "missing_weights"
+    elif abs(total - target) > 0.5:
+        status = "total_mismatch"
+    else:
+        status = "reconciled"
+    criteria["validation_status"] = status
+    criteria["weights_reconcile"] = status == "reconciled"
+    # Keep the existing stop policy when every weight is missing. Do not ask
+    # the model to invent weights merely to satisfy the expected total.
+    retry = status != "reconciled" and bool(weights) and attempt < MAX_CRITERIA_ATTEMPTS
+    criteria["retry_exhausted"] = status != "reconciled" and bool(weights) and not retry
+    total_text = f"{total:g}" if total is not None else "unknown"
+    feedback = (f"Check {status}: sum {total_text}, target {target:g}, missing {missing}/{len(items)}. "
+                "Merge entries only if the source confirms the same criterion, not distinct roles. "
+                f"Verify each weight is its share of {target:g}, not a per-criterion maximum. "
+                "Preserve stated weights; leave unstated values null. "
+                "Do not invent weights to force the sum.") if retry else None
 
-    weights = [c["weight"] for c in items if c.get("weight") is not None]
-    if not weights:
-        print("  check_criteria: no numeric weights to check")
-        return {"criteria": criteria, "criteria_check": "ok"}
-
-    total = sum(weights)
-    target = find_total_points(state)
-    reconciled = abs(total - target) <= 0.5
-
-    if not reconciled and attempt < MAX_CRITERIA_ATTEMPTS:
-        print(f"  check_criteria: weights sum to {total:g}, expected {target:g}; revising")
-        return {"criteria": criteria, "criteria_check": "revise",
-                "criteria_feedback": (
-                    f"you returned {len(items)} criteria whose weights sum to {total:g}, but the total "
-                    f"must be {target:g}. Either two entries are the same criterion worded differently "
-                    f"(merge them into one), or the weights are wrong (a weight is each criterion's share "
-                    f"of {target:g}, not a per-criterion maximum). Return criteria whose weights sum to {target:g}.")}
-
-    # Reconciled, or out of attempts: record honestly whether the numbers add up.
-    criteria = {**criteria, "weights_reconcile": reconciled,
-                "weights_total": total, "expected_total": target}
-    print(f"  check_criteria: weights sum to {total:g}, expected {target:g}"
-          + ("" if reconciled else "  -- UNRECONCILED, flagged in output"))
-    return {"criteria": criteria, "criteria_check": "ok"}
+    print(f"  check_criteria: {status}, total {total}, expected {target:g}")
+    return {"criteria": criteria, "criteria_check": "revise" if retry else "ok",
+            "criteria_feedback": feedback}
 
 
 def route_after_criteria_check(state):
@@ -692,30 +726,29 @@ def classify(state):
     attempt = state["attempts"] + 1
     feedback = state.get("feedback")
     note = f"\nNote on your previous attempt: {str(feedback)[:FEEDBACK_MAX_CHARS]}" if feedback else ""
-    candidate_text = format_candidates(state["candidates"])
-    if candidate_text is None:
-        return _cpv_budget_abstention(state, attempt)
-    prompt = CLASSIFY_PROMPT.format(candidates=candidate_text, feedback=note)
-
     started = time.perf_counter()
     try:
+        candidate_text = format_candidates(state["candidates"])
+        if candidate_text is None:
+            return {**_cpv_budget_abstention(state, attempt), "cpv_error": None}
+        prompt = CLASSIFY_PROMPT.format(candidates=candidate_text, feedback=note)
         result = classifier.invoke(prompt)
-    except ValidationError as error:
-        cpv = round(state.get("cpv_seconds", 0.0) + time.perf_counter() - started, 1)
-        print(f"  classify (attempt {attempt}): invalid output, will retry")
-        return {"classification": None,
-                "feedback": f"your previous answer was not valid: {error}",
-                "attempts": attempt, "cpv_seconds": cpv}
-    cpv = round(state.get("cpv_seconds", 0.0) + time.perf_counter() - started, 1)
-
-    # Keep only codes that were actually in the candidate list (no hallucinations).
-    valid = {c["code"] for c in state["candidates"]}
-    main = result.main_cpv if result.main_cpv in valid else None
-    additional = [c for c in result.additional_cpv if c in valid]
-    classification = {"main_cpv": main, "additional_cpv": additional, "reasoning": result.reasoning}
-
-    print(f"  classify (attempt {attempt}): main {main}, additional {additional} (model said {result.main_cpv!r})")
-    return {"classification": classification, "attempts": attempt, "cpv_seconds": cpv}
+        valid = {c["code"] for c in state["candidates"]}
+        main = result.main_cpv if result.main_cpv in valid else None
+        additional = list(dict.fromkeys(c for c in result.additional_cpv if c in valid and c != main))
+        classification = {"main_cpv": main, "additional_cpv": additional, "reasoning": result.reasoning}
+    except Exception as error:
+        detail = {"stage": "classify", "type": type(error).__name__, "message": str(error)}
+        print(f"  classify (attempt {attempt}): error {type(error).__name__}: {error}")
+        return {"classification": None, "critique": None, "cpv_error": detail,
+                "feedback": f"Classification failed: {type(error).__name__}: {error}",
+                "attempts": attempt,
+                "cpv_seconds": round(state.get("cpv_seconds", 0.0) + time.perf_counter() - started, 1)}
+    print(f"  classify (attempt {attempt}): main {main}, additional {additional} "
+          f"(model said {result.main_cpv!r})")
+    return {"classification": classification, "critique": None, "cpv_error": None,
+            "feedback": None, "attempts": attempt,
+            "cpv_seconds": round(state.get("cpv_seconds", 0.0) + time.perf_counter() - started, 1)}
 
 
 def critique(state):
@@ -730,18 +763,24 @@ def critique(state):
         update = _cpv_budget_abstention(state, state.get("attempts", 0))
         update["critique"] = {"verdict": "revise", "problem": update["feedback"]}
         return update
-    prompt = CRITIQUE_PROMPT.format(
-        candidates=candidate_text,
-        main=classification.get("main_cpv"),
-        additional=classification.get("additional_cpv"),
-        reasoning=str(classification.get("reasoning") or "")[:CPV_REASONING_MAX_CHARS],
-    )
     started = time.perf_counter()
-    result = critic.invoke(prompt)
-    verdict = result.model_dump()
+    try:
+        prompt = CRITIQUE_PROMPT.format(
+            candidates=candidate_text, main=classification.get("main_cpv"),
+            additional=classification.get("additional_cpv"),
+            reasoning=str(classification.get("reasoning") or "")[:CPV_REASONING_MAX_CHARS])
+        result = critic.invoke(prompt)
+        verdict = result.model_dump()
+    except Exception as error:
+        detail = {"stage": "critique", "type": type(error).__name__, "message": str(error)}
+        problem = f"Critique failed: {type(error).__name__}: {error}"
+        print(f"  critique: {problem}")
+        return {"critique": {"verdict": "revise", "problem": problem}, "cpv_error": detail,
+                "feedback": problem,
+                "cpv_seconds": round(state.get("cpv_seconds", 0.0) + time.perf_counter() - started, 1)}
 
     print(f"  critique: {verdict['verdict']}" + (f" ({verdict['problem']})" if verdict.get("problem") else ""))
-    update = {"critique": verdict,
+    update = {"critique": verdict, "cpv_error": None, "feedback": None,
               "cpv_seconds": round(state.get("cpv_seconds", 0.0) + time.perf_counter() - started, 1)}
     if verdict["verdict"] == "revise":
         update["feedback"] = verdict.get("problem") or "reconsider which code is the main CPV"
@@ -763,24 +802,37 @@ def has_candidates(state):
 
 
 def finalize(state):
-    """Package the final result from the latest classification."""
-    classification = state.get("classification")
-    if not classification or not classification.get("main_cpv"):
-        final = {
-            "found": False,
-            "main_cpv": None,
-            "additional_cpv": [],
-            # keep the model's reasoning if it gave one, even when nothing was found
-            "reasoning": classification.get("reasoning") if classification else None,
-        }
+    """Keep recovered codes and report whether the CPV branch accepted them.
+
+    found indicates a main code is present, not that review succeeded. Consumers
+    must use status to distinguish accepted, partial, unresolved and error results.
+    """
+    classification = state.get("classification") or {}
+    main = classification.get("main_cpv") or None
+    additional = list(dict.fromkeys(c for c in classification.get("additional_cpv", []) if c != main))
+    critique = state.get("critique") or {}
+    error = state.get("cpv_error")
+    if classification.get("status") == "input_budget_exceeded":
+        status = "input_budget_exceeded"
+    elif error:
+        status = "error"
+    elif critique.get("verdict") == "revise":
+        status = "unresolved"
+    elif not main and additional:
+        status = "partial"
+    elif main and critique.get("verdict") == "accept":
+        status = "accepted"
+    elif classification:
+        status = "not_reviewed"
     else:
-        final = {
-            "found": True,
-            "main_cpv": classification["main_cpv"],
-            "additional_cpv": classification.get("additional_cpv", []),
-            "reasoning": classification.get("reasoning"),
-        }
-    print(f"  finalize: main {final['main_cpv']}, additional {final['additional_cpv']}")
+        status = "no_candidates" if not state.get("candidates") else "unresolved"
+    final = {"found": bool(main), "main_cpv": main, "additional_cpv": additional,
+             "reasoning": classification.get("reasoning"), "status": status,
+             "error": error,
+             "review_problem": critique.get("problem"),
+             "retry_exhausted": status in {"error", "unresolved"}
+                 and state.get("attempts", 0) >= MAX_CLASSIFY_ATTEMPTS}
+    print(f"  finalize: status={status}, main {main}, additional {additional}")
     return {"final": final}
 
 
@@ -869,6 +921,7 @@ def initial_state(eis_id, downloads_dir=DOWNLOADS_DIR):
         "criteria_check": None,
         "candidates": [],
         "classification": None,
+        "cpv_error": None,
         "critique": None,
         "feedback": None,
         "attempts": 0,

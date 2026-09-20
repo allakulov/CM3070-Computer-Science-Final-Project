@@ -39,7 +39,7 @@ from extract_graph import DOWNLOADS_DIR, EXTRACTION_MODEL, build_graph, initial_
 
 try:
     # import review_standards as reviewer
-    from review_standards import (REVIEW_PROMPT, format_evidence, last_tool_call,
+    from review_standards import (REVIEW_PROMPT, format_evidence, review_outcome,
                                   load_extraction, build_reviewer, REVIEW_MODEL,
                                   EXTRACTED_DIR, RUNS_PATH, OLLAMA_NUM_CTX)
     from langchain_ollama import ChatOllama
@@ -298,19 +298,8 @@ def review_step():
         ss.rv_awaiting = True
         return
 
-    verdict = last_tool_call(result) or {"applies": None,
-                                         "reason": "No decision: the model returned no tool call."}
-    for decision in reversed(ss.rv_human):          # a human amend is the final word
-        if decision.get("type") == "edit":
-            edited = decision["edited_action"]["args"]
-            verdict["applies"] = edited.get("applies")
-            verdict["reason"] = edited.get("reason") or verdict.get("reason")
-            break
-    verdict["seconds"] = round(ss.rv_seconds, 1)
-    verdict["pauses"] = ss.rv_pauses
-    verdict["proposed"] = verdict.get("applies") if ss.rv_proposed is None else ss.rv_proposed
-    verdict["overridden"] = verdict["proposed"] != verdict.get("applies")
-    verdict["human"] = ss.rv_human
+    verdict = review_outcome(result, finding["name"], ss.rv_human,
+                             ss.rv_seconds, ss.rv_pauses, ss.rv_proposed)
     finding["review"] = verdict
     ss.rv_index, ss.rv_in_finding, ss.rv_awaiting = ss.rv_index + 1, False, False
 

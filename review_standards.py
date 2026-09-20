@@ -86,8 +86,8 @@ EVIDENCE, one passage per place it appears:
 # return_direct stops the agent as soon as the tool runs. Without it the tool result
 # goes back to the model, which has nothing left to do and simply calls the same tool
 # again, so the same candidate is put to the reviewer over and over.
-@tool(return_direct=True)
-def record_decision(name: str, applies: bool, reason: str) -> str:
+@tool(return_direct=True, response_format="content_and_artifact")
+def record_decision(name: str, applies: bool, reason: str) -> tuple[str, dict]:
     """Record a clear decision about a candidate standard.
 
     Use only when the evidence is unambiguous.
@@ -97,11 +97,12 @@ def record_decision(name: str, applies: bool, reason: str) -> str:
         applies: True if it is genuinely required or referenced here.
         reason: One short sentence of justification.
     """
-    return f"recorded {name}: applies={applies}"
+    receipt = {"decision_recorded": True, "name": name, "applies": applies, "reason": reason}
+    return json.dumps(receipt), receipt
 
 
-@tool(return_direct=True)
-def request_review(name: str, applies: bool, reason: str) -> str:
+@tool(return_direct=True, response_format="content_and_artifact")
+def request_review(name: str, applies: bool, reason: str) -> tuple[str, dict]:
     """Ask a person to decide about a candidate standard.
 
     Use when the evidence is ambiguous or doesn't contain enough information.
@@ -111,7 +112,8 @@ def request_review(name: str, applies: bool, reason: str) -> str:
         applies: Your best guess, for the reviewer to confirm.
         reason: One short sentence on why this is unclear.
     """
-    return f"reviewed {name}: applies={applies}"
+    receipt = {"decision_recorded": True, "name": name, "applies": applies, "reason": reason}
+    return json.dumps(receipt), receipt
 
 
 # AGENT
@@ -170,16 +172,25 @@ def ask_person(finding, request):
     print(f"    the model's verdict: this {verdict}, because {arguments.get('reason')}")
     print("    decide:  a approve the verdict   m amend it with your own decision and reason   "
           "i send the model more information to reconsider")
-    answer = input("    [a/m/i]: ").strip().lower()
+    while True:
+        answer = input("    [a/m/i]: ").strip().lower()
+        if answer in {"a", "m", "i"}:
+            break
+        print("    Enter a, m or i.")
 
-    if answer.startswith("m"):
-        chosen = input("    is it a required standard? [y/n]: ").strip().lower().startswith("y")
+    if answer == "m":
+        while True:
+            answer = input("    is it a required standard? [y/n]: ").strip().lower()
+            if answer in {"y", "n"}:
+                break
+            print("    Enter y or n.")
+        chosen = answer == "y"
         note = input("    your reason: ").strip()
         return {"type": "edit",
                 "edited_action": {"name": "request_review",
                                   "args": {**arguments, "applies": chosen,
                                            "reason": note or arguments.get("reason")}}}
-    if answer.startswith("i"):
+    if answer == "i":
         return {"type": "reject", "message": input("    what should the model consider: ").strip()}
     return {"type": "approve"}
 
@@ -217,7 +228,7 @@ def review_finding(agent, finding, index):
     result, seconds = timed_invoke(agent, {"messages": [{"role": "user", "content": prompt}]}, config)
     pauses = 0
     proposed = None
-    amend = None
+    human = []
 
     # the middleware pauses by raising an interrupt; answer it and resume.
     while result.interrupts:
@@ -229,31 +240,88 @@ def review_finding(agent, finding, index):
                     # what the model itself suggested, before any correction from me
                     proposed = request["args"].get("applies")
                 decision = ask_person(finding, request)
-                if decision["type"] == "edit":
-                    amend = decision["edited_action"]["args"]
+                human.append(decision)
                 decisions.append(decision)
         result, extra = timed_invoke(agent, Command(resume={"decisions": decisions}), config)
         seconds += extra
 
-    verdict = last_tool_call(result)
-    if verdict:
-        if amend is not None:                       # a human amend is the final word
-            verdict["applies"] = amend.get("applies")
-            verdict["reason"] = amend.get("reason") or verdict.get("reason")
-        verdict["seconds"] = round(seconds, 1)
-        verdict["pauses"] = pauses
-        # with no pause the model decided alone, so its proposal is the verdict
-        verdict["proposed"] = verdict["applies"] if proposed is None else proposed
-        verdict["overridden"] = verdict["proposed"] != verdict["applies"]
+    return review_outcome(result, finding["name"], human, seconds, pauses, proposed)
+
+
+def review_outcome(result, expected_name, human, seconds, pauses, proposed):
+    """Shared CLI/app decision policy, including authoritative final amendments.
+
+    Only the last human action can override a completed receipt. If no receipt
+    exists, retain the edit for inspection but do not claim successful execution.
+    """
+    verdict = last_tool_call(result, expected_name=expected_name)
+    completed = verdict is not None
+    verdict = dict(verdict) if completed else {
+        "tool": None, "applies": None, "reason": "No completed decision after review."}
+    verdict["status"] = "decided" if completed else "unresolved"
+    if human and human[-1].get("type") == "edit":
+        edited_action = human[-1].get("edited_action") or {}
+        edited = edited_action.get("args") or {}
+        if (edited_action.get("name") in {"record_decision", "request_review"}
+                and edited.get("name") == expected_name
+                and isinstance(edited.get("applies"), bool)
+                and isinstance(edited.get("reason"), str)):
+            authoritative = {key: edited[key] for key in ("applies", "reason")}
+            if completed:
+                received = {key: verdict.get(key) for key in ("applies", "reason")}
+                if received != authoritative:
+                    verdict["amend_discrepancy"] = {"receipt": received, "human_edit": authoritative}
+                    verdict.update(authoritative)
+                    verdict["decision_source"] = "human_edit_reconciled"
+                else:
+                    verdict["decision_source"] = "executed_receipt"
+            else:
+                verdict["pending_human_edit"] = authoritative
+    verdict["human"] = human
+    verdict["seconds"] = round(seconds, 1)
+    verdict["pauses"] = pauses
+    verdict["proposed"] = verdict["applies"] if proposed is None else proposed
+    verdict["overridden"] = verdict["applies"] is not None and verdict["proposed"] != verdict["applies"]
     return verdict
 
 
-def last_tool_call(result):
-    """Return the verdict from the last tool the agent called, if any."""
-    for message in reversed(result.value["messages"]):
-        for call in getattr(message, "tool_calls", []) or []:
-            return {"tool": call["name"], "applies": call["args"].get("applies"),
-                    "reason": call["args"].get("reason")}
+def last_tool_call(result, expected_name=None):
+    """Accept only a recognised decision with matching successful tool output.
+
+    An AI tool proposal is not a completed decision. A later unresolved proposal
+    supersedes earlier completed calls. New outputs carry the executed arguments;
+    exact legacy acknowledgements remain supported for existing histories.
+    """
+    messages = result.value["messages"]
+    for index in range(len(messages)-1, -1, -1):
+        calls = getattr(messages[index], "tool_calls", []) or []
+        for call in reversed(calls):
+            if call.get("name") not in {"record_decision", "request_review"}:
+                continue
+            args = call.get("args") or {}
+            replies = [m for m in messages[index+1:]
+                       if getattr(m, "type", None) == "tool"
+                       and getattr(m, "tool_call_id", None) == call.get("id")]
+            if not replies or getattr(replies[-1], "status", "success") == "error":
+                return None
+            content = replies[-1].content
+            data = getattr(replies[-1], "artifact", None)
+            if data is None:
+                try:
+                    data = json.loads(content)
+                except (TypeError, ValueError):
+                    prefix = "recorded" if call["name"] == "record_decision" else "reviewed"
+                    expected = f"{prefix} {args.get('name')}: applies={args.get('applies')}"
+                    if content != expected:
+                        return None
+                    data = {**args, "decision_recorded": True}
+            if not isinstance(data, dict) or data.get("decision_recorded") is not True:
+                return None
+            if not isinstance(data.get("applies"), bool) or not isinstance(data.get("reason"), str):
+                return None
+            if expected_name is not None and data.get("name") != expected_name:
+                return None
+            return {"tool": call["name"], "applies": data["applies"], "reason": data["reason"]}
     return None
 
 
