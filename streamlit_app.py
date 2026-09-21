@@ -39,7 +39,7 @@ from extract_graph import DOWNLOADS_DIR, EXTRACTION_MODEL, build_graph, initial_
 
 try:
     # import review_standards as reviewer
-    from review_standards import (REVIEW_PROMPT, format_evidence, review_outcome,
+    from review_standards import (REVIEW_PROMPT, format_evidence, review_outcome, review_summary,
                                   load_extraction, build_reviewer, REVIEW_MODEL,
                                   EXTRACTED_DIR, RUNS_PATH, OLLAMA_NUM_CTX)
     from langchain_ollama import ChatOllama
@@ -343,16 +343,10 @@ def render_decision(finding, request):
 
 def save_review(path, record, findings, model_tag):
     """Write the verdicts back into the extracted file and append the run log."""
-    reviewed = [f for f in findings if f.get("review")]
-    kept = [f for f in reviewed if f["review"].get("applies")]
-    seconds = sum(f["review"]["seconds"] for f in reviewed)
-    summary = {"model": model_tag, "candidates": len(findings), "applies": len(kept),
-               "pauses": sum(f["review"]["pauses"] for f in reviewed),
-               "overridden": sum(1 for f in reviewed if f["review"]["overridden"]),
-               "seconds": round(seconds, 1),
-               "seconds_each": round(seconds / len(findings), 1) if findings else 0.0}
+    reviewed = [f for f in findings if isinstance(f.get("review"), dict)]
+    summary = review_summary(findings, model_tag)
     record["standards_review"] = summary
-    record["standards_reviewed"] = True
+    record["standards_reviewed"] = summary["complete"]
     path.write_text(json.dumps(record, indent=2, ensure_ascii=False), encoding="utf-8")
     with open(RUNS_PATH, "a", encoding="utf-8") as runs:
         runs.write(json.dumps({**summary, "eis_id": record.get("eis_id"),
@@ -519,10 +513,12 @@ if action == REVIEW:
     current_id = st.session_state.rv_id
     st.subheader(f"Reviewing {current_id} ({st.session_state.rv_qpos + 1} of {len(queue)})")
 
-    # This id's candidates are all decided: show them, then save and step the queue on.
+    # All candidates have been attempted; unresolved outcomes remain visible.
     if st.session_state.rv_index >= len(findings):
-        kept = sum(1 for f in findings if f.get("review") and f["review"].get("applies"))
-        st.caption(f"Kept {kept} of {len(findings)} as required standards.")
+        summary = review_summary(findings, st.session_state.rv_model)
+        st.caption(f"Decided {summary['decided']}; unresolved {summary['unresolved']}; "
+                   f"human reviewed {summary['human_reviewed']}; "
+                   f"kept {summary['applies']} of {summary['candidates']} as required standards.")
         st.dataframe(final_rows(findings), use_container_width=True, hide_index=True)
         last = st.session_state.rv_qpos + 1 >= len(queue)
         if st.button("Save and finish" if last else "Save and review the next procurement",

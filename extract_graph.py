@@ -508,7 +508,8 @@ def load_documents(state):
     ocr_records = []     # {name, chars, seconds, text} per OCR'd file, saved for evaluation
     table_records = []   # {name, seconds, tables} per file that produced tables
 
-    supported = {".zip", ".edoc", ".pdf", ".docx", ".xlsx", ".xlsm", ".txt", ".csv"}
+    supported = {".zip", ".edoc", ".pdf", ".doc", ".docx", ".xlsx", ".xlsm",
+                 ".txt", ".csv", ".jpg", ".jpeg", ".png", ".tif", ".tiff", ".bmp"}
     for path in sorted(folder.glob("*")):
         if not path.is_file() or path.suffix.lower() not in supported:
             continue
@@ -543,7 +544,7 @@ def load_documents(state):
             tables.extend(file_tables)
 
     # Per-reader breakdown: which reader handled which files.
-    for reader in ("pdf", "docx", "xlsx", "text"):
+    for reader in ("pdf", "doc", "docx", "xlsx", "text"):
         names = by_reader.get(reader, [])
         if names:
             print(f"    {reader:6}({len(names)}): {', '.join(names)}")

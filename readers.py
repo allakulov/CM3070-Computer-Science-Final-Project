@@ -16,8 +16,13 @@ but does not prevent page OCR or discard previously recovered content.
 from __future__ import annotations
 
 import io
+import re
 import time
 import zipfile
+import shutil
+import subprocess
+from pathlib import Path
+from tempfile import TemporaryDirectory
 from html.parser import HTMLParser
 
 # Base readers, used on every run, are imported here as usual. The optional OCR
@@ -34,6 +39,12 @@ import pdfplumber
 CONTAINER_EXTS = (".zip", ".edoc")       # archive types to open instead of read as text
 MAX_CONTAINER_DEPTH = 5                  # stop runaway recursion on nested archives
 MIN_USEFUL_CHARS = 50                    # OCR sparse PDF pages that also contain images
+
+IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".tif", ".tiff", ".bmp")
+IMAGE_MAX_EDGE = 2400                    # near the long edge of A4 at 200 DPI
+OCR_STRIP_CJK = True                      # Latvian corpus only; disable for multilingual input
+_CJK_IDEOGRAPHS = re.compile("[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\U00020000-\U000323af]+")
+DOC_CONVERSION_TIMEOUT = 60
 
 OCR_DPI = 200                            # resolution for rasterising scanned PDF pages
 
@@ -79,6 +90,44 @@ def iter_container_files(data, container_name, depth=0):
 # read_plain is the digital-only reader used by the comparison tools.
 # read_text also handles scanned PDF pages through the combined reading path.
 
+def _doc_to_docx(data):
+    """Convert legacy Word bytes locally, keeping the original file unchanged."""
+    executable = shutil.which("soffice") or shutil.which("libreoffice")
+    if not executable:
+        mac_path = Path("/Applications/LibreOffice.app/Contents/MacOS/soffice")
+        if mac_path.is_file():
+            executable = str(mac_path)
+    if not executable:
+        raise RuntimeError("Install LibreOffice to read .doc files (soffice not found)")
+    with TemporaryDirectory(prefix="procurement_doc_") as folder:
+        folder = Path(folder)
+        source = folder / "input.doc"
+        source.write_bytes(data)
+        # A separate profile avoids interference with an open LibreOffice window.
+        result = subprocess.run(
+            [executable, f"-env:UserInstallation={(folder / 'profile').as_uri()}",
+             "--headless", "--convert-to", "docx", "--outdir", str(folder), str(source)],
+            capture_output=True, text=True, timeout=DOC_CONVERSION_TIMEOUT,
+        )
+        converted = folder / "input.docx"
+        if result.returncode != 0 or not converted.is_file():
+            detail = (result.stderr or result.stdout).strip()[:300]
+            raise RuntimeError(f"DOC conversion failed: {detail or 'no DOCX produced'}")
+        return converted.read_bytes()
+
+
+def _image_pages(data):
+    """Decode image frames, applying camera orientation before OCR."""
+    from PIL import Image, ImageOps, ImageSequence
+    with Image.open(io.BytesIO(data)) as source:
+        images = []
+        for frame in ImageSequence.Iterator(source):
+            image = ImageOps.exif_transpose(frame).convert("RGB")
+            image.thumbnail((IMAGE_MAX_EDGE, IMAGE_MAX_EDGE), Image.Resampling.LANCZOS)
+            images.append(image)
+        return images
+
+
 def read_plain(data, name):
     """Extract text from PDF, DOCX, XLSX, or TXT bytes by file extension."""
     lower = name.lower()
@@ -86,6 +135,9 @@ def read_plain(data, name):
         if lower.endswith(".pdf"):
             with pdfplumber.open(io.BytesIO(data)) as pdf:
                 return "\n".join(page.extract_text() or "" for page in pdf.pages)
+        if lower.endswith(".doc"):
+            data = _doc_to_docx(data)
+            lower = ".docx"
         if lower.endswith(".docx"):
             return "\n".join(p.text for p in docx.Document(io.BytesIO(data)).paragraphs)
         if lower.endswith((".xlsx", ".xlsm")):
@@ -131,16 +183,25 @@ def _get_rapidocr_reader():
     return _rapidocr_reader
 
 
+def _clean_ocr_text(text):
+    """Suppress CJK ideograph noise for this Latvian corpus, preserving token gaps."""
+    if OCR_STRIP_CJK:
+        text = _CJK_IDEOGRAPHS.sub(" ", text)
+    return text.strip()
+
+
 def _ocr_texts(reader, image):
     """Run RapidOCR on an image; return the list of recognised text pieces."""
     import numpy as np
     result = reader(np.array(image))
     texts = getattr(result, "txts", None)               # rapidocr v3 result object
     if texts:
-        return list(texts)
-    if isinstance(result, tuple) and result[0]:         # older (result, elapse) form
-        return [row[1] for row in result[0]]
-    return []
+        texts = list(texts)
+    elif isinstance(result, tuple) and result[0]:      # older (result, elapse) form
+        texts = [row[1] for row in result[0]]
+    else:
+        return []
+    return [cleaned for text in texts if (cleaned := _clean_ocr_text(text))]
 
 
 def _ocr_cell(reader, crop):
@@ -149,22 +210,23 @@ def _ocr_cell(reader, crop):
 
 
 def read_ocr(data, name, images=None):
-    """Recover text from a scanned PDF with RapidOCR; non-PDFs return "".
+    """Recover text from PDF pages or image files with RapidOCR.
 
     Args:
-      data: The PDF's raw bytes.
-      name: File name; must end in .pdf.
+      data: Raw PDF or image bytes.
+      name: File name; must end in .pdf or a supported image extension.
       images: Optional pre-rendered pages to reuse instead of rasterising again.
 
     Returns:
       The recognised text, or "" with an install hint when RapidOCR is missing.
     """
-    if not name.lower().endswith(".pdf"):
+    if not name.lower().endswith((".pdf",) + IMAGE_EXTS):
         return ""
     try:
         reader = _get_rapidocr_reader()            # RapidOCR (PP-OCRv6)
         if images is None:
-            images = _pdf_page_images(data)        # imports fitz (PyMuPDF)
+            images = (_pdf_page_images(data) if name.lower().endswith(".pdf")
+                      else _image_pages(data))
         lines = []
         for image in images:
             lines.extend(_ocr_texts(reader, image))
@@ -182,7 +244,7 @@ TEXT_READERS = [read_plain, read_ocr]
 
 def read_text(data, name):
     """Keep readable text, using page-level OCR for PDFs without table models."""
-    if name.lower().endswith(".pdf"):
+    if name.lower().endswith((".pdf", ".doc") + IMAGE_EXTS):
         return read_file(data, name, include_tables=False)[0]
     for reader in TEXT_READERS:
         text = reader(data, name)
@@ -231,12 +293,17 @@ def extract_tables(data, name):
     """Return a list of tables found in one file; empty when there are none."""
     lower = name.lower()
     try:
+        if lower.endswith(".doc"):
+            data = _doc_to_docx(data)
+            lower = ".docx"
         if lower.endswith(".docx"):
             rows_list = _tables_from_docx(data)
         elif lower.endswith((".xlsx", ".xlsm")):
             rows_list = _tables_from_xlsx(data)
         elif lower.endswith(".pdf"):
             rows_list = _tables_from_pdf(data, name)
+        elif lower.endswith(IMAGE_EXTS) and ENABLE_TABLE_TRANSFORMER:
+            rows_list = _tables_from_images(_image_pages(data))[0]
         else:
             rows_list = []
     except Exception as error:
@@ -429,6 +496,7 @@ def _tables_from_images(images):
             try:
                 htmls = engine(np.asarray(image.crop(box))).pred_htmls
                 rows = _html_to_rows(htmls[0]) if htmls else []
+                rows = [[_clean_ocr_text(cell) for cell in row] for row in rows]
             except Exception as error:
                 print(f"    table recognition failed on a region: {error}")
                 rows = []
@@ -555,7 +623,7 @@ def read_file(data, name, info=None, *, include_tables=True):
       data: The file's raw bytes.
       name: File name; its extension selects the reader.
       info: Optional dict, filled in for the caller to report on the read, with keys
-        reader ("pdf"/"docx"/"xlsx"/"text"/"ocr", or None if unread), reason,
+        reader ("pdf"/"doc"/"docx"/"xlsx"/"text"/"ocr", or None if unread), reason,
         parse_seconds, ocr_seconds, ocr_text, ocr_page_numbers and warnings.
       include_tables: False for the text-only entry point.
 
@@ -580,6 +648,25 @@ def read_file(data, name, info=None, *, include_tables=True):
         if lower.endswith(".pdf"):
             plain, rows_list = _read_pdf(data, name, info, include_tables=include_tables)
             fmt = "pdf"
+        elif lower.endswith(".doc"):
+            plain, rows_list = _docx_text_and_tables(_doc_to_docx(data))
+            fmt = "doc"
+        elif lower.endswith(IMAGE_EXTS):
+            images = _image_pages(data)
+            rows_list = []
+            ocr_images = images
+            if include_tables and ENABLE_TABLE_TRANSFORMER:
+                try:
+                    rows_list, boxes = _tables_from_images(images)
+                    ocr_images = _mask_regions(images, boxes)
+                except Exception as error:
+                    info["warnings"].append(f"image tables: {error}")
+                    print(f"    image table extraction failed for {name}: {error}")
+            ocr_started = time.perf_counter()
+            plain = read_ocr(data, name, ocr_images)
+            info["ocr_seconds"] = time.perf_counter() - ocr_started
+            info["ocr_text"] = plain
+            fmt = "ocr"
         elif lower.endswith(".docx"):
             plain, rows_list = _docx_text_and_tables(data)
             fmt = "docx"

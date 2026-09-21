@@ -50,14 +50,18 @@ STANDARD_PATTERN = re.compile(rf"\b{BODY}(?:\s+{BODY})*\s*{NUMBER}\b", re.IGNORE
 
 # national rules, e.g. "Ministru kabineta 2013. gada 8. oktobra noteikumi Nr. 1041".
 NATIONAL_PATTERN = re.compile(
-    r"Ministru kabineta[^.\n]{0,80}?noteikum\w*\s*Nr\.?\s?(\d+)", re.IGNORECASE)
+    r"Ministru kabineta(?:[^.\n;]|(?<=\d)\.(?=\s)){0,80}?noteikum\w*\s*Nr\.?\s?(\d+)", re.IGNORECASE)
 
 # an EU act is known by its number, with the union named before it, after it, or
 # not at all: "regulu (EK) Nr. 66/2010", "Direktīvu 95/46/EK", "regulai 2016/7".
+EU_TYPED_PATTERN = re.compile(
+    r"\b(?P<kind>direkt[iī]v\w*|directive\w*|regul\w*)\s+"
+    r"(?:\((?:EU|EC|EEC|ES|EK|EEK)\)\s*)?(?:Nr\.?\s*|No\.?\s*)?"
+    r"(?P<number>\d{1,4}/\d{1,4})(?:/(?:EU|EC|EEC|ES|EK|EEK))?\b",
+    re.IGNORECASE)
 EU_PATTERNS = [
-    re.compile(r"\((?:ES|EK|EEK)\)\s*(?:Nr\.?\s*)?(\d{1,4}/\d{1,4})"),
-    re.compile(r"(\d{1,4}/\d{1,4})/E[KS]\b"),
-    re.compile(r"regul\w+\s+(\d{1,4}/\d{1,4})", re.IGNORECASE),
+    re.compile(r"\((?:EU|EC|EEC|ES|EK|EEK)\)\s*(?:Nr\.?\s*|No\.?\s*)?(\d{1,4}/\d{1,4})", re.IGNORECASE),
+    re.compile(r"(\d{1,4}/\d{1,4})/(?:EU|EC|EEC|ES|EK|EEK)\b", re.IGNORECASE),
 ]
 
 # an abbreviation a notice defines for itself: "... shēmas (turpmāk - NPKS)".
@@ -180,11 +184,20 @@ def find_standards(text, tables=None):
         add(f"Ministru kabineta noteikumi Nr. {match.group(1)}", "regulation", False,
             match.start(), match.end())
 
+    # Prefer explicit instrument wording. Bare identifiers do not establish type.
+    spans = []
+    for match in EU_TYPED_PATTERN.finditer(text):
+        kind = "directive" if fold(match.group("kind")).startswith("direkt") or match.group("kind").lower().startswith("direct") else "regulation"
+        number = match.group("number")
+        add(f"EU {kind} {number}", kind,
+            kind == "regulation" and number in GREEN_REGULATIONS, match.start(), match.end())
+        spans.append(match.span())
     for pattern in EU_PATTERNS:
         for match in pattern.finditer(text):
-            number = match.group(1)
-            add(f"EU regulation {number}", "regulation", number in GREEN_REGULATIONS,
-                match.start(), match.end())
+            if any(match.start() < end and match.end() > start for start, end in spans):
+                continue
+            add(f"EU act {match.group(1)}", "legal_act", False, match.start(), match.end())
+            spans.append(match.span())
 
     for scheme, entry in SCHEMES.items():
         for alias in entry["aliases"]:

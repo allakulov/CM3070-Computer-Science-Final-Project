@@ -340,6 +340,29 @@ def load_extraction(eis_id, extracted_dir=EXTRACTED_DIR):
     return path, record, record.get("standards") or []
 
 
+def review_summary(findings, model):
+    """Count completed decisions separately from attempts and human participation.
+
+    Legacy Boolean verdicts without a status count as decided. An explicit
+    unresolved status never counts as decided, even if it contains a Boolean.
+    Empty candidate lists are complete: there was nothing to decide.
+    """
+    reviews = [f["review"] for f in findings if isinstance(f.get("review"), dict)]
+    decided = [r for r in reviews if isinstance(r.get("applies"), bool)
+               and r.get("status", "decided") == "decided"]
+    seconds = sum(r.get("seconds", 0) for r in reviews)
+    return {"model": model, "candidates": len(findings), "attempted": len(reviews),
+            "decided": len(decided), "unresolved": len(reviews) - len(decided),
+            "not_attempted": len(findings) - len(reviews),
+            "human_reviewed": sum(bool(r.get("human")) for r in reviews),
+            "applies": sum(r["applies"] is True for r in decided),
+            "pauses": sum(r.get("pauses", 0) for r in reviews),
+            "overridden": sum(bool(r.get("overridden")) for r in decided),
+            "seconds": round(seconds, 1),
+            "seconds_each": round(seconds / len(reviews), 1) if reviews else 0.0,
+            "complete": len(decided) == len(findings)}
+
+
 def main():
     """Review the standards already extracted for one procurement."""
     parser = argparse.ArgumentParser(description="Review extracted standards with a human in the loop.")
@@ -361,22 +384,13 @@ def main():
     for index, finding in enumerate(findings):
         finding["review"] = review_finding(agent, finding, index)
 
-    # a record of the run itself, so two models can be compared on the same procurement
-    reviewed = [finding for finding in findings if finding["review"]]
-    kept = [finding for finding in reviewed if finding["review"]["applies"]]
-    seconds = sum(finding["review"]["seconds"] for finding in reviewed)
-    summary = {
-        "model": args.model,
-        "candidates": len(findings),
-        "applies": len(kept),
-        "pauses": sum(finding["review"]["pauses"] for finding in reviewed),
-        "overridden": sum(1 for finding in reviewed if finding["review"]["overridden"]),
-        "seconds": round(seconds, 1),
-        "seconds_each": round(seconds / len(findings), 1),
-    }
+    summary = review_summary(findings, args.model)
+    reviewed = [f for f in findings if isinstance(f.get("review"), dict)]
+    kept = [f for f in reviewed if f["review"].get("applies") is True
+            and f["review"].get("status", "decided") == "decided"]
 
     record["standards_review"] = summary
-    record["standards_reviewed"] = True
+    record["standards_reviewed"] = summary["complete"]
     path.write_text(json.dumps(record, indent=2, ensure_ascii=False), encoding="utf-8")
 
     # the run is also appended to its own file, because reviewing this procurement with
@@ -390,9 +404,11 @@ def main():
         runs.write(json.dumps(run, ensure_ascii=False) + "\n")
 
     print(f"\n{summary['model']}: {summary['seconds']}s total, "
-          f"{summary['seconds_each']}s per candidate, {summary['pauses']} paused for review, "
+          f"{summary['seconds_each']}s per attempted candidate, {summary['pauses']} paused for review, "
           f"{summary['overridden']} amended by me")
-    print(f"kept {len(kept)} of {len(findings)} candidates")
+    print(f"Decided {summary['decided']}, unresolved {summary['unresolved']}, "
+          f"not attempted {summary['not_attempted']}, human reviewed {summary['human_reviewed']}; "
+          f"kept {len(kept)} of {len(findings)} candidates")
     for finding in kept:
         print(f"  {finding['name']} ({finding['category']}, {', '.join(finding['phases'])})")
     print(f"saved {path} and appended to {RUNS_PATH}")
