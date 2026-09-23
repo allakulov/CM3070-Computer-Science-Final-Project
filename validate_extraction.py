@@ -27,6 +27,11 @@ key. The weights (for example 30 / 30 / 40) are stable numbers, so they give a
 language-independent comparison that ignores order. The CSV still prints both
 sets of names side by side so a human can read them where the weights disagree.
 
+Criteria retain decimal weights and lot labels. Their headline P/R/F1 is the
+mean of per-procurement scores; CPV keeps micro scoring. Pooled criterion counts
+and per-lot agreement are secondary diagnostics. Old unlabelled multi-lot
+outputs are not assumed to apply to every lot.
+
 Run:
     python validate_extraction.py
     python validate_extraction.py --ground-truth data/raw_2024-06-15.json
@@ -39,7 +44,9 @@ import json
 import math
 import re
 from collections import Counter
+from decimal import Decimal
 from pathlib import Path
+from criteria_lots import lot_key, group_criteria, scope_error
 
 
 # CONFIGURATION
@@ -63,33 +70,32 @@ def simplify_ground_truth(record):
     url = (record.get("tenderingProcess") or {}).get("documentsURL") or ""
     match = re.search(r"/Procurement/(\d+)", url)
 
-    # Collect every criterion across every lot. Most procurements have a single
-    # lot, but looping over all lots keeps this correct when there are several.
-    criteria = [
-        {
-            "name": c.get("winnerCriterionName") or "",
-            "weight": c.get("winnerCriterionNumber"),   # this number is the weight
-        }
-        for lot in record.get("lots") or []
-        for c in lot.get("criterion") or []
-    ]
+    lots = []
+    for index, lot in enumerate(record.get("lots") or []):
+        label = lot.get("sequenceNumber")
+        # Preserve anonymous lots as separate records; do not invent sequence numbers.
+        lots.append({"lot": str(label) if label is not None else None,
+                     "criteria": [{"name": c.get("winnerCriterionName") or "",
+                                   "weight": c.get("winnerCriterionNumber"),
+                                   "lot": str(label) if label is not None else None}
+                                  for c in lot.get("criterion") or []]})
+    fields = {"main_cpv": record.get("cpvType"),
+              "additional_cpv": record.get("additionalCpvType") or [],
+              "criteria": [c for lot in lots for c in lot["criteria"]],
+              "criteria_lots": lots}
 
-    fields = {
-        "main_cpv": record.get("cpvType"),                         # primary code
-        "additional_cpv": record.get("additionalCpvType") or [],   # secondary codes
-        "criteria": criteria,
-    }
     return (match.group(1) if match else None), fields
 
 
-def load_ground_truth(path):
-    """Return {eis_id: fields} built from the open-data list file."""
+def load_ground_truth(path, ids=None):
+    """Load reference fields, optionally only for the requested extraction IDs."""
+    selected = set(map(str, ids)) if ids is not None else None
     truth = {}
     # json.loads returns a Python list here, because the file is a JSON array.
     positions = {}
     for index, record in enumerate(json.loads(Path(path).read_text(encoding="utf-8")), 1):
         eis_id, fields = simplify_ground_truth(record)
-        if eis_id:                      # skip any record we could not assign an id to
+        if eis_id and (selected is None or eis_id in selected):
             if eis_id in truth:
                 raise ValueError(f"Duplicate reference ID {eis_id} at records {positions[eis_id]} and {index}; resolve duplicates before scoring.")
             positions[eis_id] = index
@@ -116,6 +122,11 @@ def load_extracted(folder):
             "status": cpv.get("status") or "legacy_unlabelled",
             "main_cpv": cpv.get("main_cpv"),
             "additional_cpv": cpv.get("additional_cpv") or [],
+            "same_for_all_lots": crit.get("same_for_all_lots", False),
+            "lot_ids": crit.get("lot_ids") or [],
+            "lot_checks": crit.get("lot_checks") or {},
+            "weight_scale": crit.get("weight_scale"),
+            "trace_dir": crit.get("trace_dir", ""),
             "criteria": crit.get("criteria") or [],     # each item keeps name + weight
         }
     return out
@@ -154,7 +165,7 @@ def parsed_weight_values(raw):
 
 
 def weight_values(raw):
-    """Apply the deliberate integer scoring policy; Python round ties to even."""
+    """Legacy integer helper retained for callers; lot scoring uses decimals."""
     return [round(value) for value in parsed_weight_values(raw)]
 
 
@@ -224,7 +235,7 @@ def write_csv(path, rows):
                "main_cpv_extracted", "main_cpv_truth", "main_cpv_match",
                "additional_cpv_extracted", "additional_cpv_truth", "additional_cpv_match",
                "weights_extracted", "weights_truth", "weights_match",
-               "criteria_names_extracted", "criteria_names_truth"]
+               "criteria_names_extracted", "criteria_names_truth", "criteria_lot_details"]
     with open(path, "w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=columns)
         writer.writeheader()
@@ -248,7 +259,7 @@ def complete_weights(criteria):
 
 
 def criteria_reference(criteria, expected_total=100.0, tolerance=0.5):
-    """Apply the declared reference-total rule before rounded weight scoring.
+    """Apply the declared total rule to one reference lot before scoring.
 
     This determines eligibility for this evaluation, not whether a document is
     correct. A legitimate different scoring scale needs a different cohort rule.
@@ -264,67 +275,240 @@ def criteria_reference(criteria, expected_total=100.0, tolerance=0.5):
             "total": total}
 
 
+def reference_lots(record):
+    """Keep empty reference lots, which cannot be eligible by omission."""
+    if "criteria_lots" in record:
+        return record["criteria_lots"]
+    return [{"lot": None if key == "all" else key, "criteria": items}
+            for key, items in group_criteria(record.get("criteria", [])).items()]
+
+
+def lot_reference(record, expected_total=100.0, tolerance=0.5):
+    lots = reference_lots(record)
+    checks = [criteria_reference(lot["criteria"], expected_total, tolerance) for lot in lots]
+    status = next((c["status"] for c in checks if c["status"] != "available"),
+                  "available" if checks else "missing")
+    totals = [c["total"] for c in checks]
+    return {"status": status, "total": math.fsum(totals) if totals and None not in totals else None,
+            "lots": [{"lot": lot.get("lot"), **check} for lot, check in zip(lots, checks)]}
+
+
+def decimal_weights(items):
+    """Keep parsed weights without integer or decimal-place rounding."""
+    return sorted(w for c in items for w in parsed_weight_values(c.get("weight")))
+
+
+
+WEIGHT_MATCH_TOLERANCE = 0.01  # Absolute points, separate from the 0.5 total check.
+
+
+def score_weights(pred, gold, counts):
+    """Match sorted weights one-to-one within 0.01 points, including duplicates."""
+    predicted = sorted(Decimal(str(w)) for w in pred)
+    reference = sorted(Decimal(str(w)) for w in gold)
+    tolerance = Decimal(str(WEIGHT_MATCH_TOLERANCE))
+    i = j = matches = 0
+    while i < len(predicted) and j < len(reference):
+        if abs(predicted[i] - reference[j]) <= tolerance:
+            matches += 1
+            i += 1
+            j += 1
+        elif predicted[i] < reference[j]:
+            i += 1
+        else:
+            j += 1
+    counts["tp"] += matches
+    counts["fp"] += len(predicted) - matches
+    counts["fn"] += len(reference) - matches
+    return matches
+
+def scoring_copy(extracted, stated_only=False):
+    """Keep the stored record intact; convert only explicitly fractional scales."""
+    items = []
+    for original in extracted.get("criteria") or []:
+        c = dict(original)
+        value = c.get("raw_weight", c.get("weight")) if stated_only else c.get("weight")
+        scale = (extracted.get("lot_checks", {}).get(lot_key(c.get("lot"))) or {}).get(
+            "weight_scale", extracted.get("weight_scale"))
+        if scale == "fraction":
+            values = parsed_weight_values(value)
+            c["weight"] = " ".join(str(v * 100) for v in values) if values else None
+        else:
+            c["weight"] = value
+        items.append(c)
+    return {**extracted, "criteria": items, "weight_scale": "points", "lot_checks": {}}
+
+
+def write_names_review(path, truth, extracted, ids):
+    """Export names independently of weight eligibility; blanks require manual review."""
+    columns = ["eis_id", "lot", "reference_names", "extracted_names", "duplicate_names",
+               "weight_sources", "trace_dir", "names_complete", "lot_scope_supported", "notes"]
+    with Path(path).open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=columns)
+        writer.writeheader()
+        for eid in ids:
+            e = extracted[eid]
+            pred = group_criteria(e.get("criteria") or [])
+            gold = {lot_key(l["lot"]): l["criteria"] for l in reference_lots(truth.get(eid, {}))}
+            for label in sorted(set(pred) | set(gold)):
+                names = [c.get("name", "") for c in pred.get(label, [])]
+                normalized = [" ".join(n.casefold().split()) for n in names]
+                writer.writerow({"eis_id": eid, "lot": label,
+                    "reference_names": json.dumps([c.get("name") for c in gold.get(label, [])], ensure_ascii=False),
+                    "extracted_names": json.dumps(names, ensure_ascii=False),
+                    "duplicate_names": len(normalized) != len(set(normalized)),
+                    "weight_sources": json.dumps([c.get("weight_source", "legacy_unspecified") for c in pred.get(label, [])]),
+                    "trace_dir": e.get("trace_dir", ""),
+                    "names_complete": "", "lot_scope_supported": "", "notes": ""})
+
+
+def compare_criteria(extracted, truth):
+    """Compare by lot label; use unlabeled signatures only as a secondary measure.
+
+    A single unlabelled set is NOT expanded unless the extraction explicitly
+    says it applies to every lot. Reference values never supply missing weights.
+    """
+    extracted = scoring_copy(extracted)
+    gold = reference_lots(truth)
+    items = extracted.get("criteria") or []
+    shared = extracted.get("same_for_all_lots", False)
+    problem = scope_error(items, shared, extracted.get("lot_ids") or [])
+    grouped = group_criteria(items)
+    pred = [{"lot": None if key == "all" else key, "criteria": value} for key, value in grouped.items()]
+    declared = {lot_key(x) for x in extracted.get("lot_ids", [])} - {"all"}
+    gold_labels = [lot_key(lot.get("lot")) for lot in gold]
+    known_labels = set(gold_labels) - {"all"}
+    inventory_assessable = len(known_labels) == len(gold_labels) and bool(gold_labels)
+    unknown_lots = sorted(declared - known_labels) if inventory_assessable else []
+    if unknown_lots:
+        problem = "The extracted inventory contains unknown lots: " + ", ".join(unknown_lots)
+    inventory_complete = declared == known_labels if inventory_assessable else None
+    if shared and items and not problem:
+        pred = [{"lot": lot.get("lot"), "criteria": items} for lot in gold]
+    gold_signatures = [tuple(decimal_weights(lot["criteria"])) for lot in gold]
+    pred_signatures = [tuple(decimal_weights(lot["criteria"])) for lot in pred
+                       if complete_weights(lot["criteria"])]
+    unordered_matches = sum((Counter(gold_signatures) & Counter(pred_signatures)).values())
+    counts = {"tp": 0, "fp": 0, "fn": 0}
+    pred_labels = [lot_key(lot.get("lot")) for lot in pred]
+    labelled = (all(k != "all" for k in gold_labels + pred_labels)
+                and len(set(gold_labels)) == len(gold_labels)
+                and len(set(pred_labels)) == len(pred_labels))
+    pairs = []
+    mode = "by_lot_label"
+    if problem:
+        mode = "invalid_scope"
+    elif len(gold) == len(pred) == 1:
+        if gold_labels[0] == pred_labels[0] or "all" in (gold_labels[0], pred_labels[0]):
+            pairs = [(gold[0], pred[0])]
+            mode = "single_set"
+        else:
+            pairs = [(gold[0], None), (None, pred[0])]
+    elif labelled:
+        gm = dict(zip(gold_labels, gold)); pm = dict(zip(pred_labels, pred))
+        pairs = [(gm.get(key), pm.get(key)) for key in sorted(set(gm) | set(pm))]
+    else:
+        mode = "unresolved_lot_alignment"
+    if not pairs:
+        pairs = [(lot, None) for lot in gold] + [(None, lot) for lot in pred]
+    matched_lots = 0
+    for g, e in pairs:
+        gw = decimal_weights(g["criteria"]) if g else []
+        ew = decimal_weights(e["criteria"]) if e else []
+        matches = score_weights(ew, gw, counts)
+        matched_lots += int(bool(g and e) and matches == len(gw) == len(ew) and complete_weights(e["criteria"]))
+    exact = bool(gold) and matched_lots == len(gold) == len(pred) and not problem
+    return {**counts, "exact": exact, "mode": mode, "scope_error": problem,
+            "inventory_complete": inventory_complete, "declared_lots": sorted(declared),
+            "unlisted_reference_lots": sorted(known_labels - declared) if inventory_assessable else None,
+            "unknown_declared_lots": unknown_lots,
+            "weight_match_tolerance": WEIGHT_MATCH_TOLERANCE,
+            "unordered_weight_policy": "strict decimal equality; diagnostic only",
+            "reference_lots": len(gold), "extracted_lots": len(pred),
+            "matched_lots": matched_lots, "unordered_matching_lots": unordered_matches,
+            "unordered_exact": bool(gold) and unordered_matches == len(gold) == len(pred) and not problem,
+            "reference": [{"lot": lot.get("lot"), "weights": decimal_weights(lot["criteria"])} for lot in gold],
+            "extracted": [{"lot": lot.get("lot"), "weights": decimal_weights(lot["criteria"])} for lot in pred]}
+
+
 def add_scores(metrics, e, g, expected_total=100.0, tolerance=0.5):
-    """Skip unavailable references; empty predictions remain misses."""
+    """CPV remains micro-scored; criteria uses equal-procurement macro averages."""
     pairs = {"main_cpv": ((e.get("main_cpv") or "").strip(), (g.get("main_cpv") or "").strip()),
              "additional_cpv": ([c.strip() for c in e.get("additional_cpv", [])],
-                                [c.strip() for c in g.get("additional_cpv", [])]),
-             "criteria": (weights(e.get("criteria", [])), weights(g.get("criteria", [])))}
+                                [c.strip() for c in g.get("additional_cpv", [])])}
     for name, (pred, gold) in pairs.items():
-        if not gold or (name == "criteria" and criteria_reference(g.get("criteria", []), expected_total, tolerance)["status"] != "available"):
+        if not gold:
             continue
         tally = metrics[name]
         tally["records"] += 1
-        # Criteria with missing predicted weights cannot receive exact agreement.
-        exact = pred == gold if name == "main_cpv" else sorted(pred) == sorted(gold)
-        if name == "criteria":
-            exact = exact and complete_weights(e.get("criteria", []))
-        tally["exact_matches"] += int(exact)
+        tally["exact_matches"] += int(pred == gold if name == "main_cpv" else sorted(pred) == sorted(gold))
         (score_scalar if name == "main_cpv" else score_multiset)(pred, gold, tally)
+    if lot_reference(g, expected_total, tolerance)["status"] != "available":
+        return
+    result = compare_criteria(e, g)
+    tally = metrics["criteria"]
+    tally["records"] += 1
+    tally["exact_matches"] += int(result["exact"])
+    for key in ("tp", "fp", "fn"):
+        tally[key] += result[key]
+    for key, value in zip(("precision_sum", "recall_sum", "f1_sum"), prf(result)):
+        tally[key] = tally.get(key, 0.0) + value
+    for key in ("reference_lots", "extracted_lots", "matched_lots", "unordered_matching_lots"):
+        tally[key] = tally.get(key, 0) + result[key]
 
 
 def finish_metrics(metrics):
-    for counts in metrics.values():
+    for name, counts in metrics.items():
         p, r, f = prf(counts)
+        if name == "criteria":
+            counts["micro_diagnostic"] = dict(zip(("precision", "recall", "f1"), (p, r, f)))
+            n = counts["records"]
+            p, r, f = [counts.get(k, 0) / n if n else 0 for k in ("precision_sum", "recall_sum", "f1_sum")]
+            counts["averaging"] = "macro_per_procurement"
+            total_lots = counts.get("reference_lots", 0)
+            counts["lot_exact_match_rate"] = counts.get("matched_lots", 0) / total_lots if total_lots else None
+        else:
+            counts["averaging"] = "micro"
         scoreable = bool(counts["records"])
         counts.update(precision=p if scoreable else None, recall=r if scoreable else None,
                       f1=f if scoreable else None,
-                      agreement=counts["exact_matches"] / counts["records"] if scoreable else None)
+                      exact_match_rate=counts["exact_matches"] / counts["records"] if scoreable else None)
     return metrics
 
 
 def evaluate(truth, extracted, ids=None, expected_total=100.0, tolerance=0.5):
-    """Report matched-only agreement and reference-universe coverage separately.
+    """Evaluate output IDs only, optionally narrowed by an explicit ID list.
 
-    With ids, that explicit set defines the evaluation scope. Otherwise all IDs
-    on either side are included. A missing file is not proof a run was attempted
-    or failed; only its absence is known. CPV status does not describe criteria.
+    An existing output with empty fields is still scored against eligible
+    references. IDs without an output never enter the scoring denominator.
     """
     if not math.isfinite(expected_total) or expected_total <= 0 or not math.isfinite(tolerance) or not 0 <= tolerance < expected_total:
         raise ValueError("Criteria total must be positive and finite; tolerance must be finite and between zero and the total (exclusive).")
-    selected = set(map(str, ids)) if ids is not None else set(truth) | set(extracted)
+    requested = set(map(str, ids)) if ids is not None else set(extracted)
+    selected = requested & set(extracted)
     shared = selected & set(truth) & set(extracted)
     reference_ids = selected & set(truth)
-    matched, coverage_scores = new_metrics(), new_metrics()
+    matched = new_metrics()
+    stated = new_metrics()
     strata, rows = {}, []
     for eis_id in sorted(selected):
         e, g = extracted.get(eis_id, EMPTY), truth.get(eis_id, EMPTY)
         present, referenced = eis_id in extracted, eis_id in truth
         status = (e.get("status") or "legacy_unlabelled") if present else "missing_output"
-        if referenced:
-            add_scores(coverage_scores, e, g, expected_total, tolerance)
         if present:
             stratum = strata.setdefault(status, {"outputs": 0, "matched_references": 0, "metrics": new_metrics()})
             stratum["outputs"] += 1
             if referenced:
                 stratum["matched_references"] += 1
                 # CPV-only strata: don't condition criteria scores on another branch.
-                add_scores(stratum["metrics"], {**e, "criteria": []}, {**g, "criteria": []})
+                add_scores(stratum["metrics"], {**e, "criteria": []}, {**g, "criteria": [], "criteria_lots": []})
         if eis_id in shared:
             add_scores(matched, e, g, expected_total, tolerance)
+            add_scores(stated, scoring_copy(e, stated_only=True), g, expected_total, tolerance)
         gc, ec = g.get("criteria", []), e.get("criteria", [])
-        g_w, e_w = weights(gc), weights(ec)
-        reference = criteria_reference(gc, expected_total, tolerance)
+        g_w, e_w = decimal_weights(gc), decimal_weights(scoring_copy(e)["criteria"])
+        reference = lot_reference(g, expected_total, tolerance)
+        comparison = compare_criteria(e, g)
         criterion_reference = reference["status"]
         gm, em = (g.get("main_cpv") or "").strip(), (e.get("main_cpv") or "").strip()
         ga, ea = [c.strip() for c in g.get("additional_cpv", [])], [c.strip() for c in e.get("additional_cpv", [])]
@@ -337,29 +521,32 @@ def evaluate(truth, extracted, ids=None, expected_total=100.0, tolerance=0.5):
                      "additional_cpv_extracted": "; ".join(ea), "additional_cpv_truth": "; ".join(ga),
                      "additional_cpv_match": sorted(ea) == sorted(ga) if ga else "",
                      "weights_extracted": "; ".join(map(str, e_w)), "weights_truth": "; ".join(map(str, g_w)),
-                     "weights_match": e_w == g_w and complete_weights(ec) if criterion_reference == "available" else "",
+                     "weights_match": comparison["exact"] if criterion_reference == "available" else "",
                      "criteria_names_extracted": " | ".join(c.get("name") or "" for c in ec),
-                     "criteria_names_truth": " | ".join(c.get("name") or "" for c in gc)})
+                     "criteria_names_truth": " | ".join(c.get("name") or "" for c in gc),
+                     "criteria_lot_details": json.dumps({"reference_checks": reference["lots"], **comparison}, ensure_ascii=False)})
     for stratum in strata.values():
         stratum["metrics"] = {k: v for k, v in finish_metrics(stratum["metrics"]).items() if k != "criteria"}
-    summary = {"criteria_reference_policy": {"expected_total": expected_total, "tolerance": tolerance, "round_before_check": False},
-               "weight_policy": "nonnegative weights, Python integer round (ties to even)",
-               "scope": "explicit_ids" if ids is not None else "all_loaded_ids",
+    summary = {"criteria_reference_policy": {"expected_total": expected_total, "tolerance": tolerance, "round_before_check": False, "unit": "each lot; all lots must be eligible"},
+               "weight_policy": "criteria one-to-one matching within 0.01 absolute points; per-procurement macro P/R/F1; label-aware primary comparison",
+               "scope": "extracted_ids_filtered" if ids is not None else "extracted_ids",
+               "requested_ids_without_output": sorted(requested - set(extracted)),
                "selected_ids": sorted(selected),
                "coverage": {"selected": len(selected), "references": len(reference_ids),
                             "outputs": len(selected & set(extracted)), "matched": len(shared),
-                            "missing_output_ids": sorted(reference_ids - set(extracted)),
                             "missing_reference_ids": sorted((selected & set(extracted)) - set(truth)),
-                            "missing_both_ids": sorted(selected - set(truth) - set(extracted)),
-                            "attempted": None, "failed": None},
-               "reference_coverage": {name: {"available": coverage_scores[name]["records"],
-                                             "unavailable": len(reference_ids) - coverage_scores[name]["records"]}
+                            },
+               "reference_coverage": {name: {"available": matched[name]["records"],
+                                             "unavailable": len(reference_ids) - matched[name]["records"]}
                                       for name in FIELD_NAMES},
                "matched_records": finish_metrics(matched),
-               "reference_universe": finish_metrics(coverage_scores), "cpv_status_strata": strata}
+               "cpv_status_strata": strata,
+               "criteria_stated_only": finish_metrics(stated)["criteria"],
+               "defaults_applied": sum(c.get("weight_source") == "sole_criterion_default"
+                   for eid in selected for c in extracted[eid].get("criteria", [])),
+               "name_policy": "Separate manual semantic review; weight agreement does not establish name accuracy."}
     summary["worklists"] = {
         "criteria_mismatch_ids": [r["eis_id"] for r in rows if r["output_present"] and r["weights_match"] is False],
-        "criteria_missing_output_ids": [r["eis_id"] for r in rows if not r["output_present"] and r["criteria_reference"] == "available"],
         "criteria_reference_excluded": {
             reason: [r["eis_id"] for r in rows if r["reference_present"] and r["criteria_reference"] == reason]
             for reason in ("missing", "incomplete", "total_mismatch")}}
@@ -385,12 +572,13 @@ def audit_ground_truth(path):
 
 
 def print_metrics(label, metrics):
-    """Print fixed-width metrics; keep full precision in the JSON summary."""
+    """Print declared averaging and per-procurement exact match."""
     print(f"\n{label}")
-    print(f"{'Field':<18} {'Records':>7} {'Agreement':>9} {'P':>6} {'R':>6} {'F1':>6}  tp/fp/fn")
+    print("CPV: micro P/R/F1. Criteria: macro P/R/F1 per procurement; pooled tp/fp/fn are diagnostics only.")
+    print(f"{'Field':<18} {'Records':>7} {'Exact match':>11} {'P':>6} {'R':>6} {'F1':>6}  tp/fp/fn")
     for field, c in metrics.items():
-        values = [f"{c[k]:.2f}" if c[k] is not None else "-" for k in ("agreement", "precision", "recall", "f1")]
-        print(f"{field:<18} {c['records']:>7} {values[0]:>9} {values[1]:>6} {values[2]:>6} {values[3]:>6}  {c['tp']}/{c['fp']}/{c['fn']}")
+        values = [f"{c[k]:.2f}" if c[k] is not None else "-" for k in ("exact_match_rate", "precision", "recall", "f1")]
+        print(f"{field:<18} {c['records']:>7} {values[0]:>11} {values[1]:>6} {values[2]:>6} {values[3]:>6}  {c['tp']}/{c['fp']}/{c['fn']}")
 
 
 def main():
@@ -400,11 +588,14 @@ def main():
     parser.add_argument("--ground-truth", help="default: newest data/raw_*.json")
     parser.add_argument("--csv", help="default: validation_<folder>.csv")
     parser.add_argument("--summary", help="default: CSV filename with .summary.json suffix")
-    parser.add_argument("--ids", nargs="+", help="explicit procurement IDs intended for this evaluation")
+    parser.add_argument("--ids-file", help="One procurement ID per line")
+    parser.add_argument("--ids", nargs="+", help="restrict evaluation to these IDs with extraction outputs")
     parser.add_argument("--criteria-total", type=float, default=100.0, help="reference weight total required for this cohort (default 100)")
     parser.add_argument("--criteria-tolerance", type=float, default=0.5, help="absolute tolerance on unrounded reference weights (default 0.5)")
     parser.add_argument("--check-reference", action="store_true", help="audit duplicate reference IDs only, without loading outputs or scoring")
     args = parser.parse_args()
+    if args.ids_file:
+        args.ids = list(args.ids or []) + Path(args.ids_file).read_text(encoding="utf-8").split()
     csv_path = Path(args.csv or f"validation_{Path(args.extracted).name}.csv")
     summary_path = Path(args.summary) if args.summary else csv_path.with_suffix(".summary.json")
     if csv_path.resolve() == summary_path.resolve():
@@ -422,7 +613,9 @@ def main():
             parser.exit(2, "Duplicate reference IDs found; resolve upstream before evaluation. No records were changed.\n")
         return audit
     try:
-        truth, extracted = load_ground_truth(gt_path), load_extracted(args.extracted)
+        extracted = load_extracted(args.extracted)
+        selected = set(extracted) if args.ids is None else set(extracted) & set(args.ids)
+        truth = load_ground_truth(gt_path, selected)
     except ValueError as error:
         parser.error(str(error))
     try:
@@ -430,18 +623,25 @@ def main():
     except ValueError as error:
         parser.error(str(error))
     summary.update(ground_truth=str(gt_path), extracted_folder=str(args.extracted))
+    csv_path.parent.mkdir(parents=True, exist_ok=True)
+    review_path = csv_path.with_suffix(".names_review.csv")
+    if review_path.resolve() in {csv_path.resolve(), summary_path.resolve()}:
+        parser.error("Review CSV must differ from output paths")
+    write_names_review(review_path, truth, extracted, summary["selected_ids"])
     write_csv(csv_path, rows)
     summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
     c = summary["coverage"]
-    print(f"Matched {c['matched']} of {c['references']} reference procurements; "
-          f"missing outputs: {len(c['missing_output_ids'])}; "
+    print(f"Evaluating {c['outputs']} extraction outputs; matched references: {c['matched']}; "
           f"outputs without reference: {len(c['missing_reference_ids'])}.")
-    print("Missing output does not establish a failed or attempted run.")
-    for scope in ("matched_records", "reference_universe"):
-        print_metrics(scope.replace("_", " ").capitalize(), summary[scope])
+    if summary["requested_ids_without_output"]:
+        print("Requested IDs without extraction outputs (excluded): " +
+              ", ".join(summary["requested_ids_without_output"]))
+    print_metrics("Agreement with eligible reference values", summary["matched_records"])
+    print_metrics("Criteria using stated weights only", {"criteria": summary["criteria_stated_only"]})
+    print("Defaulted sole-criterion weights:", summary["defaults_applied"])
+    print("Names require manual review:", review_path)
     work = summary["worklists"]
     print("\nCriteria weights differ, check names by hand: " + (", ".join(work["criteria_mismatch_ids"]) or "none"))
-    print("Criteria missing outputs: " + (", ".join(work["criteria_missing_output_ids"]) or "none"))
     for reason, ids in work["criteria_reference_excluded"].items():
         print(f"Criteria references excluded ({reason}, {len(ids)}): " + (", ".join(ids) or "none"))
     print("\nCPV status strata (counts and scores in JSON):", {k: v["outputs"] for k, v in summary["cpv_status_strata"].items()})

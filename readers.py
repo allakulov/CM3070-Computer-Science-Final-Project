@@ -36,7 +36,7 @@ import pdfplumber
 
 # CONFIGURATION
 
-CONTAINER_EXTS = (".zip", ".edoc")       # archive types to open instead of read as text
+CONTAINER_EXTS = (".zip", ".edoc", ".7z")       # archive types to open instead of read as text
 MAX_CONTAINER_DEPTH = 5                  # stop runaway recursion on nested archives
 MIN_USEFUL_CHARS = 50                    # OCR sparse PDF pages that also contain images
 
@@ -58,12 +58,37 @@ RAPIDOCR_MODEL_TYPE = "small"            # PP-OCRv6 tier for the page OCR ('smal
 # ARCHIVES
 
 def iter_container_files(data, container_name, depth=0):
-    """Yield (filename, bytes) for every leaf file inside a ZIP or .edoc archive.
+    """Yield (filename, bytes) for every leaf file inside a ZIP, .edoc or .7z archive.
 
     Names retain the archive chain. Signature metadata inside .edoc containers
     is skipped. Invalid archive bytes are yielded unchanged as one leaf file.
     """
     if depth >= MAX_CONTAINER_DEPTH:
+        print(f"    archive depth limit: {container_name}")
+        yield container_name, data
+        return
+    if container_name.lower().endswith(".7z"):
+        try:
+            import py7zr
+            with TemporaryDirectory(prefix="procurement_7z_") as folder:
+                root = Path(folder)
+                with py7zr.SevenZipFile(io.BytesIO(data), "r") as archive:
+                    archive.extractall(path=root)
+                for path in sorted(root.rglob("*")):
+                    if path.is_symlink() or not path.is_file():
+                        continue
+                    if not path.resolve().is_relative_to(root.resolve()):
+                        continue
+                    name = path.relative_to(root).as_posix()
+                    source = f"{container_name} > {name}"
+                    payload = path.read_bytes()
+                    if name.lower().endswith(CONTAINER_EXTS):
+                        yield from iter_container_files(payload, source, depth + 1)
+                    else:
+                        yield source, payload
+        except Exception as error:
+            print(f"    could not unpack {container_name}: {error}")
+            yield container_name, data
         return
     try:
         with zipfile.ZipFile(io.BytesIO(data)) as archive:
@@ -140,6 +165,8 @@ def read_plain(data, name):
             lower = ".docx"
         if lower.endswith(".docx"):
             return "\n".join(p.text for p in docx.Document(io.BytesIO(data)).paragraphs)
+        if lower.endswith(".xls"):
+            return _xls_text_and_tables(data)[0]
         if lower.endswith((".xlsx", ".xlsm")):
             workbook = openpyxl.load_workbook(io.BytesIO(data), read_only=True, data_only=True)
             rows = []
@@ -298,6 +325,8 @@ def extract_tables(data, name):
             lower = ".docx"
         if lower.endswith(".docx"):
             rows_list = _tables_from_docx(data)
+        elif lower.endswith(".xls"):
+            rows_list = _xls_text_and_tables(data)[1]
         elif lower.endswith((".xlsx", ".xlsm")):
             rows_list = _tables_from_xlsx(data)
         elif lower.endswith(".pdf"):
@@ -323,16 +352,49 @@ _tatr_detection = None
 _tatr_structure = None
 
 
+# def _load_tatr(include_structure=True):
+#     """Load detection, plus structure when requested by comparison tools."""
+#     global _tatr_processor, _tatr_detection, _tatr_structure
+#     if _tatr_detection is None:
+#         from transformers import AutoImageProcessor, TableTransformerForObjectDetection
+#         _tatr_processor = AutoImageProcessor.from_pretrained(TATR_DETECTION_MODEL)
+#         _tatr_detection = TableTransformerForObjectDetection.from_pretrained(TATR_DETECTION_MODEL)
+#     if include_structure and _tatr_structure is None:
+#         from transformers import TableTransformerForObjectDetection
+#         _tatr_structure = TableTransformerForObjectDetection.from_pretrained(TATR_STRUCTURE_MODEL)
+#     return _tatr_processor, _tatr_detection, _tatr_structure
+
 def _load_tatr(include_structure=True):
-    """Load detection, plus structure when requested by comparison tools."""
+    """Load table models once, using explicit processor settings.
+
+    Source: https://huggingface.co/microsoft/table-transformer-detection/blob/main/preprocessor_config.json"""
     global _tatr_processor, _tatr_detection, _tatr_structure
+
+    from transformers import (
+        DetrImageProcessor,
+        TableTransformerForObjectDetection,
+    )
+
     if _tatr_detection is None:
-        from transformers import AutoImageProcessor, TableTransformerForObjectDetection
-        _tatr_processor = AutoImageProcessor.from_pretrained(TATR_DETECTION_MODEL)
-        _tatr_detection = TableTransformerForObjectDetection.from_pretrained(TATR_DETECTION_MODEL)
+        # Preserve the detection model's original image-sizing settings.
+        _tatr_processor = DetrImageProcessor(
+            size={"shortest_edge": 800, "longest_edge": 800},
+        )
+        _tatr_detection = (
+            TableTransformerForObjectDetection.from_pretrained(
+                TATR_DETECTION_MODEL,
+                use_pretrained_backbone=False,
+            )
+        )
+
     if include_structure and _tatr_structure is None:
-        from transformers import TableTransformerForObjectDetection
-        _tatr_structure = TableTransformerForObjectDetection.from_pretrained(TATR_STRUCTURE_MODEL)
+        _tatr_structure = (
+            TableTransformerForObjectDetection.from_pretrained(
+                TATR_STRUCTURE_MODEL,
+                use_pretrained_backbone=False,
+            )
+        )
+
     return _tatr_processor, _tatr_detection, _tatr_structure
 
 
@@ -598,6 +660,35 @@ def _docx_text_and_tables(data):
     return text, rows_list
 
 
+def _xls_text_and_tables(data):
+    """Read legacy Excel sheets, keeping names and empty column positions."""
+    import xlrd
+    workbook = xlrd.open_workbook(file_contents=data)
+    text_lines, tables = [], []
+    try:
+        for sheet in workbook.sheets():
+            heading = f"Worksheet: {sheet.name}"
+            rows = [[heading]]
+            text_lines.append(heading)
+            for row_index in range(sheet.nrows):
+                cells = []
+                for cell in sheet.row(row_index):
+                    value = cell.value
+                    if cell.ctype == xlrd.XL_CELL_DATE:
+                        value = xlrd.xldate_as_datetime(value, workbook.datemode).isoformat(sep=" ")
+                    elif cell.ctype == xlrd.XL_CELL_NUMBER and value.is_integer():
+                        value = int(value)
+                    cells.append(str(value) if value != "" else "")
+                if any(cell.strip() for cell in cells):
+                    rows.append(cells)
+                    text_lines.append("\t".join(cells))
+            if len(rows) > 1:
+                tables.append(rows)
+    finally:
+        workbook.release_resources()
+    return "\n".join(text_lines), tables
+
+
 def _xlsx_text_and_tables(data):
     """Read an XLSX's cell text and per-sheet tables in one pass (read-only sheets iterate once)."""
     workbook = openpyxl.load_workbook(io.BytesIO(data), read_only=True, data_only=True)
@@ -623,7 +714,7 @@ def read_file(data, name, info=None, *, include_tables=True):
       data: The file's raw bytes.
       name: File name; its extension selects the reader.
       info: Optional dict, filled in for the caller to report on the read, with keys
-        reader ("pdf"/"doc"/"docx"/"xlsx"/"text"/"ocr", or None if unread), reason,
+        reader ("pdf"/"doc"/"docx"/"xls"/"xlsx"/"text"/"ocr", or None if unread), reason,
         parse_seconds, ocr_seconds, ocr_text, ocr_page_numbers and warnings.
       include_tables: False for the text-only entry point.
 
@@ -670,6 +761,9 @@ def read_file(data, name, info=None, *, include_tables=True):
         elif lower.endswith(".docx"):
             plain, rows_list = _docx_text_and_tables(data)
             fmt = "docx"
+        elif lower.endswith(".xls"):
+            plain, rows_list = _xls_text_and_tables(data)
+            fmt = "xls"
         elif lower.endswith((".xlsx", ".xlsm")):
             plain, rows_list = _xlsx_text_and_tables(data)
             fmt = "xlsx"

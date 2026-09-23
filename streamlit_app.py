@@ -93,31 +93,6 @@ def available_models():
         return []
 
 
-# def record_from_state(eis_id, state):
-#     """Assemble the record the pipeline saves (matching extract_graph.process_one)."""
-#     return {
-#         "eis_id": eis_id, "source_files": state.get("source_files", []),
-#         "candidates": state.get("candidates", []), "attempts": state.get("attempts", 0),
-#         "model_seconds": round(state.get("cpv_seconds", 0.0) + state.get("criteria_seconds", 0.0), 1),
-#         "extracted": state.get("final"), "critique": state.get("critique"),
-#         "evaluation_criteria": state.get("criteria"), "criteria_check": state.get("criteria_check"),
-#         "standards": state.get("standards"),
-#     }
-
-
-# def save_extraction(eis_id, record, state):
-#     """Write the same three files the CLI writes: the record, its tables, and its OCR."""
-#     for home in (EXTRACTED_HOME, TABLES_HOME, OCR_HOME):
-#         home.mkdir(parents=True, exist_ok=True)
-#     (EXTRACTED_HOME / f"{eis_id}.json").write_text(
-#         json.dumps(record, indent=2, ensure_ascii=False), encoding="utf-8")
-#     (TABLES_HOME / f"{eis_id}.json").write_text(
-#         json.dumps(state.get("table_records", []), indent=2, ensure_ascii=False), encoding="utf-8")
-#     (OCR_HOME / f"{eis_id}.json").write_text(
-#         json.dumps(state.get("ocr_records", []), indent=2, ensure_ascii=False), encoding="utf-8")
-#     return EXTRACTED_HOME / f"{eis_id}.json"
-
-
 def iter_standards(standards):
     """Yield (name, flag) per standard, best-effort across output shapes."""
     if not standards:
@@ -149,15 +124,27 @@ def _std_flag(val):
 
 
 def unified_rows(record):
-    """Flatten CPV, criteria, and standards into a numbered Field/Value table."""
+    """Show lot scope and distinguish source weights from defaults."""
     extracted = record.get("extracted") or {}
     rows = [{"Field": "Main CPV", "Value": extracted.get("main_cpv") or ""},
             {"Field": "Additional CPV", "Value": ", ".join(extracted.get("additional_cpv") or [])}]
-    for i, c in enumerate((record.get("evaluation_criteria") or {}).get("criteria") or [], start=1):
+    criteria = record.get("evaluation_criteria") or {}
+    rows.append({"Field": "Criteria extraction status", "Value": criteria.get("extraction_status", "legacy")})
+    if criteria.get("error"):
+        rows.append({"Field": "Criteria error", "Value": criteria["error"]})
+    for i, c in enumerate(criteria.get("criteria") or [], 1):
+        lot = c.get("lot") or "shared / unknown"
         weight = c.get("weight")
-        rows.append({"Field": f"Criterion {i}", "Value": c.get("name") or ""})
-        rows.append({"Field": f"Weight {i}", "Value": "" if weight is None else f"{weight:g}"})
-    for i, (name, flag) in enumerate(iter_standards(record.get("standards")), start=1):
+        value = "" if weight is None else str(weight)
+        if c.get("weight_source") == "sole_criterion_default":
+            value += " (sole-criterion default; not stated in source)"
+        rows.append({"Field": f"Criterion {i} (lot {lot})", "Value": c.get("name") or ""})
+        rows.append({"Field": f"Weight {i} (lot {lot})", "Value": value})
+    for lot, check in (criteria.get("lot_checks") or {}).items():
+        rows.append({"Field": f"Lot {lot} numerical check", "Value": check.get("status", "unknown")})
+    if criteria.get("trace_dir"):
+        rows.append({"Field": "Criteria evidence traces", "Value": criteria["trace_dir"]})
+    for i, (name, flag) in enumerate(iter_standards(record.get("standards")), 1):
         rows.append({"Field": f"Standard {i}", "Value": name + (f" ({flag})" if flag else "")})
     return rows
 

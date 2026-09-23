@@ -26,3 +26,10 @@ validation_details.csv
 my_tree_structure.txt
 tatr_probe.txt
 output.md
+
+# Local experiments and final evaluation outputs
+/local_archive/
+/runs/
+/criteria_worker_traces/
+/final_cleanup/
+/final_cleanup.zip
