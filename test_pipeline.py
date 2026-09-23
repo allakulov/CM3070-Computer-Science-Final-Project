@@ -212,8 +212,9 @@ class Test_execution_paths(unittest.TestCase):
 
     def test_count_alone_does_not_invent_lot_labels(self):
         self.assertEqual(len(make_plan({"labels":["2","4"],"count":6})["tasks"]), 2)
-        with self.assertRaises(ValueError):
-            make_plan({"labels":[],"count":6})
+        plan = make_plan({"labels": [], "count": 6})
+        self.assertEqual(plan["tasks"][0]["lot_labels"], [None])
+        self.assertTrue(plan["tasks"][0]["fallback"])
 
     def test_review_summary_distinguishes_attempts_from_decisions(self):
         findings = [{"review": {"status": "decided", "applies": True}},
