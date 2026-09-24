@@ -33,3 +33,4 @@ output.md
 /criteria_worker_traces/
 /final_cleanup/
 /final_cleanup.zip
+/compare_lot_patterns.py
