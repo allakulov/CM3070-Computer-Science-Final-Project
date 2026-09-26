@@ -13,9 +13,7 @@ national scheme is found even when the catalog has never seen it.
 
 Repeats of the same standard are merged into one finding that records every tender
 phase it appears in (selection and specification are requirements the bidder must
-meet, award means it earns points) and keeps a few passages of evidence. A green
-flag marks the environmental schemes and standards, which is the raw material for a
-later green-procurement label.
+meet, award means it earns points) and keeps a few passages of evidence.
 
 Run:
     python standards.py --id 123450
@@ -74,9 +72,6 @@ MEANING_CHARS = 70                                               # text read bac
 
 CATALOG = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
 SCHEMES = CATALOG["schemes"]
-GREEN_CODES = CATALOG["green_codes"]
-GREEN_REGULATIONS = CATALOG["green_regulations"]
-GREEN_CUES = CATALOG["green_cues"]
 SCHEME_CUES = CATALOG["scheme_cues"]
 SECTION_MARKERS = CATALOG["section_markers"]
 
@@ -164,10 +159,10 @@ def find_standards(text, tables=None):
                      for position, _ in find_keyword(folded, cue))
     found = {}
 
-    def add(name, category, green, start, end):
+    def add(name, category, start, end):
         """Record one occurrence, merging repeats of the same standard."""
         finding = found.setdefault(name, {"name": name, "category": category,
-                                          "green": green, "count": 0,
+                                          "count": 0,
                                           "phases": [], "occurrences": []})
         phase = phase_at(start, headers)
         finding["count"] += 1
@@ -177,11 +172,10 @@ def find_standards(text, tables=None):
 
     for match in STANDARD_PATTERN.finditer(text):
         name = " ".join(match.group().split()).upper()
-        green = any(code in name.split(":")[0] for code in GREEN_CODES)
-        add(name, "standard", green, match.start(), match.end())
+        add(name, "standard", match.start(), match.end())
 
     for match in NATIONAL_PATTERN.finditer(text):
-        add(f"Ministru kabineta noteikumi Nr. {match.group(1)}", "regulation", False,
+        add(f"Ministru kabineta noteikumi Nr. {match.group(1)}", "regulation",
             match.start(), match.end())
 
     # Prefer explicit instrument wording. Bare identifiers do not establish type.
@@ -189,20 +183,19 @@ def find_standards(text, tables=None):
     for match in EU_TYPED_PATTERN.finditer(text):
         kind = "directive" if fold(match.group("kind")).startswith("direkt") or match.group("kind").lower().startswith("direct") else "regulation"
         number = match.group("number")
-        add(f"EU {kind} {number}", kind,
-            kind == "regulation" and number in GREEN_REGULATIONS, match.start(), match.end())
+        add(f"EU {kind} {number}", kind, match.start(), match.end())
         spans.append(match.span())
     for pattern in EU_PATTERNS:
         for match in pattern.finditer(text):
             if any(match.start() < end and match.end() > start for start, end in spans):
                 continue
-            add(f"EU act {match.group(1)}", "legal_act", False, match.start(), match.end())
+            add(f"EU act {match.group(1)}", "legal_act", match.start(), match.end())
             spans.append(match.span())
 
     for scheme, entry in SCHEMES.items():
         for alias in entry["aliases"]:
             for start, end in find_keyword(folded, alias):
-                add(scheme, "scheme", entry["green"], start, end)
+                add(scheme, "scheme", start, end)
 
     # schemes the notice defines for itself, kept only when the wording names a scheme
     for match in DEFINED_PATTERN.finditer(text):
@@ -210,9 +203,8 @@ def find_standards(text, tables=None):
         if not any(cue in meaning for cue in SCHEME_CUES):
             continue
         acronym = match.group(1)
-        green = any(cue in meaning for cue in GREEN_CUES)
         for use in re.finditer(r"\b" + re.escape(acronym) + r"\b", text):
-            add(acronym, "defined_scheme", green, use.start(), use.end())
+            add(acronym, "defined_scheme", use.start(), use.end())
 
     for finding in found.values():
         finding["evidence"] = sample_evidence(finding.pop("occurrences"))
@@ -243,10 +235,9 @@ def print_report(standards):
         return
     print(f"found {len(standards)} standards and certificates:")
     for finding in standards:
-        green = "  [green]" if finding["green"] else ""
         phases = ", ".join(finding["phases"])
         print(f"  [{finding['category']}] {finding['name']} "
-              f"(phases: {phases}, seen {finding['count']}x){green}")
+              f"(phases: {phases}, seen {finding['count']}x)")
         for passage in finding["evidence"]:
             print(f"      ({passage['phase']}) {passage['text']}")
 

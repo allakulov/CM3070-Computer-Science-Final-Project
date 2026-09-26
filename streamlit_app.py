@@ -1,33 +1,17 @@
-"""Streamlit UI
+"""Streamlit interface for procurement extraction and standards review.
 
-This app provides a UI for extract_graph.py and review_standards.py. It imports
-and calls the existing modules without modifying them. Selected folders are passed
-by reassigning their DOWNLOADS_DIR and EXTRACTED_DIR globals at runtime, using
-the same configuration variables as the command-line interfaces.
+Run: streamlit run streamlit_app.py
+Extraction uses extract_graph.py; review decisions use review_standards.py.
+Results are saved to extracted/, with supporting tables/ and ocr/ files.
 
-Extraction results are saved to the project's extracted/ folder.
-
-Resources used when building the app:
-- The LangGraph human-in-the-loop UI, replacing input() with on-screen options
-  to approve, amend, or request more information, was adapted from:
-  https://dev.to/sreeni5018/beyond-input-building-production-ready-human-in-the-loop-ai-with-langgraph-2en9
-- The interrupt pattern follows the LangChain documentation:
-  https://docs.langchain.com/oss/python/langchain/human-in-the-loop
-- The LangGraph debug stream for updates:
-  https://sj-langchain.readthedocs.io/en/latest/callbacks/langchain.callbacks.streamlit.streamlit_callback_handler.StreamlitCallbackHandler.html
-- The Latvia color theme and Open Sans font are configured in
-  .streamlit/config.toml.
-
-Run from the project root:
-    pip install streamlit
-    ollama serve                       
-    streamlit run streamlit_app.py
+Human-review UI reference:
+https://dev.to/sreeni5018/beyond-input-building-production-ready-human-in-the-loop-ai-with-langgraph-2en9
+Interrupts: https://docs.langchain.com/oss/python/langchain/human-in-the-loop
 """
 
 from __future__ import annotations
 
 import io
-import json
 import time
 from contextlib import redirect_stdout
 from pathlib import Path
@@ -35,19 +19,18 @@ from pathlib import Path
 import streamlit as st
 
 import extract_graph as pipeline
-from extract_graph import DOWNLOADS_DIR, EXTRACTION_MODEL, build_graph, initial_state
+from extract_graph import build_graph, initial_state
 
 try:
-    # import review_standards as reviewer
-    from review_standards import (REVIEW_PROMPT, format_evidence, review_outcome, review_summary,
-                                  load_extraction, build_reviewer, REVIEW_MODEL,
-                                  EXTRACTED_DIR, RUNS_PATH, OLLAMA_NUM_CTX)
+    from review_standards import (ReviewSession, make_decision, save_review, review_summary,
+                                  load_extraction, build_reviewer, REVIEW_MODEL, OLLAMA_NUM_CTX)
+    from review_context import load_support, evidence_rows, print_context
     from langchain_ollama import ChatOllama
-    from langgraph.types import Command
     REVIEW_OK = True
-except Exception:                               # review deps missing: offer extraction only
+except ImportError as error:
     REVIEW_OK = False
-    REVIEW_MODEL, EXTRACTED_DIR = "mistral-small", Path("extracted")
+    REVIEW_ERROR = str(error)
+    REVIEW_MODEL = "gemma4:e4b"
 
 
 st.set_page_config(page_title="Latvian procurement extraction", layout="wide")
@@ -81,6 +64,50 @@ def graph_png():
         return None
 
 
+def choose_folder(default_folder, group):
+    """Browse local folders and remember a separate location for each action."""
+    key = f"browse_{group}"
+    if key not in st.session_state:
+        st.session_state[key] = str(default_folder if default_folder.is_dir() else PROJECT_DIR)
+    folder = Path(st.session_state[key])
+    locked = group == "review" and st.session_state.get("rv_active", False)
+    st.write("Selected folder")
+    st.code(str(folder), language=None)
+    if locked:
+        st.caption("Finish the current review session before changing its folder.")
+        return folder
+    up, home = st.columns(2)
+    if up.button("Up one level", key=f"{key}_up", disabled=folder == folder.parent):
+        st.session_state[key] = str(folder.parent)
+        st.rerun()
+    if home.button("Project folder", key=f"{key}_home"):
+        st.session_state[key] = str(PROJECT_DIR)
+        st.rerun()
+    try:
+        children = sorted(p.name for p in folder.iterdir() if p.is_dir() and not p.name.startswith('.'))
+    except OSError as error:
+        st.warning(f"Cannot browse this folder: {error}")
+        children = []
+    if children:
+        child = st.selectbox("Subfolders", children, key=f"{key}_child_{folder}")
+        if st.button("Open selected subfolder", key=f"{key}_open"):
+            st.session_state[key] = str(folder / child)
+            st.rerun()
+    else:
+        st.caption("No visible subfolders. Use this folder or go up one level.")
+    with st.expander("Enter a path manually"):
+        typed = st.text_input("Folder path", value=str(folder), key=f"{key}_path_{folder}")
+        if st.button("Use this path", key=f"{key}_use"):
+            candidate = Path(typed).expanduser()
+            if not candidate.is_absolute():
+                candidate = PROJECT_DIR / candidate
+            if candidate.is_dir():
+                st.session_state[key] = str(candidate.resolve())
+                st.rerun()
+            else:
+                st.error("Folder not found. The selected folder has not changed.")
+    return folder
+
 def available_models():
     """Return installed Ollama model tags, or [] if Ollama can't be reached."""
     try:
@@ -94,69 +121,29 @@ def available_models():
 
 
 def iter_standards(standards):
-    """Yield (name, flag) per standard, best-effort across output shapes."""
-    if not standards:
-        return
-    items = standards if isinstance(standards, list) else None
-    if items is None and isinstance(standards, dict):
-        for key in ("standards", "findings", "schemes", "items", "results"):
-            if isinstance(standards.get(key), list):
-                items = standards[key]
-                break
-        if items is None:
-            for name, val in standards.items():
-                if not str(name).startswith("_"):
-                    yield str(name), _std_flag(val)
-            return
-    for it in items or []:
-        if isinstance(it, dict):
-            yield str(it.get("name") or it.get("code") or it.get("scheme") or it), _std_flag(it)
-        else:
-            yield str(it), ""
-
-
-def _std_flag(val):
-    """A short flag for a standard: green and/or phase, if present."""
-    if not isinstance(val, dict):
-        return ""
-    bits = (["green"] if val.get("green") is True else []) + ([str(val["phase"])] if val.get("phase") else [])
-    return ", ".join(bits)
+    """Read the candidate list saved by the extraction pipeline."""
+    for finding in standards or []:
+        yield finding["name"], ", ".join(finding.get("phases") or [])
 
 
 def unified_rows(record):
-    """Show lot scope and distinguish source weights from defaults."""
+    """Flatten CPV, criteria, and standards into a numbered Field/Value table."""
     extracted = record.get("extracted") or {}
     rows = [{"Field": "Main CPV", "Value": extracted.get("main_cpv") or ""},
             {"Field": "Additional CPV", "Value": ", ".join(extracted.get("additional_cpv") or [])}]
-    criteria = record.get("evaluation_criteria") or {}
-    rows.append({"Field": "Criteria extraction status", "Value": criteria.get("extraction_status", "legacy")})
-    if criteria.get("error"):
-        rows.append({"Field": "Criteria error", "Value": criteria["error"]})
-    for i, c in enumerate(criteria.get("criteria") or [], 1):
-        lot = c.get("lot") or "shared / unknown"
+    ec = record.get("evaluation_criteria") or {}
+    for i, c in enumerate(ec.get("criteria") or [], start=1):
+        scope = " (all lots)" if ec.get("same_for_all_lots") else (f" (lot {c['lot']})" if c.get("lot") else "")
         weight = c.get("weight")
-        value = "" if weight is None else str(weight)
-        if c.get("weight_source") == "sole_criterion_default":
-            value += " (sole-criterion default; not stated in source)"
-        rows.append({"Field": f"Criterion {i} (lot {lot})", "Value": c.get("name") or ""})
-        rows.append({"Field": f"Weight {i} (lot {lot})", "Value": value})
-    for lot, check in (criteria.get("lot_checks") or {}).items():
-        rows.append({"Field": f"Lot {lot} numerical check", "Value": check.get("status", "unknown")})
-    if criteria.get("trace_dir"):
-        rows.append({"Field": "Criteria evidence traces", "Value": criteria["trace_dir"]})
-    for i, (name, flag) in enumerate(iter_standards(record.get("standards")), 1):
+        rows.append({"Field": f"Criterion {i}{scope}", "Value": c.get("name") or ""})
+        rows.append({"Field": f"Weight {i}{scope}", "Value": "" if weight is None else f"{weight:g}"})
+    for i, (name, flag) in enumerate(iter_standards(record.get("standards")), start=1):
         rows.append({"Field": f"Standard {i}", "Value": name + (f" ({flag})" if flag else "")})
     return rows
 
 
 def run_stream(graph, eis_id, log, downloads_dir):
-    """Run one procurement, drawing every step into a visible placeholder as it happens.
-
-    stream_mode=["updates", "debug"] gives reliable state (updates) plus a task event
-    as each node starts and a task_result as it finishes (debug). The growing log is
-    drawn into a plain placeholder, not a collapsible container, so the whole trace
-    stays on screen while the run is active.
-    """
+    """Run one procurement, drawing every step into a visible placeholder as it happens."""
     state, times, started, lines = {}, {}, {}, []
     progress = st.empty()
 
@@ -208,137 +195,102 @@ def batch_summary_row(record):
 # Ramadurai (2025) and LangChain's human-in-the-loop docs (links in the module docstring).
 
 def decision_label(review):
-    """The decision word for a verdict: Required, Not required, No decision, or empty."""
+    """Display a completed decision or a pending review."""
     if not review:
-        return ""
-    applies = review.get("applies")
-    if applies is None:
-        return "No decision"                        # model called no tool (e.g. a reasoning model)
-    return "Required" if applies else "Not required"
+        return "Pending"
+    if review.get("status") == "unresolved" or not isinstance(review.get("applies"), bool):
+        return "Needs human review"
+    return "Required" if review["applies"] else "Not required"
 
 
-def human_note(review):
-    """What the person did during review: approved, amended, or sent more information."""
-    if not review:
-        return ""
-    parts = []
-    for decision in review.get("human") or []:
-        kind = decision.get("type")
-        if kind == "approve":
-            parts.append("approved")
-        elif kind == "edit":
-            applies = decision.get("edited_action", {}).get("args", {}).get("applies")
-            parts.append(f"amended to {'required' if applies else 'not required'}")
-        elif kind == "reject":
-            parts.append(f"sent info: {decision.get('message', '')}")
-    return "; ".join(parts)
-
-
-def status_rows(findings, current):
-    """Live rows for every candidate: its status now, and the verdict once decided."""
+def status_rows(findings, current=None):
+    """Show decisions, their source and the person's actions."""
     rows = []
     for i, finding in enumerate(findings):
-        review = finding.get("review")
-        status = "done" if review else ("reviewing" if i == current else "pending")
-        rows.append({"Standard": finding["name"], "Status": status,
-                     "Decision": decision_label(review),
-                     "Reason": review.get("reason", "") if review else "",
-                     "Reviewed": human_note(review)})
+        review = finding.get("review") or {}
+        human = review.get("human") or []
+        source = review.get("decision_source")
+        if not source and review:
+            source = "human" if human and human[-1].get("type") in {"approve", "edit"} else "model"
+        actions = {"approve": "Approved", "edit": "Supplied decision", "reject": "Sent information"}
+        rows.append({"Standard": finding["name"], "Category": finding["category"],
+                     "Decision": decision_label(review), "Decision by": source or "",
+                     "Human actions": "; ".join(actions.get(d.get("type"), "") for d in human),
+                     "Reason": review.get("reason", ""),
+                     "Current candidate": i == current})
     return rows
 
 
-def final_rows(findings):
-    """Standard, category, decision, reason, and what the person did for each candidate."""
-    return [{"Standard": f["name"], "Category": f["category"],
-             "Decision": decision_label(f.get("review")),
-             "Reason": f["review"].get("reason", "") if f.get("review") else "",
-             "Reviewed": human_note(f.get("review"))}
-            for f in findings]
-
-
 def review_step():
-    """Advance the review by one agent call: start a candidate, or resume after a decision."""
+    """Advance one candidate and wait whenever human input is needed."""
     ss = st.session_state
     finding = ss.rv_findings[ss.rv_index]
-    config = {"configurable": {"thread_id": f"standard-{ss.rv_index}"}}
-    started = time.perf_counter()
-    if not ss.rv_in_finding:
-        prompt = REVIEW_PROMPT.format(name=finding["name"], category=finding["category"],
-                                      phases=", ".join(finding["phases"]), count=finding["count"],
-                                      evidence=format_evidence(finding))
-        result = ss.rv_agent.invoke({"messages": [{"role": "user", "content": prompt}]},
-                                    config=config, version="v2")
-        ss.rv_in_finding, ss.rv_seconds, ss.rv_pauses, ss.rv_proposed, ss.rv_human = True, 0.0, 0, None, []
-    else:
-        ss.rv_human.append(ss.rv_decision)
-        result = ss.rv_agent.invoke(Command(resume={"decisions": [ss.rv_decision]}),
-                                    config=config, version="v2")
-        ss.rv_decision = None
-    ss.rv_seconds += time.perf_counter() - started
-
-    if result.interrupts:
-        request = result.interrupts[0].value["action_requests"][0]
-        if ss.rv_proposed is None:
-            ss.rv_proposed = request["args"].get("applies")
-        ss.rv_pauses += 1
-        ss.rv_request = request
+    if ss.rv_session is None:
+        ss.rv_session = ReviewSession(ss.rv_agent, finding)
+        ss.rv_session.start()
+    elif ss.rv_decision is not None:
+        decision, ss.rv_decision = ss.rv_decision, None
+        ss.rv_session.answer(decision)
+    if ss.rv_session.request:
+        ss.rv_request = ss.rv_session.request
         ss.rv_awaiting = True
         return
-
-    verdict = review_outcome(result, finding["name"], ss.rv_human,
-                             ss.rv_seconds, ss.rv_pauses, ss.rv_proposed)
-    finding["review"] = verdict
-    ss.rv_index, ss.rv_in_finding, ss.rv_awaiting = ss.rv_index + 1, False, False
+    if ss.rv_session.verdict is not None:
+        finding["review"] = ss.rv_session.verdict
+        ss.rv_index += 1
+        ss.rv_session = None
+        ss.rv_awaiting = False
+        for key in ("rv_choice", "rv_new", "rv_note", "rv_info"):
+            ss.pop(key, None)
 
 
 def render_decision(finding, request):
-    """Show one paused candidate and collect the person's decision (approve, amend, or send more information)."""
-    args = request.get("args", {})
+    """Present the evidence and collect a human decision or more information."""
+    ss = st.session_state
+    args = request["args"]
     applies = args.get("applies")
-    st.warning(f"Review needed: {finding['name']} ({finding['category']})")
-    st.write(f"Appears in {', '.join(finding['phases'])}, mentioned {finding['count']} times.")
-    for snippet in finding["evidence"]:
-        st.caption(f"({snippet['phase']}) {snippet['text']}")
-    st.markdown(f"**Model's verdict:** this **{'IS' if applies else 'is NOT'}** a required standard. "
-                f"{args.get('reason', '')}")
-    st.caption("Approve keeps the model's verdict. Amend replaces it with your own decision and "
-               "reason, final. Send more information hands your note to the model to reconsider.")
-    choice = st.radio("Your decision",
-                      ["Approve", "Amend with your own notes", "Send the model more information"],
-                      key="rv_choice")
-    new_applies, note, info = applies, "", ""
-    if choice == "Amend with your own notes":
-        new_applies = st.radio("It is", ["a required standard", "not a required standard"],
-                               index=0 if applies else 1, key="rv_new") == "a required standard"
-        note = st.text_input("Your reason", key="rv_note")
-    if choice == "Send the model more information":
-        info = st.text_input("What should the model consider?", key="rv_info")
+    st.warning(f"Review needed: {finding['name']}")
+    for snippet in evidence_rows(finding):
+        st.write(f"{snippet['phase']}: {snippet['text']}")
+    with st.expander("More evidence and procurement context"):
+        context = io.StringIO()
+        with redirect_stdout(context):
+            matches = print_context(ss.rv_record, finding, ss.rv_support, ss.rv_session.human)
+        st.text(context.getvalue())
+        for block in matches:
+            st.caption(f"{block['source']} | {block['location']}")
+            st.text(block["text"])
+        st.write("Procurement source files", ss.rv_record.get("source_files") or [])
+    st.write(args.get("reason", ""))
+    options = ["Decide", "Send more information"]
+    if isinstance(applies, bool):
+        st.write("Model decision:", "Required" if applies else "Not required")
+        options.insert(0, "Approve")
+    else:
+        st.info("No model decision is available. Make a decision or supply evidence for another attempt.")
+    choice = st.radio("Your action", options, key="rv_choice")
+    if choice == "Decide":
+        value = st.radio("Is this required?", ["Required", "Not required"], index=None, key="rv_new")
+        reason = st.text_area("Reason", key="rv_note")
+    elif choice == "Send more information":
+        note = st.text_area("Evidence or clarification for the model", key="rv_info")
     if st.button("Submit decision", type="primary"):
         if choice == "Approve":
             decision = {"type": "approve"}
-        elif choice == "Amend with your own notes":
-            decision = {"type": "edit",
-                        "edited_action": {"name": "request_review",
-                                          "args": {**args, "applies": new_applies,
-                                                   "reason": note or args.get("reason")}}}
+        elif choice == "Decide":
+            if value is None or not reason.strip():
+                st.warning("Select a decision and enter a reason.")
+                return
+            decision = make_decision(request, value == "Required", reason.strip())
         else:
-            decision = {"type": "reject", "message": info or "reconsider this candidate"}
-        st.session_state.rv_decision = decision
-        st.session_state.rv_awaiting = False
+            if not note.strip():
+                st.warning("Enter evidence or clarification.")
+                return
+            decision = {"type": "reject", "message": note.strip()}
+        ss.rv_decision, ss.rv_awaiting = decision, False
+        for key in ("rv_choice", "rv_new", "rv_note", "rv_info"):
+            ss.pop(key, None)
         st.rerun()
-
-
-def save_review(path, record, findings, model_tag):
-    """Write the verdicts back into the extracted file and append the run log."""
-    reviewed = [f for f in findings if isinstance(f.get("review"), dict)]
-    summary = review_summary(findings, model_tag)
-    record["standards_review"] = summary
-    record["standards_reviewed"] = summary["complete"]
-    path.write_text(json.dumps(record, indent=2, ensure_ascii=False), encoding="utf-8")
-    with open(RUNS_PATH, "a", encoding="utf-8") as runs:
-        runs.write(json.dumps({**summary, "eis_id": record.get("eis_id"),
-                               "verdicts": {f["name"]: f["review"] for f in reviewed}},
-                              ensure_ascii=False) + "\n")
 
 
 # SIDEBAR
@@ -349,7 +301,7 @@ st.sidebar.divider()
 options = [EXTRACT] + ([REVIEW] if REVIEW_OK else [])
 action = st.sidebar.selectbox("Select action", options)
 if not REVIEW_OK:
-    st.sidebar.caption("Review is unavailable (its dependencies did not import).")
+    st.sidebar.error(f"Review is unavailable: {REVIEW_ERROR}")
 
 group = "review" if action == REVIEW else "extract"
 default_folder = EXTRACTED_HOME if group == "review" else DOWNLOADS_HOME
@@ -361,17 +313,7 @@ with settings:
                              index=models.index(default_model) if default_model in models else 0)
     else:
         model = st.text_input("Ollama model", value=default_model, key=f"model_{group}")
-    # Reset the folder to the action's default (downloads/ or extracted/) whenever the
-    # action changes; within an action a typed path is kept.
-    if st.session_state.get("last_action") != action:
-        st.session_state["folder_box"] = str(default_folder)
-        st.session_state["last_action"] = action
-    folder = Path(st.text_input("Folder", key="folder_box"))
-    if not folder.is_dir():                          # invalid path: fall back to the default
-        st.caption(f"{folder} is not a folder; using {default_folder}")
-        folder = default_folder
-    # if group == "extract":
-    #     pipeline.DOWNLOADS_DIR = folder            # the graph reads its documents from here
+    folder = choose_folder(default_folder, group)
 
 if action == REVIEW:
     ids = sorted(p.stem for p in folder.glob("*.json")) if folder.is_dir() else []
@@ -405,8 +347,8 @@ def load_review_id(eis_id, extracted_dir):
     for finding in findings:
         finding.pop("review", None)
     st.session_state.update(rv_path=str(path), rv_record=record, rv_findings=findings,
-                            rv_index=0, rv_in_finding=False, rv_awaiting=False,
-                            rv_decision=None, rv_id=eis_id, rv_human=[])
+                            rv_index=0, rv_session=None, rv_awaiting=False,
+                            rv_decision=None, rv_id=eis_id, rv_support=load_support(path))
 
 
 # MAIN
@@ -428,8 +370,6 @@ if run and selected:
         except Exception as error:
             st.error(f"Pipeline failed: {error}")
             st.stop()
-        # record = record_from_state(eis_id, state)
-        # saved_path = save_extraction(eis_id, record, state)
         record = pipeline.build_record(eis_id, state)
         saved_path, _, _ = pipeline.save_result(eis_id, state, EXTRACTED_HOME, TABLES_HOME, OCR_HOME)
         st.session_state.update(record=record, saved=str(saved_path), log=log.getvalue(),
@@ -460,7 +400,6 @@ if run and selected:
         st.session_state["batch"] = records
 
 if start_review and selected:
-    # reviewer.EXTRACTED_DIR = folder
     if model != st.session_state.get("review_model"):
         with st.spinner(f"Loading model {model}..."):
             st.session_state.review_agent = build_reviewer(
@@ -469,7 +408,7 @@ if start_review and selected:
     for k in [k for k in st.session_state if k.startswith("rv_")]:
         st.session_state.pop(k, None)
     st.session_state.update(rv_active=True, rv_queue=list(selected), rv_qpos=0,
-                            rv_model=model, rv_agent=st.session_state.review_agent, rv_done=[])
+                            rv_model=model, rv_agent=st.session_state.review_agent, rv_done=[], rv_folder=str(folder))
     load_review_id(selected[0], folder)
     st.rerun()
 
@@ -477,7 +416,6 @@ if start_review and selected:
 # DISPLAY
 
 if action == REVIEW:
-    # reviewer.EXTRACTED_DIR = folder
     if not st.session_state.get("rv_active"):
         st.info("Pick ids to review (leave empty for all) and click Start review. This re-reviews the "
                 "selected procurements and overwrites their verdicts.")
@@ -500,23 +438,29 @@ if action == REVIEW:
     current_id = st.session_state.rv_id
     st.subheader(f"Reviewing {current_id} ({st.session_state.rv_qpos + 1} of {len(queue)})")
 
-    # All candidates have been attempted; unresolved outcomes remain visible.
+    # Save the procurement after every candidate has a decision.
     if st.session_state.rv_index >= len(findings):
         summary = review_summary(findings, st.session_state.rv_model)
         st.caption(f"Decided {summary['decided']}; unresolved {summary['unresolved']}; "
                    f"human reviewed {summary['human_reviewed']}; "
                    f"kept {summary['applies']} of {summary['candidates']} as required standards.")
-        st.dataframe(final_rows(findings), use_container_width=True, hide_index=True)
+        st.dataframe(status_rows(findings), use_container_width=True, hide_index=True)
         last = st.session_state.rv_qpos + 1 >= len(queue)
         if st.button("Save and finish" if last else "Save and review the next procurement",
                      type="primary"):
-            if findings:
-                save_review(Path(st.session_state.rv_path), st.session_state.rv_record,
+            save_review(Path(st.session_state.rv_path), st.session_state.rv_record,
                             findings, st.session_state.rv_model)
-            st.session_state.rv_done.append({"id": current_id, "candidates": len(findings), "kept": kept})
+            st.session_state.rv_done.append({
+                "Procurement ID": current_id,
+                "Candidates": len(findings),
+                "Required": summary["applies"],
+                "Human-reviewed candidates": summary["human_reviewed"],
+                "Human responses": sum(len((f.get("review") or {}).get("human") or [])
+                                       for f in findings),
+            })
             st.session_state.rv_qpos += 1
             if not last:
-                load_review_id(queue[st.session_state.rv_qpos], folder)
+                load_review_id(queue[st.session_state.rv_qpos], Path(st.session_state.rv_folder))
             st.rerun()
         st.stop()
 

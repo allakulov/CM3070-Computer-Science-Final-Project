@@ -93,17 +93,33 @@ class Test_data_structures(unittest.TestCase):
 
     def test_final_human_amendment_overrides_disagreeing_receipt(self):
         original = {"name": "ISO 9001", "applies": True, "reason": "Proposed"}
-        edited = {**original, "applies": False, "reason": "Human amended"}
-        messages = [AIMessage(content="", tool_calls=[
-            {"name": "request_review", "id": "1", "args": original}]),
-            ToolMessage(content=json.dumps({**original, "decision_recorded": True}), tool_call_id="1")]
-        decision = {"type": "edit", "edited_action": {"name": "request_review", "args": edited}}
-        result = review.review_outcome(SimpleNamespace(value={"messages": messages}),
-                                       "ISO 9001", [decision], 0.1, 1, True)
-        self.assertFalse(result["applies"])
-        self.assertEqual(result["reason"], "Human amended")
-        self.assertEqual(result["decision_source"], "human_edit_reconciled")
-        self.assertIn("amend_discrepancy", result)
+        finding = {"name": "ISO 9001", "category": "standard",
+                   "phases": ["specification"], "count": 1,
+                   "evidence": [{"phase": "specification", "text": "ISO 9001"}]}
+        request = {"name": "request_review", "args": original}
+        paused = SimpleNamespace(interrupts=[
+            SimpleNamespace(value={"action_requests": [request]})])
+
+        # The completed receipt still contains the original proposal.
+        receipt = {**original, "decision_recorded": True}
+        completed = SimpleNamespace(interrupts=(), value={"messages": [
+            AIMessage(content="", tool_calls=[
+                {"name": "request_review", "id": "1", "args": original}]),
+            ToolMessage(content=json.dumps(receipt), artifact=receipt,
+                        tool_call_id="1"),
+        ]})
+        agent = Mock()
+        agent.invoke.side_effect = [paused, completed]
+        session = review.ReviewSession(agent, finding)
+        session.start()
+        decision = review.make_decision(session.request, False, "Human amended")
+        session.answer(decision)
+
+        self.assertFalse(session.verdict["applies"])
+        self.assertEqual(session.verdict["reason"], "Human amended")
+        self.assertEqual(session.verdict["decision_source"], "human")
+        self.assertEqual(session.verdict["human"], [decision])
+        self.assertTrue(session.verdict["overridden"])
 
 
 class Test_boundary_conditions(unittest.TestCase):
@@ -256,7 +272,8 @@ class Test_error_handling(unittest.TestCase):
                 messages = [AIMessage(content="", tool_calls=[
                     {"name": "request_review", "id": "1", "args": proposed}])]
                 if reply_id is not None:
-                    messages.append(ToolMessage(content=json.dumps(receipt), tool_call_id=reply_id, status=status))
+                    messages.append(ToolMessage(content=json.dumps(receipt), artifact=receipt,
+                                                tool_call_id=reply_id, status=status))
                 result = review.last_tool_call(SimpleNamespace(value={"messages": messages}), "ISO 9001")
                 if reply_id == "1" and status == "success":
                     self.assertFalse(result["applies"])
