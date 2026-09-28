@@ -34,3 +34,11 @@ output.md
 /final_cleanup/
 /final_cleanup.zip
 /compare_lot_patterns.py
+
+# Local reports, backups, and patch bundles
+/procurement_changes.diff
+/standards_analysis_report/
+/standards_folder_navigation/
+/standards_review_backup/
+/standards_review_context/
+/standards_review_final/
